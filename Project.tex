@@ -2,10 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
 
-
-\title{Progetto Software Engineering 2}
-\author{Alessandro Nichelini, Stefano Martina, Francesco Peressini}
-\date{October 2018}
+\title{Software Engineering 2 Project}
+\author{Stefano Martina, Alessandro Nichelini, Francesco Peressini}
 
 \begin{document}
 
@@ -19,8 +17,9 @@ TrackMe is a company aiming to support interactions between users, who like keep
 
 TrackMe app is composed of three main important service:
 \begin{itemize}
-\item Data4Help: basic support for health data.
-\item AutomatedSOS: add support for SOS services to elderly people. 
+\item BPM: beats per minutes;
+\item Data4Help: basic support for health data;
+\item AutomatedSOS: add support for SOS services to elderly people;
 \item Track4Run: add support for running events.
 \end{itemize}
 
@@ -29,16 +28,37 @@ Each of them will have as targets:
 \item Individuals users
 \item Third parties.
 \end{itemize}
-Since each service serves both the targets, the project consist of a platform split in an iOS application and an API endpoint to sell and distribute data to third parties.
+Since each service serves both the targets, the project consists of platform divided in a mobile application and a web-based interface to serve third-parties.
 
 The system allows individual users to add and handle data on the app and to third parties to request and have access to these data.
 
 In particular, a user of the application is able to keep track of his/her position during the activities but also during the normal day-life. The users’ data are used to monitor the heartbeat and eventually to send an AutomatedSOS.
-Furthermore, trackMe, is able to track all the athletes (that are using the application), during a run previously organized. Indeed TrackMe’s app provide a section to setup a group run , specifying the path and other useful information.
+Furthermore, TrackMe, is able to track all the athletes (that are using the application), during a run previously organized. Indeed TrackMe’s app provide a section to setup a group run , specifying the path and other useful information.
 
 \subsection{Scope}
- 
+\subsubsection{Description of the problem}
+The software developed by TrackMe included three different services: Data4Help supports user's data acquiring through smartwatches or similar devices, 
+Data4Help is also a service available for third-parties: in fact, organizations can request data to TrackMe and collect them for pursuing their objectives.
+Data acquisition can be performed in two different way: directly to a single user or to a groups of individuals.
+Concerning the single user case, companies, through a social security code, ask permission to access the corresponding information. 
+In the other case, organizations can request, directly to TrackMe, data of group of individuals with particular proprieties (e.g. users between 20 and 30 years old or living in a certain district).
+In the latter, TrackMe provides data only if it can anonymized them correctly. 
 
+
+
+\subsubsection{World Phenomena}
+
+
+\subsubsection{Machine Phenomena}
+\begin{itemize}
+\item Third-parties registration;
+\item user's registration;
+\item data anonymization.
+\end{itemize}
+
+\subsubsection{Shared Phenomena}
+
+\subsubsection{Goals}
 \begin{enumerate}[label={\textbf{[G\arabic*]}}]
 \item Allow users to add data to TrackMe manually or let the application collect them automatically.
 \item Allow users to have access to an overview page of their data.
@@ -61,13 +81,22 @@ Furthermore, trackMe, is able to track all the athletes (that are using the appl
 
 \subsection{Definitions, Acronyms, Abbreviations}
 \subsubsection{Definitions}
+
 \subsubsection{Acronyms}
 \begin{itemize}
 \item API: Application Programming Interface
-\item URL: Uniform Resource Locator
+\item ASOS: AutomatedSOS
+\item D4H: Data4Help
 \item RASD:  Requirement Analysis and Specification Document 
+\item T4R: Track4Run 
 \end{itemize}
+
 \subsubsection{Abbreviations}
+\begin{itemize}
+\item [Gn]: n-th 
+\item [Dn]: n-th domain assumption
+\item [Rn]: n-th functional requirement
+\end{itemize}
 
 \subsection{Revision history}
 \subsection{Reference Documents}
@@ -76,6 +105,7 @@ Furthermore, trackMe, is able to track all the athletes (that are using the appl
 \section{OVERALL DESCRIPTION}
 
 \subsection{Product perspective}
+
 \subsection{Product functions}
 \subsection{User characteristics}
 \subsection{Assumptions, dependencies and constraints}
