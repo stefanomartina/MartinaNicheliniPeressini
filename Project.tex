@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+\usepackage{nameref}
 
 \title{Software Engineering 2 Project}
 \author{Stefano Martina, Alessandro Nichelini, Francesco Peressini}
@@ -36,14 +37,9 @@ Furthermore, TrackMe, is able to track all the athletes (that are using the appl
 
 \subsection{Scope}
 \subsubsection{Description of the problem}
-The software developed by TrackMe included three different services: Data4Help supports user's data acquiring through smartwatches or similar devices, 
-Data4Help is also a service available for third-parties: in fact, organisations can request data to TrackMe and collect them for pursuing their objectives.
-Data acquisition can be performed in two different way: directly to a single user or to a groups of individuals.
-Concerning the single user case, companies, through a social security code, ask permission to access the corresponding information. 
-In the other case, organisations can request, directly to TrackMe, data of group of individuals with particular proprieties (e.g. users between 20 and 30 years old or living in a certain district).
-In the latter, TrackMe provides data only if it can anonymized them correctly. 
-
-
+Nowadays a lot of persons track their activities with smartphone or smartwatch. For this reason TrackMe provide a new complete user experience allowing all the user to read briefly all the information about all activities’ history.
+It’s also provided a service to organise a group run, during which it’s possible to monitor all the athletes information.
+Furthermore all the users are monitored and, in case of some trouble, an SOS will be launched.
 
 \subsubsection{World Phenomena}
 \begin{itemize}
@@ -63,49 +59,53 @@ In the latter, TrackMe provides data only if it can anonymized them correctly.
 \begin{itemize}
 	\item \textit{Vital parameters}: the machine can read vital parameters of the user such as BPM.
 	\item \textit{User's location}: the machine knows or can read actual and past user’s location.
-	\item 
 \end{itemize}
 
-\subsubsection{Goals}
+\subsubsection{Goals} \label{goals}
 \begin{enumerate}[label={\textbf{[G\arabic*]}}]
 \item Users can be recognised by their credentials.
-\item Allow users to log their health data.
-\item Allow users to have access to an overview of their data, including health parameters and performed activities.
-\item Allow users to permit/deny third parties to access their data.
+\item Allow users to keep track of their health data.
+\item Allow users to have access to an overview of their data, including health parameters and performed activities. \label{g3}
+\item Allow users to manage their data access policy.
 \item Allow users to monitor their performance during run workouts.
 \item Each time vital signs go below a threshold value, first aid services have to be notified.
 \item Allow users to organise running events.
-\item Allow users to en-roll to events.
-\item Allow spectators to follow participants’ live position during events.
-\item Allow third parties to have a way to access specific user data.
-\item Allow third parties to retrieve anonymised aggregated data.
-\end{enumerate}
+		\begin{enumerate}[label={[G\arabic{enumi}.\arabic*]}]
+    		\item Allow users to create running events.
+    		\item Allow users to en-roll to events.
+    		\item Allow spectators to follow participants’ live position during events.
+  		\end{enumerate}
+\item Allow third parties to access data:
+		\begin{enumerate}[label={[G\arabic{enumi}.\arabic*]}]
+    		\item Allow third parties to require access to specific user data.
+    		\item Allow third parties to retrieve anonymised aggregated data.
+    		\item Allow third parties to subscribe to da
+  		\end{enumerate}
 
+\end{enumerate}
 
 \subsection{Definitions, Acronyms, Abbreviations}
 
 \subsubsection{Definitions}
 \begin{itemize}
-	\item \textit{Third party}: a third party is an organisation or a developer who 
 	\item 
-	\item
 \end{itemize}
 
 \subsubsection{Acronyms}
 \begin{itemize}
-\item API: Application Programming Interface
-\item ASOS: AutomatedSOS
-\item D4H: Data4Help
-\item RASD:  Requirement Analysis and Specification Document 
-\item T4R: Track4Run 
-\item BPM: beats per minutes;
+\item API: Application Programming Interface;
+\item ASOS: AutomatedSOS;
+\item BPM: Beats Per Minutes;
+\item D4H: Data4Help;
+\item RASD: Requirement Analysis and Specification Document;
+\item T4R: Track4Run.
 \end{itemize}
 
 \subsubsection{Abbreviations}
 \begin{itemize}
-\item [Gn]: n-th 
-\item [Dn]: n-th domain assumption
-\item [Rn]: n-th functional requirement
+		\item \begin{math}[Gn]\end{math}: n-th goal
+		\item \begin{math}[Dn]\end{math}: n-th domain assumption 
+		\item \begin{math}[Rn]\end{math}: n-th functional requirement
 \end{itemize}
 
 \subsection{Revision history}
@@ -117,8 +117,49 @@ In the latter, TrackMe provides data only if it can anonymized them correctly.
 \subsection{Product perspective}
 
 \subsection{Product functions}
-\subsection{User characteristics}
+The software developed by TrackMe included three different services: Data4Help supports user's data acquiring through smartwatches or similar devices, AutomatedSOS, a personalized and 
+non-intrusive SOS service for elderly people and Track4Run, a service to track athletes participating to a run.
+Data4Help is also a service available for third-parties: in fact, organisations can request data to TrackMe and collect them for pursuing their objectives.
+Data acquisition can be performed in two different way: directly to a single user or to a groups of individuals.
+Concerning the single user case, companies, through a social security code, ask permission to access the corresponding information. 
+In the other case, organisations can request, directly to TrackMe, data of group of individuals with particular proprieties (e.g. users between 20 and 30 years old or living in a certain district).
+In the latter, TrackMe provides data only if it can anonymized them correctly.
+AutomatedSOS it’s great for those elderly people who want to monitor their health status and have the support of an ambulance in case their vital parameters are under certain thresholds.
+Track4Run it’s a service dedicated to the runners: it offers the possibility to organise a run between other runners, define the path and the duration, allowing the invited ones to enroll. In addition, Track4Run users who do not partecipate to the run can see live time on a map the position of all the runners. 
+Finally, Track4Run supports the synchronization of data with Data4Help.
+
+All the goals presented in section \ref{goals} are going to be implemented. Here we describe deeply the requirements needed to implement application's functions.
+	
+\begin{enumerate}[label={[R\arabic*]}]
+    	\item Users can create an account with credentials.
+    	\item Credentials can be retrievable also if forgotten/lost.
+    	\item Users can log manually or automatically their data.
+    	\item Data have t
+    	\item Users have to be able to accept/deny access to single data access request.
+    	\item Users have to be able to see current data policies and to change them.
+    	\item 
+\end{enumerate}
+
+\subsection{Users characteristics}
+\textbf{Users}: any person that will use the service to keep track of health data, positioning or automated sos during any kind of activities (walking or running during a loner run or an organized event).\\\\
+\textbf{Third parties}: Organisation or other parties interested in the acquisition for their usage of the data provided by the user activities.
+
 \subsection{Assumptions, dependencies and constraints}
+
+\subsubsection{Domain assumptions}
+
+\begin{enumerate}[label={[D\arabic*]}]
+    	\item Data manually logged by users well describes reality.
+    	\item First aid services are ready to handle emergency notifications.
+    	\item Data inserted by users are truthful 
+    		\begin{enumerate}[label={[D\arabic{enumi}.\arabic*]}]
+    			\item Data are up to date.
+    			\item Data are correctly formatted.
+  			\end{enumerate}
+  		
+  		\item Running paths proposed by users are well formed (e.g: legit by law).
+  		\item External services are reliable.
+\end{enumerate}
 
 \section{SPECIFIC REQUIREMENTS}
 \subsection{External Interface Requirements}
@@ -129,6 +170,7 @@ In the latter, TrackMe provides data only if it can anonymized them correctly.
 			\item Communication Interfaces
 		\end{itemize}
 \subsection{Functional Requirements}	
+
 \subsection{Performance Requirements}
 \subsection{Design Constraints}
 		\begin{itemize}
@@ -145,13 +187,9 @@ In the latter, TrackMe provides data only if it can anonymized them correctly.
 			\item Portability
 		\end{itemize}
 
-
 \section{FORMAL ANALYSIS USING ALLOY}
 
 \section{EFFORT SPENT}
 
 \section{REFERENCES}
-
 \end{document}
-
-
