@@ -17,7 +17,6 @@ TrackMe is a company aiming to support interactions between users, who like keep
 
 TrackMe app is composed of three main important service:
 \begin{itemize}
-\item BPM: beats per minutes;
 \item Data4Help: basic support for health data;
 \item AutomatedSOS: add support for SOS services to elderly people;
 \item Track4Run: add support for running events.
@@ -33,54 +32,64 @@ Since each service serves both the targets, the project consists of platform div
 The system allows individual users to add and handle data on the app and to third parties to request and have access to these data.
 
 In particular, a user of the application is able to keep track of his/her position during the activities but also during the normal day-life. The users’ data are used to monitor the heartbeat and eventually to send an AutomatedSOS.
-Furthermore, TrackMe, is able to track all the athletes (that are using the application), during a run previously organized. Indeed TrackMe’s app provide a section to setup a group run , specifying the path and other useful information.
+Furthermore, TrackMe, is able to track all the athletes (that are using the application), during a run previously organised. Indeed TrackMe’s app provide a section to setup a group run , specifying the path and other useful information.
 
 \subsection{Scope}
 \subsubsection{Description of the problem}
 The software developed by TrackMe included three different services: Data4Help supports user's data acquiring through smartwatches or similar devices, 
-Data4Help is also a service available for third-parties: in fact, organizations can request data to TrackMe and collect them for pursuing their objectives.
+Data4Help is also a service available for third-parties: in fact, organisations can request data to TrackMe and collect them for pursuing their objectives.
 Data acquisition can be performed in two different way: directly to a single user or to a groups of individuals.
 Concerning the single user case, companies, through a social security code, ask permission to access the corresponding information. 
-In the other case, organizations can request, directly to TrackMe, data of group of individuals with particular proprieties (e.g. users between 20 and 30 years old or living in a certain district).
+In the other case, organisations can request, directly to TrackMe, data of group of individuals with particular proprieties (e.g. users between 20 and 30 years old or living in a certain district).
 In the latter, TrackMe provides data only if it can anonymized them correctly. 
 
 
 
 \subsubsection{World Phenomena}
-
+\begin{itemize}
+	\item \textit{General user’s health condition}: the machine doesn’t know the information about possible user’s disease.
+	\item \textit{First aid services status}: the machine doesn’t know the actual first aid services status.
+	\item \textit{Overall third parties knowledge status}: the machine doesn’t know which informations third parties already have about users.
+\end{itemize}
 
 \subsubsection{Machine Phenomena}
 \begin{itemize}
-\item Third-parties registration;
-\item user's registration;
-\item data anonymization.
+	\item \textit{Third-parties registration};
+	\item \textit{User's registration};
+	\item \textit{Data anonymization}.
 \end{itemize}
 
 \subsubsection{Shared Phenomena}
+\begin{itemize}
+	\item \textit{Vital parameters}: the machine can read vital parameters of the user such as BPM.
+	\item \textit{User's location}: the machine knows or can read actual and past user’s location.
+	\item 
+\end{itemize}
 
 \subsubsection{Goals}
 \begin{enumerate}[label={\textbf{[G\arabic*]}}]
-\item Allow users to add data to TrackMe manually or let the application collect them automatically.
-\item Allow users to have access to an overview page of their data.
+\item Users can be recognised by their credentials.
+\item Allow users to log their health data.
+\item Allow users to have access to an overview of their data, including health parameters and performed activities.
 \item Allow users to permit/deny third parties to access their data.
-\item Allow users to monitor her/his health parameters.
-\item Allow users to monitor her/his performance during run workouts.
-\item Send to user’s location emergency services in case of low vital parameters. 
-\item Guarantee very efficient time reaction in case of low vital parameters detection.
-\item Allow a user to create an event defining run path and other event settings.
+\item Allow users to monitor their performance during run workouts.
+\item Each time vital signs go below a threshold value, first aid services have to be notified.
+\item Allow users to organise running events.
 \item Allow users to en-roll to events.
 \item Allow spectators to follow participants’ live position during events.
-
-
-\item Allow third parties to request users to provide their personal informations.
-\item Allow third parties to request TrackMe to provide anonymised aggregated data.
-\item Allow third parties to subscribe to data feeds.
-\item Allow third parties to retrieve data from TrackMe through and URL endpoint (API). 
+\item Allow third parties to have a way to access specific user data.
+\item Allow third parties to retrieve anonymised aggregated data.
 \end{enumerate}
 
 
 \subsection{Definitions, Acronyms, Abbreviations}
+
 \subsubsection{Definitions}
+\begin{itemize}
+	\item \textit{Third party}: a third party is an organisation or a developer who 
+	\item 
+	\item
+\end{itemize}
 
 \subsubsection{Acronyms}
 \begin{itemize}
@@ -89,6 +98,7 @@ In the latter, TrackMe provides data only if it can anonymized them correctly.
 \item D4H: Data4Help
 \item RASD:  Requirement Analysis and Specification Document 
 \item T4R: Track4Run 
+\item BPM: beats per minutes;
 \end{itemize}
 
 \subsubsection{Abbreviations}
