@@ -58,7 +58,7 @@ experience allowing all the user to read briefly all the information
 about all activities’ history.
 It’s also provided a service to organise a group run, during which it’s possible to monitor all the athletes information.
 Furthermore all the users are monitored and, in case of some trouble, an SOS will be launched.
-
+\newpage
 \subsubsection{World Phenomena}
 \begin{itemize}
 	\item \textit{General user’s health condition}: the machine doesn’t know the information about possible user’s disease.
@@ -106,8 +106,10 @@ Furthermore all the users are monitored and, in case of some trouble, an SOS wil
 
 \subsubsection{Definitions}
 \begin{itemize}
-	\item 
-\end{itemize}
+	\item \textbf{Event:} An event organized by a user (\textit{ e.g scenario 3.6.3)}.
+	\item \textbf{Notification:} A warning that advise the user of a request by third parties.
+	\item \textbf{AGGIUNGERE ALTRO?} 
+	\end{itemize}
 
 \subsubsection{Acronyms}
 \begin{itemize}
@@ -127,12 +129,35 @@ Furthermore all the users are monitored and, in case of some trouble, an SOS wil
 \end{itemize}
 
 \subsection{Revision history}
+This one file is the only one produced.
 \subsection{Reference Documents}
 \subsection{Document Structure}
-
+\newpage
 \section{Overall description}
 
 \subsection{Product perspective}
+The product perspective of TrackMe is now explained using the UML paradigms.
+The main classes of the UML are:
+\begin{itemize}
+	\item \textbf{User} contains all the information about a user like username, password, fiscalCode, hometown, elderly, runners.
+	\item \textbf{ThirdParties} contains all the information about the registered organisation.
+	\item \textbf{Data} is an abstract class that has two concrete classes: 
+		\textbf{Health data} and	 \textbf{Location data}
+	\item \textbf{Running Event} 
+	\item \textbf{Location} contains information like the start point and the end point of a running event.
+\end{itemize}
+
+A user creates an Event specifying the path ie the starting location, the ending location and some specific interesting point along the path.
+After the creation some user can join in.
+An organisation, as explained above, can subscribe to a feed of data or directly to a single user.
+
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{boat.jpg}
+  \caption{A boat.}
+  \label{fig:boat1}
+\end{figure}
+
 
 \subsection{Product functions}
 The software developed by TrackMe included three different services:
