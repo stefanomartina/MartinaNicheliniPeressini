@@ -132,13 +132,16 @@ an SOS will be launched.
 \end{itemize}
 
 \subsection{Revision history}
-This one file is the only one produced.
+\begin{itemize}
+	\item 1.0.0 Initial version (10-11-2018)
+\end{itemize}
 \subsection{Reference Documents}
 \subsection{Document Structure}
 \newpage
 \section{Overall description}
 
 \subsection{Product perspective}
+\subsubsection{Class Diagram}
 The product perspective of TrackMe is now explained using the UML paradigms.
 The main classes of the UML are:
 \begin{itemize}
@@ -160,8 +163,18 @@ An organisation, as explained above, can subscribe to a feed of data or directly
   \caption{UML diagrams.}
   \label{fig:umlDiagrams}
 \end{figure}
-
 \newpage
+
+\subsubsection{State Diagram}
+The whole system can be also seen as a set of different service relying on the main module Data4Help.
+Here we describe the main aspects of them with state diagrams.
+
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{Figures/State1}
+  \caption{Basic Data4Help service state diagram.}
+  \label{fig:State1}
+\end{figure}
+
 \subsection{Product functions}
 The software developed by TrackMe included three different services:
 Data4Help supports user's data acquiring through smartwatches or 
@@ -206,12 +219,10 @@ implement application's functions.
 		\item The machine has to be able to communicate with third parties.
 		\item The machine has to be able to recognise data fragmentation level 
 		\item The machine has to be able to store users’ data. 
-
-
 \end{enumerate}
 
 \subsection{Users characteristics}
-\textbf{Users}: any person that will use the service to keep track of health data, positioning or automated sos during any kind of activities (walking or running during a loner run or an organised event).\\\\
+\textbf{Users}: any person that will use the service to keep track of health data, positioning or automated SOS during any kind of activities (walking or running during a lone run or an organised event).\\\\
 \textbf{Third parties}: Organisation or other parties interested in the acquisition for their usage of the data provided by the user activities.
 
 \subsection{Assumptions, dependencies and constraints}
@@ -311,4 +322,4 @@ en-roll the training sessions.
 
 \section{References}
 
-\end{document}
+\end{document} k  
