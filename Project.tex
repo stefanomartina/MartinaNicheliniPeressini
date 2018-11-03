@@ -254,28 +254,56 @@ implement application's functions.
   		\item External services are reliable.
 \end{enumerate}
 
-\section{Specific requirements}
+\newpage
+\section{Specific Requirements}
 
 \subsection{External Interface Requirements}
 
 	\subsubsection{User Interfaces} 
 	\subsubsection{Hardware Interfaces}
+	The system requires one or more dedicated servers for data 
+	management and for handling communication between users and 
+	third-parties.
+	
 	\subsubsection{Software Interfaces}
 	
-	In Data4Help the user can insert data manually or 
-	automatically by the interaction between the application 
-	and the wearable devices API. 
-	Third-parties can access to the individuals’ data by a 
-	web-based  interface: the web page comes in different way
-	in base of the selection between single individual or 
-	group of individuals. 
-	In case of single individual, the web page presents a
-	list of fiscal code and the third party can the select
-	interested one. 
+	\begin{itemize}
 	
-	AutomatedSOS works similarly as Data4Help: elderly people can
-	consult vital parameters through the application interface (data
-	are collected by wearable devices);
+		\item \textbf{Data4Help} \newline 
+		User's health data can be inserted in Data4Help section of the
+		application manually or automatically synchronised with data
+		acquired by individual's wearable device with HealthKit API 
+		provided by Apple. \newline
+		Third-parties can access to the different data through a 
+		web-based interface in which, in case the organisation is 
+		interested to the information of some specific individual, 
+		can select the single user by his/her fiscal code and send to
+		him/her the request of data's visualisation; instead, in the 
+		case of interest in accessing data of groups of individuals, 
+		companies can select the parameters of interest and send to 
+		TrackMe the request on hold for a positive response. \newline
+		Data4Help also offers the integration with ResearchKit and 
+		CareKit APIs, also provided by Apple, to help third-parties to 
+		access more relevant data for their studies.
+		
+		\item \textbf{AutomatedSOS} \newline
+		Similarly as Data4Help, AutomatedSOS automatically 
+		synchronises data acquired from user's wearable device and 
+		monitors them to guarantee the safety of elderly people. 
+		\newline
+		In case of emergency, an ambulance will reach the location
+		of the costumer: AutomatedSOS uses Google Maps API to show 
+		live-time the position on the map of the arriving ambulance. 
+		
+		\item \textbf{Track4Run} \newline
+		Since Track4Run aims to schedule and organise runs for the 
+		users of the service, it makes use of Google Calendar API to 
+		allow individuals to create and en-roll races. 
+		Also, for users not taking part of runs, Track4Run supports 
+		Google Maps API for live-tracking the position of the 
+		participating runners. 
+		
+	\end{itemize}
 	
 	\subsubsection{Communication Interfaces}
 	
