@@ -260,15 +260,14 @@ implement application's functions.
 \subsection{External Interface Requirements}
 
 	\subsubsection{User Interfaces} 
+	
 	\subsubsection{Hardware Interfaces}
 	The system requires one or more dedicated servers for data 
 	management and for handling communication between users and 
 	third-parties.
 	
 	\subsubsection{Software Interfaces}
-	
 	\begin{itemize}
-	
 		\item \textbf{Data4Help} \newline 
 		User's health data can be inserted in Data4Help section of the
 		application manually or automatically synchronised with data
@@ -285,7 +284,6 @@ implement application's functions.
 		Data4Help also offers the integration with ResearchKit and 
 		CareKit APIs, also provided by Apple, to help third-parties to 
 		access more relevant data for their studies.
-		
 		\item \textbf{AutomatedSOS} \newline
 		Similarly as Data4Help, AutomatedSOS automatically 
 		synchronises data acquired from user's wearable device and 
@@ -294,7 +292,6 @@ implement application's functions.
 		In case of emergency, an ambulance will reach the location
 		of the costumer: AutomatedSOS uses Google Maps API to show 
 		live-time the position on the map of the arriving ambulance. 
-		
 		\item \textbf{Track4Run} \newline
 		Since Track4Run aims to schedule and organise runs for the 
 		users of the service, it makes use of Google Calendar API to 
@@ -302,59 +299,89 @@ implement application's functions.
 		Also, for users not taking part of runs, Track4Run supports 
 		Google Maps API for live-tracking the position of the 
 		participating runners. 
-		
-	\end{itemize}
+	\end{itemize} 
 	
 	\subsubsection{Communication Interfaces}
 	
 \subsection{Functional Requirements}	
 
 \subsection{Performance Requirements}
+	
+
 \subsection{Design Constraints}
-		\begin{itemize}
-			\item Standards compliance
-			\item Hardware limitations
-			\item Any other constraint
-		\end{itemize}
+
+	\subsubsection{Standards compliance}
+	The software application should handle a big amount of data, 
+	stored online on servers. 
+	It also should manage a great number of simultaneous requests 
+	when, in example, third-parties ask to access data or during the
+	period of enrollment to a run. \newline
+	The services offered by TrackMe should also work in background and
+	not only when the application is open. 
+	
+	\subsubsection{Hardware limitations}
+	TrackMe is a software application available only on iOS devices. 
+	It requests an internet connection (WiFi, 2G, 3G, 4G/LTE) and 
+	GPS connectivity. \newline
+	Some functionalities are available only for the owners of 
+	wearable devices. 
+
+	\subsubsection{Any other constraint}
+	The application needs to access to the current position of the 
+	user. It also may need to access individual's contact list to
+	easily find possible user's friends. 
+	
 \subsection{Software System Attributes}	
-		\begin{itemize}
-			\item Reliability
-			\item Availability
-			\item Security
-			\item Maintainability
-			\item Portability
-		\end{itemize}
-		
+
+	\subsubsection{Reliability}
+	The application and the external services offered by the
+	application must be available 24/7. \newline
+	Servers' maintenance, communicated to the user in advance
+	and only during determined hours of the day, is the only 
+	exceptions accepted. 
+	
+	\subsubsection{Availability}
+	TrackMe services are available only in Italy for free.
+	
+	\subsubsection{Security}
+	
+	\subsubsection{Maintainability}
+	
+	\subsubsection{Portability}
+	
+\newpage
 \subsection{Scenarios}
 
-\subsubsection{Scenario 1}
-Tim has to sustain an important medical exam aimed to discover if he
-suffers or not of tachycardia. He has available the latest model of 
-smartwatch that supports the EGC monitor so his doctor suggests to 
-use Data4Help to monitor for 24/48 hours his heart rate. Data4Help 
-allows Tim to just use his smartwatch, instead of the classic Dynamic 
-ECG machine, for registering his heart’s data in the app so that his
-doctor, after committing a request to Tim through his fiscal code, 
-can examine the results after few hours by the end of the test and 
-give to Tim a response in a very short time. 
+	\subsubsection{Scenario 1}
+	Tim has to sustain an important medical exam aimed to discover if 
+	he suffers or not of tachycardia. He has available the latest 
+	model of smartwatch that supports the EGC monitor so his doctor 
+	suggests to use Data4Help to monitor for 24/48 hours his heart 
+	rate. Data4Help allows Tim to just use his smartwatch, instead of 
+	the classic Dynamic ECG machine, for registering his heart’s data 
+	in the app so that his doctor, after committing a request to Tim 
+	through his fiscal code, can examine the results after few hours 
+	by the end of the test and give to Tim a response in a very short 
+	time. 
 
-\subsubsection{Scenario 2}
-Fitness \& More is a brand new sport center situated near a very big 
-residential area with many educational institutions from elementary to 
-high schools. The centre offers swimming and tennis lessons with
-expert instructors and also a well supplied gym with personal coaches.
-Fitness \& More asks to TrackMe the access to weight and height data 
-of kids between 6 and 19 year old who live in the above mentioned area 
-to make an analysis of the presence of overweighted individuals and so
-sponsor its sport center. 
+	\subsubsection{Scenario 2}
+	Fitness \& More is a brand new sport center situated near a very
+	big residential area with many educational institutions from 
+	elementary to high schools. The centre offers swimming and tennis
+	lessons with expert instructors and also a well supplied gym with
+	personal coaches. \newline
+	Fitness \& More asks to TrackMe the access to weight and height 
+	data of kids between 6 and 19 year old who live in the above 
+	mentioned area to make an analysis of the presence of overweighted
+	individuals and so sponsor its sport center. 
 
-\subsubsection{Scenario 3}
-The next PolimiRun will be held on the 11th of November in Lecco.
-Polisport, the sport organisation of the Politecnico di Milano, 
-decided to arrange a few workouts for the runners who are attending 
-the competition and so they suggest to use Track4Run to manage the 
-path of the workouts around the city of Milan and also to let runners
-en-roll the training sessions. 
+	\subsubsection{Scenario 3}
+	The next PolimiRun will be held on the 11th of November in Lecco.
+	Polisport, the sport organisation of the Politecnico di Milano, 
+	decided to arrange a few workouts for the runners who are 
+	attending the competition and so they suggest to use Track4Run to
+	manage the path of the workouts around the city of Milan and also
+	to let runners en-roll the training sessions. 
 
 \section{Formal analysis using Alloy}
 
@@ -362,4 +389,4 @@ en-roll the training sessions.
 
 \section{References}
 
-\end{document} k  
+\end{document}
