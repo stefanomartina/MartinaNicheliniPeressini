@@ -3,6 +3,14 @@
 \usepackage{enumitem}
 \usepackage{nameref}
 \usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
 
 \title{Software Engineering 2 Project}
 \author{Stefano Martina, Alessandro Nichelini, Francesco Peressini}
@@ -51,6 +59,7 @@ using the application), during a run previously organised.
 Indeed TrackMe’s app provide a section to setup a group run, 
 specifying the path and other useful information.
 
+\newpage
 \subsection{Scope}
 \subsubsection{Description of the problem}
 Nowadays a lot of persons track their activities with smartphone or
@@ -61,7 +70,6 @@ It’s also provided a service to organise a group run, during which
 it’s possible to monitor all the athletes information.
 Furthermore all the users are monitored and, in case of some trouble, 
 an SOS will be launched.
-\newpage
 \subsubsection{World Phenomena}
 \begin{itemize}
 	\item \textit{General user’s health condition}: the machine doesn’t know the information about possible user’s disease.
@@ -186,7 +194,7 @@ Here we describe the main aspects of them with state diagrams.
   \caption{Track4Run state diagram}
   \label{fig:State3.}
 \end{figure}
-
+\newpage
 \subsection{Product functions}
 The software developed by TrackMe included three different services:
 Data4Help supports user's data acquiring through smartwatches or 
@@ -232,7 +240,7 @@ implement application's functions.
 		\item The machine has to be able to recognise data fragmentation level 
 		\item The machine has to be able to store users’ data. 
 \end{enumerate}
-
+\newpage
 \subsection{Users characteristics}
 \textbf{Users}: any person that will use the service to keep track of health data, positioning or automated SOS during any kind of activities (walking or running during a lone run or an organised event).\\\\
 \textbf{Third parties}: Organisation or other parties interested in the acquisition for their usage of the data provided by the user activities.
@@ -310,21 +318,43 @@ implement application's functions.
 \centering
 \begin{tabular}{|l|l|} 
 \hline
-Name             & Sing up                                                                                                                                                                                                                                                                                  \\ 
+Name             & Sign up                                                                                                                                                                                                                                                                                  \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                                                                                     \\ 
 \hline
 Entry conditions & The application has been correctly installed on user's iOS device                                                                                                                                                                                                                        \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select the "Sing up" option~\\2. Fill in all the fields necessary for registering to the services~\\3. Confirm your inputed data\end{tabular}                                                                                                             \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select the "Sign up" option~\\2. Fill in all the fields necessary for registering to the services~\\3. Tap on the sign up button to confirm the inputted data\end{tabular}                                                                                                             \\  
 \hline
 Exit conditions  & \begin{tabular}[c]{@{}l@{}}Data has been successfully saved and the costumer can now use all the~~\\services offered by the application~\end{tabular}                                                                                                                                    \\ 
 \hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User is already registered~\\2. User inputed email is already registered~\\3. User has chosen a username already taken\\4. Not all fields were correctly filled~\\5. User has to recompile the sing up module correcting the invalid fields~\end{tabular}  \\
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User is already registered~\\2. User inputted email is already registered~\\3. User has chosen a username already taken\\4. Not all fields were correctly filled~\\5. User has to recompile the sign up module correcting the invalid fields~\end{tabular}  \\
 \hline
 \end{tabular}
-\caption{Sing up use case}
+\caption{Sign up use case}
 \end{table}	
+\newpage
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|} 
+\hline
+Name             & Log in                                                                                                                                                                                                                         \\ 
+\hline
+Actor            & User                                                                                                                                                                                                                           \\ 
+\hline
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The installed application and the registration to the platform are mandatory~\\to correctly log in~\end{tabular}                                                                                    \\ 
+\hline
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select the "Log in" option~\\2. Fill in the "Username" and "Password" fields~\\3. Tap on the log in button to confirm the credentials~\end{tabular}                                              \\ 
+\hline
+Exit conditions  & \begin{tabular}[c]{@{}l@{}}User has been correctly identified by the system and redirected to the main~\\page of the application~\end{tabular}                                                                                 \\ 
+\hline
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User inputted an invalid username~\\2. User inputted an invalid password~\\3. User is not register to the platform~\\4. User has to correct the invalid fields of the log in page~\end{tabular}  \\
+\hline
+\end{tabular}
+\caption{Log in use case}
+\end{table}
+
 \newpage
 
 \subsection{Performance Requirements}
