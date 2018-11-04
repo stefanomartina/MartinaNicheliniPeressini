@@ -302,8 +302,30 @@ implement application's functions.
 	\end{itemize} 
 	
 	\subsubsection{Communication Interfaces}
-	
+\newpage
 \subsection{Functional Requirements}	
+	\subsubsection{Definitions of use cases}
+	
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|} 
+\hline
+Name             & Sing up                                                                                                                                                                                                                                                                                  \\ 
+\hline
+Actor            & User                                                                                                                                                                                                                                                                                     \\ 
+\hline
+Entry conditions & The application has been correctly installed on user's iOS device                                                                                                                                                                                                                        \\ 
+\hline
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select the "Sing up" option~\\2. Fill in all the fields necessary for registering to the services~\\3. Confirm your inputed data\end{tabular}                                                                                                             \\ 
+\hline
+Exit conditions  & \begin{tabular}[c]{@{}l@{}}Data has been successfully saved and the costumer can now use all the~~\\services offered by the application~\end{tabular}                                                                                                                                    \\ 
+\hline
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User is already registered~\\2. User inputed email is already registered~\\3. User has chosen a username already taken\\4. Not all fields were correctly filled~\\5. User has to recompile the sing up module correcting the invalid fields~\end{tabular}  \\
+\hline
+\end{tabular}
+\caption{Sing up use case}
+\end{table}	
+\newpage
 
 \subsection{Performance Requirements}
 	
