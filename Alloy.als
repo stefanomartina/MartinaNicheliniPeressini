@@ -1,17 +1,3 @@
-open util/time
-open util/boolean
-
-sig Location {
-	coordinateX: one Int,
-	coordinateY: one Int
-}
-
-sig Path {
-	mapURL: one String,
-	startingLocation: one Location,
-	endingLocation: one Location
-}
-
 abstract sig EventStatus  {}
 one sig LIVE extends EventStatus {}
 one sig SCHEDULED extends EventStatus{}
@@ -19,57 +5,116 @@ one sig FINISHED extends EventStatus{}
 one sig CANCELLED extends EventStatus{}
 
 sig RunningEvent {
-	name: one String,
-	location: one Location,
-	date: one Time,
-	status: one EventStatus,
-	partecipants: set User,
-	lenght: one Int,
-	path: one Path
+	runners: set User,
+	path: one Path,
+	date: Date
 }
 
-sig User {
-	username: one String,
-	passwords: one String,
-	fiscalCode: one String,
-	hometown: one String,
-	elderly: one Bool, 
-	runner: one Bool,
-	activeEvents: set RunningEvent,
-	spectatorEvents: set RunningEvent
+abstract sig RequestStatus{}
+one sig APPROVED extends RequestStatus{}
+one sig DECLINED extends RequestStatus{}
+one sig PENDING extends RequestStatus{}
+
+sig Request {
+	subject: User,
+	status: RequestStatus
 }
+
+sig Data {
+	location: Location,
+	bpm: Int
+} { bpm > 0}
+
+sig SOS {
+	triggeredBy: Data,
+	vital: Int
+} { vital > 0}
+
+-- All user' not foundamental fields are omitted.
+-- Identification pass trough a single int field "Id"
+sig User {
+	id: Int,
+	data: set Data
+}{ id > 0 }
 
 sig ThirdParty {
-	name: one String,
-	id: one String,
-	trusted: one Bool
+	id: Int,
+	subscribedUsers: set User,
+	requests: set Request
+}{ id > 0}
+
+-- In this Alloy model, date are simplified and represented with a single number.
+sig Date {
+	day: Int
+}{ day > 0 }
+
+sig Location {
+	coordinateX: Int,
+	coordinateY: Int
+} { coordinateX > 0 and coordinateY >0 }
+
+
+sig Path {
+	startingLocation: one Location,
+	endingLocation: one Location
 }
 
-abstract sig Data {
-	generatedBy: User,
-	timestamp: Time
+
+/*** FACTS ***/
+fact uniqueEntities {
+	no disjoint u1, u2 : User | u1.id = u2.id 
+	no disjoint t1,t2: ThirdParty | t1.id = t2.id 
+	no disjoint d1,d2 : Date | d1.day = d2.day 
+	no disjoint r1,r2 : Request | some t: ThirdParty | 
+		r1 in t.requests and r2 in  t.requests and
+		r1.subject = r2.subject
+	no disjoint s1,s2 : SOS | s1.triggeredBy = s2.triggeredBy
+	
 }
-sig LocationData extends Data {
-	location: Location,
-	motionStatus: Bool
+-- Paths exist only if associated with one running event.
+-- Date exist only if associated with one running event.
+-- Since data are collected by the user, they cannot exist witouth him/her
+fact onlyRunningPath {
+	all p : Path | one r: RunningEvent | r.path = p and
+	all d: Date | one r: RunningEvent | r.date = d and
+	all d: Data | one u: User | d in u.data
 }
-sig HealthData extends Data {
-	vital: Bool
+-- Requests only exist if the associated Third Party exist
+fact requestExistence {
+	all r: Request | one t: ThirdParty | r in t.requests and
+	all r: Request | one u: User | r.subject = u
 }
 
--- Usernames are unique
-fact uniqueUsername {
-	no disjoint u1, u2: User | u1.username = u2.username
+fact subscriptions {	
+	--all t: ThirdParty, u: User | some r: Request | 
+	-- if there is a request from a third party to a user that is APPROVED, then that third party is 
+	-- subscribed to that user
+	all r:  Request, t: ThirdParty | 
+		(r in t.requests and r.status = APPROVED)
+			implies
+		r.subject in t.subscribedUsers
+
+	-- if there is a request from a third party to a user that is DECLINED or PENDING, that third party
+	-- cannot be subscribed to that user
+	all r:  Request, t: ThirdParty | 
+		(r in t.requests and (r.status = DECLINED or r.status = PENDING))
+			implies
+		r.subject not in t.subscribedUsers
+	
+	-- if there is a third party which is subscribed to a user, then there must be a request approved 
+	-- for that third party and for that user
+	all t: ThirdParty, u: User | 
+		u in t.subscribedUsers 
+			implies 
+		some r: Request | r.status = APPROVED and r.subject = u and r in t.requests
 }
 
--- IDs are unique
-fact uniqueIDs {
-	no disjoint t1,t2: ThirdParty | t1.id = t2.id
+fact SOS {
+	all s: SOS | s.vital < 4
+	all s: SOS | one d: Data | s.vital = d.bpm and s.triggeredBy = d
 }
 
--- a user cannot be involved in two simultaneous events as a runner.
-fact noSimultaneousEvents {
-	all user: User | no disjoint e1, e2: RunningEvent |
-		e1 in user.activeEvents and e2 in user.activeEvents and
-		e1.status = LIVE and e2.status = LIVE
+pred show {
 }
+
+run show
