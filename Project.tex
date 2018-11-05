@@ -511,7 +511,7 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enroll
 	stored online on servers. 
 	It also should manage a great number of simultaneous requests 
 	when, in example, third-parties ask to access data or during the
-	period of enrollment to a run. \newline
+	period of enrolment to a run. \newline
 	The services offered by TrackMe should also work in background and
 	not only when the application is open. 
 	
@@ -585,6 +585,36 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enroll
 	to let runners en-roll the training sessions. 
 
 \section{Formal analysis using Alloy}
+
+In this section we give a description of the system trough and Alloy model.
+The following relations are described:
+\begin{itemize}
+	\item Data access request system is described. Third parties can access a user's data only
+		if a previous request has been made and approved.
+	\item SOS events are raised in case of low vital parameters.
+	\item Users can join to running events.
+\end{itemize}
+The following assumptions are taken in order to make the model cleaner:
+\begin{itemize}
+	\item All not necessary (to Alloy model) attributes of entities are omitted.
+	\item All entities that have to be unique are identified by a single integer field: \textit{ID}.
+	\item Dates are represented trough a single integer field: \textit{day}.
+\end{itemize}
+
+\subsection{Alloy Model}
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{Figures/Alloy1}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{Figures/Alloy2}
+\end{figure}
+\newpage
+\subsection{World Generated}
+\begin{figure}[h!]
+  \includegraphics[width=\textwidth]{Figures/AlloyWorld}
+\end{figure}
+
 
 \section{Effort spent}
 
