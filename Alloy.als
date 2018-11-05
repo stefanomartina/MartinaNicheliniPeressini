@@ -16,7 +16,6 @@ one sig DECLINED extends RequestStatus{}
 one sig PENDING extends RequestStatus{}
 
 sig Request {
-	sender: ThirdParty,
 	subject: User,
 	status: RequestStatus
 }
@@ -26,8 +25,13 @@ sig Data {
 	bpm: Int
 } { bpm > 0}
 
+sig SOS {
+	triggeredBy: Data,
+	vital: Int
+} { vital > 0}
+
 -- All user' not foundamental fields are omitted.
--- Identification pass trough a single int filed "Id"
+-- Identification pass trough a single int field "Id"
 sig User {
 	id: Int,
 	data: set Data
@@ -35,7 +39,8 @@ sig User {
 
 sig ThirdParty {
 	id: Int,
-	subscribedUsers: set User
+	subscribedUsers: set User,
+	requests: set Request
 }{ id > 0}
 
 -- In this Alloy model, date are simplified and represented with a single number.
@@ -57,9 +62,14 @@ sig Path {
 
 /*** FACTS ***/
 fact uniqueEntities {
-	no disjoint u1, u2 : User | u1.id = u2.id and
-	no disjoint t1,t2: ThirdParty | t1.id = t2.id and
-	no disjoint d1, d2 : Date | d1.day = d2.day
+	no disjoint u1, u2 : User | u1.id = u2.id 
+	no disjoint t1,t2: ThirdParty | t1.id = t2.id 
+	no disjoint d1,d2 : Date | d1.day = d2.day 
+	no disjoint r1,r2 : Request | some t: ThirdParty | 
+		r1 in t.requests and r2 in  t.requests and
+		r1.subject = r2.subject
+	no disjoint s1,s2 : SOS | s1.triggeredBy = s2.triggeredBy
+	
 }
 -- Paths exist only if associated with one running event.
 -- Date exist only if associated with one running event.
@@ -71,36 +81,38 @@ fact onlyRunningPath {
 }
 -- Requests only exist if the associated Third Party exist
 fact requestExistence {
-	all r: Request | one t: ThirdParty | r.sender = t and
+	all r: Request | one t: ThirdParty | r in t.requests and
 	all r: Request | one u: User | r.subject = u
 }
 
-fact subscriptions {
-	
+fact subscriptions {	
+	--all t: ThirdParty, u: User | some r: Request | 
+	-- if there is a request from a third party to a user that is APPROVED, then that third party is 
+	-- subscribed to that user
+	all r:  Request, t: ThirdParty | 
+		(r in t.requests and r.status = APPROVED)
+			implies
+		r.subject in t.subscribedUsers
+
 	-- if there is a request from a third party to a user that is DECLINED or PENDING, that third party
 	-- cannot be subscribed to that user
-	all r: Request, t: ThirdParty | 
-		r.sender = t and (r.status = DECLINED or r.status = PENDING)
+	all r:  Request, t: ThirdParty | 
+		(r in t.requests and (r.status = DECLINED or r.status = PENDING))
 			implies
 		r.subject not in t.subscribedUsers
 	
-	-- if there is a request from a third party to a user that is APPROVED, then that third party is 
-	-- subscribed to that user
-	all r: Request, t: ThirdParty | 
-		r.sender = t and r.status = APPROVED
-			implies
-		r.subject in t.subscribedUsers
-	
 	-- if there is a third party which is subscribed to a user, then there must be a request approved 
 	-- for that third party and for that user
-	all t: ThirdParty, u: User | some r: Request | 
+	all t: ThirdParty, u: User | 
 		u in t.subscribedUsers 
-			implies
-		r.subject = u and r.sender = t and r.status = APPROVED	
+			implies 
+		some r: Request | r.status = APPROVED and r.subject = u and r in t.requests
 }
 
-
-
+fact SOS {
+	all s: SOS | s.vital < 4
+	all s: SOS | one d: Data | s.vital = d.bpm and s.triggeredBy = d
+}
 
 pred show {
 }
