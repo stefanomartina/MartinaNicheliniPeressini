@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<alloy>
+
+<view nodetheme="Martha">
+
+<defaultnode/>
+
+<defaultedge/>
+
+<node>
+   <type name="APPROVED"/>
+   <type name="CANCELLED"/>
+   <type name="DECLINED"/>
+   <type name="FINISHED"/>
+   <type name="Int"/>
+   <type name="LIVE"/>
+   <type name="PENDING"/>
+   <type name="SCHEDULED"/>
+   <type name="String"/>
+   <type name="univ"/>
+   <type name="seq/Int"/>
+   <set name="$show_r" type="Request"/>
+   <set name="$show_r&apos;" type="Request"/>
+</node>
+
+<node color="Black">
+   <type name="SOS"/>
+</node>
+
+<node color="Green">
+   <type name="User"/>
+</node>
+
+<node color="Yellow">
+   <type name="ThirdParty"/>
+</node>
+
+<node shape="Box" color="Blue">
+   <type name="Location"/>
+</node>
+
+<node shape="Ellipse" color="Yellow">
+   <type name="Data"/>
+</node>
+
+<node shape="Hexagon" color="White">
+   <type name="RunningEvent"/>
+</node>
+
+<node shape="Inv Triangle" color="Red">
+   <type name="Path"/>
+</node>
+
+<node shape="Lined Diamond" color="Gray">
+   <type name="Request"/>
+</node>
+
+<node shape="Parallelogram" color="Green">
+   <type name="Date"/>
+</node>
+
+<node visible="no">
+   <type name="EventStatus"/>
+   <type name="RequestStatus"/>
+</node>
+
+<edge attribute="no">
+   <relation name="data"> <type name="User"/> <type name="Data"/> </relation>
+</edge>
+
+<edge color="Gray" visible="no" attribute="yes" constraint="no">
+   <relation name="status"> <type name="Request"/> <type name="RequestStatus"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes">
+   <relation name="bpm"> <type name="Data"/> <type name="Int"/> </relation>
+   <relation name="coordinateX"> <type name="Location"/> <type name="Int"/> </relation>
+   <relation name="coordinateY"> <type name="Location"/> <type name="Int"/> </relation>
+   <relation name="day"> <type name="Date"/> <type name="Int"/> </relation>
+   <relation name="id"> <type name="ThirdParty"/> <type name="Int"/> </relation>
+   <relation name="vital"> <type name="SOS"/> <type name="Int"/> </relation>
+</edge>
+
+<edge visible="no" attribute="yes" constraint="no">
+   <relation name="id"> <type name="User"/> <type name="Int"/> </relation>
+</edge>
+
+</view>
+
+</alloy>

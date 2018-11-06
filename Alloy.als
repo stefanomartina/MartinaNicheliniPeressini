@@ -1,13 +1,7 @@
-abstract sig EventStatus  {}
-one sig LIVE extends EventStatus {}
-one sig SCHEDULED extends EventStatus{}
-one sig FINISHED extends EventStatus{}
-one sig CANCELLED extends EventStatus{}
-
 sig RunningEvent {
 	runners: set User,
 	path: one Path,
-	date: Date
+	date: Date	
 }
 
 abstract sig RequestStatus{}
@@ -31,7 +25,7 @@ sig SOS {
 } { vital > 0}
 
 -- All user' not foundamental fields are omitted.
--- Identification pass trough a single int field "Id"
+-- Identification pass trough a single integer field "Id"
 sig User {
 	id: Int,
 	data: set Data
@@ -74,14 +68,12 @@ fact uniqueEntities {
 -- Paths exist only if associated with one running event.
 -- Date exist only if associated with one running event.
 -- Since data are collected by the user, they cannot exist witouth him/her
-fact onlyRunningPath {
-	all p : Path | one r: RunningEvent | r.path = p and
-	all d: Date | one r: RunningEvent | r.date = d and
-	all d: Data | one u: User | d in u.data
-}
 -- Requests only exist if the associated Third Party exist
-fact requestExistence {
-	all r: Request | one t: ThirdParty | r in t.requests and
+fact existance {
+	all p : Path | one r: RunningEvent | r.path = p 
+	all d: Date | one r: RunningEvent | r.date = d 
+	all d: Data | one u: User | d in u.data
+	all r: Request | one t: ThirdParty | r in t.requests 
 	all r: Request | one u: User | r.subject = u
 }
 
@@ -114,7 +106,33 @@ fact SOS {
 	all s: SOS | one d: Data | s.vital = d.bpm and s.triggeredBy = d
 }
 
-pred show {
+/*** PREDICATES ***/
+pred makeARequest [t: ThirdParty, u: User, r: Request]{
+	r.subject = u
+	r.status = PENDING
+	t.requests = t.requests + r
 }
 
-run show
+pred approveARequest [t, t':ThirdParty, u:User, r, r' :Request] {
+	r'.subject = r.subject
+	r.status = APPROVED
+	t'.requests  = t.requests + r'
+	t'.subscribedUsers = t.subscribedUsers + u
+}
+
+pred show {
+	#User > 2
+	#ThirdParty > 1
+	#SOS > 2
+	#Location > 1
+	#RunningEvent >1
+	
+	all u: User | #u.data > 0
+	all t: ThirdParty | #t.requests > 0
+	some r: Request | r.status = APPROVED
+	some r: Request | r.status = DECLINED
+}
+
+--run makeARequest
+run approveARequest for 5 but 8 Int
+--run show
