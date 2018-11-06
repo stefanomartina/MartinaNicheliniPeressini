@@ -97,7 +97,7 @@ an SOS will be launched.
 
 \subsubsection{Goals} \label{goals}
 \begin{enumerate}[label={\textbf{[G\arabic*]}}]
-\item Users can be recognised by their credentials.
+\item Users can be recognised by their credentials. \label{g1}
 \item Allow users to keep track of their health data.
 \item Allow users to have access to an overview of their data, including health parameters and performed activities. \label{g3}
 \item Allow users to manage their data access policy.
@@ -256,16 +256,21 @@ implement application's functions.
 \subsubsection{Domain assumptions}
 
 \begin{enumerate}[label={[D\arabic*]}]
-    	\item Data manually logged by users well describes reality.
-    	\item First aid services are ready to handle emergency notifications.
-    	\item Data inserted by users are truthful 
-    		\begin{enumerate}[label={[D\arabic{enumi}.\arabic*]}]
+    	\item Data manually logged by users well describe reality.
+    	\item Data inserted by users are truthful.
+    	\begin{enumerate}[label={[D\arabic{enumi}.\arabic*]}]
     			\item Data are up to date.
     			\item Data are correctly formatted.
   			\end{enumerate}
-  		
+
+    	\item First aid services are ready to handle emergency notifications.  		
   		\item Running paths proposed by users are well formed (e.g: legit by law).
-  		\item External services are reliable.
+  		\item External services are reliable (map services).
+  		\item Users can be localised trough GPS:
+  		\begin{enumerate}[label={[D\arabic{enumi}.\arabic*]}]
+    			\item GPS service is reliable.
+    			\item GPS service is accurate enough to track runners during workouts.
+  		\end{enumerate}
 \end{enumerate}
 
 \newpage
@@ -323,7 +328,33 @@ implement application's functions.
 		Moreover data will be exchanged in multi-platform data formats such as JSON or XML.
 \newpage
 \subsection{Functional Requirements}	
-	\subsubsection{Definitions of use cases}
+
+Here we map each goal to the corresponding machine requirements and world domain assumption that have to be made in order to reach it.
+
+\begin{itemize}
+	\item [G1] Users can be recognised by their credentials.
+	\begin{itemize}
+		\item [R1] Users can create an account with credentials.
+		\item [R2] Credentials can be retrievable also if forgotten/lost.
+	\end{itemize} 
+
+\item [G2] Allow users to keep track of their health data.	
+	\begin{itemize}
+		\item [R3] Users can log manually or automatically their data
+		\item [R6] The machine has to be able to read health and position data.
+	\end{itemize}
+	
+\item [G3] Allow users to have access to an overview of their data, including health parameters and p erformed activities
+\item [G4] Allow users to manage their data access policy.
+	\begin{itemize}
+		\item [R4] Users have to b e able to accept/deny access to single data access request.
+		\item [R5] Users have to b e able to see current data policies and to change them.
+	\end{itemize}
+
+\end{itemize}
+
+
+\subsubsection{Definitions of use cases}
 	
 \begin{table}[h!]
 \centering
