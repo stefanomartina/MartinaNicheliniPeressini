@@ -12,11 +12,16 @@
     urlcolor=black
 }
 
-\title{Software Engineering 2 Project}
-\author{Stefano Martina, Alessandro Nichelini, Francesco Peressini}
-
 \begin{document}
 
+\begin{figure}[t]
+	\includegraphics[width=\textwidth]{Figures/logo}
+\end{figure}
+
+\title{TrackMe \\ Software Engineering 2 Project}
+\author{Stefano Martina, Alessandro Nichelini, Francesco Peressini
+		\\ \\ A.Y. 2018/2019}
+		
 \maketitle
 \newpage
 
@@ -81,7 +86,7 @@ an SOS will be launched.
 \begin{itemize}
 	\item \textit{Third-parties registration};
 	\item \textit{User's registration};
-	\item \textit{Data anonymisation}.
+	\item \textit{Data anonymization}.
 \end{itemize}
 
 \subsubsection{Shared Phenomena}
@@ -117,7 +122,7 @@ an SOS will be launched.
 
 \subsubsection{Definitions}
 \begin{itemize}
-	\item \textbf{Event:} An event organized by a user (\textit{ e.g scenario 3.6.3)}.
+	\item \textbf{Event:} An event organised by a user (\textit{ e.g scenario 3.6.3)}.
 	\item \textbf{Notification:} A warning that advise the user of a request by third parties.
 	\end{itemize}
 
@@ -142,7 +147,6 @@ an SOS will be launched.
 \begin{itemize}
 	\item 1.0.0 Initial version (10-11-2018)
 \end{itemize}
-\subsection{Reference Documents}
 \subsection{Document Structure}
 \newpage
 \section{Overall description}
@@ -168,7 +172,6 @@ An organisation, as explained above, can subscribe to a feed of data or directly
 \begin{figure}[h!]
   \includegraphics[width=\textwidth]{Figures/ClassDiagram.jpg}
   \caption{UML diagrams.}
-  \label{fig:umlDiagrams}
 \end{figure}
 \newpage
 
@@ -180,20 +183,24 @@ Here we describe the main aspects of them with state diagrams.
   \includegraphics[width=\textwidth]{Figures/State1}
   \caption{Basic Data4Help service state diagram.}
   \label{fig:State1}
-  
-  \includegraphics[width=\textwidth]{Figures/State2}
+\end{figure}
+
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{Figures/State2}
   \caption{Automated SOS state diagram.}
   \label{fig:State2}
 \end{figure}
 
 \newpage
-	
+
 \begin{figure}[h!]
   \includegraphics[width=\textwidth]{Figures/State3}
   \caption{Track4Run state diagram}
   \label{fig:State3.}
 \end{figure}
+
 \newpage
+
 \subsection{Product functions}
 The software developed by TrackMe included three different services:
 Data4Help supports user's data acquiring through smartwatches or 
@@ -426,11 +433,11 @@ Actor            & Third-party~                                                 
 \hline
 Entry conditions & The third-party has to be logged in on the TrackMe's web service page~                                                                                                                                                                                      \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select from the web page the interested ~parameters for which the third-party\\~ ~ wants~to receive the data\\2. Wait for the~data-anonymisation control by TrackMe for the requested parameters~\end{tabular}                \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select from the web page the interested ~parameters for which the third-party\\~ ~ wants~to receive the data\\2. Wait for the~data-anonymization control by TrackMe for the requested parameters~\end{tabular}                \\ 
 \hline
-Exit conditions  & \begin{tabular}[c]{@{}l@{}}TrackMe has ensured the anonymisation of the data and has accepted the \\third-party request; the latter is now in possession~of the individual's information~\end{tabular}                                                      \\ 
+Exit conditions  & \begin{tabular}[c]{@{}l@{}}TrackMe has ensured the anonymization of the data and has accepted the \\third-party request; the latter is now in possession~of the individual's information~\end{tabular}                                                      \\ 
 \hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the request phase\\2. Negative response by TrackMe (data-anonymisation control failed)~\\3. The third-party is invited to try with less restrictive parameters or to try again \\~ ~ later\end{tabular}  \\
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the request phase\\2. Negative response by TrackMe (data-anonymization control failed)~\\3. The third-party is invited to try with less restrictive parameters or to try again \\~ ~ later\end{tabular}  \\
 \hline
 \end{tabular}
 \caption{Groups-of-individuals data request}
