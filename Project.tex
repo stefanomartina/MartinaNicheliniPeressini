@@ -118,6 +118,7 @@ an SOS will be launched.
 
 \end{enumerate}
 
+\newpage
 \subsection{Definitions, Acronyms, Abbreviations}
 
 \subsubsection{Definitions}
@@ -148,6 +149,7 @@ an SOS will be launched.
 	\item 1.0.0 Initial version (10-11-2018)
 \end{itemize}
 \subsection{Document Structure}
+
 \newpage
 \section{Overall description}
 
@@ -279,14 +281,14 @@ implement application's functions.
 
 \subsection{External Interface Requirements}
 
-	\subsubsection{User Interfaces} 
-		
+	\subsubsection{User Interfaces} 	
 	
+	\newpage	
 	\subsubsection{Hardware Interfaces}
-	The system requires one or more dedicated servers for data 
-	management and for handling communication between users and 
-	third-parties.
-	
+	TrackMe is a software application that does not export any 
+	hardware interface; instead, at the final user is required a 
+	smartphone and at the third-party is required a web browser. 
+			
 	\subsubsection{Software Interfaces}
 	\begin{itemize}
 		\item \textbf{Data4Help} \newline 
@@ -327,10 +329,12 @@ implement application's functions.
 	The system is gonna use an API based communication system to serve both the mobile application and the third parties. 
 		Since all communications are going to pass through the internet, secured internet protocols are going to be adopted. 
 		Moreover data will be exchanged in multi-platform data formats such as JSON or XML.
+		
 \newpage
 \subsection{Functional Requirements}	
 
-Here we map each goal to the corresponding machine requirements and world domain assumptions that have to be made in order to reach it.
+Here we map each goal to the corresponding machine requirements and 
+world domain assumptions that have to be made in order to reach it.
 
 \begin{itemize}
 	\item [G1] Users can be recognised by their credentials.
@@ -345,7 +349,7 @@ Here we map each goal to the corresponding machine requirements and world domain
 		\item [R6] The machine has to be able to read health and position data.
 	\end{itemize}
 	
-\item [G3] Allow users to have access to an overview of their data, including health parameters and p erformed activities
+\item [G3] Allow users to have access to an overview of their data, including health parameters and performed activities
 \item [G4] Allow users to manage their data access policy.
 	\begin{itemize}
 		\item [R4] Users have to be able to accept/deny access to single data access request.
@@ -373,7 +377,7 @@ Here we map each goal to the corresponding machine requirements and world domain
 	\end{itemize}
 \end{itemize}
 
-
+\newpage
 \subsubsection{Definitions of use cases}
 	
 \begin{table}[h!]
@@ -588,7 +592,7 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enroll
 
 	\subsubsection{Standards compliance}
 	The software application should handle a big amount of data, 
-	stored online on servers. 
+	stored online on third-parties' servers. 
 	It also should manage a great number of simultaneous requests 
 	when, in example, third-parties ask to access data or during the
 	period of enrolment to a run. \newline
