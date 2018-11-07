@@ -271,6 +271,7 @@ implement application's functions.
     			\item GPS service is reliable.
     			\item GPS service is accurate enough to track runners during workouts.
   		\end{enumerate}
+  		
 \end{enumerate}
 
 \newpage
@@ -329,7 +330,7 @@ implement application's functions.
 \newpage
 \subsection{Functional Requirements}	
 
-Here we map each goal to the corresponding machine requirements and world domain assumption that have to be made in order to reach it.
+Here we map each goal to the corresponding machine requirements and world domain assumptions that have to be made in order to reach it.
 
 \begin{itemize}
 	\item [G1] Users can be recognised by their credentials.
@@ -347,10 +348,29 @@ Here we map each goal to the corresponding machine requirements and world domain
 \item [G3] Allow users to have access to an overview of their data, including health parameters and p erformed activities
 \item [G4] Allow users to manage their data access policy.
 	\begin{itemize}
-		\item [R4] Users have to b e able to accept/deny access to single data access request.
-		\item [R5] Users have to b e able to see current data policies and to change them.
+		\item [R4] Users have to be able to accept/deny access to single data access request.
+		\item [R5] Users have to be able to see current data policies and to change them.
 	\end{itemize}
+	
+\item [G5] Allow users to monitor their performance during run workouts.
+\item [G6] Each time vital signs go below a threshold value, first aid services have to be notified.
+	\begin{itemize}
+		\item [R6] The machine has to be able to read health and position data. 
+		\item [R7] The machine has to be able to recognise below threshold parameters.
+	\end{itemize}
+	
+\item [G7] Allow users to organise running events
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	
+\item [G8] Allow third parties to access data:
 
+	\begin{itemize}
+		\item [R8] The machine has to be able to communicate with third parties. 
+		\item [R9] The machine has to b e able to recognise data fragmentation level.
+		\item [R10] The machine has to b e able to store users’ data.
+	\end{itemize}
 \end{itemize}
 
 
