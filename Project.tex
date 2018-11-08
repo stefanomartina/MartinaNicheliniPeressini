@@ -273,6 +273,7 @@ implement application's functions.
     			\item GPS service is reliable.
     			\item GPS service is accurate enough to track runners during workouts.
   		\end{enumerate}
+  		\item Users are not affected with diseases that can influence heartbeat ratio.
   		
 \end{enumerate}
 
@@ -345,35 +346,44 @@ world domain assumptions that have to be made in order to reach it.
 
 \item [G2] Allow users to keep track of their health data.	
 	\begin{itemize}
-		\item [R3] Users can log manually or automatically their data
+		\item [R3] Users can log manually or automatically their data.
 		\item [R6] The machine has to be able to read health and position data.
 	\end{itemize}
 	
-\item [G3] Allow users to have access to an overview of their data, including health parameters and performed activities
+\item [G3] Allow users to have access to an overview of their data, including health parameters and performed activities.
+	\begin{itemize}
+		\item [R10] The machine has to be able to store users’ data.
+	\end{itemize}
 \item [G4] Allow users to manage their data access policy.
 	\begin{itemize}
 		\item [R4] Users have to be able to accept/deny access to single data access request.
 		\item [R5] Users have to be able to see current data policies and to change them.
 	\end{itemize}
 	
-\item [G5] Allow users to monitor their performance during run workouts.
+\item [G5] Allow users to monitor their performance during run workouts.	
+	\begin{itemize}
+		\item [D5] External services are reliable (map services).
+		\item [D6] Users can be localised trough GPS.
+	\end{itemize}	
 \item [G6] Each time vital signs go below a threshold value, first aid services have to be notified.
 	\begin{itemize}
 		\item [R6] The machine has to be able to read health and position data. 
 		\item [R7] The machine has to be able to recognise below threshold parameters.
+		\item [D1] Data manually logged by users well describe reality.
+		\item [D3] First aid services are ready to handle emergency notiﬁcations.
+		\item [D7]Users are not affected with diseases that can influence heartbeat ratio.
 	\end{itemize}
 	
-\item [G7] Allow users to organise running events
+\item [G7] Allow users to organise running events.
 	\begin{itemize}
-		\item 
+		\item [D4] Running paths proposed by users are well formed (e.g: legit by law). 
 	\end{itemize}
 	
-\item [G8] Allow third parties to access data:
-
+\item [G8] Allow third parties to access data.
 	\begin{itemize}
 		\item [R8] The machine has to be able to communicate with third parties. 
-		\item [R9] The machine has to b e able to recognise data fragmentation level.
-		\item [R10] The machine has to b e able to store users’ data.
+		\item [R9] The machine has to be able to recognise data fragmentation level.
+		\item [R10] The machine has to be able to store users’ data.
 	\end{itemize}
 \end{itemize}
 
