@@ -86,7 +86,7 @@ an SOS will be launched.
 \begin{itemize}
 	\item \textit{Third-parties registration};
 	\item \textit{User's registration};
-	\item \textit{Data anonymization}.
+	\item \textit{Data anonymisation}.
 \end{itemize}
 
 \subsubsection{Shared Phenomena}
@@ -123,7 +123,7 @@ an SOS will be launched.
 
 \subsubsection{Definitions}
 \begin{itemize}
-	\item \textbf{Event:} An event organised by a user (\textit{ e.g scenario 3.6.3)}.
+	\item \textbf{Event:} An event organised by a user.
 	\item \textbf{Notification:} A warning that advise the user of a request by third parties.
 	\end{itemize}
 
@@ -133,7 +133,6 @@ an SOS will be launched.
 \item ASOS: AutomatedSOS;
 \item BPM: Beats Per Minutes;
 \item D4H: Data4Help;
-\item RASD: Requirement Analysis and Specification Document;
 \item T4R: Track4Run.
 \end{itemize}
 
@@ -250,7 +249,7 @@ implement application's functions.
 \end{enumerate}
 \newpage
 \subsection{Users characteristics}
-\textbf{Users}: any person that will use the service to keep track of health data, positioning or automated SOS during any kind of activities (walking or running during a lone run or an organised event).\\\\
+\textbf{Users}: any person that will use the service to keep track of health data, positioning or automated SOS during any kind of activities (walking or running during a lone run or an organised event).\\\
 \textbf{Third parties}: Organisation or other parties interested in the acquisition for their usage of the data provided by the user activities.
 
 \subsection{Assumptions, dependencies and constraints}
@@ -295,134 +294,144 @@ implement application's functions.
 		\item \textbf{Data4Help} \newline 
 		User's health data can be inserted in Data4Help section of the
 		application manually or automatically synchronised with data
-		acquired by individual's wearable device thanks to HealthKit
-		API provided by Apple. \newline
+		acquired by individual's wearable device. \newline
 		Third-parties can access to the different data through a 
 		web-based interface in which, in case the organisation is 
-		interested to the information of some specific individual, 
+		interested in the information of some specific individual, 
 		can select the single user by his/her fiscal code and send to
-		him/her the request of data's visualisation; instead, in the 
+		him/her the request of data's visualisation; instead, in 
 		case of interest in accessing data of groups of individuals, 
 		companies can select the parameters of interest and send to 
-		TrackMe the request on hold for a positive response. \newline
-		Data4Help also offers the integration with ResearchKit and 
-		CareKit APIs, also provided by Apple, to help third-parties to 
-		access more relevant data for their studies.
+		TrackMe the request on hold for a positive response.
 		\item \textbf{AutomatedSOS} \newline
 		Similarly as Data4Help, AutomatedSOS automatically 
 		synchronises data acquired from user's wearable device and 
 		monitors them to guarantee the safety of elderly people. 
 		\newline
 		In case of emergency, an ambulance will reach the location
-		of the customer: AutomatedSOS uses Google Maps API to show 
-		live-time the position on the map of the arriving ambulance. 
+		of the customer; moreover, AutomatedSOS allows to follow 
+		live-time the position of the coming ambulance. 
 		\item \textbf{Track4Run} \newline
 		Since Track4Run aims to schedule and organise runs for the 
-		users of the service, it makes use of Google Calendar API to 
-		allow individuals to create and en-roll races. 
-		Also, for users not taking part of runs, Track4Run supports 
-		Google Maps API for live-tracking the position of the 
-		participating runners. 
+		users of the service, it makes use of an external calendar
+		service to allow individuals to create and en-roll races. 
+		\newline
+		For those who do not participate to the runs, Track4Run 
+		features the possibility to see live-time the position of
+		the runners.
 	\end{itemize} 
 	
 	\subsubsection{Communication Interfaces}
-	
-	The system is gonna use an API based communication system to serve both the mobile application and the third parties. 
-		Since all communications are going to pass through the internet, secured internet protocols are going to be adopted. 
-		Moreover data will be exchanged in multi-platform data formats such as JSON or XML.
+	The system is going to use an API based communication system to 
+	serve both the mobile application and the third-parties. \newline
+	Since all communications are going to pass through the internet,
+	secured internet protocols are going to be adopted. \newline
+	Moreover, data will be exchanged in multi-platform data formats 
+	such as JSON or XML.
 		
 \newpage
 \subsection{Functional Requirements}	
 
-Here we map each goal to the corresponding machine requirements and 
-world domain assumptions that have to be made in order to reach it.
+Here we map each goal to the corresponding machine requirement(s) and 
+world domain assumption(s) that have to be made in order to reach it.
 
-\begin{itemize}
+\begin{itemize}	
+
 	\item [G1] Users can be recognised by their credentials.
 	\begin{itemize}
 		\item [R1] Users can create an account with credentials.
-		\item [R2] Credentials can be retrievable also if forgotten/lost.
+		\item [R2] Credentials can be retrievable also if 
+		forgotten/lost.
 	\end{itemize} 
 
-\item [G2] Allow users to keep track of their health data.	
+	\item [G2] Allow users to keep track of their health data.	
 	\begin{itemize}
 		\item [R3] Users can log manually or automatically their data.
-		\item [R6] The machine has to be able to read health and position data.
+		\item [R6] The machine has to be able to read health and 
+		position data.
 	\end{itemize}
 	
-\item [G3] Allow users to have access to an overview of their data, including health parameters and performed activities.
+	\item [G3] Allow users to have access to an overview of their 
+	data, including health parameters and performed activities.
 	\begin{itemize}
 		\item [R10] The machine has to be able to store users’ data.
 	\end{itemize}
-\item [G4] Allow users to manage their data access policy.
+	
+	\item [G4] Allow users to manage their data access policy.
 	\begin{itemize}
-		\item [R4] Users have to be able to accept/deny access to single data access request.
-		\item [R5] Users have to be able to see current data policies and to change them.
+		\item [R4] Users have to be able to accept/deny access to 
+		single data access request.
+		\item [R5] Users have to be able to see current data policies
+		and to change them.
 	\end{itemize}
 	
-\item [G5] Allow users to monitor their performance during run workouts.	
+	\item [G5] Allow users to monitor their performance during run 
+	workouts.	
 	\begin{itemize}
 		\item [D5] External services are reliable (map services).
 		\item [D6] Users can be localised trough GPS.
 	\end{itemize}	
-\item [G6] Each time vital signs go below a threshold value, first aid services have to be notified.
+	
+	\item [G6] Each time vital signs go below a threshold value, first 
+	aid services have to be notified.
 	\begin{itemize}
-		\item [R6] The machine has to be able to read health and position data. 
-		\item [R7] The machine has to be able to recognise below threshold parameters.
-		\item [D1] Data manually logged by users well describe reality.
-		\item [D3] First aid services are ready to handle emergency notiﬁcations.
-		\item [D7]Users are not affected with diseases that can influence heartbeat ratio.
+		\item [R6] The machine has to be able to read health and 
+		position data. 
+		\item [R7] The machine has to be able to recognise below 
+		threshold parameters.
+		\item [D1] Data manually logged by users well describe 
+		reality.
+		\item [D3] First aid services are ready to handle emergency
+		notiﬁcations.
+		\item [D7]Users are not affected with diseases that can 
+		influence heartbeat ratio.
+	\end{itemize}
+		
+	\item [G7] Allow users to organise running events.
+	\begin{itemize}
+		\item [D4] Running paths proposed by users are well formed 
+		(e.g: legit by law). 
 	\end{itemize}
 	
-\item [G7] Allow users to organise running events.
+	\item [G8] Allow third parties to access data.
 	\begin{itemize}
-		\item [D4] Running paths proposed by users are well formed (e.g: legit by law). 
-	\end{itemize}
-	
-\item [G8] Allow third parties to access data.
-	\begin{itemize}
-		\item [R8] The machine has to be able to communicate with third parties. 
-		\item [R9] The machine has to be able to recognise data fragmentation level.
+		\item [R8] The machine has to be able to communicate with 
+		third parties. 
+		\item [R9] The machine has to be able to recognise data 
+		fragmentation level.
 		\item [R10] The machine has to be able to store users’ data.
 	\end{itemize}
+	
 \end{itemize}
 
 \newpage
 \subsubsection{Definitions of use cases}
-	
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
-\hline
-Name             & Sign up                                                                                                                                                                                                                                                                                  \\ 
-\hline
-Actor            & User                                                                                                                                                                                                                                                                                     \\ 
-\hline
-Entry conditions & The application has been correctly installed on user's iOS device                                                                                                                                                                                                                        \\ 
-\hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select the "Sign up" option~\\2. Fill in all the fields necessary for registering to the services~\\3. Tap on the sign up button to confirm the inputted data\end{tabular}                                                                                                             \\  
-\hline
-Exit conditions  & \begin{tabular}[c]{@{}l@{}}Data has been successfully saved and the customer can now use all the~~\\services offered by the application~\end{tabular}                                                                                                                                    \\ 
-\hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User is already registered~\\2. User inputted email is already registered~\\3. User has chosen a username already taken\\4. Not all fields were correctly filled~\\5. User has to recompile the sign up module correcting the invalid fields~\end{tabular}  \\
-\hline
-\end{tabular}
-\caption{Sign up use case}
-\end{table}	
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+	\begin{tabular}{ | p{3cm} | p{12,5cm} | }
+	\hline
+	Name & Sign up \\ \hline
+	Actor & User \\ \hline
+	Entry conditions & The application has been correctly installed on user's device  \\ \hline
+	Events flow & \begin{tabular}[c]{@{}l@{}}1. Select the "Sign up" option~\\2. Fill in all the fields necessary for registering to the services~\\3. Tap on the sign up button to confirm the inputted data\end{tabular} \\ \hline
+	Exit conditions & \begin{tabular}[c]{@{}l@{}}Data has been successfully saved and the customer can now use ~~\\ all the services offered by the application~\end{tabular} \\ \hline
+	Exceptions & \begin{tabular}[c]{@{}l@{}}1. User is already registered~\\2. User inputted email is already registered~\\3. User has chosen a username already taken\\4. Not all fields were correctly filled~\\5. User has to recompile the sign up module correcting the ~~\\ ~~~~invalid fields~\end{tabular}  \\ \hline
+	\end{tabular}
+	\caption{Sign up case}
+\end{table}
+
+\begin{table}[h!]
+	\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Log in                                                                                                                                                                                                                         \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                           \\ 
 \hline
-Entry conditions & \begin{tabular}[c]{@{}l@{}}The installed application and the registration to the platform are mandatory~\\to correctly log in~\end{tabular}                                                                                    \\ 
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The installed application and the registration to the platform are ~~\\ mandatory to correctly log in~\end{tabular}                                                                                    \\ 
 \hline
 Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select the "Log in" option~\\2. Fill in the "Username" and "Password" fields~\\3. Tap on the log in button to confirm the credentials~\end{tabular}                                              \\ 
 \hline
-Exit conditions  & \begin{tabular}[c]{@{}l@{}}User has been correctly identified by the system and redirected to the main~\\page of the application~\end{tabular}                                                                                 \\ 
+Exit conditions  & \begin{tabular}[c]{@{}l@{}}User has been correctly identified by the system and redirected ~~\\ to the main page of the application~\end{tabular}                                                                                 \\ 
 \hline
 Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User inputted an invalid username~\\2. User inputted an invalid password~\\3. User is not register to the platform~\\4. User has to correct the invalid fields of the log in page~\end{tabular}  \\
 \hline
@@ -432,40 +441,38 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. User inputted an invalid userna
 \newpage
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Manual data acquisition~                                                                                                                                                                                                                                                                                          \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                                                                                                              \\ 
 \hline
-Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed on an iOS device and~\\the user has to be logged in~\end{tabular}                                                                                                                                                                        \\ 
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and~\\the user has to be logged in~\end{tabular}                                                                                                                                                                        \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Data4Help section\\2. Tap the "Insert" button to manually insert data into the application~\\3. Confirm the inserted data by tapping the "Confirm" button\\4. Wait until the data inserted are correctly processed by the server~\end{tabular}  \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Data4Help section\\2. Tap the "Insert" button to manually insert data into the ~\\ ~~~~application~\\3. Confirm the inserted data by tapping the "Confirm" button\\4. Wait until the data inserted are correctly processed by the ~\\  ~~~~server~\end{tabular}  \\ 
 \hline
 Exit conditions  & Data are correctly updated and visible inside the application~                                                                                                                                                                                                                                                    \\ 
 \hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the insertion phase~\\2. Inserted data are out-of-date\\3. User is invited to update the inserted information or to try again \\~ ~ later~\end{tabular}                                                                                                        \\
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the insertion phase~\\2. Inserted data are out-of-date\\3. User is invited to update the inserted information or to try ~\\ ~~~~again later~\end{tabular}                                                                                                        \\
 \hline
 \end{tabular}
 \caption{Manual data acquisition}
 \end{table}
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Automatic data acquisition~                                                                                                                                                                                                                                                                                                                 \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                                                                                                                                        \\ 
 \hline
-Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed on an iOS device and~\\the user has to be logged in~\end{tabular}                                                                                                                                                                                                  \\ 
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and the user has to ~\\ be logged in~\end{tabular}                                                                                                                                                                                                  \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Data4Help section\\2. If not already updated, tap on the "synchronise" button\\3. Wait until the synchronisation between the smartphone and the \\~ ~ wearable device is completed \\4. Wait until the data inserted are correctly processed by the server~\end{tabular}  \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Data4Help section\\2. If not already updated, tap on the "synchronise" button\\3. Wait until the synchronisation between the smartphone and ~\\ ~~~~the wearable device is completed \\4. Wait until the data inserted are correctly processed by the ~\\ ~~~~server~\end{tabular}  \\ 
 \hline
 Exit conditions  & Data are correctly updated and visible inside the application~                                                                                                                                                                                                                                                                              \\ 
 \hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the insertion phase~\\2. Synchronisation problem between the smartphone and the wearable~\\~ ~ device~\\3. User is invited to check the connection between devices or to try again \\~ ~ later~\end{tabular}                                                                             \\
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the insertion phase~\\2. Synchronisation problem between the smartphone and the ~\\ ~~~~wearable device~\\3. User is invited to check the connection between devices or ~\\ ~~~~to try again later~\end{tabular}                                                                             \\
 \hline
 \end{tabular}
 \caption{Automatic data acquisition}
@@ -473,8 +480,7 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the insert
 \newpage
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Specific-individual data request~                                                                                                                                                                                    \\ 
 \hline
@@ -493,8 +499,7 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the reques
 \end{table}
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Groups-of-individuals data request~                                                                                                                                                                                                                         \\ 
 \hline
@@ -502,11 +507,11 @@ Actor            & Third-party~                                                 
 \hline
 Entry conditions & The third-party has to be logged in on the TrackMe's web service page~                                                                                                                                                                                      \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select from the web page the interested ~parameters for which the third-party\\~ ~ wants~to receive the data\\2. Wait for the~data-anonymization control by TrackMe for the requested parameters~\end{tabular}                \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Select from the web page the interested ~parameters for which the third-party\\~ ~ wants~to receive the data\\2. Wait for the~data-anonymisation control by TrackMe for the ~\\ ~~~~requested parameters~\end{tabular}                \\ 
 \hline
-Exit conditions  & \begin{tabular}[c]{@{}l@{}}TrackMe has ensured the anonymization of the data and has accepted the \\third-party request; the latter is now in possession~of the individual's information~\end{tabular}                                                      \\ 
+Exit conditions  & \begin{tabular}[c]{@{}l@{}}TrackMe has ensured the anonymisation of the data and has accepted the \\third-party request; the latter is now in possession~of the individual's information~\end{tabular}                                                      \\ 
 \hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the request phase\\2. Negative response by TrackMe (data-anonymization control failed)~\\3. The third-party is invited to try with less restrictive parameters or to try again \\~ ~ later\end{tabular}  \\
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the request phase\\2. Negative response by TrackMe (data-anonymisation control failed)~\\3. The third-party is invited to try with less restrictive parameters or to try again \\~ ~ later\end{tabular}  \\
 \hline
 \end{tabular}
 \caption{Groups-of-individuals data request}
@@ -514,14 +519,13 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the reques
 \newpage
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3 cm} | p{12,5 cm} | }
 \hline
 Name             & Emergency situation~                                                                                                                                                                                                                                                                                                                                                          \\ 
 \hline
 Actor            & AutomatedSOS~                                                                                                                                                                                                                                                                                                                                                                 \\ 
 \hline
-Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed on an iOS device and\\the user has to be logged in~\end{tabular}                                                                                                                                                                                                                                     \\ 
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and\\the user has to be logged in~\end{tabular}                                                                                                                                                                                                                                     \\ 
 \hline
 Events flow      & \begin{tabular}[c]{@{}l@{}}1. The service automatically notice that one or more vital parameters are\\~ ~ under the safe threshold~\\2. The service asks to the customer if there are any problems with a pop-up\\~ ~ on-screen\\3. If the service doesn't receive a response within 5 seconds, an ambulance~\\~ ~ is alerted to reach the customer's location~\end{tabular}  \\ 
 \hline
@@ -534,14 +538,13 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error while contacting 
 \end{table}
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Definition of a path~                                                                                                                                                                                                                                                                                                                                              \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                                                                                                                                                               \\ 
 \hline
-Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed on an iOS device and\\the user has to be logged in~\end{tabular}                                                                                                                                                                                                                          \\ 
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and\\the user has to be logged in~\end{tabular}                                                                                                                                                                                                                          \\ 
 \hline
 Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Track4Run section~\\2. Tap on the "Create new run" button~\\3. Select the starting and ending points on the map\\4. Select the main spots of the path in order to define a complete route \\~ ~ on the map\\5. Wait until the data inserted are correctly processed by the server~\end{tabular}  \\ 
 \hline
@@ -555,14 +558,13 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the defini
 \newpage
 
 \begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|} 
+\begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
 Name             & Enrollment to a run~                                                                                                                                                                                                                         \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                                         \\ 
 \hline
-Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed on an iOS device and\\the user has to be logged in~\end{tabular}                                                                                                    \\ 
+Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and\\the user has to be logged in~\end{tabular}                                                                                                    \\ 
 \hline
 Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Track4Run section~\\2. Tap on the "Available runs" button to show all the forthcoming runs\\3. Select a run from those available and confirm the enrollment~\end{tabular}  \\ 
 \hline
@@ -602,9 +604,14 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enroll
 
 
 \subsection{Performance Requirements}
-	The application is designed to be consumed by Italian citizens. We estimate around 30k users at app launch, with around 10\% simoultaneusly active.
-We estimate that once the application will be brought over onto the Android platform, the total users count will increase by 25\%, topping at about 38k users.
-The application will be able to adapt to the users active concurrently.
+	The application is designed to be consumed by Italian citizens. 
+	We estimate around 30k users at app launch, with around 10\% 
+	simultaneously active.
+	We estimate that once the application will be brought over onto
+	the Android platform, the total users count will increase by 25\%,
+	topping at about 38k users.
+	The application will be able to adapt to the users active 
+	concurrently.
 
 \subsection{Design Constraints}
 
@@ -629,6 +636,7 @@ The application will be able to adapt to the users active concurrently.
 	user. It also may need to access individual's contact list to
 	easily find possible user's friends. 
 	
+\newpage
 \subsection{Software System Attributes}	
 
 	\subsubsection{Reliability}
@@ -643,7 +651,9 @@ The application will be able to adapt to the users active concurrently.
 	
 	\subsubsection{Security}
 	
+	
 	\subsubsection{Maintainability}
+	
 	
 	\subsubsection{Portability}
 	Portability to the Android operating system will be take into 
