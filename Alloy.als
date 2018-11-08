@@ -24,7 +24,7 @@ sig SOS {
 	vital: Int
 } { vital > 0}
 
--- All user' not foundamental fields are omitted.
+-- All user's not fondamental fields are omitted.
 -- Identification pass trough a single integer field "Id"
 sig User {
 	id: Int,
@@ -67,9 +67,9 @@ fact uniqueEntities {
 }
 -- Paths exist only if associated with one running event.
 -- Date exist only if associated with one running event.
--- Since data are collected by the user, they cannot exist witouth him/her
+-- Since data are collected by the user, they cannot exist without him/her
 -- Requests only exist if the associated Third Party exist
-fact existance {
+fact existence {
 	all p : Path | one r: RunningEvent | r.path = p 
 	all d: Date | one r: RunningEvent | r.date = d 
 	all d: Data | one u: User | d in u.data
@@ -101,6 +101,7 @@ fact subscriptions {
 		some r: Request | r.status = APPROVED and r.subject = u and r in t.requests
 }
 
+-- 
 fact SOS {
 	all s: SOS | s.vital < 4
 	all s: SOS | one d: Data | s.vital = d.bpm and s.triggeredBy = d
@@ -115,7 +116,7 @@ pred makeARequest [t: ThirdParty, u: User, r: Request]{
 
 pred approveARequest [t, t':ThirdParty, u:User, r, r' :Request] {
 	r'.subject = r.subject
-	r.status = APPROVED
+	r'.status = APPROVED
 	t'.requests  = t.requests + r'
 	t'.subscribedUsers = t.subscribedUsers + u
 }
