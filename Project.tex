@@ -33,27 +33,22 @@
 \subsection{Purpose} 
 
 TrackMe is a company aiming to support interactions between users, 
-who like keeping track of the health status and their activities, and
-third parties which can use data and enhance their value.
+who like keeping track of their health status and activities, and
+third-parties, which can use data and enhance their value.
 
 TrackMe app is composed of three main important service:
 \begin{itemize}
-\item Data4Help: basic support for health data;
+\item Data4Help: basic support for health data and location;
 \item AutomatedSOS: add support for SOS services to elderly people;
 \item Track4Run: add support for running events.
 \end{itemize}
 
-Each of them will have as targets:
-\begin{itemize}
-\item Individuals users
-\item Third parties.
-\end{itemize}
 Since each service serves both the targets, the project consists of 
 platform divided in a mobile application and a web-based interface to
 serve third-parties.
 
 The system allows individual users to add and handle data on the app
-and to third parties to request and have access to these data.
+and to third-parties to request and have access to these data.
 
 In particular, a user of the application is able to keep track of 
 his/her position during the activities but also during the normal 
@@ -61,17 +56,17 @@ day-life. The users’ data are used to monitor the heartbeat and
 eventually to send an AutomatedSOS.
 Furthermore, TrackMe, is able to track all the athletes (that are 
 using the application), during a run previously organised. 
-Indeed TrackMe’s app provide a section to setup a group run, 
+Indeed TrackMe’s app provides a section to setup a group run, 
 specifying the path and other useful information.
 
 \newpage
 \subsection{Scope}
 \subsubsection{Description of the problem}
-Nowadays a lot of persons track their activities with smartphone or
-smartwatch. For this reason TrackMe provide a new complete user 
-experience allowing all the user to read briefly all the information
-about all activities’ history.
-It’s also provided a service to organise a group run, during which
+Nowadays a lot of people track their activities with smartphone or
+wearable devices. For this reason TrackMe provides a new complete user 
+experience allowing all the users to read briefly the information
+about all their activities history.
+It also provides a service to organise a group run, during which
 it’s possible to monitor all the athletes information.
 Furthermore all the users are monitored and, in case of some trouble, 
 an SOS will be launched .
@@ -84,15 +79,15 @@ an SOS will be launched .
 
 \subsubsection{Machine Phenomena}
 \begin{itemize}
-	\item \textit{Third-parties registration};
-	\item \textit{User's registration};
-	\item \textit{Data anonymisation}.
+	\item \textit{Third-parties registration}
+	\item \textit{User's registration}
+	\item \textit{Data anonymisation}
 \end{itemize}
 
 \subsubsection{Shared Phenomena}
 \begin{itemize}
-	\item \textit{Vital parameters}: the machine can read vital parameters of the user such as BPM.
-	\item \textit{User's location}: the machine knows or can read actual and past user’s location.
+	\item \textit{Vital parameters}: the machine can read vital parameters of the user such as BPM
+	\item \textit{User's location}: the machine knows or can read actual and past user’s location
 \end{itemize}
 
 \subsubsection{Goals} \label{goals}
@@ -113,7 +108,7 @@ an SOS will be launched .
 		\begin{enumerate}[label={[G\arabic{enumi}.\arabic*]}]
     		\item Allow third parties to require access to specific user data.
     		\item Allow third parties to retrieve anonymised aggregated data.
-    		\item Allow third parties to subscribe to da
+    		\item Allow third parties to subscribe to data feed 
   		\end{enumerate}
 
 \end{enumerate}
@@ -145,9 +140,10 @@ an SOS will be launched .
 
 \subsection{Revision history}
 \begin{itemize}
-	\item 1.0.0 Initial version (10-11-2018)
+	\item 1.0.0 Initial version (10/11/2018)
 \end{itemize}
 \subsection{Document Structure}
+This document essentially follows the structure defined by IEEE for RASD document (\textit{ISO/IEC/IEEE 29148 dated Dec 2011}).
 
 \newpage
 \section{Overall description}
@@ -171,7 +167,7 @@ An organisation, as explained above, can subscribe to a feed of data or directly
 
 
 \begin{figure}[h!]
-  \includegraphics[width=\textwidth]{Figures/ClassDiagram.jpg}
+  \includegraphics[width=\textwidth]{Figures/ClassDiagram.png}
   \caption{UML diagrams.}
 \end{figure}
 \newpage
@@ -203,9 +199,8 @@ Here we describe the main aspects of them with state diagrams.
 \newpage
 
 \subsection{Product functions}
-The software developed by TrackMe included three different services:
-Data4Help supports user's data acquiring through smartwatches or 
-similar devices, AutomatedSOS, a personalised and non-intrusive SOS 
+The software developed by TrackMe include three different services:
+Data4Help supports user's data acquisition through wearable devices, AutomatedSOS, a personalised and non-intrusive SOS 
 service for elderly people and Track4Run, a service to track athletes 
 participating to a run.
 Data4Help is also a service available for third-parties: in fact, 
@@ -216,7 +211,7 @@ single user or to a groups of individuals.
 Concerning the single user case, companies, through a social security
 code, ask permission to access the corresponding information. 
 In the other case, organisations can request, directly to TrackMe,
-data of group of individuals with particular proprieties (e.g. users 
+data of group of individuals with particular properties (e.g. users 
 between 20 and 30 years old or living in a certain district).
 In the latter, TrackMe provides data only if it can anonymised them
 correctly.
@@ -244,25 +239,25 @@ implement application's functions.
     	\item The machine has to be able to read health and position data.
 		\item The machine has to be able to recognise below threshold parameters.
 		\item The machine has to be able to communicate with third parties.
-		\item The machine has to be able to recognise data fragmentation level 
+		\item The machine has to be able to recognise data fragmentation level.
 		\item The machine has to be able to store users’ data. 
 \end{enumerate}
 \newpage
 \subsection{Users characteristics}
 \textbf{Users}: any person that will use the service to keep track of health data, positioning or automated SOS during any kind of activities (walking or running during a lone run or an organised event).\\\
-\textbf{Third parties}: Organisation or other parties interested in the acquisition for their usage of the data provided by the user activities.
+\textbf{Third-parties}: Organisation or other parties interested in the acquisition for their usage of the data provided by the user activities.
 
 \subsection{Assumptions, dependencies and constraints}
 
 \subsubsection{Domain assumptions}
 
 \begin{enumerate}[label={[D\arabic*]}]
-    	\item Data manually logged by users well describe reality.
-    	\item Data inserted by users are truthful.
+    	\item Data manually inserted by users are to be considered 
+    	truthful   
     	\begin{enumerate}[label={[D\arabic{enumi}.\arabic*]}]
     			\item Data are up to date.
     			\item Data are correctly formatted.
-  			\end{enumerate}
+  		\end{enumerate}
 
     	\item First aid services are ready to handle emergency notifications.  		
   		\item Running paths proposed by users are well formed (e.g: legit by law).
@@ -391,7 +386,7 @@ world domain assumption(s) that have to be made in order to reach it.
 		and to change them.
 	\end{itemize}
 	
-	\item [G5] Allow users to monitor their performance during run 
+	\item [G5] Allow users to monitor their performances during 
 	workouts.	
 	\begin{itemize}
 		\item [D5] External services are reliable (map services).
@@ -586,20 +581,20 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the defini
 \begin{table}[h!]
 \begin{tabular}{ | p{3cm} | p{12,5cm} | }
 \hline
-Name             & Enrollment to a run~                                                                                                                                                                                                                         \\ 
+Name             & Enrolment to a run~                                                                                                                                                                                                                         \\ 
 \hline
 Actor            & User                                                                                                                                                                                                                                         \\ 
 \hline
 Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and\\the user has to be logged in~\end{tabular}                                                                                                    \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Track4Run section~\\2. Tap on the "Available runs" button to show all the forthcoming runs\\3. Select a run from those available and confirm the enrollment~\end{tabular}  \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Track4Run section~\\2. Tap on the "Available runs" button to show all the forthcoming runs\\3. Select a run from those available and confirm the enrolment~\end{tabular}  \\ 
 \hline
 Exit conditions  & The user has correctly en-roll to the run                                                                                                                                                                                                    \\ 
 \hline
-Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enrollment~\\2. The run selected is no longer available/sold out\\3. The user is invited to choose another available run or to try again\\~ ~ later~\end{tabular}                     \\
+Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enrolment~\\2. The run selected is no longer available/sold out\\3. The user is invited to choose another available run or to try again\\~ ~ later~\end{tabular}                     \\
 \hline
 \end{tabular}
-\caption{Enrollment to a run}
+\caption{Enrolment to a run}
 \end{table}
 \newpage
 
@@ -646,13 +641,11 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enroll
 	stored online on third-parties' servers. 
 	It also should manage a great number of simultaneous requests 
 	when, in example, third-parties ask to access data or during the
-	period of enrolment to a run. \newline
-	The services offered by TrackMe should also work in background and
-	not only when the application is open. 
+	period of enrolment to a run.
 	
 	\subsubsection{Hardware limitations}
 	TrackMe is a software application available only on iOS devices. 
-	It requests an internet connection (WiFi, 2G, 3G, 4G/LTE) and 
+	It requests an internet connection (WiFi, 3G, 4G/LTE) and 
 	GPS connectivity. \newline
 	Some functionalities are available only for the owners of 
 	wearable devices. 
