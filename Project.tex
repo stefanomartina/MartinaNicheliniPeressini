@@ -11,6 +11,11 @@
     linkcolor=black,
     urlcolor=black
 }
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{alloy-style}
+
+
 
 \begin{document}
 
@@ -143,7 +148,11 @@ an SOS will be launched .
 	\item 1.0.0 Initial version (10/11/2018)
 \end{itemize}
 \subsection{Document Structure}
+<<<<<<< Updated upstream
 This document essentially follows the structure defined by IEEE for RASD document (\textit{ISO/IEC/IEEE 29148 dated Dec 2011}).
+=======
+This document essentially follows the structure define by IEEET for RASD document (\textit{ ISO/IEC/IEEE 29148 dated Dec 2011}).
+>>>>>>> Stashed changes
 
 \newpage
 \section{Overall description}
@@ -736,16 +745,8 @@ The following assumptions are taken in order to make the model cleaner:
 	\item All entities that have to be unique are identified by a single integer field: \textit{ID}.
 	\item Dates are represented trough a single integer field: \textit{day}.
 \end{itemize}
-
 \newpage
-\subsection{Alloy Model}
-\begin{figure}[h!]
-  \includegraphics[width=\textwidth]{Figures/Alloy1}
-\end{figure}
-\newpage
-\begin{figure}[h!]
-  \includegraphics[width=\textwidth]{Figures/Alloy2}
-\end{figure}
+\lstinputlisting[language=alloy]{/Users/nike/Desktop/MartinaNicheliniPeressini/Alloy.als}
 \newpage
 \subsection{World Generated}
 \begin{figure}[h!]
@@ -757,4 +758,4 @@ The following assumptions are taken in order to make the model cleaner:
 
 \section{References}
 
-\end{document}
+\end{document}+
