@@ -20,10 +20,11 @@
 \begin{document}
 
 \begin{figure}[t]
-	\includegraphics[width=\textwidth]{Figures/logo}
+\centering
+	\includegraphics[height=6.5cm,keepaspectratio]{Figures/logo}
 \end{figure}
 
-\title{TrackMe \\ Software Engineering 2 Project}
+\title{TrackMe \\ Software Engineering 2 Project\\ \textit{RASD Document} }
 \author{Stefano Martina, Alessandro Nichelini, Francesco Peressini
 		\\ \\ A.Y. 2018/2019}
 		
@@ -41,15 +42,27 @@ TrackMe is a company aiming to support interactions between users,
 who like keeping track of their health status and activities, and
 third-parties, which can use data and enhance their value.
 
-TrackMe app is composed of three main important service:
+
+TrackMe app is composed of a core service: 
 \begin{itemize}
-\item Data4Help: basic support for health data and location;
+\item Data4Help: which provides basic support for health and location data retrieving and sharing.
+\end{itemize}
+
+and two advanced services which relay on the first one.
+
+\begin{itemize}
+
 \item AutomatedSOS: add support for SOS services to elderly people;
 \item Track4Run: add support for running events.
 \end{itemize}
 
-Since each service serves both the targets, the project consists of 
-platform divided in a mobile application and a web-based interface to
+\begin{figure}[h!]
+  \centering
+  \includegraphics[height=4.5cm,keepaspectratio]{Figures/Services.png}
+  \caption{Services abstract structure.}
+\end{figure}
+
+The project consists of a platform divided in a mobile application and a web-based interface to
 serve third-parties.
 
 The system allows individual users to add and handle data on the app
