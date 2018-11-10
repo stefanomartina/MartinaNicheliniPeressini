@@ -46,6 +46,6 @@
 \contentsline {subsubsection}{\numberline {3.7.2}Scenario 2}{34}{subsubsection.3.7.2}
 \contentsline {subsubsection}{\numberline {3.7.3}Scenario 3}{34}{subsubsection.3.7.3}
 \contentsline {section}{\numberline {4}Formal analysis using Alloy}{35}{section.4}
-\contentsline {subsection}{\numberline {4.1}World Generated}{39}{subsection.4.1}
-\contentsline {section}{\numberline {5}Effort spent}{40}{section.5}
-\contentsline {section}{\numberline {6}References}{40}{section.6}
+\contentsline {subsection}{\numberline {4.1}World Generated}{40}{subsection.4.1}
+\contentsline {section}{\numberline {5}Effort spent}{41}{section.5}
+\contentsline {section}{\numberline {6}References}{41}{section.6}
