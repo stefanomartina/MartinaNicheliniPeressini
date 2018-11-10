@@ -51,7 +51,7 @@ sig Location {
 sig Path {
 	startingLocation: one Location,
 	endingLocation: one Location
-}
+} 
 
 
 /*** FACTS ***/
@@ -78,7 +78,6 @@ fact existence {
 }
 
 fact subscriptions {	
-	--all t: ThirdParty, u: User | some r: Request | 
 	-- if there is a request from a third party to a user that is APPROVED, then that third party is 
 	-- subscribed to that user
 	all r:  Request, t: ThirdParty | 
@@ -101,17 +100,17 @@ fact subscriptions {
 		some r: Request | r.status = APPROVED and r.subject = u and r in t.requests
 }
 
--- 
+-- Threshold value for BPM is set to 4.
 fact SOS {
 	all s: SOS | s.vital < 4
 	all s: SOS | one d: Data | s.vital = d.bpm and s.triggeredBy = d
 }
 
 /*** PREDICATES ***/
-pred makeARequest [t: ThirdParty, u: User, r: Request]{
+pred makeARequest [t, t': ThirdParty, u: User, r: Request]{
 	r.subject = u
 	r.status = PENDING
-	t.requests = t.requests + r
+	t'.requests = t.requests + r
 }
 
 pred approveARequest [t, t':ThirdParty, u:User, r, r' :Request] {
@@ -134,6 +133,6 @@ pred show {
 	some r: Request | r.status = DECLINED
 }
 
---run makeARequest
+run makeARequest for 4 but 7 Int
 run approveARequest for 5 but 8 Int
---run show
+run show

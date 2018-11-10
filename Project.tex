@@ -2,7 +2,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
 \usepackage{nameref}
+
 \usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{epstopdf}
+
+
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -741,7 +746,7 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enrolm
 In this section we give a description of the system trough and Alloy model.
 The following relations are described:
 \begin{itemize}
-	\item Data access request system is described. Third parties can access a user's data only
+	\item Data access request system is described. Third parties can access users' data
 		if a previous request has been made and approved.
 	\item SOS events are raised in case of low vital parameters.
 	\item Users can join to running events.
@@ -751,14 +756,27 @@ The following assumptions are taken in order to make the model cleaner:
 	\item All not necessary (to Alloy model) attributes of entities are omitted.
 	\item All entities that have to be unique are identified by a single integer field: \textit{ID}.
 	\item Dates are represented trough a single integer field: \textit{day}.
+	\item Threshold alert value for bpm is set to 4.
 \end{itemize}
+\lstinputlisting[language=alloy]{Alloy/Alloy.als}
 \newpage
-\lstinputlisting[language=alloy]{/Users/francescoperessini/desktop/IngSoft2/MartinaNicheliniPeressini/Alloy.als}
-\newpage
-\subsection{World Generated}
-\begin{figure}[h!]
-  \includegraphics[width=\textwidth]{Figures/AlloyWorld}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[height=8cm,keepaspectratio]{Figures/AlloyPredicates}
+	\caption{Alloy analyser tool output.}
 \end{figure}
+\newpage
+
+
+\subsection{World Generated}
+\begin{figure}[ht]
+\centering
+    \includegraphics[height=10cm,keepaspectratio, angle=270]{Figures/AlloyWorld}
+    \caption{Generated Alloy World}
+\end{figure}
+
+
 
 \newpage
 \section{Effort spent}
