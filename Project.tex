@@ -45,18 +45,18 @@ TrackMe is a company aiming to support interactions between users,
 who like keeping track of their health status and activities, and
 third-parties, which can use data and enhance their value.
 
+To do so, TrackMe thought about a software-based service, Data4Help, 
+composed as follow:
 
-TrackMe app is composed of a core service: 
 \begin{itemize}
-\item Data4Help: which provides basic support for health and location data retrieving and sharing.
+\item Data4Help: provides basic support for health and location data retrieving and sharing 
 \end{itemize}
 
-and two advanced services which relay on the first one.
+and two advanced services which relay on the first one: 
 
 \begin{itemize}
-
-\item AutomatedSOS: add support for SOS services to elderly people;
-\item Track4Run: add support for running events.
+\item AutomatedSOS: adds support for SOS services to elderly people;
+\item Track4Run: adds support for running events.
 \end{itemize}
 
 \begin{figure}[h!]
@@ -65,37 +65,41 @@ and two advanced services which relay on the first one.
   \caption{Services abstract structure.}
 \end{figure}
 
-The project consists of a platform divided in a mobile application and a web-based interface to
-serve third-parties.
-
-The system allows individual users to add and handle data on the app
-and to third-parties to request and have access to these data.
-
+The project consists of a platform divided in a mobile application and 
+a web-based interface to serve third-parties.
+The system allows users to add and handle health data on the app
+and to the third-parties to request and have access to that data.
 In particular, a user of the application is able to keep track of 
 his/her position during the activities but also during the normal 
-day-life. The users’ data are used to monitor the heartbeat and 
-eventually to send an AutomatedSOS.
-Furthermore, TrackMe, is able to track all the athletes (that are 
-using the application), during a run previously organised. 
-Indeed TrackMe’s app provides a section to setup a group run, 
-specifying the path and other useful information.
+day-life. 
+AutomatedSOS and Track4Run are two ancillary services, also offered by
+Data4Help, to serve elderly people in case of emergency and runners 
+respectively.
 
 \newpage
 \subsection{Scope}
 \subsubsection{Description of the problem}
-Nowadays a lot of people track their activities with smartphone or
-wearable devices. For this reason TrackMe provides a new complete user 
-experience allowing all the users to read briefly the information
-about all their activities history.
-It also provides a service to organise a group run, during which
-it’s possible to monitor all the athletes information.
-Furthermore all the users are monitored and, in case of some trouble, 
-an SOS will be launched .
+
+Nowadays a lot of people track their activities with smartphones or
+wearable devices. For this reason, TrackMe provides a new complete user 
+experience allowing users to read briefly the information about their 
+activities and health status through Data4Help application. 
+Data4Help is also thought for third-parties: acquiring data and 
+extrapolate information from that is fundamental in today's world so 
+TrackMe thought about a web interface where organisations can select 
+and retrive data choosing between single users or groups of individuals, 
+also signing a subscription plan. 
+Builded on top of Data4Help, AutomatedSOS provides support to elderly 
+people in case of emergency (when vital parameters are detected 
+under/above certain thresholds) and Track4Run aims to satisfy 
+running-lovers, letting them organise new group's runs and live-tracking
+participants during the events.
+
 \subsubsection{World Phenomena}
 \begin{itemize}
-	\item \textit{General user’s health condition}: the machine doesn’t know the information about possible user’s disease.
-	\item \textit{First aid services status}: the machine doesn’t know the actual first aid services status.
-	\item \textit{Overall third parties knowledge status}: the machine doesn’t know which informations third parties already have about users.
+	\item \textit{General user’s health condition}: the machine doesn’t know the information about possible user’s disease
+	\item \textit{First aid services status}: the machine doesn’t know the actual first aid services status
+	\item \textit{Overall third parties knowledge status}: the machine doesn’t know which informations third parties already have about users
 \end{itemize}
 
 \subsubsection{Machine Phenomena}
@@ -139,17 +143,15 @@ an SOS will be launched .
 
 \subsubsection{Definitions}
 \begin{itemize}
-	\item \textbf{Event:} An event organised by a user.
-	\item \textbf{Notification:} A warning that advise the user of a request by third parties.
+	\item \textbf{Event:} an event organised by a user
+	\item \textbf{Notification:} a warning that advise the user of a request by third parties
+	\item \textbf{Third-parties:} external organisations
 	\end{itemize}
 
 \subsubsection{Acronyms}
 \begin{itemize}
 \item API: Application Programming Interface;
-\item ASOS: AutomatedSOS;
 \item BPM: Beats Per Minutes;
-\item D4H: Data4Help;
-\item T4R: Track4Run.
 \end{itemize}
 
 \subsubsection{Abbreviations}
@@ -161,7 +163,7 @@ an SOS will be launched .
 
 \subsection{Revision history}
 \begin{itemize}
-	\item 1.0.0 Initial version (10/11/2018)
+	\item 1.0.0 Initial version (11/11/2018)
 \end{itemize}
 \subsection{Document Structure}
 This document essentially follows the structure defined by IEEE for RASD document (\textit{ISO/IEC/IEEE 29148 dated Dec 2011}).
@@ -361,7 +363,7 @@ implement application's functions.
 	
 	\newpage
 	\subsubsection{Hardware Interfaces}
-	TrackMe is a software application that does not export any 
+	Data4Help is a software application that does not export any 
 	hardware interface; instead, at the final user is required a 
 	smartphone and at the third-party is required a web browser. 
 			
@@ -523,7 +525,7 @@ Actor            & User                                                         
 \hline
 Entry conditions & \begin{tabular}[c]{@{}l@{}}The application has to be correctly installed and~\\the user has to be logged in~\end{tabular}                                                                                                                                                                        \\ 
 \hline
-Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the Data4Help section\\2. Tap the "Insert" button to manually insert data into the ~\\ ~~~~application~\\3. Confirm the inserted data by tapping the "Confirm" button\\4. Wait until the data inserted are correctly processed by the ~\\  ~~~~server~\end{tabular}  \\ 
+Events flow      & \begin{tabular}[c]{@{}l@{}}1. Open the application and select the dashboard section\\2. Tap the "Insert" button to manually insert data into the ~\\ ~~~~application~\\3. Confirm the inserted data by tapping the "Confirm" button\\4. Wait until the data inserted are correctly processed by the ~\\  ~~~~server~\end{tabular}  \\ 
 \hline
 Exit conditions  & Data are correctly updated and visible inside the application~                                                                                                                                                                                                                                                    \\ 
 \hline
