@@ -81,19 +81,20 @@ respectively.
 \subsubsection{Description of the problem}
 
 Nowadays a lot of people track their activities with smartphones or
-wearable devices. For this reason, TrackMe provides a new complete user 
-experience allowing users to read briefly the information about their 
-activities and health status through Data4Help application. 
+wearable devices. For this reason, TrackMe provides a new
+complete user experience allowing users to read briefly the 
+information about their activities and health status through Data4Help 
+application. \newline
 Data4Help is also thought for third-parties: acquiring data and 
 extrapolate information from that is fundamental in today's world so 
 TrackMe thought about a web interface where organisations can select 
-and retrive data choosing between single users or groups of individuals, 
-also signing a subscription plan. 
+and retrive data choosing between single users or groups of 
+individuals, also signing a subscription plan. \newline
 Builded on top of Data4Help, AutomatedSOS provides support to elderly 
 people in case of emergency (when vital parameters are detected 
 under/above certain thresholds) and Track4Run aims to satisfy 
-running-lovers, letting them organise new group's runs and live-tracking
-participants during the events.
+running-lovers, letting them organise new group's runs and 
+live-tracking participants during the events.
 
 \subsubsection{World Phenomena}
 \begin{itemize}
@@ -384,13 +385,11 @@ implement application's functions.
 		companies can select the parameters of interest and send to 
 		TrackMe the request on hold for a positive response.
 		\item \textbf{AutomatedSOS} \newline
-		Similarly as Data4Help, AutomatedSOS automatically 
-		synchronises data acquired from user's wearable device and 
-		monitors them to guarantee the safety of elderly people. 
-		\newline
-		In case of emergency, an ambulance will reach the location
-		of the customer; moreover, AutomatedSOS allows to follow 
-		live-time the position of the coming ambulance. 
+		AutomatedSOS works on data collected by Data4Help to 
+		guarantee the safety of elderly people. \newline
+		In case of emergency, a pop-up will be showed to the customer
+		checking if everything is alright; if no answer is given,
+		an ambulance will reach the location of the user.
 		\item \textbf{Track4Run} \newline
 		Since Track4Run aims to schedule and organise runs for the 
 		users of the service, it makes use of an external calendar
@@ -732,7 +731,10 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enrolm
 	be adopted. 
 	
 	\subsubsection{Maintainability}
-	
+	The application software has to be scalable to allow the
+	introduction of new functionalities in the future. 
+	Cross-platform libraries should be adopted to ensure portability 
+	to new operative system. 
 	
 	\subsubsection{Portability}
 	Portability to the Android operating system will be take into 
@@ -766,8 +768,16 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enrolm
 	data of kids between 6 and 19 year old who live in the above 
 	mentioned area to make an analysis of the presence of overweighted
 	individuals and so sponsor its sport center. 
-
+	
 	\subsubsection{Scenario 3}
+	Gianna is an elderly who live alone. She is followed by a 
+	caregiver and, during her absence,  she relies on AutomatedSOS 
+	service: her vital parameters (like heart rate, SpO2…) 
+	are acquired by her wearable device and, in case of
+	sub threshold/above threshold values, an ambulance is 
+	automatically advised to reach Gianna’s location. 
+
+	\subsubsection{Scenario 4}
 	The next PolimiRun will be held on the 11th of November in Lecco.
 	Polisport, the sport organisation of the Politecnico di Milano, 
 	decided to arrange a few workouts for the runners who are 
@@ -814,5 +824,11 @@ The following assumptions are taken in order to make the model cleaner:
 
 \newpage
 \section{Effort spent}
+
+\begin{itemize}
+	\item Stefano Martina: 35.00h
+	\item Alessandro Nichelini: 37.00h
+	\item Francesco Peressini: 37.00h
+\end{itemize}
 
 \end{document}

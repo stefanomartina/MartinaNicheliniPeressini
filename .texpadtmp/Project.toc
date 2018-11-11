@@ -5,7 +5,7 @@
 \contentsline {subsubsection}{\numberline {1.2.2}World Phenomena}{5}{subsubsection.1.2.2}
 \contentsline {subsubsection}{\numberline {1.2.3}Machine Phenomena}{5}{subsubsection.1.2.3}
 \contentsline {subsubsection}{\numberline {1.2.4}Shared Phenomena}{5}{subsubsection.1.2.4}
-\contentsline {subsubsection}{\numberline {1.2.5}Goals}{5}{subsubsection.1.2.5}
+\contentsline {subsubsection}{\numberline {1.2.5}Goals}{6}{subsubsection.1.2.5}
 \contentsline {subsection}{\numberline {1.3}Definitions, Acronyms, Abbreviations}{7}{subsection.1.3}
 \contentsline {subsubsection}{\numberline {1.3.1}Definitions}{7}{subsubsection.1.3.1}
 \contentsline {subsubsection}{\numberline {1.3.2}Acronyms}{7}{subsubsection.1.3.2}
@@ -45,6 +45,7 @@
 \contentsline {subsubsection}{\numberline {3.7.1}Scenario 1}{36}{subsubsection.3.7.1}
 \contentsline {subsubsection}{\numberline {3.7.2}Scenario 2}{36}{subsubsection.3.7.2}
 \contentsline {subsubsection}{\numberline {3.7.3}Scenario 3}{36}{subsubsection.3.7.3}
+\contentsline {subsubsection}{\numberline {3.7.4}Scenario 4}{36}{subsubsection.3.7.4}
 \contentsline {section}{\numberline {4}Formal analysis using Alloy}{37}{section.4}
 \contentsline {subsection}{\numberline {4.1}World Generated}{42}{subsection.4.1}
 \contentsline {section}{\numberline {5}Effort spent}{43}{section.5}
