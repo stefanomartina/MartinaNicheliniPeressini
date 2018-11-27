@@ -3,7 +3,8 @@
 .gz
 .DS_Store
 .texpadtmp/Project.log
-
+/Server/venv
+/Server/*.idea
 
 
 # Created by https://www.gitignore.io/api/xcode
