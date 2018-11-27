@@ -2,7 +2,7 @@
 .log
 .gz
 .DS_Store
-.texpadtmp
+.texpadtmp/Project.log
 
 
 
