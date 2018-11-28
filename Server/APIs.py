@@ -1,18 +1,20 @@
 #!flask/bin/python
 from flask import Flask, request, jsonify, make_response
 from flask_httpauth import HTTPBasicAuth
+from DbHandler import DBHandler
 
 data_container = list()
 data_container.append("first element")
 
 auth = HTTPBasicAuth()
+db_handler = DBHandler()
+
+app = Flask(__name__)
 
 
 @auth.get_password
 def get_password(username):
-    if username == 'Steve':
-        return 'Jobs'
-    return None
+    return db_handler.get_user_password(username)
 
 
 @auth.error_handler
@@ -21,16 +23,13 @@ def unauthorized():
                                   'errorCode': 401}), 401)
 
 
-app = Flask(__name__)
-
-
 def get():
     return ''.join(data_container)
 
 
 def post(request):
     json = request.get_json()
-    if json == None:
+    if json is None:
         return jsonify({'error': 'No json data were found. Request aborted',
                         'errorCode': 400}), 400
     print(str(json)),
@@ -50,6 +49,11 @@ def users_handling():
         return post(request)
     elif request.method == 'GET':
         return get()
+
+
+@app.route('/api/users/register', methods=['POST'])
+def register():
+    return request.get_json()
 
 
 if __name__ == '__main__':
