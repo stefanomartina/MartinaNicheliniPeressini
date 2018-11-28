@@ -2,7 +2,7 @@ import Alamofire
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     let URL_USER_REGISTER = "http://localhost:5000/api/users/register"
     
     @IBOutlet weak var textFieldFirstName: UITextField!
@@ -29,6 +29,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
 }
-

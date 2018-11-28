@@ -64,8 +64,10 @@ def register():
         return "ok"
 
     except Exception:
+        print("EX")
         return jsonify({'error': 'Request must have these fields: username, password, firstname, lastname, birthdate',
                         'errorCode': 400}), 400
+
 
 
 if __name__ == '__main__':
