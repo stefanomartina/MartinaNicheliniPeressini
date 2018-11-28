@@ -12,10 +12,7 @@ class DBHandler:
     def auth(self, usr, psw):
         query = "SELECT * FROM User WHERE username = \"" + usr +"\" ";
 
-        print(query)
-
         self.dbMy.execute(query)
-
         for x in self.dbMy:
             print(x[1])
 
@@ -26,11 +23,22 @@ class DBHandler:
 
     def get_user_password(self, username):
         query = "SELECT password FROM User WHERE username = '"+username+"'";
-        print(query)
-        self.dbMy.execute(query)
 
+        self.dbMy.execute(query)
         for x in self.dbMy:
             if x[0] is not None:
                 return x[0]
             else:
                 return None
+
+    def create_user(self, username, password, fname, lname, birthday):
+        query = "INSERT INTO User VALUES ('{}','{}','{}','{}','{}')".format(username, password, fname, lname, birthday);
+        print(query)
+        try:
+            self.dbMy.execute(query)
+            self.db.commit()
+            return "DONE"
+        except mysql.connector.errors.IntegrityError:
+            return None
+
+
