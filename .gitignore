@@ -5,6 +5,7 @@
 .texpadtmp/Project.log
 /Server/venv
 /Server/*.idea
+/Server/main.py
 /DD/*.pdf
 
 # Created by https://www.gitignore.io/api/xcode
