@@ -37,8 +37,6 @@ class DBHandler:
         try:
             self.dbMy.execute(query)
             self.db.commit()
-            return "DONE"
+            print("DONE")
         except mysql.connector.errors.IntegrityError:
-            return None
-
-
+            print("ERROR")
