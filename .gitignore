@@ -5,7 +5,7 @@
 .texpadtmp/Project.log
 /Server/venv
 /Server/*.idea
-
+/DD/*.pdf
 
 # Created by https://www.gitignore.io/api/xcode
 # Edit at https://www.gitignore.io/?templates=xcode
