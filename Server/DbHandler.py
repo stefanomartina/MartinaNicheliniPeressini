@@ -2,6 +2,7 @@
 
 import mysql.connector
 
+
 class DBHandler:
 
     def __init__(self):
@@ -23,21 +24,13 @@ class DBHandler:
             else :
                 return False
 
-
-
-    def check_user(self, username):
+    def get_user_password(self, username):
         query = "SELECT password FROM User WHERE username = '"+username+"'";
         print(query)
         self.dbMy.execute(query)
 
         for x in self.dbMy:
-            if (x[0] != None):
+            if x[0] is not None:
                 return x[0]
             else:
                 return None
-
-
-
-d = DBHandler()
-
-print(d.check_user("ciao"));
