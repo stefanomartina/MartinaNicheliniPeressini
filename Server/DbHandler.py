@@ -19,9 +19,9 @@ class DBHandler:
             print(x[1])
 
             if x[1] == psw :
-                print("OK")
+                return True
             else :
-                print("NO");
+                return False
 
 
 
