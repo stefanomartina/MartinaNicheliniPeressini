@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		9052693162330982326FC0F4 /* Pods_data4helpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */; };
 		9BEB7455797B23AEF353B407 /* Pods_data4helpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */; };
-		C621EF2F21AEC34200501841 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C621EF2E21AEC34200501841 /* Default-568h@2x.png */; };
 		C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA753921AEB9F300A6039E /* AppDelegate.swift */; };
 		C6CA753C21AEB9F300A6039E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA753B21AEB9F300A6039E /* ViewController.swift */; };
 		C6CA753F21AEB9F300A6039E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6CA753D21AEB9F300A6039E /* Main.storyboard */; };
@@ -45,7 +44,6 @@
 		B47AA4145B14DBEFBCFB5840 /* Pods-data4helpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpUITests/Pods-data4helpUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B79900F7A9D153E30B71E123 /* Pods-data4help.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4help.release.xcconfig"; path = "Pods/Target Support Files/Pods-data4help/Pods-data4help.release.xcconfig"; sourceTree = "<group>"; };
 		C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4helpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C621EF2E21AEC34200501841 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C6CA753621AEB9F300A6039E /* data4help.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = data4help.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CA753921AEB9F300A6039E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C6CA753B21AEB9F300A6039E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 		C6CA752D21AEB9F300A6039E = {
 			isa = PBXGroup;
 			children = (
-				C621EF2E21AEC34200501841 /* Default-568h@2x.png */,
 				C6CA753821AEB9F300A6039E /* data4help */,
 				C6CA754D21AEB9F400A6039E /* data4helpTests */,
 				C6CA755821AEB9F400A6039E /* data4helpUITests */,
@@ -277,7 +274,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CA754421AEB9F400A6039E /* LaunchScreen.storyboard in Resources */,
-				C621EF2F21AEC34200501841 /* Default-568h@2x.png in Resources */,
 				C6CA754121AEB9F400A6039E /* Assets.xcassets in Resources */,
 				C6CA753F21AEB9F300A6039E /* Main.storyboard in Resources */,
 			);

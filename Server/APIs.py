@@ -59,7 +59,7 @@ def register():
         password=data['password']
         firstname=data['firstname']
         lastname=data['lastname']
-        birthday='0'
+        birthday='2000-10-10'
         db_handler.create_user(username, password, firstname, lastname, birthday)
         return "ok"
 

@@ -12,30 +12,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var labelMessage: UILabel!
     
     @IBAction func buttonRegister(_ sender: UIButton) {
-        
         let parameters : Parameters=[
             "firstname":textFieldFirstName.text!,
             "lastname":textFieldLastName.text!,
             "username":textFieldUsername.text!,
             "password":textFieldPassword.text!
         ]
-        
-        //Sending http post request
-        Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters).responseJSON
-            {
+        Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON {
                 response in
-                //printing response
                 print(response)
-                
-                //getting the json value from the server
-                if let result = response.result.value {
-                    
-                    //converting it as NSDictionary
-                    let jsonData = result as! NSDictionary
-                    
-                    //displaying the message in label
-                    self.labelMessage.text = jsonData.value(forKey: "message") as! String?
-                }
         }
     }
     
