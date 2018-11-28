@@ -40,4 +40,4 @@ class DBHandler:
             self.db.commit()
 
         except mysql.connector.errors.IntegrityError:
-            print("ERROR")
+            raise Exception("Error");

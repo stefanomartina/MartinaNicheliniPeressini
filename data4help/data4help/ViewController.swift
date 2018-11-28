@@ -21,7 +21,12 @@ class ViewController: UIViewController {
         Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON {
                 response in
-                print(response)
+                
+                if let status = response.result.value {
+                    let JSON = status as! NSDictionary;
+                    let appo = JSON["Response"]!;
+                    print(appo)
+                }
         }
     }
     
