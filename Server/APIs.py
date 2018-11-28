@@ -54,21 +54,18 @@ def users_handling():
 @app.route('/api/users/register', methods=['POST'])
 def register():
     try:
-        data=request.get_json()
-        username=data['username']
-        password=data['password']
-        firstname=data['firstname']
-        lastname=data['lastname']
-        birthday='2000-10-10'
-        db_handler.create_user(username, password, firstname, lastname, birthday)
-        return "ok"
+        data = request.get_json()
+        username = data['username']
+        password = data['password']
+        first_name = data['firstname']
+        last_name = data['lastname']
+        birthday = '2000-10-10'
+        db_handler.create_user(username, password, first_name, last_name, birthday)
+        return jsonify({'Response': '1'})
 
     except Exception:
-        print("EX")
-        return jsonify({'error': 'Request must have these fields: username, password, firstname, lastname, birthdate',
-                        'errorCode': 400}), 400
-
-
+        return jsonify({'Response': '0',
+                        'Reason': 'Creation error'})
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,12 +1,11 @@
 #!/usr/bin/python
-
 import mysql.connector
 
 
 class DBHandler:
 
     def __init__(self):
-        self.db = mysql.connector.connect( host = '35.198.157.139', database='data4help', user='root', passwd='trackme');
+        self.db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme');
         self.dbMy = self.db.cursor()
 
     def auth(self, usr, psw):
@@ -31,12 +30,14 @@ class DBHandler:
             else:
                 return None
 
-    def create_user(self, username, password, fname, lname, birthday):
-        query = "INSERT INTO User VALUES ('{}','{}','{}','{}','{}')".format(username, password, fname, lname, birthday);
+    def create_user(self, username, password, first_name, last_name, birthday):
+        query = "INSERT INTO User VALUES ('{}','{}','{}','{}','{}')".format(username, password, first_name,
+                                                                            last_name, birthday);
         print(query)
+
         try:
             self.dbMy.execute(query)
             self.db.commit()
-            print("DONE")
+
         except mysql.connector.errors.IntegrityError:
             print("ERROR")
