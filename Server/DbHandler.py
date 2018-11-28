@@ -25,3 +25,19 @@ class DBHandler:
 
 
 
+    def check_user(self, username):
+        query = "SELECT password FROM User WHERE username = '"+username+"'";
+        print(query)
+        self.dbMy.execute(query)
+
+        for x in self.dbMy:
+            if (x[0] != None):
+                return x[0]
+            else:
+                return None
+
+
+
+d = DBHandler()
+
+print(d.check_user("ciao"));
