@@ -1,0 +1,51 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}
+\contentsline {subsection}{\numberline {1.1}Purpose}{4}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Scope}{5}{subsection.1.2}
+\contentsline {subsubsection}{\numberline {1.2.1}Description of the problem}{5}{subsubsection.1.2.1}
+\contentsline {subsubsection}{\numberline {1.2.2}World Phenomena}{5}{subsubsection.1.2.2}
+\contentsline {subsubsection}{\numberline {1.2.3}Machine Phenomena}{5}{subsubsection.1.2.3}
+\contentsline {subsubsection}{\numberline {1.2.4}Shared Phenomena}{5}{subsubsection.1.2.4}
+\contentsline {subsubsection}{\numberline {1.2.5}Goals}{6}{subsubsection.1.2.5}
+\contentsline {subsection}{\numberline {1.3}Definitions, Acronyms, Abbreviations}{7}{subsection.1.3}
+\contentsline {subsubsection}{\numberline {1.3.1}Definitions}{7}{subsubsection.1.3.1}
+\contentsline {subsubsection}{\numberline {1.3.2}Acronyms}{7}{subsubsection.1.3.2}
+\contentsline {subsubsection}{\numberline {1.3.3}Abbreviations}{7}{subsubsection.1.3.3}
+\contentsline {subsection}{\numberline {1.4}Revision history}{7}{subsection.1.4}
+\contentsline {subsection}{\numberline {1.5}Document Structure}{7}{subsection.1.5}
+\contentsline {section}{\numberline {2}Overall description}{8}{section.2}
+\contentsline {subsection}{\numberline {2.1}Product perspective}{8}{subsection.2.1}
+\contentsline {subsubsection}{\numberline {2.1.1}Class Diagram}{8}{subsubsection.2.1.1}
+\contentsline {subsubsection}{\numberline {2.1.2}State Diagram}{9}{subsubsection.2.1.2}
+\contentsline {subsection}{\numberline {2.2}Product functions}{11}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Users characteristics}{12}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Assumptions, dependencies and constraints}{12}{subsection.2.4}
+\contentsline {subsubsection}{\numberline {2.4.1}Domain assumptions}{12}{subsubsection.2.4.1}
+\contentsline {section}{\numberline {3}Specific requirements}{13}{section.3}
+\contentsline {subsection}{\numberline {3.1}External Interface Requirements}{13}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}User Interfaces}{13}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}Hardware Interfaces}{23}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Software Interfaces}{23}{subsubsection.3.1.3}
+\contentsline {subsubsection}{\numberline {3.1.4}Communication Interfaces}{23}{subsubsection.3.1.4}
+\contentsline {subsection}{\numberline {3.2}Functional Requirements}{24}{subsection.3.2}
+\contentsline {subsubsection}{\numberline {3.2.1}Definitions of use cases}{25}{subsubsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2}Use case diagram}{30}{subsubsection.3.2.2}
+\contentsline {subsection}{\numberline {3.3}Sequence diagrams}{31}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Performance Requirements}{34}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}Design Constraints}{34}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Standards compliance}{34}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Hardware limitations}{34}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}Any other constraint}{34}{subsubsection.3.5.3}
+\contentsline {subsection}{\numberline {3.6}Software System Attributes}{35}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Reliability}{35}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Availability}{35}{subsubsection.3.6.2}
+\contentsline {subsubsection}{\numberline {3.6.3}Security}{35}{subsubsection.3.6.3}
+\contentsline {subsubsection}{\numberline {3.6.4}Maintainability}{35}{subsubsection.3.6.4}
+\contentsline {subsubsection}{\numberline {3.6.5}Portability}{35}{subsubsection.3.6.5}
+\contentsline {subsection}{\numberline {3.7}Scenarios}{36}{subsection.3.7}
+\contentsline {subsubsection}{\numberline {3.7.1}Scenario 1}{36}{subsubsection.3.7.1}
+\contentsline {subsubsection}{\numberline {3.7.2}Scenario 2}{36}{subsubsection.3.7.2}
+\contentsline {subsubsection}{\numberline {3.7.3}Scenario 3}{36}{subsubsection.3.7.3}
+\contentsline {subsubsection}{\numberline {3.7.4}Scenario 4}{36}{subsubsection.3.7.4}
+\contentsline {section}{\numberline {4}Formal analysis using Alloy}{37}{section.4}
+\contentsline {subsection}{\numberline {4.1}World Generated}{42}{subsection.4.1}
+\contentsline {section}{\numberline {5}Effort spent}{43}{section.5}
