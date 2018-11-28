@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{subfiles}
 \hypersetup{
     colorlinks,
     citecolor=black,
@@ -27,35 +28,8 @@
 \tableofcontents
 
 \newpage
-\section{Introduction}
-
-\subsection{Purpose}
-\subsection{Scope}
-\subsection{Definitions, Acronyms, Abbreviations}
-\subsection{Revision history}
-\subsection{Reference Documents}
-\subsection{Document Structure}
-\section{Architectural design}
-
-The system is going to be implemented with a three tier architecture. 
-
-\subsection{Overview: High-level}
-\subsection{Component view}
-\subsection{Deployment view}
-\subsection{Runtime view}
-\subsection{Component interfaces}
-\subsubsection{API structure}
-
-All the api system will be implemented referring to a single endpoint www.data4help.cloud. Users' applications and third parties will refer to different subdomain:
-
-\begin{itemize}
-	\item \textit{www.data4help.cloud/api/users} will be the specific endpoint for the application that serves users.
-	\item \textit{www.data4help.cloud/api/thirdparties} will be the specific endpoint for thirdparties.
-\end{itemize}
-
-
-\subsection{Selected architectural styles and patterns}
-\subsection{Other design decision}
+\subfile{Introduction.tex}
+\subfile{"Architectural design.tex"}
 
 \section{User interface design}
 
