@@ -53,7 +53,18 @@ def users_handling():
 
 @app.route('/api/users/register', methods=['POST'])
 def register():
-    return request.get_json()
+    try:
+        data=request.get_json()
+        username=data['username']
+        password=data['password']
+        firstname=data['firstname']
+        lastname=data['lastname']
+        birthday='0'
+        db_handler.create_user(username, password, firstname, lastname, birthday)
+        return "ok"
+
+    except Exception:
+        return "Error handling the request"
 
 
 if __name__ == '__main__':
