@@ -6,6 +6,7 @@
 /Server/venv
 /Server/*.idea
 /Server/main.py
+Server/__pycache__/
 /DD/*.pdf
 
 # Created by https://www.gitignore.io/api/xcode
