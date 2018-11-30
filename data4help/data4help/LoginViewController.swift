@@ -15,27 +15,24 @@ class LoginViewController: UIViewController {
         password = passwordTextField.text!
         let credential = URLCredential(user: username, password: password, persistence: .forSession)
         
-        Alamofire.request(URL_USER_LOGIN, method: .post)
+        Alamofire.request(URL_USER_LOGIN, method: .post, encoding: JSONEncoding.default)
             .authenticate(usingCredential: credential)
-            .responseJSON { response in
-                debugPrint(response)
+            .responseJSON {
+                response in
+                if let JSON = response.result.value as? [String: Any] {
+                    if (JSON["Response"] as! Int == 1) {
+                        let message = JSON["Message"]!;
+                        
+                        let alert = UIAlertController(title: "Attention", message: (message as! String), preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                        
+                        self.present(alert, animated: true)
+                    }
+                }
+                
+                
         }
     }
-//    @IBAction func loginButton(_ sender: UIButton) {
-//        username = usernameTextField.text!
-//        password = passwordTextField.text!
-//
-//        var headers: HTTPHeaders = [:]
-//
-//        if let authorizationHeader = Request.authorizationHeader(user: username, password: password) {
-//            headers[authorizationHeader.key] = authorizationHeader.value
-//        }
-//
-//        Alamofire.request(URL_USER_LOGIN, method: .post, headers: headers)
-//            .responseJSON { response in
-//                debugPrint(response)
-//        }
-//    }
     
     @IBAction func registerButton(_ sender: UIButton) {
         performSegue(withIdentifier: "loginToRegistration", sender: self)

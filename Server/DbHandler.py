@@ -19,7 +19,7 @@ class DBHandler:
             return False
 
     def get_user_password(self, username):
-        query = "SELECT password FROM User WHERE username = '" + username + "'";
+        query = "SELECT password FROM User WHERE username = '" + username + "'"
         self.dbMy.execute(query)
 
         for x in self.dbMy:

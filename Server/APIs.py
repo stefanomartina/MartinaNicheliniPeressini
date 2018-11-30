@@ -19,8 +19,8 @@ def get_password(username):
 
 @auth.error_handler
 def unauthorized():
-    return make_response(jsonify({'error': 'Unauthorized access',
-                                  'errorCode': 401}), 401)
+    return jsonify({'Response': '-1',
+                    'Message': 'Username or password is incorrect'})
 
 
 def get():
@@ -54,7 +54,7 @@ def users_handling():
 @app.route('/api/users/login', methods=['POST'])
 @auth.login_required
 def login():
-    return "ok"
+    return jsonify({'Response': '1'})
 
 
 @app.route('/api/users/register', methods=['POST'])
