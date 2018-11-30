@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B3DA05A21B19FE000081207 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DA05921B19FE000081207 /* DashboardViewController.swift */; };
 		9052693162330982326FC0F4 /* Pods_data4helpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */; };
 		9BEB7455797B23AEF353B407 /* Pods_data4helpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */; };
 		C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */; };
@@ -41,6 +42,7 @@
 		038C19EF50F01CF5E3F84920 /* Pods-data4helpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4helpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D61006B196DE6D202BB09F3 /* Pods_data4help.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4help.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B3DA05921B19FE000081207 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		A0A4CA89F4BAC2BDC69F1381 /* Pods-data4helpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.release.xcconfig"; sourceTree = "<group>"; };
 		B47AA4145B14DBEFBCFB5840 /* Pods-data4helpUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpUITests/Pods-data4helpUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		B79900F7A9D153E30B71E123 /* Pods-data4help.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4help.release.xcconfig"; path = "Pods/Target Support Files/Pods-data4help/Pods-data4help.release.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
 				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
+				7B3DA05921B19FE000081207 /* DashboardViewController.swift */,
 				C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */,
 				C6CA754021AEB9F400A6039E /* Assets.xcassets */,
 				C6CA754221AEB9F400A6039E /* LaunchScreen.storyboard */,
@@ -397,6 +400,7 @@
 				C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */,
 				C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */,
 				C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */,
+				7B3DA05A21B19FE000081207 /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
