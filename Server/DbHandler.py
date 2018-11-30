@@ -9,16 +9,14 @@ class DBHandler:
         self.dbMy = self.db.cursor()
 
     def auth(self, username, password):
-        query = "SELECT * FROM User WHERE username = %s"
+        query = "SELECT password FROM User WHERE username = %s"
 
         self.dbMy.execute(query, username)
 
-        for x in self.dbMy:
-            print(x[1])
-            if x[1] == password:
-                return True
-            else:
-                return False
+        if self.dbMy[0] == password:
+            return True
+        else:
+            return False
 
     def get_user_password(self, username):
         query = "SELECT password FROM User WHERE username = %s"

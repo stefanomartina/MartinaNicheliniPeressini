@@ -49,12 +49,17 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="buttonRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gbg-Dc-PIA"/>
+                                    <action selector="loginButton:" destination="sJo-ND-eOt" eventType="touchUpInside" id="sas-1P-7gK"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xQS-mX-KCY"/>
                     </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="PjF-2c-vyL" id="JwK-dr-j73"/>
+                        <outlet property="usernameTextField" destination="7Rb-xz-XWp" id="Y0y-d7-jU9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Fj-u2-Mht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

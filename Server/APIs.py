@@ -51,6 +51,12 @@ def users_handling():
         return get()
 
 
+@app.route('/api/users/login', methods=['POST'])
+@auth.login_required
+def login():
+    return "ok"
+
+
 @app.route('/api/users/register', methods=['POST'])
 def register():
     try:
