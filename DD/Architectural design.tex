@@ -29,8 +29,28 @@ The decision of this kind of architecture has been taken in order to build the s
 \end{itemize}
 
 The idea is to keep as separate as possibile the logic layer from the data layer in order to let the system grow in a modular fashion and let us change cloud data provider as the system's dimension grow with the minimum effort.
-
+\newpage
 \subsection{Component view}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/DeploymentDiagram}
+	\caption{Deployment Dyagram}
+\end{figure}
+
+The Deployment diagram emphasises the nodes on which the platform runs:\\
+\textbf{InHouse} box represent the components developed inside the company.
+The components in the \textbf{External box} represent the “on demand” software.\\
+\begin{itemize}
+\item	\textbf{Smartphone} : the application deployed on the iOs Smartphone used by the user. Users are able to retrieve data from the application server and, also, from the external 			server API directly (e.g. maps by Google Maps)
+\item \textbf{Web Browser API Interface} : A web page for Third Parties registration. It provides a secret to do a request to the API Server.
+\item \textbf{Application Server }: the  main logic core of the application. It’s the only one access point to the DB but also it communicates with the external server API
+\item  \textbf{External Service} : Both the external services are represented as a blackbox because we don’t know how they are implemented 
+\end{itemize}
+
+
+
+
 \subsection{Deployment view}
 \subsection{Runtime view}
 \subsection{Component interfaces}
