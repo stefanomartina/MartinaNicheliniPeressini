@@ -1,7 +1,7 @@
 import Alamofire
 import UIKit
 
-class ViewController: UIViewController {
+class RegistrationViewController: UIViewController {
     
     let URL_USER_REGISTER = "http://localhost:5000/api/users/register"
     
@@ -21,7 +21,6 @@ class ViewController: UIViewController {
         Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON {
                 response in
-                
                 if let status = response.result.value {
                     let JSON = status as! NSDictionary;
                     let appo = JSON["Response"]!;
@@ -34,5 +33,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib .
     }
-    
+
 }
