@@ -19,9 +19,8 @@ class DBHandler:
             return False
 
     def get_user_password(self, username):
-        query = "SELECT password FROM User WHERE username = %s"
-
-        self.dbMy.execute(query, username)
+        query = "SELECT password FROM User WHERE username = '" + username + "'";
+        self.dbMy.execute(query)
 
         for x in self.dbMy:
             if x[0] is not None:

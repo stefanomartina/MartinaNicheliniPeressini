@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @auth.get_password
 def get_password(username):
-    return db_handler.get_user_password(username)
+    return db_handler.get_user_password(str(username))
 
 
 @auth.error_handler
