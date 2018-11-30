@@ -50,6 +50,7 @@
                                 <connections>
                                     <action selector="buttonRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gbg-Dc-PIA"/>
                                     <action selector="loginButton:" destination="sJo-ND-eOt" eventType="touchUpInside" id="sas-1P-7gK"/>
+                                    <segue destination="e4a-C3-QUp" kind="show" id="RRq-oA-4K4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -162,10 +163,19 @@
         <!--Item 1-->
         <scene sceneID="lO4-46-bcc">
             <objects>
-                <viewController id="jLh-31-2qw" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6G8-Zs-4G5">
+                <viewController id="jLh-31-2qw" customClass="DashboardViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6G8-Zs-4G5" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Benvenuto!" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LVP-p8-w8y">
+                                <rect key="frame" x="20" y="103" width="364" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="MTC-bZ-6Dp"/>
                     </view>
@@ -173,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XRh-cK-nIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1920" y="-178"/>
+            <point key="canvasLocation" x="1918.840579710145" y="-178.125"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0Jj-dm-lBx">
