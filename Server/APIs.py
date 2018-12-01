@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 

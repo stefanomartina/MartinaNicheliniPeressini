@@ -50,6 +50,7 @@
                                 <connections>
                                     <action selector="buttonRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gbg-Dc-PIA"/>
                                     <action selector="loginButton:" destination="sJo-ND-eOt" eventType="touchUpInside" id="sas-1P-7gK"/>
+                                    <segue destination="e4a-C3-QUp" kind="show" identifier="LoginToDashboard" id="lBb-vI-HKA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -63,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Fj-u2-Mht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-664.79999999999995" y="129.98500749625188"/>
+            <point key="canvasLocation" x="-665.21739130434787" y="129.91071428571428"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="tne-QT-ifu">
