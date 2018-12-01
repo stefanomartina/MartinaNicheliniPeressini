@@ -30,7 +30,40 @@ The decision of this kind of architecture has been taken in order to build the s
 
 The idea is to keep as separate as possibile the logic layer from the data layer in order to let the system grow in a modular fashion and let us change cloud data provider as the system's dimension grow with the minimum effort.
 \newpage
+
 \subsection{Component view}
+We now provide a high level view of system's components. The whole system can be seen as two main component \textit{WebInterface} e \textit{Mobile Application} that consumes services offered by the three main important subsystem: \textit{HealthSharing Manager}, \textit{SOS Manager}, \textit{RunEvent Manager}. We are going to provide further details of each subsystem.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/ComponentOverview}
+	\caption{High level overview of system components.}
+\end{figure}
+
+\subsubsection{Component view of HealthSharing Manager}
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/HealthSharingManagerComponent}
+	\caption{Specific description for HealthSharing Manager component.}
+\end{figure}
+
+The \textit{Access Policy Manager Module} works as a manager of all the policies associated with data sharing. It provides the list of active sharing to users and it let them manage active policies such as accepting new sharing request, or change/delete active policies. Moreover this component is also used by third parties that have to be able to subscribe to users data.\\
+The \textit{Data Manager Module} has to handle all the operations of retrieving/storing data between users' app and databases. It also has to guarente data consistency in the whole system.
+\newpage
+\subsubsection{Component view of SOS Manager}
+\begin{figure}[h]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/SOSManagerComponent}
+	\caption{Specific description for HealthSharing Manager component.}
+\end{figure}
+
+The \textit{Anomaly Detection Module} has to live read and control heartbeat data from users that have activated SOS functionality in their mobile application.
+
+
+\newpage
+\subsection{Deployment view}
+
+
 
 \begin{figure}[h!]
 	\centering
@@ -49,9 +82,6 @@ The components in the \textbf{External box} represent the “on demand” softwa
 \end{itemize}
 
 
-
-
-\subsection{Deployment view}
 \subsection{Runtime view}
 \subsection{Component interfaces}
 \subsubsection{API structure}
