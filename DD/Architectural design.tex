@@ -96,6 +96,7 @@ All the api system will be implemented referring to a single endpoint www.data4h
 \newpage
 \subsection{Selected architectural styles and patterns}
 Data4Help system is based on a tree tier architecture:
+\subsubsection{Overall Description}
 \begin{itemize}
 	\item \textbf{Presentation Tier} has to present the data to the user in such a way that they are meaningful for the user’s perspective. It displays information to the user obtained communicating with the other two tiers. For example, if a user performs a tap on the button “create a new run event” the communication tier send a query to the Logic Tier that answers with a message requiring for information to create an Event and so on.
 		To be quick to react in case of “Anomaly detection”, instead of putting the logic of continuous checking of the vital parameters into the Logic Tiers (as the entire logic of the application) the Presentation Tier (the application) contains also this component. Doing this we will be able to speedy react and call the ambulance in the shortest way possible. We are also able to react in narrow situation as absence of field coperture or not working internet network.
