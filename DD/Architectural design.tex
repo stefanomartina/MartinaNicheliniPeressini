@@ -93,7 +93,20 @@ All the api system will be implemented referring to a single endpoint www.data4h
 	\item \textit{www.data4help.cloud/api/thirdparties} will be the specific endpoint for thirdparties.
 \end{itemize}
 
-
+\newpage
 \subsection{Selected architectural styles and patterns}
+Data4Help system is based on a tree tier architecture:
+\begin{itemize}
+	\item \textbf{Presentation Tier} has to present the data to the user in such a way that they are meaningful for the user’s perspective. It displays information to the user obtained communicating with the other two tiers. For example, if a user performs a tap on the button “create a new run event” the communication tier send a query to the Logic Tier that answers with a message requiring for information to create an Event and so on.
+		To be quick to react in case of “Anomaly detection”, instead of putting the logic of continuous checking of the vital parameters into the Logic Tiers (as the entire logic of the application) the Presentation Tier (the application) contains also this component. Doing this we will be able to speedy react and call the ambulance in the shortest way possible. We are also able to react in narrow situation as absence of field coperture or not working internet network.
+	\item \textbf{Logic Tier} has the entire logic needed for the application (excluding the “Anomaly detection” component as described above). It receives the requests from the Presentation Tier and, if needed, queries the Data tier before then sending the reply.
+	\item \textbf{Data Tier} is composed of a DBMS that provide an interface to the DataBase externally located. It contains all the data in a Relational Schema (ER) (view fig XXX)\\\\
+	The separation between the different layers allow us to upgrade or replace a single tier without affecting the others
+\end{itemize}
+\subsubsection{Design Patterns}
+
+
+\newpage
+
 \subsection{Other design decision}
 \end{document}
