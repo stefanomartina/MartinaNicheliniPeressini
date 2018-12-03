@@ -47,17 +47,26 @@ We now provide a high level view of system's components. The whole system can be
 	\caption{Specific description for HealthSharing Manager component.}
 \end{figure}
 
+HealthSharing manager is composed of two main submodule: \begin{itemize}
+	\item Access Policy Manager Module.
+	\item Data Manager Module.
+\end{itemize}
+
 The \textit{Access Policy Manager Module} works as a manager of all the policies associated with data sharing. It provides the list of active sharing to users and it let them manage active policies such as accepting new sharing request, or change/delete active policies. Moreover this component is also used by third parties that have to be able to subscribe to users data.\\
 The \textit{Data Manager Module} has to handle all the operations of retrieving/storing data between users' app and databases. It also has to guarente data consistency in the whole system.
 \newpage
+
 \subsubsection{Component view of SOS Manager}
-\begin{figure}[h]
+\begin{figure}[h!]
 	\centering
 	\includegraphics[height=8.00cm,keepaspectratio]{Figures/SOSManagerComponent}
 	\caption{Specific description for HealthSharing Manager component.}
 \end{figure}
 
 The \textit{Anomaly Detection Module} has to live read and control heartbeat data from users that have activated SOS functionality in their mobile application.
+
+\subsubsection{Component view of RunEventManager}
+
 
 
 \newpage
