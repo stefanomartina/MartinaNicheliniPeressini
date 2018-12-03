@@ -6,6 +6,8 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Data4Help requires your permission to acquire data from Health</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Data4Help requires your permission to write data on Health</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

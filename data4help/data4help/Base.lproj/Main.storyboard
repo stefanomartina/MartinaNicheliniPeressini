@@ -147,14 +147,33 @@
         <!--Item 2-->
         <scene sceneID="2CK-Sd-GWG">
             <objects>
-                <viewController id="zDa-lH-Hyg" sceneMemberID="viewController">
+                <viewController id="zDa-lH-Hyg" customClass="SettingsViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sFj-hr-7SI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7f-ia-p0Y">
+                                <rect key="frame" x="251" y="134" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchToggled:" destination="zDa-lH-Hyg" eventType="valueChanged" id="dNv-UR-jpG"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Health Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4V9-rZ-7y2">
+                                <rect key="frame" x="109" y="139" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zqC-DY-RrX"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="hlb-0D-Iyc"/>
+                    <connections>
+                        <outlet property="healthToggleSwitch" destination="q7f-ia-p0Y" id="7Zf-Nw-8yu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU7-lo-Xxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
