@@ -64,15 +64,33 @@ The \textit{Data Manager Module} has to handle all the operations of retrieving/
 \end{figure}
 
 The \textit{Anomaly Detection Module} has to live read and control heartbeat data from users that have activated SOS functionality in their mobile application.
+\newpage
+
+
 
 \subsubsection{Component view of RunEventManager}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/RunEventManagerComponent}
+	\caption{Specific description for RunEvent manager.}
+\end{figure}
+
+RunEvent manager is composed of three main submodule: \begin{itemize}
+	\item PathHandler module.
+	\item Live data handler module.
+	\item Event handler module.
+\end{itemize}
+
+The \textit{PathHandler module} has to offer services for creation and paths managing to users. In order to to that, it has to communicate with external Google Maps API.\\\\
+The \textit{Live data handler module} has to handle incoming live data from users and prepare and aggregated versione for spectators. Moreover it has to make them persistent for future access.\\\\
+The \textit{Event handler module} has to handle events creation, users' joining operations and spectators.
+
+
 
 
 
 \newpage
 \subsection{Deployment view}
-
-
 
 \begin{figure}[h!]
 	\centering
