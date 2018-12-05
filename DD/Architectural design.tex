@@ -32,7 +32,8 @@ The idea is to keep as separate as possibile the logic layer from the data layer
 \newpage
 
 \subsection{Component view}
-We now provide a high level view of system's components. The whole system can be seen as two main component \textit{WebInterface} e \textit{Mobile Application} that consumes services offered by the three main important subsystem: \textit{HealthSharing Manager}, \textit{SOS Manager}, \textit{RunEvent Manager}. We are going to provide further details of each subsystem.
+We now provide a high level view of system's components. The whole system can be seen as two main component \textit{WebInterface} e \textit{Mobile Application} that consumes services offered by the three main important subsystem: \textit{HealthSharing Manager}, \textit{SOS Manager}, \textit{RunEvent Manager}. Each of them, will be interfaced with the \textit{DatabseLink Manager} which provides transparent access to the tier devoted to persistency.
+\\ We are going to provide further details of each subsystem.
 
 \begin{figure}[h!]
 	\centering
@@ -105,19 +106,36 @@ The components in the \textbf{External box} represent the “on demand” softwa
 \item	\textbf{Smartphone} : the application deployed on the iOs Smartphone used by the user. Users are able to retrieve data from the application server and, also, from the external 			server API directly (e.g. maps by Google Maps)
 \item \textbf{Web Browser API Interface} : A web page for Third Parties registration. It provides a secret to do a request to the API Server.
 \item \textbf{Application Server }: the  main logic core of the application. It’s the only one access point to the DB but also it communicates with the external server API
-\item  \textbf{External Service} : Both the external services are represented as a blackbox because we don’t know how they are implemented 
+\item  \textbf{External Service} : Both the external services are represented as a blackbox because we don’t know how they are implemented.
 \end{itemize}
+\newpage
 
 
 \subsection{Runtime view}
 \subsection{Component interfaces}
-\subsubsection{API structure}
+\begin{figure}[!th]
+	\centering
+	\includegraphics[height=16.00cm,keepaspectratio]{Figures/Interfaces}
+	\caption{Components' interfaces descriptions diagram}
+\end{figure}
 
-All the api system will be implemented referring to a single endpoint www.data4help.cloud. Users' applications and third parties will refer to different subdomain:
+\newpage
+
+\subsubsection{API structure}
+The whole TrackMe infrastructure will be connected trough a RESTful API system. JSON will be used as serialisation data format.\\
+All the api system will be implemented referring to a single endpoint www.data4help.cloud that TrackMe will buy for the implementation of this project.
+\\Users' applications and third parties will refer to different subdomain:
 
 \begin{itemize}
-	\item \textit{www.data4help.cloud/api/users} will be the specific endpoint for the application that serves users.
-	\item \textit{www.data4help.cloud/api/thirdparties} will be the specific endpoint for thirdparties.
+	\item \textit{\textbf{www.data4help.cloud/api/users}}: it will be the specific endpoint for the application that serves users.
+	\item \textit{\textbf{www.data4help.cloud/api/thirdparties}}: it will be the specific endpoint for thirdparties.
+\end{itemize}
+
+Here a complete description of each supported methods follows:
+
+\begin{itemize}
+	\item method 1:
+	\item method 2:
 \end{itemize}
 
 \newpage
@@ -137,4 +155,8 @@ Data4Help system is based on a tree tier architecture:
 \newpage
 
 \subsection{Other design decision}
+
+\begin{itemize}
+	\item We decided not to let logic components to directly deal with the database but to interleave the \textit{Database Link Manager} in order to build the logic layer independently from the persistency layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
+\end{itemize}
 \end{document}
