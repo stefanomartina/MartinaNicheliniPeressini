@@ -151,10 +151,26 @@ Data4Help system is based on a tree tier architecture:
 \end{itemize}
 \subsubsection{Design Patterns}
 
+\begin{itemize}
+	\item \textbf{Model View Controller (MVC)}\\
+		\textbf{MVC in a nutshell}\\
+		The MVC is a pattern that describe how to separate the components of the project in such a way to maintain high level of separation. \\
+		\vspace{-5mm}
+		\begin{itemize}
+		\setlength\itemsep{-0.9em}
+			\item\textbf{Model} is the section that contains only the data of the application\\
+			\item\textbf{View} is the section that contains the component needed to represent information\\
+			\item\textbf{Controller} is the section that contains the logic of the application\\
+		\end{itemize}
+		\textbf{MVC in Data4Help}\\
+		In Data4Help the \textbf{Model} is the persistent data storage with the Entity-Relation SQL Database (view section 2.6.1) placed externally.\\
+		The \textbf{View} is the application displayed on the smartphone, is the only point of interaction with the client.
+		This component contains the "UI Controller" that is the logic to handle the tap on the UI. It also contains the logic of AutomatedSOS because is required to be very reactive in case of emergency \\
+		The \textbf{Controller} is placed on the web server and is accessible as a RESTful endpoint. It contains the logic of the application \\
+		\item \textbf{Altri pattern??}\\
+\end{itemize}
 
-\newpage
-
-\subsection{Other design decision}
+\subsubsection{Other design decision}
 
 \begin{itemize}
 	\item We decided not to let logic components to directly deal with the database but to interleave the \textit{Database Link Manager} in order to build the logic layer independently from the persistency layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
