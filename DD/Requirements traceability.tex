@@ -2,6 +2,55 @@
 \begin{document}
 
 \section{Requirements traceability}
-\newpage
+Here we map each requirement described in RASD document to the system components that will provide services to satisfy it.
+
+\begin{itemize}	
+
+	\item [G1] Users can be recognised by their credentials.
+	\begin{itemize}
+		\item R1 Users can create an account with credentials. [MISSING COMPONENT]
+		\item R2 Credentials can be retrievable also if 
+		forgotten/lost. [MISSING COMPONENT]
+	\end{itemize} 
+
+	\item [G2] Allow users to keep track of their health data.	
+	\begin{itemize}
+		\item R3,R6 provided by \textit{Data handler service} interface in \textit{Health Sharing Manager}. 
+	\end{itemize}
+	
+	\item [G3] Allow users to have access to an overview of their 
+	data, including health parameters and performed activities.
+	\begin{itemize}
+		\item R10 provided by \textit{DB link service} interface in \textit{DatabaseLink manager} module.
+	\end{itemize}
+	
+	\item [G4] Allow users to manage their data access policy.
+	\begin{itemize}
+		\item R4,R5 provided by \textit{ManageAccess Request service} interface in \textit{Health Sharing Manager}
+	\end{itemize}
+	
+	\item [G5] Allow users to monitor their performances during 
+	workouts.	
+
+	
+	\item [G6] Each time vital signs go below a threshold value, first 
+	aid services have to be notified.
+	\begin{itemize}
+		\item R6 provided by \textit{Data handler service} interface in \textit{Health Sharing Manager} module.
+		\item R7 provided by \textit{SOS service interface} interface in \textit{SOS manager} module. 
+	\end{itemize}
+		
+	\item [G7] Allow users to organise running events.
+	
+	\item [G8] Allow third parties to access data.
+	\begin{itemize}
+		\item [R8] The machine has to be able to communicate with 
+		third parties. [	TO CLARIFY]
+		\item [R9] The machine has to be able to recognise data 
+		fragmentation level. [MISSING COMPONENT]
+		\item R10 provided by \textit{DB link service} interface in \textit{DatabaseLink manager} module.
+	\end{itemize}
+	
+\end{itemize}
 
 \end{document}
