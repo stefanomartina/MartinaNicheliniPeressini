@@ -11,12 +11,6 @@ The system is going to be implemented with a three tier architecture. Tiers are 
 	\caption{High level view of the system's architecture}
 \end{figure}
 
-\begin{figure}[h!]
-	\centering
-	\includegraphics[height=8.00cm,keepaspectratio]{Figures/ThreeTierSchema}
-	\caption{Distribution of application's function among the tier}
-\end{figure}
-
 The decision of this kind of architecture has been taken in order to build the system in the most modular possibile way. Here are described layer organisation:
 
 \begin{itemize}
@@ -29,10 +23,17 @@ The decision of this kind of architecture has been taken in order to build the s
 \end{itemize}
 
 The idea is to keep as separate as possibile the logic layer from the data layer in order to let the system grow in a modular fashion and let us change cloud data provider as the system's dimension grow with the minimum effort.
+
+\newpage
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/ThreeTierSchema}
+	\caption{Distribution of application's function among the tier}
+\end{figure}
 \newpage
 
 \subsection{Component view}
-We now provide a high level view of system's components. The whole system can be seen as two main component \textit{WebInterface} e \textit{Mobile Application} that consumes services offered by the three main important subsystem: \textit{HealthSharing Manager}, \textit{SOS Manager}, \textit{RunEvent Manager}. Each of them, will be interfaced with the \textit{DatabseLink Manager} which provides transparent access to the tier devoted to persistency.
+We now provide a high level view of system's components. The whole system can be seen as two main client component \textit{WebInterface} e \textit{Mobile Application} that consumes services offered by a set of logic components: \textit{HealthSharing manager}, \textit{SOS manager}, \textit{RunEvent Manager}, \textit{Access Manager}. Each of them, will be interfaced with the \textit{DatabaseLink Manager} which provides transparent access to the tier devoted to persistency.
 \\ We are going to provide further details of each subsystem.
 
 \begin{figure}[h!]
@@ -41,37 +42,40 @@ We now provide a high level view of system's components. The whole system can be
 	\caption{High level overview of system components.}
 \end{figure}
 
+\newpage
 \subsubsection{Component view of HealthSharing Manager}
-\begin{figure}[h]
-	\centering
-	\includegraphics[height=8.00cm,keepaspectratio]{Figures/HealthSharingManagerComponent}
-	\caption{Specific description for HealthSharing Manager component.}
-\end{figure}
-
 HealthSharing manager is composed of two main submodule: \begin{itemize}
 	\item Access Policy Manager Module.
 	\item Data Manager Module.
+	\item Data elaboration Module.
 \end{itemize}
 
 The \textit{Access Policy Manager Module} works as a manager of all the policies associated with data sharing. It provides the list of active sharing to users and it let them manage active policies such as accepting new sharing request, or change/delete active policies. Moreover this component is also used by third parties that have to be able to subscribe to users data.\\
 The \textit{Data Manager Module} has to handle all the operations of retrieving/storing data between users' app and databases. It also has to guarente data consistency in the whole system.
+	\\
+The \textit{Data Elaboration Module} has to handle all the operations devoted to make data anonymous and to handle request of aggregated data from third parties.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=8.00cm,keepaspectratio]{Figures/HealthSharingManagerComponent}
+	\caption{Specific description for HealthSharing Manager component.}
+\end{figure}
 \newpage
 
 \subsubsection{Component view of SOS Manager}
+The \textit{Anomaly Detection Module} has to live read and control heartbeat data from users that have activated SOS functionality in their mobile application.
 \begin{figure}[h!]
 	\centering
-	\includegraphics[height=8.00cm,keepaspectratio]{Figures/SOSManagerComponent}
+	\includegraphics[height=6.00cm,keepaspectratio]{Figures/SOSManagerComponent}
 	\caption{Specific description for HealthSharing Manager component.}
 \end{figure}
-
-The \textit{Anomaly Detection Module} has to live read and control heartbeat data from users that have activated SOS functionality in their mobile application.
 \newpage
 
 
 \subsubsection{Component view of RunEventManager}
 \begin{figure}[h!]
 	\centering
-	\includegraphics[height=8.00cm,keepaspectratio]{Figures/RunEventManagerComponent}
+	\includegraphics[height=10.00cm,keepaspectratio]{Figures/RunEventManagerComponent}
 	\caption{Specific description for RunEvent manager.}
 \end{figure}
 
@@ -85,7 +89,22 @@ The \textit{PathHandler module} has to offer services for creation and paths man
 The \textit{Live data handler module} has to handle incoming live data from users and prepare and aggregated versione for spectators. Moreover it has to make them persistent for future access.\\\\
 The \textit{Event handler module} has to handle events creation, users' joining operations and spectators.
 
+\newpage
+\subsubsection{Component view of access manager}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[height=7.00cm,keepaspectratio]{Figures/AccessManagerComponent}
+	\caption{Specific description for Access Manager component.}
+\end{figure}
 
+Access Manager is composed of two main submodule: 
+\begin{itemize}
+	\item Login Module
+	\item Setting Module
+\end{itemize}
+
+The \textit{Login Module} offers all the function devoted to login for both users and third parties.\\
+The \textit{Setting Module} offers services devoted to let users to change and manage their preferences.
 
 
 
@@ -103,7 +122,7 @@ In this section we show the Entity Relationship schema of the adopted DB.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[height=8.00cm,keepaspectratio]{Figures/DeploymentDiagram}
+	\includegraphics[height=10.00cm,keepaspectratio]{Figures/DeploymentDiagram}
 	\caption{Deployment Dyagram}
 \end{figure}
 
@@ -120,6 +139,7 @@ The components in the \textbf{External box} represent the “on demand” softwa
 
 
 \subsection{Runtime view}
+\newpage
 \subsection{Component interfaces}
 \begin{figure}[!th]
 	\centering
