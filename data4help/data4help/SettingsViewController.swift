@@ -9,11 +9,10 @@
 import UIKit
 import HealthKit
 
-
+let healthStore = HKHealthStore() //i have to keep a reference of this. In this it should be global
 
 class SettingsViewController: UIViewController {
     
-    let healthStore = HKHealthStore() //i have to keep a reference of this
 
     @IBAction func switchToggled(_ sender: Any) {
         if let senderSwitch = sender as? UISwitch{

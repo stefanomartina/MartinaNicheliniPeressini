@@ -186,6 +186,16 @@
                     <view key="view" contentMode="scaleToFill" id="BZI-lr-keG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-7E-kdL">
+                                <rect key="frame" x="148" y="764" width="118" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Update &amp; Upload"/>
+                                <connections>
+                                    <action selector="updateAndUpload:" destination="ZpZ-Y0-ZD6" eventType="touchUpInside" id="xdA-ZT-WI8"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="RGf-2M-9bn"/>
                     </view>
