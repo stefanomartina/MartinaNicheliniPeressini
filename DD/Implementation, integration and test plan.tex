@@ -4,7 +4,22 @@
 \section{Implementation, integration and test plan}
 This section describes how to proceed in implementing Data4Help application system.
 Since Data4Help's main goal is to handle and share data of its users, the role of a database is crucial for all the components presented in the application and the first thing to be implemented in the global system. 
-It can be assumed that an instance of MySQL, offered by an external provider, is already been created and ready to be used by the application.
+It can be assumed that an instance of MySQL, offered by an external provider, is already been created and ready to be used by the application. \newline
+In the following sections will be discuss the implementation plan of the components of the application. 
+
+\subsection{Access Manager \& HealthSharing Manager}
+Services offered by Access Manager and HealthSharing Manager should be the fist to be implemented in the application system. \newline
+Access Manager guarantee to the users and the third-parties the possibility to login into the system to retrive their data and manage their preferences concerning, for example, their subscriptions to a sharing profile. 
+Considering the importance of this component, his subcomponents, the Login Module and the Settings Module, should be take into consideration immediately in the development of Data4Help project.
+\newline
+The HealthSharing Manager component is the core of the application: in fact, considering that either AutomatedSOS and Track4Run services exploit the Data4Help main modules (Data Manager Module in particular), the sub-modules of this component are essential for the entire system.  
+The development of HealthSharing Manager component will be started immediately after the Access Manager. 
+The above described components are essentially composed of simple CRUD API. 
+
+\subsection{SOS Manager \& RunEvent Manager}
+SOS Manager and RunEvent Manager are the two remaining components that accomplish the AutomatedSOS and Track4Run services respectively. \newline The modules of these two components can be developed in parallel, just after the completion of the Data4Help main modules. 
+As previously discussed in this document, part of the SOS Manager algorithms should be implemented client side to guarantee a grater reactivity of the system in emergency occasion. \newline
+Finally, the modules are, also in this case, CRUD API and simple algorithms like the one presented in the Algorithm Design section for the detection of anomaly in the heartbeat of the costumers. 
 
 \newpage
 \end{document}
