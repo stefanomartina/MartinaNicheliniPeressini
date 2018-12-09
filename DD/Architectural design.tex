@@ -138,10 +138,7 @@ the components in the \textbf{External} box are on-demand softwares.\\
 \end{itemize}
 \newpage
 
-
-\subsection{Runtime view}
-\subfile{RunTimeview.tex}
-	
+\subfile{"RunTimeview.tex"}	
 	
 \newpage
 \subsection{Component interfaces}
@@ -172,35 +169,34 @@ Here a complete description of each supported methods:
 Data4Help system is based on a tree tier architecture:
 \subsubsection{Overall Description}
 \begin{itemize}
-	\item \textbf{Presentation Tier}: has to present the data to the user in such a way that they are meaningful for the user’s perspective. It displays information to the user obtained communicating with the other two tier. For example, if a user performs a tap on the button “create a new run event” the communication tier send a query to the Logic Tier that answers with a message requiring for information to create an Event and so on.
-		To be quick to react in case of “Anomaly detection”, instead of putting the logic of continuous checking of the vital parameters into the Logic Tiers (as the entire logic of the application) the Presentation Tier (the application) contains also this component. Doing this we will be able to speedy react and call the ambulance in the shortest way possible. We are also able to react in narrow situation as absence of field coperture or not working internet network.
-	\item \textbf{Logic Tier} has the entire logic needed for the application (excluding the “Anomaly detection” component as described above). It receives the requests from the Presentation Tier and, if needed, queries the Data tier before then sending the reply.
-	\item \textbf{Data Tier} is composed of a DBMS that provide an interface to the DataBase externally located. It contains all the data in a Relational Schema (ER) (view Figure 8)\\\\
-	The separation between the different layers allow us to upgrade or replace a single tier without affecting the others
+	\item \textbf{Presentation Tier} has to present the data to the user in such a way that they are meaningful for the user's perspective. It displays information obtained communicating with the other two tiers. For example, if a user performs a tap on the button "Create new run event", the presentation tier sends a request to the Logic Tier that will answer with a message requiring information to create the event and so on.
+		To be quick to react in case of “Anomaly detection”, instead of putting the logic of continuous checking of the vital parameters into the Logic Tiers (as the entire logic of the application) the Presentation Tier (the application) contains also this component. Doing this we will be able to speedy react and call the ambulance in the quickest way possible. We are also able to react in narrow situation as absence of field coperture or not working internet network.
+	\item \textbf{Logic Tier} has the entire logic needed for the application (excluding the “Anomaly detection” component as described above). It receives the requests from the Presentation Tier and, if needed, queries the Data tier before sending back replies.
+	\item \textbf{Data Tier} is composed of a DBMS that provides an interface to the DataBase externally located. It contains all the data in a Relational Schema (ER) (view Figure 8)\\\\
+	The separation between the different layers allow us to upgrade or replace a single tier without affecting the others.
 \end{itemize}
 \subsubsection{Design Patterns}
 
 \begin{itemize}
-	\item \textbf{Model View Controller (MVC)}\\
-		\textbf{MVC in a nutshell}\\
-		The MVC is a pattern that describe how to separate the components of the project in such a way to maintain high level of separation. \\
+	\item \textbf{Model View Controller (MVC)}\\\\
+		\textbf{MVC in a nutshell}\\\\
+		The MVC is a pattern that describes how to separate the components of the project in such a way to maintain high level of separation. \\
 		\vspace{-5mm}
 		\begin{itemize}
 		\setlength\itemsep{-0.9em}
-			\item\textbf{Model} is the section that contains only the data of the application\\
-			\item\textbf{View} is the section that contains the component needed to represent information\\
-			\item\textbf{Controller} is the section that contains the logic of the application\\
+			\item\textbf{Model} is the section that contains only the data of the application;\\
+			\item\textbf{View} is the section that contains the component needed to represent information;\\
+			\item\textbf{Controller} is the section that contains the logic of the application.\\
 		\end{itemize}
-		\textbf{MVC in Data4Help}\\
-		In Data4Help the \textbf{Model} is the persistent data storage with the Entity-Relation SQL Database (view section 2.6.1) placed externally.\\
-		The \textbf{View} is the application displayed on the smartphone, is the only point of interaction with the client.
-		This component contains the "UI Controller" that is the logic to handle the tap on the UI. It also contains the logic of AutomatedSOS because is required to be very reactive in case of emergency \\
-		The \textbf{Controller} is placed on the web server and is accessible as a RESTful endpoint. It contains the logic of the application \\
+		\newpage
+	\item \textbf{MVC in Data4Help}\\\\
+		In Data4Help application the \textbf{Model} is the persistent data storage layer with the relational SQL Database (view section 2.6.1) placed externally.\\
+		The \textbf{View} is the application displayed on the user's smartphone; is the only point of interaction with the client.
+		This component contains the "UI Controller" that is the logic that handles the events on the UI. It also contains the logic of AutomatedSOS as explained in the above sections.\\
+		The \textbf{Controller} is placed on the web server and is accessible with the RESTful API. It contains the logic of the application.\\
 \end{itemize}
 
 \subsubsection{Other design decision}
+We decided not to let logic components directly deal with the database but to interleave the \textit{DatabaseLink Manager} in order to build the logic layer independently from the persistency layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
 
-\begin{itemize}
-	\item We decided not to let logic components to directly deal with the database but to interleave the \textit{Database Link Manager} in order to build the logic layer independently from the persistency layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
-\end{itemize}
 \end{document}
