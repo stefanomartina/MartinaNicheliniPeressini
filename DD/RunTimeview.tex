@@ -2,24 +2,38 @@
 \begin{document}
 
 \section{Runtime view}
-
+\subsection{Manual or automatic Sequence Diagram}
 \begin{figure}[h!]
 \centering
-\includegraphics[height=17.00cm,keepaspectratio]{Figures/DataAcquisition}
+\includegraphics[height=16.00cm,keepaspectratio]{Figures/DataAcquisition}
 \caption{Manual or automatic data acquisition sequence diagram}
 \end{figure}
 
+
+
+\subsection{Automated SOS Sequence Diagram}
 \begin{figure}[h!]
 \centering
 \includegraphics[height=17.00cm,keepaspectratio]{Figures/AutomatedSOS}
 \caption{Automated SOS sequence diagram}
 \end{figure}
 
-\begin{sidewaysfigure}
+The “\textbf{Anomaly Detection}” sequence diagram shown above represents the sequence of actions that may happen when an anomaly is detected.
+The Mobile application, using the Mobile System’s API, fetches the data from the smartphone.
+Whether the AutomatedSOS is enabled or disabled the behaviour of the platform is different.
+The \textbf{Setting Module} is queried and if the Anomaly Detection is disable a notification is sent to the \textbf{Mobile App component} and the user will be able to activate the service or discard it.
+Otherwise if it is enabled, the setting module is queried once again to obtain, if there exists, the custom threshold (otherwise the setting module component is going to return the default value).
+Since now the \textbf{Anomaly Detection Module} check each bpm data received until it reads three values under the threshold, in this case it display on the user’s mobile application a \textbf{PopUp} with written “Warning! bpm under the minimum threshold”.
+Now the user has 5 seconds to write “OK“ in the Text Field to discard the call.
+
+
+\subsection{Event Creation Sequence Diagram}
+\begin{figure}[h!]
 \centering
-\includegraphics[width=\textwidth]{Figures/EventCreation}
+\includegraphics[height=10.00cm,keepaspectratio]{Figures/EventCreation}
 \caption{Event creation sequence diagram}
-\end{sidewaysfigure}
+	
+\end{figure}}
 
 \newpage
 
