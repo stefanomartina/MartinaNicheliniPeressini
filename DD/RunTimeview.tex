@@ -33,8 +33,7 @@ Now the user has 5 seconds to write “OK“ in the Text Field to discard the ca
 \centering
 \includegraphics[height=10.00cm,keepaspectratio]{Figures/EventCreation}
 \caption{Event creation sequence diagram}
-
-\
+\end{figure}
 
 The \textbf{Event Creation} Sequence Diagram shown above represents the sequence of actions that happen when a user tap on the button “create Event”.
 When the application controller is triggered by the tap of the user sends to the \textbf{Run Event Manager} the request.
@@ -42,8 +41,6 @@ Since now the exchange is between the user and the component directly, in the se
 After that the data are collected by the manager, it sends a request of creation to the \textbf{Database Link Manager }that tries to perform the insertion
 If everything goes correctly the event is created, otherwise the run event manager handle the error, and, if needed, it requires correction to the user directly.
 At the end of the process the user is notified of the occurred event creation.
-\end{figure}
-
 \newpage
 
 \end{document}
