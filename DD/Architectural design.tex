@@ -162,7 +162,43 @@ All the API system will be implemented referring to a single endpoint (www.data4
 	\item \textit{\textbf{www.data4help.cloud/api/thirdparties}}: it will be the specific endpoint for third-parties.
 \end{itemize}
 
+Secure access will be provided by HTTPS Basic Access Authentication: each request between client and server will be authenticated with user/thirdparty credential.
+
 Here a complete description of each supported methods:
+
+\begin{itemize}
+
+	\item \textit{\textbf{/api/user/registration}}
+		\begin{itemize}
+			\item POST: register a new user with credentials specified in http fields.
+		\end{itemize}
+	\item \textit{\textbf{/api/user/data}}
+		\begin{itemize}
+			\item GET: get last fixed number user's data 
+			\item POST: upload new user's data
+		\end{itemize}
+	\item \textit{\textbf{/api/user/request}}
+		\begin{itemize}
+			\item GET: get all access requests that have the user as target
+		\end{itemize}
+	\item \textit{\textbf{/api/user/request/\{request\_id\}}}
+		\begin{itemize}
+			\item PUT: accept or deny the request with the given id
+		\end{itemize}
+	\item \textit{\textbf{/api/thirdparty/registration}}
+		\begin{itemize}
+			\item POST: register a new thirdparty with credentials specified in http fields.
+		\end{itemize}
+	\item \textit{\textbf{/api/thirdparties/request}}
+		\begin{itemize}
+			\item POST: generate a new access request for a user's data.
+		\end{itemize}
+	\item \textit{\textbf{/api/thirdparties/data}}
+		\begin{itemize}
+			\item GET: update all data coming from subscribed user
+		\end{itemize}
+\end{itemize}
+
 
 \newpage
 \subsection{Selected architectural styles and patterns}
@@ -197,6 +233,6 @@ Data4Help system is based on a tree tier architecture:
 \end{itemize}
 
 \subsubsection{Other design decision}
-We decided not to let logic components directly deal with the database but to interleave the \textit{DatabaseLink Manager} in order to build the logic layer independently from the persistent layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
-
+We decided not to let logic components directly deal with the database but to interleave the \textit{DatabaseLink Manager} in order to build the logic layer independently from the persistent layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. \\\\
+Another important design decision the team has taken is not to operate directly with wearable devices but instead to rely on mobile OS's feature to acquire data. In particular: the system is going to take advantage of Apple Healtkit to read data. This'll let the application to communicate with all wearable devices that are already compliant with Apple's framework without having to be compliant with each vendor's specific device.
 \end{document}
