@@ -180,13 +180,13 @@ Data4Help system is based on a tree tier architecture:
 \begin{itemize}
 	\item \textbf{Model View Controller (MVC)}\\\\
 		\textbf{MVC in a nutshell}\\\\
-		The MVC is a pattern that describes how to separate the components of the project in such a way to maintain high level of separation. \\
+		The MVC is an architectural pattern that permits to separate the presentation layer of the application from the business logic layer. It is composed by the following layers: \\
 		\vspace{-5mm}
 		\begin{itemize}
 		\setlength\itemsep{-0.9em}
-			\item\textbf{Model} is the section that contains only the data of the application;\\
-			\item\textbf{View} is the section that contains the component needed to represent information;\\
-			\item\textbf{Controller} is the section that contains the logic of the application.\\
+			\item\textbf{Model}: the section that contains only the data of the application;\\
+			\item\textbf{View}: the section that contains the component needed to represent information;\\
+			\item\textbf{Controller}: the section that contains the logic of the application; it maps the user's input coming from the View to make changes to the Model section.\\
 		\end{itemize}
 		\newpage
 	\item \textbf{MVC in Data4Help}\\\\
@@ -197,6 +197,6 @@ Data4Help system is based on a tree tier architecture:
 \end{itemize}
 
 \subsubsection{Other design decision}
-We decided not to let logic components directly deal with the database but to interleave the \textit{DatabaseLink Manager} in order to build the logic layer independently from the persistency layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
+We decided not to let logic components directly deal with the database but to interleave the \textit{DatabaseLink Manager} in order to build the logic layer independently from the persistent layer. Developers will be able to change the way the system interacts with the database or to change database's interfaces without having to change all the components. 
 
 \end{document}

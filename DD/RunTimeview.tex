@@ -2,7 +2,7 @@
 \begin{document}
 
 \section{Runtime view}
-\subsection{Manual or automatic Sequence Diagram}
+\subsection{Data acquisition Sequence Diagram}
 \begin{figure}[h!]
 \centering
 \includegraphics[height=16.00cm,keepaspectratio]{Figures/DataAcquisition}
@@ -11,7 +11,7 @@
 
 
 
-\subsection{Automated SOS Sequence Diagram}
+\subsection{AutomatedSOS Sequence Diagram}
 \begin{figure}[h!]
 \centering
 \includegraphics[height=17.00cm,keepaspectratio]{Figures/AutomatedSOS}
@@ -25,6 +25,7 @@ The \textbf{Setting Module} is queried and if the Anomaly Detection is disable a
 Otherwise if it is enabled, the setting module is queried once again to obtain, if there exists, the custom threshold (otherwise the setting module component is going to return the default value).
 Since now the \textbf{Anomaly Detection Module} check each bpm data received until it reads three values under the threshold, in this case it display on the user’s mobile application a \textbf{PopUp} with written “Warning! bpm under the minimum threshold”.
 Now the user has 5 seconds to write “OK“ in the Text Field to discard the call.
+\newpage
 
 
 \subsection{Event Creation Sequence Diagram}
