@@ -3,19 +3,20 @@ import UIKit
 
 class LoginViewController: UIViewController {
     
-    let URL_USER_LOGIN = "http://localhost:5000/api/users/login"
     var username = ""
     var password = ""
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var serverLabel: UILabel!
     
     @IBAction func loginButton(_ sender: UIButton) {
         username = usernameTextField.text!
         password = passwordTextField.text!
         let credential = URLCredential(user: username, password: password, persistence: .forSession)
+        let LOGIN_COMPLETE_URL = Global.getUserURL() + Global.LOGIN_METHOD
         
-        Alamofire.request(URL_USER_LOGIN, method: .post, encoding: JSONEncoding.default)
+        Alamofire.request(LOGIN_COMPLETE_URL, method: .post, encoding: JSONEncoding.default)
             .authenticate(usingCredential: credential)
             .responseJSON {
                 response in
@@ -45,7 +46,9 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        Global.getUserURL() {
+            () in self.serverLabel.text = Global.getUserURL()
+        }
     }
     
 }

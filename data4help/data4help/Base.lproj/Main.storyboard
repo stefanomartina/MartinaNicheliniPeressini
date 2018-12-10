@@ -52,12 +52,27 @@
                                     <action selector="loginButton:" destination="sJo-ND-eOt" eventType="touchUpInside" id="sas-1P-7gK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pt0-Qp-eGR">
+                                <rect key="frame" x="70" y="693" width="274" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="API endpoint:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O26-Yd-d0A">
+                                <rect key="frame" x="156" y="664" width="103" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="xQS-mX-KCY"/>
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="PjF-2c-vyL" id="JwK-dr-j73"/>
+                        <outlet property="serverLabel" destination="pt0-Qp-eGR" id="iE6-gh-ncW"/>
                         <outlet property="usernameTextField" destination="7Rb-xz-XWp" id="Y0y-d7-jU9"/>
                         <segue destination="eAT-Bl-He7" kind="show" identifier="loginToDashboard" id="rtN-ky-Gav"/>
                     </connections>
