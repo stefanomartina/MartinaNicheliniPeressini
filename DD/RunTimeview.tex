@@ -9,11 +9,11 @@
 \caption{Manual or automatic data acquisition sequence diagram}
 \end{figure}
 
-The \textbf{Manual or Automatic data acquisition} Sequence Diagram shown above represents the sequence of actions that happen if a user tap on the button “add data manually” or on the button “synchronize data” 
-When the application controller is triggered by the tap of the user on the Manual acquisition it sends to the data \textbf{Elaboration Module} the request that replies asking for the parameters. 
-When the parameters are collected and the correctness is checked the entry on the db is created by the \textbf{Database Link Manger}.
-The \textbf{Data Elaboration Module} also handles, eventually, the errors that may occur during the creation of the entry on the db.
-Instead, when the application controller is triggered by the tap on the synchronize data button it sends a request to the Data Elaboration Module that sends a fetch Data request to the \textbf{Mobile System API}. The data are fetched and sent back to the Database Link Manager that notifies the Mobile Application 
+The \textbf{Manual or Automatic data acquisition} Sequence Diagram shown above represents the sequence of actions that happen if a user tap on the button "Add data manually" or on the button "Synchronize data". \newline
+When the application controller is triggered by the tap of the user on the \newline manual acquisition, it sends to the data \textbf{Elaboration Module} the request that replies asking for parameters. 
+When the parameters are collected and the correctness is checked, the entry on the DB is created by the \textbf{DatabaseLink Manger}.\newline
+The \textbf{Data Elaboration Module} also handles, eventually, the errors that may occur during the creation of the entry on the DB.
+Instead, when the application controller is triggered by the tap on the "Synchronize data" button, it sends a request to the Data Elaboration Module that sends a fetch data request to the \textbf{Mobile System's API}. The data are fetched and sent back to the DatabaseLink Manager that notifies the Mobile Application. 
 
 \newpage
 \subsection{AutomatedSOS Sequence Diagram}
@@ -23,13 +23,13 @@ Instead, when the application controller is triggered by the tap on the synchron
 \caption{Automated SOS sequence diagram}
 \end{figure}
 
-The “\textbf{Anomaly Detection}” sequence diagram shown above represents the sequence of actions that may happen when an anomaly is detected.
-The Mobile application, using the Mobile System’s API, fetches the data from the smartphone.
+The “\textbf{Anomaly Detection}” Sequence Diagram shown above represents the sequence of actions that may happen when an anomaly is detected.
+The Mobile application, using the Mobile System's API, fetches the data from the smartphone.
 Whether the AutomatedSOS is enabled or disabled the behaviour of the platform is different.
 The \textbf{Setting Module} is queried and if the Anomaly Detection is disable a notification is sent to the \textbf{Mobile App component} and the user will be able to activate the service or discard it.
 Otherwise if it is enabled, the setting module is queried once again to obtain, if there exists, the custom threshold (otherwise the setting module component is going to return the default value).
-Since now the \textbf{Anomaly Detection Module} check each bpm data received until it reads three values under the threshold, in this case it display on the user’s mobile application a \textbf{PopUp} with written “Warning! bpm under the minimum threshold”.
-Now the user has 5 seconds to write “OK“ in the Text Field to discard the call.
+Since now, the \textbf{Anomaly Detection Module} checks each BPM data received until it reads three values under the threshold; in this case it displays on the user's mobile application a \textbf{PopUp} with written "Warning! BPM under the minimum threshold".
+Now the user has 5 seconds to write "OK" in the Text Field to discard the call.
 \newpage
 
 
@@ -40,11 +40,11 @@ Now the user has 5 seconds to write “OK“ in the Text Field to discard the ca
 \caption{Event creation sequence diagram}
 \end{figure}
 
-The \textbf{Event Creation} Sequence Diagram shown above represents the sequence of actions that happen when a user tap on the button “create Event”.
-When the application controller is triggered by the tap of the user sends to the \textbf{Run Event Manager} the request.
-Since now the exchange is between the user and the component directly, in the sense that the control is entirely in the run event manager instead of in the mobile application component.
-After that the data are collected by the manager, it sends a request of creation to the \textbf{Database Link Manager }that tries to perform the insertion
-If everything goes correctly the event is created, otherwise the run event manager handle the error, and, if needed, it requires correction to the user directly.
+The \textbf{Event Creation} Sequence Diagram shown above represents the sequence of actions that happen when a user tap on the button "Create event".
+When the application controller is triggered by the tap of the user, it sends to the \textbf{Run Event Manager} the request.
+Since now, the exchange of messages is between the user and the component directly, in the sense that the control is entirely in the Run Event Manager instead of in the mobile application component.
+After that the data are collected by the manager, the component sends a request of event creation to the \textbf{DatabaseLink Manager} that tries to perform the insertion. \newline
+If everything ended up correctly, the event is created, otherwise the Run Event Manager handles the error and, if needed, it requires correction to the user directly.
 At the end of the process the user is notified of the occurred event creation.
 \newpage
 
