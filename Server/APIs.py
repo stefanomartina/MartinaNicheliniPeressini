@@ -43,12 +43,8 @@ def index():
 
 
 @app.route('/api/users', methods=['GET', 'POST'])
-@auth.login_required
 def users_handling():
-    if request.method == 'POST':
-        return post(request)
-    elif request.method == 'GET':
-        return get()
+    return jsonify({"EASTEREGG": "Hello there"})
 
 
 @app.route('/api/users/login', methods=['POST'])
@@ -75,4 +71,4 @@ def register():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
