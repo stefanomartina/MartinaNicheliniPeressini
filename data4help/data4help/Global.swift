@@ -10,17 +10,18 @@ import Foundation
 import Alamofire
 
 
-
+//Let's put all global variable in this class. All methods and varibles have to be statis
 class Global {
-    
     static private var USER_URL = ""
     static private let URL_USER_LOCAL = "http://localhost:5000/api/users"
     static private let URL_USER_REMOTE = "http://data4help.cloud:5000/api/users"
-    static public let LOGIN_METHOD = "/login"
     
+    static public let LOGIN_METHOD = "/login"
+    static public let REGISTER_METHOD = "/register"
+    
+    //This method handles the selection of the right URL.
     static public func getUserURL(_ completionHandler: (() -> Void)? = nil)  -> String {
         if USER_URL == "" {
-            //When global class is initialiazed, the right URL is chosen
             Alamofire.request(URL_USER_LOCAL)
                 .validate()
                 .responseJSON { response in
@@ -39,3 +40,9 @@ class Global {
     }
 
 }
+
+//Let's put all messages here instead of inserting them directly in code snippets.
+class Messages {
+    static public let LOGIN_ERROR = "Login error: server didn't response"
+}
+

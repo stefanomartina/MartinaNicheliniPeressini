@@ -21,19 +21,28 @@ class LoginViewController: UIViewController {
             .responseJSON {
                 response in
                 
-                if let status = response.result.value {
-                    let JSON = status as! NSDictionary
-                    
-                    if let result = JSON["Response"] as? String {
-                        if(result == "-1") {
-                            if let message = JSON["Message"] as? String {
-                                let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                                self.present(alert, animated: true)
+                switch response.result {
+                
+                // case Alamofire.request fails
+                case .failure:
+                    let alert = UIAlertController(title: "Attention", message: Messages.LOGIN_ERROR, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                
+                //case Alamogire.request success
+                case .success:
+                    if let status = response.result.value {
+                        let JSON = status as! NSDictionary
+                        
+                        if let result = JSON["Response"] as? String {
+                            if(result == "-1") {
+                                if let message = JSON["Message"] as? String {
+                                    let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                                    self.present(alert, animated: true)
+                                }
                             }
-                        }
-                        else {
-                            self.performSegue(withIdentifier: "loginToDashboard", sender: nil)
+                            else { self.performSegue(withIdentifier: "loginToDashboard", sender: nil) }
                         }
                     }
                 }

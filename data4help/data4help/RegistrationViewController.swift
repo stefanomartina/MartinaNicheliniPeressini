@@ -3,12 +3,22 @@ import UIKit
 
 class RegistrationViewController: UIViewController {
     
-    let URL_USER_REGISTER = "http://localhost:5000/api/users/register"
+    let URL_USER_REGISTER = Global.getUserURL() + Global.REGISTER_METHOD
+    let GENDERS = ["M", "F"]
     
     @IBOutlet weak var textFieldFirstName: UITextField!
     @IBOutlet weak var textFieldLastName: UITextField!
     @IBOutlet weak var textFieldUsername: UITextField!
     @IBOutlet weak var textFieldPassword: UITextField!
+    
+    @IBOutlet weak var textFieldBirthPlace: UITextField!
+    @IBOutlet weak var textFieldBirthDate: UITextField!
+    
+    @IBOutlet weak var textFieldGender: UITextField!
+    @IBOutlet var genderPicker: UIPickerView! = UIPickerView()
+    
+    @IBOutlet weak var textFieldFiscalCode: UITextField!
+    
     @IBOutlet weak var labelMessage: UILabel!
     
     @IBAction func buttonRegister(_ sender: UIButton) {
@@ -29,9 +39,46 @@ class RegistrationViewController: UIViewController {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int{
+        return GENDERS.count
+    }
+    
+    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
+        return GENDERS[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    {
+        textFieldGender.text = GENDERS[row]
+        genderPicker.isHidden = true;
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        genderPicker.isHidden = false
+        return false
+    }
+    
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib .
+//        genderPicker.isHidden = true
     }
     
 }
