@@ -1,6 +1,18 @@
 import Alamofire
 import UIKit
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 class RegistrationViewController: UIViewController {
     
     let URL_USER_REGISTER = Global.getUserURL() + Global.REGISTER_METHOD
@@ -15,7 +27,6 @@ class RegistrationViewController: UIViewController {
     @IBOutlet weak var textFieldBirthDate: UITextField!
     
     @IBOutlet weak var textFieldGender: UITextField!
-    @IBOutlet var genderPicker: UIPickerView! = UIPickerView()
     
     @IBOutlet weak var textFieldFiscalCode: UITextField!
     
@@ -38,47 +49,12 @@ class RegistrationViewController: UIViewController {
                 }
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView!) -> Int{
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView!, numberOfRowsInComponent component: Int) -> Int{
-        return GENDERS.count
-    }
-    
-    func pickerView(pickerView: UIPickerView!, titleForRow row: Int, forComponent component: Int) -> String! {
-        return GENDERS[row]
-    }
-    
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
-    {
-        textFieldGender.text = GENDERS[row]
-        genderPicker.isHidden = true;
-    }
-    
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        genderPicker.isHidden = false
-        return false
-    }
-    
-    
-    
-    
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        genderPicker.isHidden = true
+        self.hideKeyboardWhenTappedAround()
     }
     
 }
