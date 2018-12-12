@@ -13,9 +13,9 @@ import HealthKit
 
 class HTTPManager {
     
-    
     static func sendHeartData(data: [HKQuantitySample])  {
-        var toSend : JSON
+        let credential = URLCredential(user: "user", password: "pass", persistence: .forSession)
+        var toSend : JSON = [:]
         var heartJson : JSON
         
         var bpm : String
@@ -28,9 +28,15 @@ class HTTPManager {
             bpm = "\(hkqs.quantity)"
             timestamp = "\(hkqs.startDate)"
             heartJson =  ["bpm": bpm, "timestamp": timestamp]
-    
-//            toSend.merge(with: [""])
+            
+            roundKey = "data" + String(i)
+            do { try toSend.merge(with: [roundKey : heartJson]) }
+            catch {}
+            i = i + 1
         }
+        
+        
+        Alamofire.request(Global.getUserURL() + Global.HEART_ENDPOINT , method: .post, encoding: JSONEncoding.default)
+            .authenticate(usingCredential: credential)
     }
-    
 }
