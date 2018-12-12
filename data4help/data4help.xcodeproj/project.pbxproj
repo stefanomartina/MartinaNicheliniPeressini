@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		269C782A21B19F3100B57D46 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269C782921B19F3100B57D46 /* HealthKit.framework */; };
 		26D2E35321BEB175009F68E7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E35221BEB175009F68E7 /* Global.swift */; };
+		26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F53DAD21C1033B001F419A /* HealthKit.framework */; };
 		26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB31E421B5428F00C27A9B /* SettingsViewController.swift */; };
 		9052693162330982326FC0F4 /* Pods_data4helpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */; };
 		9BEB7455797B23AEF353B407 /* Pods_data4helpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */; };
@@ -43,9 +43,9 @@
 
 /* Begin PBXFileReference section */
 		038C19EF50F01CF5E3F84920 /* Pods-data4helpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.debug.xcconfig"; sourceTree = "<group>"; };
-		269C782921B19F3100B57D46 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
-		26C2B4FE21B19D69001E9DA4 /* data4help.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = data4help.entitlements; sourceTree = "<group>"; };
 		26D2E35221BEB175009F68E7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		26F53DAC21C10336001F419A /* data4help.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = data4help.entitlements; sourceTree = "<group>"; };
+		26F53DAD21C1033B001F419A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26FB31E421B5428F00C27A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4helpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D61006B196DE6D202BB09F3 /* Pods_data4help.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4help.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +78,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA28BD34F9C24F7927C6B86D /* Pods_data4help.framework in Frameworks */,
-				269C782A21B19F3100B57D46 /* HealthKit.framework in Frameworks */,
+				26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 		85EDA6382A5A75C67CD33CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				269C782921B19F3100B57D46 /* HealthKit.framework */,
+				26F53DAD21C1033B001F419A /* HealthKit.framework */,
 				6D61006B196DE6D202BB09F3 /* Pods_data4help.framework */,
 				C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */,
 				3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */,
@@ -150,7 +150,7 @@
 		C6CA753821AEB9F300A6039E /* data4help */ = {
 			isa = PBXGroup;
 			children = (
-				26C2B4FE21B19D69001E9DA4 /* data4help.entitlements */,
+				26F53DAC21C10336001F419A /* data4help.entitlements */,
 				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
 				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
@@ -598,13 +598,13 @@
 				CODE_SIGN_ENTITLEMENTS = data4help/data4help.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RR7ZH9PAZS;
+				DEVELOPMENT_TEAM = 3E65HHUN9M;
 				INFOPLIST_FILE = data4help/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = data4help2018.data4help2;
+				PRODUCT_BUNDLE_IDENTIFIER = data4help2018AnnoDomini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
@@ -620,13 +620,13 @@
 				CODE_SIGN_ENTITLEMENTS = data4help/data4help.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RR7ZH9PAZS;
+				DEVELOPMENT_TEAM = 3E65HHUN9M;
 				INFOPLIST_FILE = data4help/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = data4help2018.data4help2;
+				PRODUCT_BUNDLE_IDENTIFIER = data4help2018AnnoDomini;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
