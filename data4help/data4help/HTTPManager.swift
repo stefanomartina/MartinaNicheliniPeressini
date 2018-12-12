@@ -18,10 +18,7 @@ class HTTPManager {
         var toSend : JSON = [:]
         var heartJson : JSON
         
-        var bpm : String
-        var timestamp : String
-        
-        var roundKey : String
+        var bpm, timestamp, roundKey : String
         var i = 0
         
         for hkqs in data {
@@ -34,9 +31,9 @@ class HTTPManager {
             catch {}
             i = i + 1
         }
-        
-        
-        Alamofire.request(Global.getUserURL() + Global.HEART_ENDPOINT , method: .post, encoding: JSONEncoding.default)
+        let parameters : Parameters = toSend.dictionaryObject ?? [:]
+        let url = Global.getUserURL() + Global.HEART_ENDPOINT
+        Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .authenticate(usingCredential: credential)
     }
 }
