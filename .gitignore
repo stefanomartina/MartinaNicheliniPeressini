@@ -8,6 +8,7 @@ Server/*.idea
 Server/main.py
 Server/__pycache__/*
 DD/*.pdf
+/data4help/data4help/data4help.entitlements 
 
 # Created by https://www.gitignore.io/api/xcode
 # Edit at https://www.gitignore.io/?templates=xcode
