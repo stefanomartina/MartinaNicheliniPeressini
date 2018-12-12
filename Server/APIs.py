@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
+import pprint
 
 data_container = list()
 data_container.append("first element")
@@ -51,6 +52,20 @@ def users_handling():
 @auth.login_required
 def login():
     return jsonify({'Response': '1'})
+
+
+@app.route('/api/users/data/heart', methods=['POST'])
+@auth.login_required
+def heart():
+    try:
+        data = request.get_json()
+        pprint.pprint(data)
+        return jsonify({'Response': '1'})
+
+
+    except Exception:
+        return jsonify({'Response': '0',
+                        'Reason': 'Error with heart rate data'})
 
 
 @app.route('/api/users/register', methods=['POST'])
