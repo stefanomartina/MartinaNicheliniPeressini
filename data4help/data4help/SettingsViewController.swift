@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
             if senderSwitch.isOn {
                 let permissionsNedeed = Set ([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                 
-                    HealthKitBridge.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in
+                    HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in
                     if !success {
                         print("errore")
                     }

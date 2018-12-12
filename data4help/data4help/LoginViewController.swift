@@ -11,7 +11,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var serverLabel: UILabel!
     
     @IBAction func loginButton(_ sender: UIButton) {
-        username = usernameTextField.text!
+        self.performSegue(withIdentifier: "loginToDashboard", sender: nil) 
+        /*username = usernameTextField.text!
         password = passwordTextField.text!
         let credential = URLCredential(user: username, password: password, persistence: .forSession)
         let LOGIN_COMPLETE_URL = Global.getUserURL() + Global.LOGIN_METHOD
@@ -46,7 +47,7 @@ class LoginViewController: UIViewController {
                         }
                     }
                 }
-        }
+        }*/
     }
     
     @IBAction func registerButton(_ sender: UIButton) {
