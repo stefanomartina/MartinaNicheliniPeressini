@@ -9,8 +9,6 @@
 import UIKit
 import HealthKit
 
-let healthStore = HKHealthStore() //i have to keep a reference of this. In this it should be global
-
 class SettingsViewController: UIViewController {
     
 
@@ -19,7 +17,7 @@ class SettingsViewController: UIViewController {
             if senderSwitch.isOn {
                 let permissionsNedeed = Set ([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                 
-                healthStore.requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in
+                    HealthKitBridge.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in
                     if !success {
                         print("errore")
                     }

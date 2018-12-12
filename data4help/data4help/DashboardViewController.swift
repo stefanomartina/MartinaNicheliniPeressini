@@ -62,7 +62,7 @@ class DashboardViewController: UIViewController {
             HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.dateOfBirth)!,
             HKObjectType.characteristicType(forIdentifier: HKCharacteristicTypeIdentifier.bloodType)!,
             HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!,
-        ]
+            ]
         
         let healthKitTypeToWrite: Set<HKSampleType> = []
         
@@ -72,10 +72,24 @@ class DashboardViewController: UIViewController {
         }
         
         healthKitStore.requestAuthorization(toShare: healthKitTypeToWrite, read: healthKitTypeToRead) { (success, error) -> Void in
-            UserDefaults.standard.set(true, forKey: "healthToggleStatus")
             print("Read & Write authorization acquired!")
         }
         
     }
-
+    
+    @IBAction func updateAndUpload(_ sender: UIButton) {
+        var returned: [HKQuantitySample] = HealthKitBridge.getLastHeartBeat()
+        if returned.count == 0 {
+            let message = "No new data found"
+            let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+    
 }
