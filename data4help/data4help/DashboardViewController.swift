@@ -72,6 +72,7 @@ class DashboardViewController: UIViewController {
         }
         
         healthKitStore.requestAuthorization(toShare: healthKitTypeToWrite, read: healthKitTypeToRead) { (success, error) -> Void in
+            UserDefaults.standard.set(true, forKey: "healthToggleStatus")
             print("Read & Write authorization acquired!")
         }
         
