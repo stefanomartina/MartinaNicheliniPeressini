@@ -32,6 +32,7 @@ class DBHandler:
         query = "INSERT INTO User VALUES (%s, %s, %s, %s, %s)"
         values = (username, password, first_name, last_name, birthday)
 
+
         try:
             self.dbMy.execute(query, values)
             self.db.commit()
@@ -40,14 +41,18 @@ class DBHandler:
             raise Exception("Error")
 
     def insert_heart_rate(self, username, bpm, timestamp):
-        query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
-        values = (username, bpm, timestamp)
+        query = "INSERT INTO HeartRate ('username', 'timestamp') VALUES (%s, %s)"
+        values = (username, bpm)
 
         try:
+            print(query)
             self.dbMy.execute(query, values)
             self.db.commit()
 
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
+
+        except Exception:
+            print("ex")
 
 

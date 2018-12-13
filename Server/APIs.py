@@ -60,17 +60,14 @@ def login():
 def heart():
     try:
         data = dict(request.get_json())
-        pprint.pprint(data)
 
         for key in data.keys():
             bpm = data[key]['bpm']
             bpm = int(bpm[:len(bpm) - 10])
-            timestamp = data[key]['timestamp']
-            timestamp = timestamp[:len(timestamp) - 6]
-            timestamp = datetime.strptime(timestamp, "%Y-%m-%d %H-%M-%S")
-            print(timestamp)
-            db_handler.insert_heart_rate(auth.username(), bpm, timestamp)
-            return jsonify({'Response': '1'})
+            timestamp_str = data[key]['timestamp']
+            timestamp_str = timestamp_str[:len(timestamp_str) - 6]
+            #timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
+            db_handler.insert_heart_rate(auth.username(), bpm, timestamp_str)
 
         return jsonify({'Response': '1'})
 
