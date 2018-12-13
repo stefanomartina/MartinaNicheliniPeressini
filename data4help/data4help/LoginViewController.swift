@@ -56,6 +56,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         Global.getUserURL() {
             () in self.serverLabel.text = Global.getUserURL()
         }
