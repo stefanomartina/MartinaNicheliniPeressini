@@ -63,14 +63,11 @@ class TableViewController: UITableViewController {
                 print("Waiting for response...")
                 if let status = response.result.value {
                     let JSON = status as! NSDictionary;
-                    let timestamp = JSON["Timestamp"]!;
-                    print("......")
-                    print(timestamp)
-                    print("......")
-                    let BPM = JSON["BPM"]!;
-                    print("......")
-                    print(BPM)
-                    print("......")
+                    print(JSON)
+//                    let timestamp = JSON["timestamp"]!;
+//                    print(timestamp)
+//                    let BPM = JSON["bpm"]!;
+//                    print(BPM)
                 }
         }
     }
