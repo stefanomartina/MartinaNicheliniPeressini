@@ -22,7 +22,6 @@ class TableViewController: UITableViewController {
     
     @IBAction func updateAndUpload(_ sender: Any) {
         updateDataFromHealtKit()
-        print("Sono dentro qui")
     }
     
     func updateDataFromHealtKit(){
@@ -55,16 +54,23 @@ class TableViewController: UITableViewController {
     }
     
     func updateDataFromDB(){
+        print("Entrato in DB")
         let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
-        
-        
-        Alamofire.request(URL_USER_REGISTER, method: .post, encoding: JSONEncoding.default)
+        print(URL_USER_REGISTER)
+        Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
             .responseJSON {
                 response in
+                print("Waiting for response...")
                 if let status = response.result.value {
                     let JSON = status as! NSDictionary;
-                    let appo = JSON["Response"]!;
-                    print(appo)
+                    let timestamp = JSON["Timestamp"]!;
+                    print("......")
+                    print(timestamp)
+                    print("......")
+                    let BPM = JSON["BPM"]!;
+                    print("......")
+                    print(BPM)
+                    print("......")
                 }
         }
     }
@@ -72,16 +78,9 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         //così se vogliamo ogni volta che carichiamo il tab vengono ribeccati i dati
         //direi comunque che i dati da displayare (fino a che non viene piagiato sul refresh) siano quelli del db ---> ROBA che mi manda fra e poi implemento
-
-        updateDataFromHealtKit()
-        
-        
         updateDataFromDB()
-        
-        
-        
+
         super.viewDidLoad()
-        print("entrato")
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

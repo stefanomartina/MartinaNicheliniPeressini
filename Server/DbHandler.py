@@ -62,16 +62,19 @@ class DBHandler:
             print(str(e))
 
     def get_heart_rate_by_user(self, username):
-        query = "SELECT (Timestamp, BPM) FROM HeartRate" \
-                " WHERE HeartRate.Username = %s ORDER BY Timestamp ASC"
+        query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \
+                " WHERE Username ='" + username + "' ORDER BY Timestamp ASC"
+        print(query)
 
-        self.dbMy.execute(query, username)
-        rows = self.db.cursor.fetchall()
+        self.dbMy.execute(query)
+        rows = self.dbMy.fetchmany(2)
+
+        #str(row_array_list[row]["Timestamp"])
 
         row_array_list = []
         for row in rows:
-            t = (row.Timestamp, row.BPM)
+            t = (row[1], row[0].strftime('%Y-%m-%d %H:%M:%S'))
             row_array_list.append(t)
 
-        j = json.dumps(row_array_list)
+        j = json.dumps(dict(row_array_list))
         return j
