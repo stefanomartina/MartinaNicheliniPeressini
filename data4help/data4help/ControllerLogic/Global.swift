@@ -34,7 +34,7 @@ class Global {
                         print("Errors")
                         self.USER_URL = URL_USER_REMOTE
                     }
-                    completionHandler!()
+                    completionHandler?()
             }
         }
         return USER_URL

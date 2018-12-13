@@ -8,6 +8,10 @@ let healthKitStore: HKHealthStore = HKHealthStore()
 class DashboardViewController: UIViewController {
     
     @IBAction func updateAndUpload(_ sender: UIButton) {
+        updateData()
+    }
+    
+    func updateData(){
         let queryReturned: [HKQuantitySample] = HealthKitManager.getLastHeartBeat()
         
         if queryReturned.count == 0 {
@@ -22,15 +26,15 @@ class DashboardViewController: UIViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }
-
+        
         DispatchQueue.main.async {
             HTTPManager.sendHeartData(data: queryReturned)
         }
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateData()
         // Do any additional setup after loading the view.
     }
     
