@@ -11,7 +11,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var serverLabel: UILabel!
     
     @IBAction func loginButton(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "loginToDashboard", sender: nil) 
         username = usernameTextField.text!
         password = passwordTextField.text!
         let credential = URLCredential(user: username, password: password, persistence: .forSession)

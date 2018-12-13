@@ -39,5 +39,15 @@ class DBHandler:
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
 
-    #def insert_heart_rate(self, bpm, timestamp):
+    def insert_heart_rate(self, username, bpm, timestamp):
+        query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
+        values = (username, bpm, timestamp)
+
+        try:
+            self.dbMy.execute(query, values)
+            self.db.commit()
+
+        except mysql.connector.errors.IntegrityError:
+            raise Exception("Error")
+
 

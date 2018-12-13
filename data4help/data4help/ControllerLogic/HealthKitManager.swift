@@ -32,6 +32,7 @@ class HealthKitManager {
         var samples = [HKQuantitySample]()
         let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: 25, sortDescriptors: nil) {
             query, results, error in
+            //Controlla se è stata data l'autorizzazione!!!
             samples = results as! [HKQuantitySample]
             semaphore = 1
         }
