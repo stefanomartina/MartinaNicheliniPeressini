@@ -8,6 +8,7 @@
 
 import UIKit
 import HealthKit
+import Alamofire
 
 struct Data{
     var opened = Bool()
@@ -20,6 +21,11 @@ class TableViewController: UITableViewController {
     var tableViewData = [Data]()
     
     @IBAction func updateAndUpload(_ sender: Any) {
+        updateDataFromHealtKit()
+        print("Sono dentro qui")
+    }
+    
+    func updateDataFromHealtKit(){
         let queryReturned: [HKQuantitySample] = HealthKitManager.getLastHeartBeat()
         var bpm, timestamp : String
         
@@ -35,38 +41,48 @@ class TableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
             
-            
             for hkqs in queryReturned {
                 bpm = "\(hkqs.quantity)"
                 timestamp = "\(hkqs.startDate)"
-                print("----")
-                print(bpm)
-                print(timestamp)
-                print("----")
+                
                 tableViewData += [Data(opened: false, title: bpm, sectionData: [timestamp])]
             }
+            self.tableView.reloadData()
         }
-        
         DispatchQueue.main.async {
             HTTPManager.sendHeartData(data: queryReturned)
         }
-        
-        self.viewDidLoad()
     }
     
-    
+    func updateDataFromDB(){
+        let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
+        
+        
+        Alamofire.request(URL_USER_REGISTER, method: .post, encoding: JSONEncoding.default)
+            .responseJSON {
+                response in
+                if let status = response.result.value {
+                    let JSON = status as! NSDictionary;
+                    let appo = JSON["Response"]!;
+                    print(appo)
+                }
+        }
+    }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //così se vogliamo ogni volta che carichiamo il tab vengono ribeccati i dati
+        //direi comunque che i dati da displayare (fino a che non viene piagiato sul refresh) siano quelli del db ---> ROBA che mi manda fra e poi implemento
+
+        updateDataFromHealtKit()
         
+        
+        updateDataFromDB()
+        
+        
+        
+        super.viewDidLoad()
         print("entrato")
-//        tableViewData = [Data(opened: false, title: "uno", sectionData: ["uno", "due"]),
-//                         Data(opened: false, title: "uno", sectionData: ["uno", "due"]),
-//                         Data(opened: false, title: "uno", sectionData: ["uno", "due"]),
-//                         Data(opened: false, title: "uno", sectionData: ["uno", "due"])]
     }
-    
-    // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return tableViewData.count
@@ -88,7 +104,7 @@ class TableViewController: UITableViewController {
             return cell
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
-            cell.textLabel?.text = tableViewData[indexPath.section].sectionData[indexPath.row - 1]
+            cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
             return cell
         }
     }

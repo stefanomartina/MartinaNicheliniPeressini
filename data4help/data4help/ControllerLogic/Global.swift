@@ -19,6 +19,7 @@ class Global {
     static public let LOGIN_METHOD = "/login"
     static public let REGISTER_METHOD = "/register"
     static public let HEART_ENDPOINT = "/data/heart"
+    static public let HEART_ENDPOINT_GET = "/data/heart/get_data"
     
     //This method handles the selection of the right URL.
     static public func getUserURL(_ completionHandler: (() -> Void)? = nil)  -> String {
