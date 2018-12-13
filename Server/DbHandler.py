@@ -38,3 +38,6 @@ class DBHandler:
 
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
+
+    #def insert_heart_rate(self, bpm, timestamp):
+

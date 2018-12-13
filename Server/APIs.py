@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
+from datetime import datetime
 import pprint
 
 data_container = list()
@@ -58,8 +59,17 @@ def login():
 @auth.login_required
 def heart():
     try:
-        data = request.get_json()
-        pprint.pprint(data)
+        data = dict(request.get_json())
+        #pprint.pprint(data)
+
+        for key in data.keys():
+            bpm = int(data[key]['bpm'])
+            timestamp = data[key]['timestamp']
+            timestamp = timestamp[:len(timestamp)-6]
+
+        print(timestamp)
+
+
         return jsonify({'Response': '1'})
 
 
