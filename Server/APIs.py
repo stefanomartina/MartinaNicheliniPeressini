@@ -3,8 +3,6 @@ from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 from DbHandler import DuplicateException
-from datetime import datetime
-import pprint
 
 data_container = list()
 data_container.append("first element")
@@ -79,6 +77,12 @@ def heart():
     except Exception:
         return jsonify({'Response': '0',
                         'Reason': 'Error with heart rate data'})
+
+
+@app.route('/api/users/data/heart/get_data', methods=['GET'])
+@auth.login_required
+def get_heart_rate_by_user():
+    return db_handler.get_heart_rate_by_user(auth.username())
 
 
 @app.route('/api/users/register', methods=['POST'])

@@ -1,11 +1,14 @@
 #!/usr/bin/python
 import mysql.connector
+import json
+
 
 class DuplicateException(Exception):
     def __init__(self, message):
 
         # Call the base class constructor with the parameters it needs
         super().__init__(message)
+
 
 class DBHandler:
 
@@ -37,7 +40,6 @@ class DBHandler:
         query = "INSERT INTO User VALUES (%s, %s, %s, %s, %s)"
         values = (username, password, first_name, last_name, birthday)
 
-
         try:
             self.dbMy.execute(query, values)
             self.db.commit()
@@ -59,4 +61,17 @@ class DBHandler:
         except Exception as e:
             print(str(e))
 
+    def get_heart_rate_by_user(self, username):
+        query = "SELECT (Timestamp, BPM) FROM HeartRate" \
+                " WHERE HeartRate.Username = %s ORDER BY Timestamp ASC"
 
+        self.dbMy.execute(query, username)
+        rows = self.db.cursor.fetchall()
+
+        row_array_list = []
+        for row in rows:
+            t = (row.Timestamp, row.BPM)
+            row_array_list.append(t)
+
+        j = json.dumps(row_array_list)
+        return j
