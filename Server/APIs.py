@@ -66,9 +66,7 @@ def heart():
             bpm = int(data[key]['bpm'])
             timestamp = data[key]['timestamp']
             timestamp = timestamp[:len(timestamp)-6]
-
-        print(timestamp)
-
+            print(timestamp)
 
         return jsonify({'Response': '1'})
 
