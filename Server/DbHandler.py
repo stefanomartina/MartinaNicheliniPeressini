@@ -1,6 +1,11 @@
 #!/usr/bin/python
 import mysql.connector
 
+class DuplicateException(Exception):
+    def __init__(self, message):
+
+        # Call the base class constructor with the parameters it needs
+        super().__init__(message)
 
 class DBHandler:
 
@@ -41,18 +46,17 @@ class DBHandler:
             raise Exception("Error")
 
     def insert_heart_rate(self, username, bpm, timestamp):
-        query = "INSERT INTO HeartRate ('username', 'timestamp') VALUES (%s, %s)"
-        values = (username, bpm)
+        query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
+        values = (username, timestamp, bpm)
 
         try:
-            print(query)
             self.dbMy.execute(query, values)
             self.db.commit()
 
-        except mysql.connector.errors.IntegrityError:
-            raise Exception("Error")
+        except mysql.connector.IntegrityError:
+            raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
 
-        except Exception:
-            print("ex")
+        except Exception as e:
+            print(str(e))
 
 

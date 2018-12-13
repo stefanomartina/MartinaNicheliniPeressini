@@ -2,6 +2,7 @@
 from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
+from DbHandler import DuplicateException
 from datetime import datetime
 import pprint
 
@@ -64,10 +65,14 @@ def heart():
         for key in data.keys():
             bpm = data[key]['bpm']
             bpm = int(bpm[:len(bpm) - 10])
-            timestamp_str = data[key]['timestamp']
-            timestamp_str = timestamp_str[:len(timestamp_str) - 6]
-            #timestamp = datetime.strptime(timestamp_str, "%Y-%m-%d %H:%M:%S")
-            db_handler.insert_heart_rate(auth.username(), bpm, timestamp_str)
+            timestamp = data[key]['timestamp']
+            timestamp = timestamp[:len(timestamp) - 6]
+            try:
+                db_handler.insert_heart_rate(auth.username(), bpm, timestamp)
+            except DuplicateException as e:
+                print(str(e))
+                return jsonify({'Response': '-1',
+                        'Reason': 'Insertion failed, duplicated tuple in HeartRate table'})
 
         return jsonify({'Response': '1'})
 
