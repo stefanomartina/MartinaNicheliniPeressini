@@ -1,7 +1,16 @@
 import Alamofire
 import UIKit
 
-class LoginViewController: UIViewController {
+func resetDefaults() {
+    let defaults = UserDefaults.standard
+    let dictionary = defaults.dictionaryRepresentation()
+    dictionary.keys.forEach { key in
+        defaults.removeObject(forKey: key)
+    }
+}
+
+
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var username = ""
     var password = ""
@@ -10,7 +19,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var serverLabel: UILabel!
     
-    @IBAction func loginButton(_ sender: UIButton) {
+    @IBAction func loginButton(_ sender: UIButton?) {
         username = usernameTextField.text!
         password = passwordTextField.text!
         let credential = URLCredential(user: username, password: password, persistence: .forSession)
@@ -31,6 +40,8 @@ class LoginViewController: UIViewController {
                 
                 //case Alamogire.request success
                 case .success:
+                    UserDefaults.standard.set(self.username, forKey: "username")
+                    UserDefaults.standard.set(self.password, forKey: "password")
                     if let status = response.result.value {
                         let JSON = status as! NSDictionary
                         
@@ -53,9 +64,17 @@ class LoginViewController: UIViewController {
         performSegue(withIdentifier: "loginToRegistration", sender: self)
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()  //if desired
+        self.loginButton(nil)
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        self.passwordTextField.delegate = self //to bind return action on keyboard
+        self.hideKeyboardWhenTappedAround() //function to bind the tap out action to the keyboard dismiss action
+        resetDefaults() //function do reset user default DEBUGGING PORPOUSE
         Global.getUserURL() {
             () in self.serverLabel.text = Global.getUserURL()
         }

@@ -12,9 +12,15 @@ import Alamofire
 import HealthKit
 
 class HTTPManager {
+
+    static private func getCredential() -> URLCredential {
+        return URLCredential(user: UserDefaults.standard.string(forKey: "username")!,
+                             password: UserDefaults.standard.string(forKey: "password")!,
+                             persistence: .forSession)
+    }
     
     static func sendHeartData(data: [HKQuantitySample])  {
-        let credential = URLCredential(user: "user", password: "pass", persistence: .forSession)
+        let credential = self.getCredential()
         var toSend : JSON = [:]
         var heartJson : JSON
         

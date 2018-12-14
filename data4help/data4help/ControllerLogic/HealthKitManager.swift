@@ -18,8 +18,15 @@ class HealthKitManager {
     }
     
     static func getLastHeartBeat () -> [HKQuantitySample] {
+        let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")
+        
         let myEndDate = Date()
-        let myStartDate = myEndDate.addingTimeInterval(-60*60*24)
+        let myStartDate : Date
+        if lastUpdateDate == nil {
+            myStartDate = myEndDate.addingTimeInterval(-60*60*24)
+        } else {
+            myStartDate = (lastUpdateDate as! Date).addingTimeInterval(1)
+        }
         
         let timeIntervalPredicate =
             HKQuery.predicateForSamples(withStart: myStartDate,
@@ -30,7 +37,8 @@ class HealthKitManager {
         var semaphore = 0
         
         var samples = [HKQuantitySample]()
-        let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: 25, sortDescriptors: nil) {
+        let descriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
+        let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [descriptor]) {
             query, results, error in
             //Controlla se è stata data l'autorizzazione!!!
             samples = results as! [HKQuantitySample]
@@ -39,6 +47,12 @@ class HealthKitManager {
         healthStore.execute(query)
         while semaphore == 0 {
             sleep(1)
+        }
+        
+        // If I0ve found some elements, I save the date of the last of them in order to have a reference of the timestamp of the last retrieved sample
+        if samples.count != 0 {
+            let lastTimestamp = samples[samples.count - 1].startDate
+            UserDefaults.standard.set(lastTimestamp, forKey: "timestampOfLastDataRetrieved")
         }
         return samples
     }
