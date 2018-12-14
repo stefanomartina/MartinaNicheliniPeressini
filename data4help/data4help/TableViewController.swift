@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 import Alamofire
+import SwiftyJSON
 
 struct Data{
     var opened = Bool()
@@ -58,16 +59,19 @@ class TableViewController: UITableViewController {
         let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
         print(URL_USER_REGISTER)
         Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
-            .responseJSON {
-                response in
-                print("Waiting for response...")
-                if let status = response.result.value {
-                    let JSON = status as! NSDictionary;
-                    print(JSON)
-//                    let timestamp = JSON["timestamp"]!;
-//                    print(timestamp)
-//                    let BPM = JSON["bpm"]!;
-//                    print(BPM)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    for (key, value): (String, JSON) in json {
+                        let bpm = value["bpm"].stringValue
+                        let timestamp = value["timestamp"].stringValue
+                        self.tableViewData += [Data(opened: false, title: bpm, sectionData: [timestamp])]
+                        self.tableView.reloadData()
+                        //print("key is: \(key), bpm: \(value["bpm"]), \(value["timestamp"])")
+                    }
+                case .failure(let error):
+                    print(error)
                 }
         }
     }

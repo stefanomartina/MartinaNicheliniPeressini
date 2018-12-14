@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import mysql.connector
-import json
-from flask import jsonify
 import collections
+import json
+
 
 class DuplicateException(Exception):
     def __init__(self, message):
@@ -62,27 +62,19 @@ class DBHandler:
         except Exception as e:
             print(str(e))
 
-
-        #for row in rows:
-        #    data['timestamp'] += row[0].strftime('%Y-%m-%d %H:%M:%S')
-        #    data['bpm'] += row[1]
-
     def get_heart_rate_by_user(self, username):
         query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \
-                    " WHERE Username ='" + username + "' ORDER BY Timestamp ASC"
+                " WHERE Username ='" + username + "' ORDER BY Timestamp ASC"
 
         self.dbMy.execute(query)
-        rows = self.dbMy.fetchmany(50)
+        rows = self.dbMy.fetchall()
 
-        d = {}
-        objects_list = {}
+        objects_list = []
         for row in rows:
-            d['bpm'] = row[1]
+            d = collections.OrderedDict()
             d['timestamp'] = row[0].strftime('%Y-%m-%d %H:%M:%S')
+            d['bpm'] = row[1]
             objects_list.append(d)
 
-        return jsonify(objects_list)
-
-
-
-
+        j = json.dumps(objects_list)
+        return j
