@@ -27,7 +27,7 @@ class TableViewController: UITableViewController {
     
     func updateDataFromHealtKit(){
         let queryReturned: [HKQuantitySample] = HealthKitManager.getLastHeartBeat()
-        var bpm, timestamp : String
+        var bpm, timestamp, bpm_str : String
         
         if queryReturned.count == 0 {
             let message = "No new data were found"
@@ -43,9 +43,10 @@ class TableViewController: UITableViewController {
             
             for hkqs in queryReturned {
                 bpm = "\(hkqs.quantity)"
-                timestamp = "\(hkqs.startDate)"
+                bpm_str = String(bpm.split(separator: " ")[0])
+                timestamp = "   "+"\(hkqs.startDate)"
                 
-                tableViewData += [Data(opened: false, title: bpm, sectionData: [timestamp])]
+                tableViewData += [Data(opened: false, title: bpm_str, sectionData: [timestamp])]
             }
             self.tableView.reloadData()
         }
@@ -65,7 +66,7 @@ class TableViewController: UITableViewController {
                     let json = JSON(value)
                     for (key, value): (String, JSON) in json {
                         let bpm = value["bpm"].stringValue
-                        let timestamp = value["timestamp"].stringValue
+                        let timestamp = "   "+value["timestamp"].stringValue
                         self.tableViewData += [Data(opened: false, title: bpm, sectionData: [timestamp])]
                         self.tableView.reloadData()
                         //print("key is: \(key), bpm: \(value["bpm"]), \(value["timestamp"])")
@@ -77,10 +78,7 @@ class TableViewController: UITableViewController {
     }
     
     override func viewDidLoad() {
-        //così se vogliamo ogni volta che carichiamo il tab vengono ribeccati i dati
-        //direi comunque che i dati da displayare (fino a che non viene piagiato sul refresh) siano quelli del db ---> ROBA che mi manda fra e poi implemento
         updateDataFromDB()
-
         super.viewDidLoad()
     }
     
@@ -101,10 +99,14 @@ class TableViewController: UITableViewController {
         if indexPath.row == 0{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
             cell.textLabel?.text = tableViewData[indexPath.section].title
+            cell.textLabel?.textColor = UIColor.black
             return cell
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
             cell.textLabel?.text = tableViewData[indexPath.section].sectionData[dataIndex]
+            //--dovrebbe servire per cambaire il colore al timestamp,  ma si bugga
+                cell.textLabel?.textColor = UIColor.gray
+            //            cell.textLabel?.font = UIFont(name: "Avenir" , size: 15)
             return cell
         }
     }

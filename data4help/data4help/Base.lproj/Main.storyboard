@@ -254,10 +254,10 @@
             </objects>
             <point key="canvasLocation" x="136.23188405797103" y="132.58928571428572"/>
         </scene>
-        <!--Item 2-->
+        <!--Settings-->
         <scene sceneID="2CK-Sd-GWG">
             <objects>
-                <viewController id="zDa-lH-Hyg" customClass="SettingsViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" id="zDa-lH-Hyg" customClass="SettingsViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sFj-hr-7SI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -280,7 +280,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zqC-DY-RrX"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="hlb-0D-Iyc"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="hlb-0D-Iyc"/>
                     <connections>
                         <outlet property="healthToggleSwitch" destination="q7f-ia-p0Y" id="7Zf-Nw-8yu"/>
                     </connections>
@@ -289,10 +289,10 @@
             </objects>
             <point key="canvasLocation" x="1810" y="459"/>
         </scene>
-        <!--Item 1-->
+        <!--Track4Run-->
         <scene sceneID="uNj-a1-l5u">
             <objects>
-                <viewController id="ZpZ-Y0-ZD6" customClass="DashboardViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Track4Run" id="ZpZ-Y0-ZD6" customClass="DashboardViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BZI-lr-keG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,7 +317,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="RGf-2M-9bn"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="krB-1i-9wr"/>
+                    <tabBarItem key="tabBarItem" title="Track4Run" id="krB-1i-9wr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <exit id="FCM-Rf-ZhF" userLabel="Exit" sceneMemberID="exit"/>
@@ -325,16 +325,16 @@
             </objects>
             <point key="canvasLocation" x="1757" y="-548"/>
         </scene>
-        <!--Item-->
+        <!--Dashboard-->
         <scene sceneID="ldd-k4-UpR">
             <objects>
-                <tableViewController id="Bg0-Yx-gd2" customClass="TableViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Dashboard" id="Bg0-Yx-gd2" customClass="TableViewController" customModule="data4help" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LjS-FZ-R8B">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="8GS-7r-f94">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQL-BN-x1s">
@@ -350,7 +350,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="rCH-Sv-ina">
-                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="73" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rCH-Sv-ina" id="FT2-Ek-o5P">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
@@ -363,13 +363,13 @@
                             <outlet property="delegate" destination="Bg0-Yx-gd2" id="8DN-3i-eLa"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="pUp-kE-tqL"/>
+                    <tabBarItem key="tabBarItem" title="Dashboard" id="pUp-kE-tqL"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQu-0M-k9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2598" y="-171"/>
+            <point key="canvasLocation" x="2597.1014492753625" y="-171.42857142857142"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9Kk-Uk-zeB">
