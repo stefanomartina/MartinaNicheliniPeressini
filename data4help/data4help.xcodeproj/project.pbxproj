@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260307B421C157AE00EAC547 /* HTTPManager.swift */; };
+		261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */; };
 		26D2E35321BEB175009F68E7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E35221BEB175009F68E7 /* Global.swift */; };
 		26E647E121C14F6700CDF291 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E647E021C14F6700CDF291 /* TableViewController.swift */; };
 		26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F53DAD21C1033B001F419A /* HealthKit.framework */; };
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		038C19EF50F01CF5E3F84920 /* Pods-data4helpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		260307B421C157AE00EAC547 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
+		261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewController.swift; sourceTree = "<group>"; };
 		26D2E35221BEB175009F68E7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		26E647E021C14F6700CDF291 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26F53DAC21C10336001F419A /* data4help.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = data4help.entitlements; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			children = (
 				C63D293E21C268A000DB7FC3 /* ControllerLogic */,
 				26E647E021C14F6700CDF291 /* TableViewController.swift */,
+				261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */,
 				26F53DAC21C10336001F419A /* data4help.entitlements */,
 				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
@@ -439,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */,
 				C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */,
 				C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */,
 				26D2E35321BEB175009F68E7 /* Global.swift in Sources */,

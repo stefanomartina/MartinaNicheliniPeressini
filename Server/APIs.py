@@ -25,6 +25,7 @@ def unauthorized():
                     'Message': 'Username or password is incorrect'})
 
 #######################################################################################################################
+# USER ENDPOINT OPERATIONS
 
 @app.route('/')
 def index():
@@ -89,7 +90,14 @@ def user_register():
         return jsonify({'Response': 1,
                         'Reason': 'Error during parameters parsing'})
 
+@app.route('/api/users/subscription', methods=['GET'])
+@auth.login_required
+def user_subscription():
+    return db_handler.get_subscription_to_user(auth.username())
+
 #######################################################################################################################
+# USER ENDPOINT OPERATIONS
+
 @app.route('/api/thirdparties/register', methods=['POST'])
 def tp_register():
     #try:

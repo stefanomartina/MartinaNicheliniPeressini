@@ -47,6 +47,22 @@ class DBHandler:
             else:
                 return None
 
+    def get_subscription_to_user(self, username):
+        query = "SELECT Username_ThirdParty, status, description FROM subscription"\
+                " WHERE Username_User = '" + username + "'"
+
+        self.dbMy.execute(query)
+        rows = self.dbMy.fetchall()
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['Username_ThirdParty'] = row[0]
+            d['status'] = row[1]
+            d['description'] = row[2]
+            objects_list.append(d)
+        return json.dumps(objects_list)
+
     def create_user(self, username, password, first_name, last_name, birthday):
         query = "INSERT INTO User VALUES (%s, %s, %s, %s, %s)"
         values = (username, password, first_name, last_name, birthday)
@@ -97,8 +113,7 @@ class DBHandler:
             d['bpm'] = row[1]
             objects_list.append(d)
 
-        j = json.dumps(objects_list)
-        return j
+        return json.dumps(objects_list)
 
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
@@ -117,3 +132,4 @@ class DBHandler:
 
         except Exception as e:
             print(str(e))
+
