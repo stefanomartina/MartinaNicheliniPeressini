@@ -4,9 +4,6 @@ from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 from DbHandler import DuplicateException
 
-data_container = list()
-data_container.append("first element")
-
 auth = HTTPBasicAuth()
 db_handler = DBHandler()
 
@@ -23,20 +20,7 @@ def unauthorized():
     return jsonify({'Response': '-1',
                     'Message': 'Username or password is incorrect'})
 
-
-def get():
-    return ''.join(data_container)
-
-
-def post(request):
-    json = request.get_json()
-    if json is None:
-        return jsonify({'error': 'No json data were found. Request aborted',
-                        'errorCode': 400}), 400
-    print(str(json)),
-    data_container.append(str(json))
-    return "ok"
-
+#######################################################################################################################
 
 @app.route('/')
 def index():
@@ -45,7 +29,7 @@ def index():
 
 @app.route('/api/users', methods=['GET', 'POST'])
 def users_handling():
-    return jsonify({"EASTEREGG": "Hello there"})
+    return jsonify({"EASTER_EGG": "Hello there"})
 
 
 @app.route('/api/users/login', methods=['POST'])
@@ -69,13 +53,13 @@ def heart():
                 db_handler.insert_heart_rate(auth.username(), bpm, timestamp)
             except DuplicateException as e:
                 print(str(e))
-                return jsonify({'Response': '-1',
+                return jsonify({'Response': '2',
                         'Reason': 'Insertion failed, duplicated tuple in HeartRate table'})
 
-        return jsonify({'Response': '1'})
+        return jsonify({'Response': 0})
 
     except Exception:
-        return jsonify({'Response': '0',
+        return jsonify({'Response': 1,
                         'Reason': 'Error with heart rate data'})
 
 
@@ -95,11 +79,23 @@ def register():
         last_name = data['lastname']
         birthday = '2000-10-10'
         db_handler.create_user(username, password, first_name, last_name, birthday)
-        return jsonify({'Response': '1'})
+        return jsonify({'Response': 1})
 
     except Exception:
-        return jsonify({'Response': '0',
+        return jsonify({'Response': 1,
                         'Reason': 'Creation error'})
+
+#######################################################################################################################
+
+@app.route('/api/thirdparties/subscribe', methods=['POST'])
+@auth.login_required
+def subscribe():
+    try:
+        data = request.get_json()
+        FC = data['FC']
+        #do something
+    except Exception:
+        return jsonify({'Response' : 1})
 
 
 if __name__ == '__main__':
