@@ -37,9 +37,30 @@ class DBHandler:
             else:
                 return None
 
+    def get_tp_secret(self, username):
+        query = "SELECT secret FROM ThirdParty WHERE username = '" + username + "'"
+        self.dbMy.execute(query)
+
+        for x in self.dbMy:
+            if x[0] is not None:
+                return x[0]
+            else:
+                return None
+
     def create_user(self, username, password, first_name, last_name, birthday):
         query = "INSERT INTO User VALUES (%s, %s, %s, %s, %s)"
         values = (username, password, first_name, last_name, birthday)
+
+        try:
+            self.dbMy.execute(query, values)
+            self.db.commit()
+
+        except mysql.connector.errors.IntegrityError:
+            raise Exception("Error")
+
+    def create_tp(self, username, secret):
+        query = "INSERT INTO ThirdParty VALUES (%s, %s)"
+        values = (username, secret)
 
         try:
             self.dbMy.execute(query, values)
@@ -78,3 +99,21 @@ class DBHandler:
 
         j = json.dumps(objects_list)
         return j
+
+    def get_user_username_by_fc(self, fc):
+        query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
+        self.dbMy.execute(query)
+        rows = self.dbMy.fetchall()
+        return rows[0][0]
+
+    def subscribe_tp_to_user(self, username, fc, description):
+        query = "INSERT INTO subscription VALUES (%s, %s, %s, %s)"
+        user_username = self.get_user_username_by_fc(fc)
+        values = (user_username,username, description, 'pending')
+
+        try:
+            self.dbMy.execute(query, values)
+            self.db.commit()
+
+        except Exception as e:
+            print(str(e))
