@@ -11,30 +11,37 @@ import UIKit
 
 class SubscriptionTableViewController: UITableViewController {
     
-    var tableViewData = [subscribtionRequest]()
+    var subscriptions = [subscribtionRequest]()
     
     override func viewDidLoad() {
-        HTTPManager.getSubscribtion { returned in
-            self.tableViewData = returned 
-        }
         super.viewDidLoad()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        HTTPManager.getSubscribtion { returned in
+            self.subscriptions = returned
+            self.tableView.reloadData()
+        }
     }
-
-    // MARK: - Table view data source
-
+    
+    //The first of these is numberOfSections(In:), which tells the table view how many sections to display.
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return tableViewData.count
+        return 1
     }
-
+    
+    //The first of these is numberOfSections(In:), which tells the table view how many sections to display.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return subscriptions.count
     }
-
-
+    
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellIdentifier = "SubscriptionTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? SubscriptionTableViewCell else {
+            fatalError("The dequeued cell is not an instance of SubscriptionTableViewCell")
+        }
+        let subscription = subscriptions[indexPath.row]
+        
+        cell.requesterNameLabel.text = subscription.requesterName
+        cell.actualStatusLabel.text = subscription.status.rawValue
+        
+        return cell
+    }
 }
