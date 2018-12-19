@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import mysql.connector
+from mysql.connector import errorcode
 import collections
 import json
-
 
 class DuplicateException(Exception):
     def __init__(self, message):
@@ -72,8 +72,11 @@ class DBHandler:
             self.dbMy.execute(query, values)
             self.db.commit()
 
-        except mysql.connector.errors.IntegrityError:
-            raise Exception("Error")
+        except mysql.connector.IntegrityError:
+            raise DuplicateException('Username is already taken!')
+
+        except Exception as e:
+            raise Exception(str(e))
 
     def create_tp(self, username, secret):
         query = "INSERT INTO ThirdParty VALUES (%s, %s)"
@@ -133,4 +136,3 @@ class DBHandler:
 
         except Exception as e:
             print(str(e))
-

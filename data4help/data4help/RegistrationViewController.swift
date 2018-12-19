@@ -1,4 +1,5 @@
 import Alamofire
+import SwiftyJSON
 import UIKit
 
 class RegistrationViewController: UIViewController {
@@ -50,12 +51,29 @@ class RegistrationViewController: UIViewController {
         else {
             if textFieldPassword.text! == textFieldPasswordConfirmation.text! {
                 Alamofire.request(URL_USER_REGISTER, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-                    .responseJSON {
-                        response in
-                        if let status = response.result.value {
-                            let JSON = status as! NSDictionary;
-                            let appo = JSON["Response"]!;
-                            print(appo)
+                    .responseJSON { response in
+                        switch response.result {
+                        case .success(let value):
+                            let json = JSON(value)
+                            let code = json["Response"]
+                            let reason = json["Reason"].stringValue
+                            if code == 1 {
+                                let alert = UIAlertController(title: reason, message: "Now you can proceed to login", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { action in self.performSegue(withIdentifier: "registrationCompleted", sender: nil)}))
+                                self.present(alert, animated: true)
+                            }
+                            else if code == -1 {
+                                let alert = UIAlertController(title: reason, message: "Please choose another username", preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                                self.present(alert, animated: true)
+                            }
+                            else {
+                                let alert = UIAlertController(title: "Error!", message: reason, preferredStyle: .alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                                self.present(alert, animated: true)
+                            }
+                        case .failure(let error):
+                            print(error)
                         }
                 }
             }
