@@ -42,4 +42,31 @@ class HTTPManager {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .authenticate(usingCredential: credential)
     }
-}
+    
+    static func getSubscribtion(_ updateCallback: @escaping ([subscribtionRequest]) -> ()){
+        let credential = self.getCredential()
+        let URL = Global.getUserURL() + Global.SUBSCRIPTION
+        
+        
+        Alamofire.request(URL, method: .get, encoding: JSONEncoding.default)
+            .authenticate(usingCredential: credential)
+            .responseJSON { response in
+                var dataToReturn : [subscribtionRequest] = []
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    for (key, value): (String, JSON) in json {
+                        let requester = value["Username_ThirdParty"].stringValue
+                        let description = value["description"].stringValue
+                        let status = subscriptionStatus(rawValue: value["status"].stringValue )
+                        let request = subscribtionRequest(status: status ?? subscriptionStatus.UNDEFINED, requesterName: requester, description: description)
+                        dataToReturn = dataToReturn + [request]
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                updateCallback(dataToReturn)
+        }
+    }
+    
+} // end class
