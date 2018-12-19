@@ -13,11 +13,12 @@ app = Flask(__name__)
 
 @auth.get_password
 def get_password(username):
-    retrived = db_handler.get_user_password(str(username))
-    if retrived is None:
+    retrieved = db_handler.get_user_password(str(username))
+    if retrieved is None:
         return db_handler.get_tp_secret(str(username))
     else:
-        return retrived
+        return retrieved
+
 
 @auth.error_handler
 def unauthorized():
@@ -26,6 +27,7 @@ def unauthorized():
 
 #######################################################################################################################
 # USER ENDPOINT OPERATIONS
+
 
 @app.route('/')
 def index():
@@ -58,8 +60,7 @@ def heart():
                 db_handler.insert_heart_rate(auth.username(), bpm, timestamp)
             except DuplicateException as e:
                 print(str(e))
-                return jsonify({'Response': '2',
-                        'Reason': 'Insertion failed, duplicated tuple in HeartRate table'})
+                return jsonify({'Response': '2', 'Reason': 'Insertion failed, duplicated tuple in HeartRate table'})
 
         return jsonify({'Response': 0})
 
@@ -78,17 +79,22 @@ def get_heart_rate_by_user():
 def user_register():
     try:
         data = request.get_json()
-        username = data['username']
-        password = data['password']
         first_name = data['firstname']
         last_name = data['lastname']
-        birthday = '2000-10-10'
-        db_handler.create_user(username, password, first_name, last_name, birthday)
+        username = data['username']
+        password = data['password']
+        fiscal_code = data['fiscalcode']
+        gender = data['gender']
+        birth_date = data['birthdate']
+        birth_place = data['birthplace']
+
+        db_handler.create_user(first_name, last_name, username, password, fiscal_code, gender, birth_date, birth_place)
         return jsonify({'Response': 1})
 
     except Exception:
         return jsonify({'Response': 1,
                         'Reason': 'Error during parameters parsing'})
+
 
 @app.route('/api/users/subscription', methods=['GET'])
 @auth.login_required
@@ -97,6 +103,7 @@ def user_subscription():
 
 #######################################################################################################################
 # USER ENDPOINT OPERATIONS
+
 
 @app.route('/api/thirdparties/register', methods=['POST'])
 def tp_register():

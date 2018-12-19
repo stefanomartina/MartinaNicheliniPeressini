@@ -60,8 +60,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func registerButton(_ sender: UIButton) {
-        performSegue(withIdentifier: "loginToRegistration", sender: self)
+    @IBAction func loginToRegistrationButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "loginToRegistration", sender: nil)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

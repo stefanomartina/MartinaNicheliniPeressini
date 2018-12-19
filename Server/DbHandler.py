@@ -63,9 +63,10 @@ class DBHandler:
             objects_list.append(d)
         return json.dumps(objects_list)
 
-    def create_user(self, username, password, first_name, last_name, birthday):
-        query = "INSERT INTO User VALUES (%s, %s, %s, %s, %s)"
-        values = (username, password, first_name, last_name, birthday)
+    def create_user(self, first_name, last_name, username, password, fiscal_code, gender, birth_date, birth_place):
+        query = "INSERT INTO User (username, password, firstName, lastName, birthday, FiscalCode," \
+                " birthPlace, gender) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        values = (username, password, first_name, last_name, birth_date, fiscal_code, birth_place, gender)
 
         try:
             self.dbMy.execute(query, values)
@@ -124,7 +125,7 @@ class DBHandler:
     def subscribe_tp_to_user(self, username, fc, description):
         query = "INSERT INTO subscription VALUES (%s, %s, %s, %s)"
         user_username = self.get_user_username_by_fc(fc)
-        values = (user_username,username, description, 'pending')
+        values = (user_username, username, description, 'pending')
 
         try:
             self.dbMy.execute(query, values)
