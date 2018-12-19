@@ -10,6 +10,7 @@
 		260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260307B421C157AE00EAC547 /* HTTPManager.swift */; };
 		261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */; };
 		26D2E35321BEB175009F68E7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E35221BEB175009F68E7 /* Global.swift */; };
+		26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */; };
 		26E647E121C14F6700CDF291 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E647E021C14F6700CDF291 /* TableViewController.swift */; };
 		26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F53DAD21C1033B001F419A /* HealthKit.framework */; };
 		26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F53DAF21C10608001F419A /* HealthKitManager.swift */; };
@@ -52,6 +53,7 @@
 		260307B421C157AE00EAC547 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewController.swift; sourceTree = "<group>"; };
 		26D2E35221BEB175009F68E7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribtionRequest.swift; sourceTree = "<group>"; };
 		26E647E021C14F6700CDF291 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26F53DAC21C10336001F419A /* data4help.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = data4help.entitlements; sourceTree = "<group>"; };
 		26F53DAD21C1033B001F419A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -113,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26DBDB1021CABC16002C0EF7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		85EDA6382A5A75C67CD33CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +184,7 @@
 		C6CA753821AEB9F300A6039E /* data4help */ = {
 			isa = PBXGroup;
 			children = (
+				26DBDB1021CABC16002C0EF7 /* Model */,
 				C63D293E21C268A000DB7FC3 /* ControllerLogic */,
 				26E647E021C14F6700CDF291 /* TableViewController.swift */,
 				261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */,
@@ -447,6 +458,7 @@
 				C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */,
 				26D2E35321BEB175009F68E7 /* Global.swift in Sources */,
 				C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */,
+				26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */,
 				26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */,
 				C63D293D21C2682A00DB7FC3 /* UIExtensions.swift in Sources */,
 				26F53DB221C12243001F419A /* LocationBridge.swift in Sources */,
