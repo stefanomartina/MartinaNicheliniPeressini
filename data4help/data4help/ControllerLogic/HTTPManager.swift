@@ -43,6 +43,27 @@ class HTTPManager {
             .authenticate(usingCredential: credential)
     }
     
+    static func getDataFromDB(_ updateCallback: @escaping ([Data]) -> ()){
+        let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
+        var retrievedData : [Data] = []
+        Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
+            .responseJSON{ response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    for (key, value): (String, JSON) in json {
+                        let bpm = value["bpm"].stringValue
+                        let timestamp = "   "+value["timestamp"].stringValue
+                        let retrieved = Data(opened: false, title: bpm, sectionData: [timestamp])
+                        retrievedData += [retrieved]
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                updateCallback(retrievedData)
+        }
+    }
+    
     static func getSubscribtion(_ updateCallback: @escaping ([subscribtionRequest]) -> ()){
         let credential = self.getCredential()
         let URL = Global.getUserURL() + Global.SUBSCRIPTION
