@@ -22,7 +22,16 @@ class TableViewController: UITableViewController {
     var tableViewData = [Data]()
     
     @IBAction func updateAndUpload(_ sender: Any) {
-        updateDataFromHealtKit()
+        HealthKitManager.checkIfHealtkitIsEnabled() {
+            auth in
+            if auth { self.updateDataFromHealtKit() }
+            else {
+                let message = "Healtkit access is not enabled. Go to settings and activate it"
+                let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
     }
     
     func updateDataFromHealtKit(){
