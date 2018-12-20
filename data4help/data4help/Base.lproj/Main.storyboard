@@ -418,15 +418,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NoZ-7E-kdL">
-                                <rect key="frame" x="141" y="783" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Update &amp; Upload"/>
-                                <connections>
-                                    <action selector="Scd:" destination="FCM-Rf-ZhF" eventType="touchUpInside" id="lSI-Zd-7vE"/>
-                                    <action selector="updateAndUpload:" destination="ZpZ-Y0-ZD6" eventType="touchUpInside" id="xdA-ZT-WI8"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6fg-EB-j3c">
                                 <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -441,7 +432,6 @@
                     <tabBarItem key="tabBarItem" title="Track4Run" id="krB-1i-9wr"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
-                <exit id="FCM-Rf-ZhF" userLabel="Exit" sceneMemberID="exit"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uUo-eO-bdB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1757" y="-548"/>

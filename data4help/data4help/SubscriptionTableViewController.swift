@@ -44,12 +44,38 @@ class SubscriptionTableViewController: UITableViewController {
         })
     }
     
+    //////////////////////////////////////////////////// REFRESHER
+    
+    lazy var refresher: UIRefreshControl =  {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .black
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
+        return refreshControl
+    }()
+    
+    @objc
+    func updateData(){
+        self.fetchData()
+        tableView.reloadData()
+        refresher.endRefreshing()
+        
+        let deadline = DispatchTime.now() + .milliseconds(500)
+        DispatchQueue.main.asyncAfter(deadline: deadline){
+            self.refresher.endRefreshing()
+        }
+        
+    }
+    
     ////////////////////////////////////////////////////
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 80.0
         self.fetchData()
+        
+        
+        tableView.refreshControl = refresher
     }
     
     ////////////////////////////////////////////////////

@@ -21,11 +21,13 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
             if senderSwitch.isOn {
                 let permissionsNedeed = Set ([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                 
-                    HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in
-                    if !success {
-                        print("errore")
-                    }
-                }
+                    HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in if !success { print("errore") } }
+                    HealthKitManager.getHealthStore().enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: .heartRate)!, frequency: .immediate, withCompletion: (
+                        {
+                            (response, error) in print("Triggered from healthkit: ",response)
+                        }
+                    ))
+                
             } // end if sender.isOn
         } //end if casting
     }

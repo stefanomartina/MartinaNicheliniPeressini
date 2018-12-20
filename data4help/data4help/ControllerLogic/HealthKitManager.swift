@@ -23,6 +23,28 @@ class HealthKitManager {
         } else { notAuthNotificationHandler(true)}
     }
     
+    public static func activateLongRunningQuery() {
+        let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)
+        
+        let query = HKObserverQuery(sampleType: sampleType!, predicate: nil) {
+            query, completionHandler, error in
+            if error != nil {
+                print("*** An error occured ***")
+                abort()
+            }
+            
+            // Take whatever steps are necessary to update your app's data and UI
+            // This may involve executing other queries
+            print("Triggered by long running query")
+            
+            // If you have subscribed for background updates you must call the completion handler here.
+            completionHandler()
+        }
+        
+        healthStore.execute(query)
+//        healthStore.enableBackgroundDelivery(for: <#T##HKObjectType#>, frequency: <#T##HKUpdateFrequency#>, withCompletion: <#T##(Bool, Error?) -> Void#>)
+    }
+    
     static func getLastHeartBeat () -> [HKQuantitySample] {
         let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")
         
