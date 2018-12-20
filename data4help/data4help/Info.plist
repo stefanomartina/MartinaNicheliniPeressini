@@ -43,6 +43,10 @@
 	<string>Data4Help requires your permission to use your location also when the app is not running</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Data4Help requires your permission to use your location while the app is running</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
