@@ -45,4 +45,40 @@ class SubscriptionTableViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
+    {
+        
+        
+        
+        let acceptAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Accept", handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
+            let shareMenu = UIAlertController(title: nil, message: "Share using",  preferredStyle: .actionSheet)
+            let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertAction.Style.default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+            
+            shareMenu.addAction(twitterAction)
+            shareMenu.addAction(cancelAction)
+            
+            self.present(shareMenu, animated: true, completion: nil)
+        })
+        acceptAction.backgroundColor = .green
+        
+        // 3
+        let denyAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Deny" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in
+            // 4
+            let rateMenu = UIAlertController(title: nil, message: "Rate this App", preferredStyle: .actionSheet)
+            
+            let appRateAction = UIAlertAction(title: "Rate", style: UIAlertAction.Style.default, handler: nil)
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel, handler: nil)
+            
+            rateMenu.addAction(appRateAction)
+            rateMenu.addAction(cancelAction)
+            
+            self.present(rateMenu, animated: true, completion: nil)
+        })
+        
+        // 5
+        return [acceptAction,denyAction]
+    }
+    
 }
