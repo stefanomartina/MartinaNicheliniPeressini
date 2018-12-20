@@ -40,18 +40,55 @@ class HealthKitManager {
                                         end: myEndDate, options: [])
         
         let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
-        
         var semaphore = 0
         
         var samples = [HKQuantitySample]()
         let descriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-        let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [descriptor]) {
+        
+        func startObservingHeightChanges() {
+            
+            let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
+
+            var query: HKObserverQuery = HKObserverQuery(sampleType: sampleType!, predicate: nil, updateHandler: self.handleUpdatePippo(<#T##HealthKitManager#>))
+            
+            healthKitStore.execute(query)
+            healthStore.enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!, frequency: .immediate, withCompletion: {(succeeded: Bool, error: NSError!) in
+                if succeeded{
+                    print("Enabled background delivery of weight changes")
+                } else {
+                    if let theError = error{
+                        print("Failed to enable background delivery of weight changes. ")
+                        print("Error = \(theError)")
+                    }
+                }
+                } as! (Bool, Error?) -> Void)
+        }
+        
+        /*let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [descriptor]) {
             query, results, error in
             //Controlla se è stata data l'autorizzazione!!!
             samples = results as! [HKQuantitySample]
             semaphore = 1
         }
-        healthStore.execute(query)
+        healthStore.execute(query)*/
+        
+        
+        //-----------------------------------------------------------------------------------------------------------------
+        healthStore.enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)!, frequency: .immediate, withCompletion: {(succeeded: Bool, error: NSError!) in
+            if succeeded{
+                print("Enabled background delivery of weight changes")
+            } else {
+                if let theError = error{
+                    print("Failed to enable background delivery of weight changes. ")
+                    print("Error = \(theError)")
+                }
+            }
+            } as! (Bool, Error?) -> Void)
+        //-----------------------------------------------------------------------------------------------------------------
+        
+        
+        
+
         while semaphore == 0 {
             sleep(1)
         }
@@ -62,5 +99,9 @@ class HealthKitManager {
             UserDefaults.standard.set(lastTimestamp, forKey: "timestampOfLastDataRetrieved")
         }
         return samples
+    }
+    
+    func handleUpdatePippo() -> Void {
+        print("")
     }
 }
