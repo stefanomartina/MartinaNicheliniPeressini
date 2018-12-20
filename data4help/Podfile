@@ -9,6 +9,7 @@ target 'data4help' do
   
   pod 'Alamofire', '~> 4.3'
   pod 'SwiftyJSON', '~> 4.2'
+  pod 'NVActivityIndicatorView'
 
   target 'data4helpTests' do
     inherit! :search_paths

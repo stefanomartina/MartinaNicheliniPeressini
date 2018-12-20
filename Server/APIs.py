@@ -105,6 +105,22 @@ def user_register():
 def user_subscription():
     return db_handler.get_subscription_to_user(auth.username())
 
+@app.route('/api/users/subscription', methods=['PUT'])
+@auth.login_required
+def update_subscription_status():
+    try:
+        data = request.get_json()
+        username = auth.username()
+        third_party = data['thirdparty']
+        new_status = data['new_status']
+
+    except TypeError:
+        return jsonify({"Signal" : 1, "Response": "Request was not JSON Encoded"})
+
+    signal = db_handler.modify_subscription_status(username, third_party, new_status)
+    return jsonify({"Signal": signal})
+
+
 #######################################################################################################################
 # USER ENDPOINT OPERATIONS
 

@@ -1,8 +1,7 @@
 #!/usr/bin/python
 import mysql.connector
 from mysql.connector import errorcode
-import collections
-import json
+import collections, json
 
 class DuplicateException(Exception):
     def __init__(self, message):
@@ -136,3 +135,10 @@ class DBHandler:
 
         except Exception as e:
             print(str(e))
+
+    def modify_subscription_status(self, username, thirdparty, new_status):
+        query = "UPDATE subscription SET status= '" + new_status +"' WHERE (`Username_User`= '"+ username+ "' and `Username_ThirdParty`= '"+ thirdparty+"');"
+        print(query)
+        self.dbMy.execute(query)
+        self.db.commit()
+        return 0
