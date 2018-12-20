@@ -47,5 +47,6 @@ class Global {
 //Let's put all messages here instead of inserting them directly in code snippets.
 class Messages {
     static public let LOGIN_ERROR = "Login error: server didn't response"
+    static public let NETWORK_ERROR = "Network error: server isn't responding"
 }
 

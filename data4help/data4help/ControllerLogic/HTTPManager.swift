@@ -88,6 +88,22 @@ class HTTPManager {
                 }
                 updateCallback(dataToReturn)
         }
-    }
+    } //end getSubscribtion
+    
+    static func modifySubscriptionStatus (newStatus: subscriptionStatus, thirdPartyID: String, _ notificationCallback: @escaping (Bool) -> ()){
+        let credential = self.getCredential()
+        let URL = Global.getUserURL() + Global.SUBSCRIPTION
+        let parameters = ["new_status": newStatus.rawValue,
+                          "thirdparty": thirdPartyID]
+
+        Alamofire.request(URL, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+                .authenticate(usingCredential: credential)
+                .responseJSON { response in
+                    switch response.result {
+                        case .success(let value): notificationCallback(true)
+                        case .failure(let error): notificationCallback(false)
+                    }
+        }
+    } //end modifySubscriptionStatus
     
 } // end class
