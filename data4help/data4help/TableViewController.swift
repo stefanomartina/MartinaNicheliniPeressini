@@ -22,7 +22,16 @@ class TableViewController: UITableViewController {
     var tableViewData = [Data]()
     
     @IBAction func updateAndUpload(_ sender: Any) {
-        updateDataFromHealtKit()
+        HealthKitManager.checkIfHealtkitIsEnabled() {
+            auth in
+            if auth { self.updateDataFromHealtKit() }
+            else {
+                let message = "Healtkit access is not enabled. Go to settings and activate it"
+                let alert = UIAlertController(title: "Attention", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            }
+        }
     }
     
     func updateDataFromHealtKit(){
@@ -35,6 +44,7 @@ class TableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }
+            
         else {
             let message = String(format: "%x%@", queryReturned.count, " elements were found")
             let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
@@ -50,35 +60,17 @@ class TableViewController: UITableViewController {
             }
             self.tableView.reloadData()
         }
+        
         DispatchQueue.main.async {
             HTTPManager.sendHeartData(data: queryReturned)
         }
     }
     
-    func updateDataFromDB(){
-        print("Entrato in DB")
-        let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
-        print(URL_USER_REGISTER)
-        Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    for (key, value): (String, JSON) in json {
-                        let bpm = value["bpm"].stringValue
-                        let timestamp = "   "+value["timestamp"].stringValue
-                        self.tableViewData += [Data(opened: false, title: bpm, sectionData: [timestamp])]
-                        self.tableView.reloadData()
-                        //print("key is: \(key), bpm: \(value["bpm"]), \(value["timestamp"])")
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-        }
-    }
-    
     override func viewDidLoad() {
-        updateDataFromDB()
+        HTTPManager.getDataFromDB { retrievedData in
+            self.tableViewData = retrievedData
+            self.tableView.reloadData()
+        }
         super.viewDidLoad()
     }
     

@@ -17,6 +17,13 @@ class HealthKitManager {
         return healthStore
     }
     
+    public static func checkIfHealtkitIsEnabled (_ notAuthNotificationHandler: @escaping ((Bool) -> ())) {
+        var authStatus = healthKitStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!)
+        if authStatus == HKAuthorizationStatus.notDetermined || authStatus == HKAuthorizationStatus.sharingDenied {
+            notAuthNotificationHandler(false)
+        } else { notAuthNotificationHandler(true)}
+    }
+    
     static func getLastHeartBeat () -> [HKQuantitySample] {
         let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")
         
