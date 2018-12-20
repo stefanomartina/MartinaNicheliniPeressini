@@ -2,8 +2,10 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 
+
+
 class RegistrationViewController: UIViewController,
-            UIPickerViewDelegate, UIPickerViewDataSource {
+            UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     let URL_USER_REGISTER = Global.getUserURL() + Global.REGISTER_METHOD
     let genders = ["M", "F"]
@@ -116,6 +118,8 @@ class RegistrationViewController: UIViewController,
     } // END DATE PICKER FUNCTIONS
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // GENDER PICKER DECLARATION
         let genderPicker = UIPickerView()
         textFieldGender.inputView = genderPicker
@@ -127,9 +131,70 @@ class RegistrationViewController: UIViewController,
         datePicker.addTarget(self, action: #selector(RegistrationViewController.datePickerValueChanged(sender:)),
                              for: UIControl.Event.valueChanged)
         textFieldBirthDate.inputView = datePicker
+        textFieldBirthDate.delegate = self
         
-        super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+        self.hideKeyboardWhenTappedAround() // to resign view at a tap out
+        
+        self.textFieldFirstName.delegate = self
+        self.textFieldFirstName.delegate = self
+        self.textFieldLastName.delegate = self
+        self.textFieldUsername.delegate = self
+        self.textFieldPassword.delegate = self
+        self.textFieldPasswordConfirmation.delegate = self
+        self.textFieldFiscalCode.delegate = self
+        self.textFieldGender.delegate = self
+        self.textFieldBirthDate.delegate = self
+        self.textFieldBirthPlace.delegate = self
+        
+        textFieldFirstName.tag = 0
+        textFieldLastName.tag = 1
+        textFieldUsername.tag = 2
+        textFieldPassword.tag = 3
+        textFieldPasswordConfirmation.tag = 4
+        textFieldFiscalCode.tag = 5
+        textFieldGender.tag = 6
+        textFieldBirthDate.tag = 7
+        textFieldBirthPlace.tag = 8
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
+    {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        // Do not add a line break
+        return false
+    }
+    
+    ////////////////////////////////////////// Picker toolbar
+    
+    func pickUp(_ textField : UITextField){
+        
+        // ToolBar
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.sizeToFit()
+        
+        //Adding Button ToolBar
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClick))
+        
+        toolBar.setItems([doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.pickUp(textField)
+    }
+    
+    @objc func doneClick() {
+        if textFieldGender.isFirstResponder{ textFieldGender.resignFirstResponder()}
+        else {textFieldBirthDate.resignFirstResponder()}
+    }
 }
