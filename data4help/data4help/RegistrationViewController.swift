@@ -2,9 +2,11 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: UIViewController,
+            UIPickerViewDelegate, UIPickerViewDataSource {
     
     let URL_USER_REGISTER = Global.getUserURL() + Global.REGISTER_METHOD
+    let genders = ["M", "F"]
     
     @IBOutlet weak var textFieldFirstName: UITextField!
     @IBOutlet weak var textFieldLastName: UITextField!
@@ -20,8 +22,6 @@ class RegistrationViewController: UIViewController {
     @IBAction func registrationToLoginButton(_ sender: Any) {
         self.performSegue(withIdentifier: "registrationToLogin", sender: nil)
     }
-    
-    @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBAction func registrationButton(_ sender: Any) {
         let parameters: Parameters = [
@@ -85,24 +85,49 @@ class RegistrationViewController: UIViewController {
         }
     }
     
-    /////////////////////////////////////////////////// DATE KEEPER
-    
-    @IBAction func dp(_ sender: UITextField) {
-        let datePickerView = UIDatePicker()
-        datePickerView.datePickerMode = .date
-        sender.inputView = datePickerView
-        datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+    // GENDER PICKER FUNCTIONS
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    @objc func handleDatePicker(sender: UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
-        textFieldBirthDate.text = dateFormatter.string(from: sender.date)
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return genders.count
     }
     
-    /////////////////////////////////////////////////// OVERRIDE DEFAULT VIEW FUNCTION
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return genders[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        textFieldGender.text = genders[row]
+    } // END GENDER PICKER FUNCTIONS
+    
+    // DATE PICKER FUNCTIONS
+    @objc func datePickerValueChanged(sender: UIDatePicker) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.medium
+        formatter.timeStyle = DateFormatter.Style.none
+        formatter.dateFormat = "yyyy-MM-dd"
+        textFieldBirthDate.text = formatter.string(from: sender.date)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    } // END DATE PICKER FUNCTIONS
     
     override func viewDidLoad() {
+        // GENDER PICKER DECLARATION
+        let genderPicker = UIPickerView()
+        textFieldGender.inputView = genderPicker
+        genderPicker.delegate = self
+        
+        // DATE PICKER DECLARATION
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = UIDatePicker.Mode.date
+        datePicker.addTarget(self, action: #selector(RegistrationViewController.datePickerValueChanged(sender:)),
+                             for: UIControl.Event.valueChanged)
+        textFieldBirthDate.inputView = datePicker
+        
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
     }
