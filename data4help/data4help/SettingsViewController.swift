@@ -8,12 +8,16 @@
 
 import UIKit
 import HealthKit
+import CoreLocation
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var locationToggleSwitch: UISwitch!
+    @IBOutlet weak var healthToggleSwitch: UISwitch!
 
+    // HEALTH TOGGLE
     @IBAction func switchToggled(_ sender: Any) {
-        if let senderSwitch = sender as? UISwitch{
+        if let senderSwitch = sender as? UISwitch {
             if senderSwitch.isOn {
                 let permissionsNedeed = Set ([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                 
@@ -24,23 +28,42 @@ class SettingsViewController: UIViewController {
                 }
             } // end if sender.isOn
         } //end if casting
-        
     }
     
+    // LOCATION TOGGLE
+    @IBAction func locationToggle(_ sender: Any) {
+        if let senderSwitch = sender as? UISwitch {
+            if senderSwitch.isOn {
+                let locationManager = CLLocationManager()
+                locationManager.requestAlwaysAuthorization()
+                
+                if CLLocationManager.locationServicesEnabled() {
+                    locationManager.delegate = self
+                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
+                    locationManager.startUpdatingLocation()
+                }
+            }
+        }
+    }
     
-    @IBOutlet weak var healthToggleSwitch: UISwitch!
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print(location.coordinate)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let healthToggleSwitchStatus = UserDefaults.standard.bool(forKey: "healthToggleStatus")
+        let locationToggleStatus = UserDefaults.standard.bool(forKey: "locationToggleStatus")
         healthToggleSwitch.setOn(healthToggleSwitchStatus, animated: true)
-        
-        // Do any additional setup after loading the view.
+        locationToggleSwitch.setOn(locationToggleStatus, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UserDefaults.standard.set(healthToggleSwitch.isOn, forKey: "healthToggleStatus")
-        }
+        UserDefaults.standard.set(locationToggleSwitch.isOn, forKey: "locationToggleStatus")
+    }
 
 }

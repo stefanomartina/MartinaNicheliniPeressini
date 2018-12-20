@@ -137,7 +137,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Fj-u2-Mht" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-665.21739130434787" y="129.91071428571428"/>
+            <point key="canvasLocation" x="-807" y="130"/>
         </scene>
         <!--Registration View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -289,39 +289,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-W8-sFv">
-                                <rect key="frame" x="112.00000000000001" y="137" width="190.33333333333337" height="31"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Health Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4V9-rZ-7y2">
-                                        <rect key="frame" x="0.0" y="0.0" width="109.33333333333333" height="31"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7f-ia-p0Y">
-                                        <rect key="frame" x="141.33333333333334" y="0.0" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="switchToggled:" destination="zDa-lH-Hyg" eventType="valueChanged" id="dNv-UR-jpG"/>
-                                        </connections>
-                                    </switch>
-                                </subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="v3b-W8-sFv">
+                                <rect key="frame" x="152.33333333333331" y="137" width="109.33333333333333" height="20.333333333333332"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyg-8r-MHf">
+                                <rect key="frame" x="20" y="161" width="125" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q7f-ia-p0Y">
+                                <rect key="frame" x="293" y="117" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchToggled:" destination="zDa-lH-Hyg" eventType="valueChanged" id="dNv-UR-jpG"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Health Access" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4V9-rZ-7y2">
+                                <rect key="frame" x="20" y="122" width="109.33333333333333" height="20.333333333333332"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yad-YV-wdF">
+                                <rect key="frame" x="293" y="156" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="locationToggle:" destination="zDa-lH-Hyg" eventType="valueChanged" id="lXy-pn-sNE"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="v3b-W8-sFv" firstAttribute="centerX" secondItem="zqC-DY-RrX" secondAttribute="centerX" id="bhN-Hw-3iA"/>
-                            <constraint firstItem="v3b-W8-sFv" firstAttribute="top" secondItem="zqC-DY-RrX" secondAttribute="top" constant="93" id="nOW-Jm-xTd"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="zqC-DY-RrX"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="more" id="hlb-0D-Iyc"/>
                     <connections>
                         <outlet property="healthToggleSwitch" destination="q7f-ia-p0Y" id="7Zf-Nw-8yu"/>
+                        <outlet property="locationToggleSwitch" destination="yad-YV-wdF" id="Hrb-zy-VEc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU7-lo-Xxb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="459"/>
+            <point key="canvasLocation" x="2596" y="398"/>
         </scene>
         <!--Item-->
         <scene sceneID="VL7-0u-vRQ">
@@ -396,7 +408,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KYO-AA-zNR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2902.898550724638" y="474.77678571428567"/>
+            <point key="canvasLocation" x="1757" y="398"/>
         </scene>
         <!--Track4Run-->
         <scene sceneID="uNj-a1-l5u">
@@ -478,7 +490,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PQu-0M-k9W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2597.1014492753625" y="-171.42857142857142"/>
+            <point key="canvasLocation" x="2596" y="-548"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9Kk-Uk-zeB">

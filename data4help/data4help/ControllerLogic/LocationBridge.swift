@@ -11,10 +11,5 @@ import CoreLocation
 
 class LocationManager {
     
-    private var locationManager: CLLocationManager!
-    
-    init() {
-       locationManager.requestAlwaysAuthorization()
-    }
     
 }
