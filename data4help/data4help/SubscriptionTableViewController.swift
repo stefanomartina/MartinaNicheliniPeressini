@@ -15,6 +15,7 @@ class SubscriptionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = 80.0
         HTTPManager.getSubscribtion { returned in
             self.subscriptions = returned
             self.tableView.reloadData()
