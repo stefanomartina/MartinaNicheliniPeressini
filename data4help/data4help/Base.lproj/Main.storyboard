@@ -318,7 +318,7 @@
                                 <rect key="frame" x="293" y="156" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="locationToggle:" destination="zDa-lH-Hyg" eventType="valueChanged" id="lXy-pn-sNE"/>
+                                    <action selector="locationToggle:" destination="zDa-lH-Hyg" eventType="valueChanged" id="KSs-bJ-0sP"/>
                                 </connections>
                             </switch>
                         </subviews>
@@ -328,7 +328,7 @@
                     <tabBarItem key="tabBarItem" systemItem="more" id="hlb-0D-Iyc"/>
                     <connections>
                         <outlet property="healthToggleSwitch" destination="q7f-ia-p0Y" id="7Zf-Nw-8yu"/>
-                        <outlet property="locationToggleSwitch" destination="yad-YV-wdF" id="Hrb-zy-VEc"/>
+                        <outlet property="locationToggleSwitch" destination="yad-YV-wdF" id="TX5-jK-d9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU7-lo-Xxb" userLabel="First Responder" sceneMemberID="firstResponder"/>

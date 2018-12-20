@@ -12,65 +12,53 @@ import CoreLocation
 
 class SettingsViewController: UIViewController, CLLocationManagerDelegate {
     
-    @IBOutlet weak var locationToggleSwitch: UISwitch!
-    @IBOutlet weak var healthToggleSwitch: UISwitch!
+    var locationManager: CLLocationManager!
 
+    @IBOutlet weak var healthToggleSwitch: UISwitch!
+    @IBOutlet weak var locationToggleSwitch: UISwitch!
+    
     // HEALTH TOGGLE
     @IBAction func switchToggled(_ sender: Any) {
         if let senderSwitch = sender as? UISwitch {
             if senderSwitch.isOn {
-                let permissionsNedeed = Set ([HKObjectType.quantityType(forIdentifier: .heartRate)!])
-                
+                let permissionsNedeed = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                     HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in if !success { print("errore") } }
-                    HealthKitManager.getHealthStore().enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: .heartRate)!, frequency: .immediate, withCompletion: (
-                        {
-                            (response, error) in print("Triggered from healthkit: ",response)
-                        }
-                    ))
-                
-            } // end if sender.isOn
-        } //end if casting
+            }
+        }
     }
     
     // LOCATION TOGGLE
     @IBAction func locationToggle(_ sender: Any) {
         if let senderSwitch = sender as? UISwitch {
             if senderSwitch.isOn {
-                let locationManager = CLLocationManager()
-                locationManager.requestAlwaysAuthorization()
-                
                 if CLLocationManager.locationServicesEnabled() {
+                    locationManager = CLLocationManager()
                     locationManager.delegate = self
-                    locationManager.desiredAccuracy = kCLLocationAccuracyBest
-                    locationManager.startUpdatingLocation()
+                    locationManager.requestAlwaysAuthorization()
+                }
+                else {
+                    let alert = UIAlertController(title: "Attention!", message: "Location services not enabled", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
                 }
             }
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.first {
-            print(location.coordinate)
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         HealthKitManager.checkIfHealtkitIsEnabled({ response in
             self.healthToggleSwitch.setOn(response, animated: true)
             self.healthToggleSwitch.isEnabled = !response
-            }
-        )
-        
-        let locationToggleStatus = UserDefaults.standard.bool(forKey: "locationToggleStatus")
-        locationToggleSwitch.setOn(locationToggleStatus, animated: true)
-    
+            })
+        LocationManager.checkIfLocationIsEnabled({ response in
+            self.locationToggleSwitch.setOn(response, animated: true)
+            self.healthToggleSwitch.isEnabled = !response
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UserDefaults.standard.set(locationToggleSwitch.isOn, forKey: "locationToggleStatus")
     }
 
 }

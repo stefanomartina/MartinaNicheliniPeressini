@@ -51,7 +51,7 @@ class HTTPManager {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    for (key, value): (String, JSON) in json {
+                    for (_, value): (String, JSON) in json {
                         let bpm = value["bpm"].stringValue
                         let timestamp = "   "+value["timestamp"].stringValue
                         let retrieved = Data(opened: false, title: bpm, sectionData: [timestamp])
@@ -76,7 +76,7 @@ class HTTPManager {
                 switch response.result {
                 case .success(let value):
                     let json = JSON(value)
-                    for (key, value): (String, JSON) in json {
+                    for (_, value): (String, JSON) in json {
                         let requester = value["Username_ThirdParty"].stringValue
                         let description = value["description"].stringValue
                         let status = subscriptionStatus(rawValue: value["status"].stringValue )

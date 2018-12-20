@@ -9,7 +9,7 @@ class DashboardViewController: UIViewController {
 
     
     override func viewDidLoad() {
-        HealthKitManager.activateLongRunningQuery()
+       // HealthKitManager.activateLongRunningQuery()
     }
     
 }

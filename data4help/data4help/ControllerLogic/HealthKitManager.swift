@@ -17,13 +17,13 @@ class HealthKitManager {
     }
     
     public static func checkIfHealtkitIsEnabled (_ notAuthNotificationHandler: @escaping ((Bool) -> ())) {
-        var authStatus = healthKitStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!)
+        let authStatus = healthKitStore.authorizationStatus(for: HKObjectType.quantityType(forIdentifier: .heartRate)!)
         if authStatus == HKAuthorizationStatus.notDetermined || authStatus == HKAuthorizationStatus.sharingDenied {
             notAuthNotificationHandler(false)
         } else { notAuthNotificationHandler(true)}
     }
     
-    public static func activateLongRunningQuery() {
+    /*public static func activateLongRunningQuery() {
         let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)
         
         let query = HKObserverQuery(sampleType: sampleType!, predicate: nil) {
@@ -43,7 +43,7 @@ class HealthKitManager {
         
         healthStore.execute(query)
 //        healthStore.enableBackgroundDelivery(for: <#T##HKObjectType#>, frequency: <#T##HKUpdateFrequency#>, withCompletion: <#T##(Bool, Error?) -> Void#>)
-    }
+    }*/
     
     static func getLastHeartBeat () -> [HKQuantitySample] {
         let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")
