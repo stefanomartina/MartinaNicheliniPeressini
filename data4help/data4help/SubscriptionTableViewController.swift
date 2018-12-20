@@ -74,7 +74,9 @@ class SubscriptionTableViewController: UITableViewController {
         
         cell.requesterNameLabel.text = subscription.requesterName
         cell.actualStatusLabel.text = subscription.status.rawValue
-        
+        if subscription.status == subscriptionStatus.approved {cell.actualStatusLabel.textColor = UIColor.green}
+        else if subscription.status == subscriptionStatus.rejected {cell.actualStatusLabel.textColor = UIColor.red}
+        else {cell.actualStatusLabel.textColor = UIColor.black}
         return cell
     }
     

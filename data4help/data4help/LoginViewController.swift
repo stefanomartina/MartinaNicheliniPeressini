@@ -74,7 +74,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.passwordTextField.delegate = self //to bind return action on keyboard
         self.hideKeyboardWhenTappedAround() //function to bind the tap out action to the keyboard dismiss action
-        resetDefaults() //function do reset user default DEBUGGING PORPOUSE
+        //resetDefaults() //function do reset user default DEBUGGING PORPOUSE
         Global.getUserURL() {
             () in self.serverLabel.text = Global.getUserURL()
         }

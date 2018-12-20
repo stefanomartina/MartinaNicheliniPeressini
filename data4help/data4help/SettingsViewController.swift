@@ -54,15 +54,20 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let healthToggleSwitchStatus = UserDefaults.standard.bool(forKey: "healthToggleStatus")
+        
+        HealthKitManager.checkIfHealtkitIsEnabled({ response in
+            self.healthToggleSwitch.setOn(response, animated: true)
+            self.healthToggleSwitch.isEnabled = !response
+            }
+        )
+        
         let locationToggleStatus = UserDefaults.standard.bool(forKey: "locationToggleStatus")
-        healthToggleSwitch.setOn(healthToggleSwitchStatus, animated: true)
         locationToggleSwitch.setOn(locationToggleStatus, animated: true)
+    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UserDefaults.standard.set(healthToggleSwitch.isOn, forKey: "healthToggleStatus")
         UserDefaults.standard.set(locationToggleSwitch.isOn, forKey: "locationToggleStatus")
     }
 
