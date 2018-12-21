@@ -46,34 +46,60 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    
-    
     @IBOutlet weak var labelThreshold: UILabel!
     @IBOutlet weak var sliderThreshold: UISlider!
     @IBOutlet weak var submitCustomThresholdButton: UIButton!
     @IBOutlet weak var automatedSOSToggle: UISwitch!
     
-    
-    
+    @IBAction func automatedSOSSwitch(_ sender: Any) {
+        if( automatedSOSToggle.isOn ){
+            Global.userDefaults.set(true, forKey: "automatedSOSToggle")
+        }else{
+            Global.userDefaults.set(false, forKey: "automatedSOSToggle")
+        }
+        
+    }
     @IBAction func sliderThresholdChanges(_ sender: Any) {
-        submitCustomThresholdButton.isEnabled = true;
         let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
         labelThreshold.text = "\(tok)"
+        if(Int(getThreshold()) != Int(tok)){
+            submitCustomThresholdButton.isEnabled = true;
+        }
+        else{
+            submitCustomThresholdButton.isEnabled = false;
+        }
     }
-    
     
     @IBAction func submitThresholdCHanges(_ sender: Any) {
         let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
-        Global.userDefaults.set(tok, forKey: "CustomThreshold")
-        
+        Global.userDefaults.set(tok, forKey: "threshold")
+        submitCustomThresholdButton.isEnabled = false;
     }
-    override func viewDidLoad() {
+    
+    func getThreshold() -> String{
+        return Global.userDefaults.string(forKey: "threshold") ?? String(Global.DEFAULT_THRESHOLD)
+    }
+    
+    func setSlider(){
         submitCustomThresholdButton.isEnabled = false
         sliderThreshold.minimumValue = 20
         sliderThreshold.maximumValue = 100
-        sliderThreshold.isContinuous = false
-        
+        sliderThreshold.isContinuous = true
+        sliderThreshold.setValue(Float(getThreshold())!, animated: true)
+    }
+    
+    func setAutomatedSOSSwitch(){
+        let status = Global.userDefaults.bool(forKey: "automatedSOSToggle")
+        print(status)
+        healthToggleSwitch.setOn(status, animated: true)
+    }
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
+        labelThreshold.text = getThreshold()
+        setSlider()
+        setAutomatedSOSSwitch()
+        
         HealthKitManager.checkIfHealtkitIsEnabled({ response in
             self.healthToggleSwitch.setOn(response, animated: true)
             self.healthToggleSwitch.isEnabled = !response
@@ -89,5 +115,4 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-
 }

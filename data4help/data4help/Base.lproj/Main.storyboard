@@ -360,6 +360,9 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f5c-Kh-27P">
                                 <rect key="frame" x="293" y="195" width="49" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="automatedSOSSwitch:" destination="zDa-lH-Hyg" eventType="valueChanged" id="hfl-x1-CyM"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -512,7 +515,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="689"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="8GS-7r-f94">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="8GS-7r-f94">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
