@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 import CoreLocation
+import Foundation
 
 class SettingsViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -45,7 +46,26 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    
+    
+    @IBOutlet weak var labelThreshold: UILabel!
+    @IBOutlet weak var sliderThreshold: UISlider!
+    @IBOutlet weak var submitCustomThresholdButton: UIButton!
+    
+    @IBAction func sliderThresholdChanges(_ sender: Any) {
+        submitCustomThresholdButton.isEnabled = true;
+        var appo = String("\(sliderThreshold.value)")
+        var tok = appo.components(separatedBy: ".")[0]
+        labelThreshold.text = "\(tok)"
+    }
+    
+    
     override func viewDidLoad() {
+        submitCustomThresholdButton.isEnabled = false
+        sliderThreshold.minimumValue = 20
+        sliderThreshold.maximumValue = 100
+        sliderThreshold.isContinuous = false
+        
         super.viewDidLoad()
         HealthKitManager.checkIfHealtkitIsEnabled({ response in
             self.healthToggleSwitch.setOn(response, animated: true)
