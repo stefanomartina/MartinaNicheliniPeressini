@@ -51,15 +51,22 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var labelThreshold: UILabel!
     @IBOutlet weak var sliderThreshold: UISlider!
     @IBOutlet weak var submitCustomThresholdButton: UIButton!
+    @IBOutlet weak var automatedSOSToggle: UISwitch!
+    
+    
     
     @IBAction func sliderThresholdChanges(_ sender: Any) {
         submitCustomThresholdButton.isEnabled = true;
-        var appo = String("\(sliderThreshold.value)")
-        var tok = appo.components(separatedBy: ".")[0]
+        let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
         labelThreshold.text = "\(tok)"
     }
     
     
+    @IBAction func submitThresholdCHanges(_ sender: Any) {
+        let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
+        Global.userDefaults.set(tok, forKey: "CustomThreshold")
+        
+    }
     override func viewDidLoad() {
         submitCustomThresholdButton.isEnabled = false
         sliderThreshold.minimumValue = 20
@@ -75,6 +82,8 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
             self.locationToggleSwitch.setOn(response, animated: true)
             self.healthToggleSwitch.isEnabled = !response
         })
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

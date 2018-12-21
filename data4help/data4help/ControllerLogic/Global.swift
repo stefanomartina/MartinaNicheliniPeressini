@@ -22,6 +22,10 @@ class Global {
     static public let HEART_ENDPOINT_GET = "/data/heart/get_data"
     static public let SUBSCRIPTION = "/subscription"
     
+    static public let DEFAULT_THRESHOLD = 60
+    
+    static public let userDefaults = UserDefaults.standard
+    
     //This method handles the selection of the right URL.
     static public func getUserURL(_ completionHandler: (() -> Void)? = nil)  -> String {
         if USER_URL == "" {
