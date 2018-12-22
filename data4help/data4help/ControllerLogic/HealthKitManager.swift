@@ -23,7 +23,7 @@ class HealthKitManager {
         } else { notAuthNotificationHandler(true)}
     }
     
-    /*public static func activateLongRunningQuery() {
+    public static func activateLongRunningQuery() {
         let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)
         
         let query = HKObserverQuery(sampleType: sampleType!, predicate: nil) {
@@ -42,8 +42,8 @@ class HealthKitManager {
         }
         
         healthStore.execute(query)
-//        healthStore.enableBackgroundDelivery(for: <#T##HKObjectType#>, frequency: <#T##HKUpdateFrequency#>, withCompletion: <#T##(Bool, Error?) -> Void#>)
-    }*/
+        healthStore.enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: .heartRate)!, frequency: .immediate, withCompletion: {_, error in if error == nil {print ("Background delivery activated")}})
+    }
     
     static func getLastHeartBeat () -> [HKQuantitySample] {
         let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")

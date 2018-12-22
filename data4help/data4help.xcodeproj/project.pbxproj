@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260307B421C157AE00EAC547 /* HTTPManager.swift */; };
 		261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */; };
+		2677494021CEB7830050DDDB /* Hearth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2677493F21CEB7830050DDDB /* Hearth.png */; };
+		2677494221CEB7FB0050DDDB /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */; };
+		2677494421CEBBB40050DDDB /* DataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494321CEBBB40050DDDB /* DataTableViewController.swift */; };
+		2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494521CEBC3C0050DDDB /* HeartData.swift */; };
 		26D2E35321BEB175009F68E7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E35221BEB175009F68E7 /* Global.swift */; };
 		26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */; };
 		26DBDB1621CB07E0002C0EF7 /* SubscriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */; };
-		26E647E121C14F6700CDF291 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E647E021C14F6700CDF291 /* TableViewController.swift */; };
 		26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F53DAD21C1033B001F419A /* HealthKit.framework */; };
 		26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F53DAF21C10608001F419A /* HealthKitManager.swift */; };
 		26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB31E421B5428F00C27A9B /* SettingsViewController.swift */; };
@@ -53,10 +56,13 @@
 		038C19EF50F01CF5E3F84920 /* Pods-data4helpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		260307B421C157AE00EAC547 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
 		261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewController.swift; sourceTree = "<group>"; };
+		2677493F21CEB7830050DDDB /* Hearth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Hearth.png; path = ../../../../../Desktop/iCon/Hearth.png; sourceTree = "<group>"; };
+		2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
+		2677494321CEBBB40050DDDB /* DataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewController.swift; sourceTree = "<group>"; };
+		2677494521CEBC3C0050DDDB /* HeartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartData.swift; sourceTree = "<group>"; };
 		26D2E35221BEB175009F68E7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribtionRequest.swift; sourceTree = "<group>"; };
 		26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewCell.swift; sourceTree = "<group>"; };
-		26E647E021C14F6700CDF291 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		26F53DAC21C10336001F419A /* data4help.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = data4help.entitlements; sourceTree = "<group>"; };
 		26F53DAD21C1033B001F419A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26F53DAF21C10608001F419A /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -117,10 +123,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2677493C21CEB68C0050DDDB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2677493F21CEB7830050DDDB /* Hearth.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		26DBDB1021CABC16002C0EF7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */,
+				2677494521CEBC3C0050DDDB /* HeartData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -186,9 +201,11 @@
 		C6CA753821AEB9F300A6039E /* data4help */ = {
 			isa = PBXGroup;
 			children = (
+				2677493C21CEB68C0050DDDB /* Resources */,
 				26DBDB1021CABC16002C0EF7 /* Model */,
 				C63D293E21C268A000DB7FC3 /* ControllerLogic */,
-				26E647E021C14F6700CDF291 /* TableViewController.swift */,
+				2677494321CEBBB40050DDDB /* DataTableViewController.swift */,
+				2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */,
 				261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */,
 				26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */,
 				26F53DAC21C10336001F419A /* data4help.entitlements */,
@@ -340,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CA754421AEB9F400A6039E /* LaunchScreen.storyboard in Resources */,
+				2677494021CEB7830050DDDB /* Hearth.png in Resources */,
 				C6CA754121AEB9F400A6039E /* Assets.xcassets in Resources */,
 				C6CA753F21AEB9F300A6039E /* Main.storyboard in Resources */,
 			);
@@ -468,12 +486,14 @@
 				C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */,
 				26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */,
 				26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */,
+				2677494221CEB7FB0050DDDB /* DataTableViewCell.swift in Sources */,
 				C63D293D21C2682A00DB7FC3 /* UIExtensions.swift in Sources */,
+				2677494421CEBBB40050DDDB /* DataTableViewController.swift in Sources */,
 				C694BF7A21B48544006E6B4C /* DashboardViewController.swift in Sources */,
 				26DBDB1621CB07E0002C0EF7 /* SubscriptionTableViewCell.swift in Sources */,
 				C6DADFD521CBFCE400EC391D /* LocationManager.swift in Sources */,
 				260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */,
-				26E647E121C14F6700CDF291 /* TableViewController.swift in Sources */,
+				2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */,
 				26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

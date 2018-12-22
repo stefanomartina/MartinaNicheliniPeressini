@@ -43,9 +43,9 @@ class HTTPManager {
             .authenticate(usingCredential: credential)
     }
     
-    static func getDataFromDB(_ updateCallback: @escaping ([Data]) -> ()){
+    static func getDataFromDB(_ updateCallback: @escaping ([HeartData]) -> ()){
         let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
-        var retrievedData : [Data] = []
+        var retrievedData : [HeartData] = []
         Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
             .responseJSON{ response in
                 switch response.result {
@@ -54,7 +54,7 @@ class HTTPManager {
                     for (_, value): (String, JSON) in json {
                         let bpm = value["bpm"].stringValue
                         let timestamp = "   "+value["timestamp"].stringValue
-                        let retrieved = Data(opened: false, title: bpm, sectionData: [timestamp])
+                        let retrieved = HeartData(bpm: bpm, timestamp: timestamp)
                         retrievedData += [retrieved]
                     }
                 case .failure(let error):
