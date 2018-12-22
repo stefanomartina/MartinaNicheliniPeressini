@@ -37,7 +37,11 @@ class DataTableViewController: UITableViewController {
             }
         }
         HTTPManager.sendHeartData(data: queryReturned)
-        if alsoFetch {self.fetchData()}
+        if alsoFetch {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.fetchData()
+            })
+        }
     }
     
    
@@ -53,7 +57,8 @@ class DataTableViewController: UITableViewController {
     
     @objc
     func updateData(){
-        self.fetchData()
+        //self.fetchData()
+        loadAndSendData(alsoFetch: true)
         tableView.reloadData()
         refresher.endRefreshing()
         
@@ -69,7 +74,9 @@ class DataTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 50.0
-        self.fetchData()
+        self.loadAndSendData(alsoFetch: true)
+        
+        tableView.refreshControl = refresher
         //self.loadAndSendData(alsoFetch: false)
 
         // Uncomment the following line to preserve selection between presentations
