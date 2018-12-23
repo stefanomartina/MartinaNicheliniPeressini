@@ -27,10 +27,10 @@ class HealthKitManager {
     
     public static func activateLongRunningQuery() {
         
-        checkIfHealtkitIsEnabled({ enabled in
-            if !enabled {print("Attention: Healthkit not enabled"); return}
-            }
-        )
+        // check if HK is enabled
+        var HKEnabled = Bool()
+        checkIfHealtkitIsEnabled({ enabled in HKEnabled = enabled})
+        if !HKEnabled {return}
         
         let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)
         

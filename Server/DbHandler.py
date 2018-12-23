@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import mysql.connector
 from mysql.connector import errorcode
-import collections, json
+import collections, json, pprint
 
 class DuplicateException(Exception):
     def __init__(self, message):
@@ -88,9 +88,10 @@ class DBHandler:
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
 
-    def insert(self, username, dictToInsert):
+    def insert_heart_rate(self, username, dictToInsert):
 
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
+        pprint.pprint(dictToInsert)
 
         for key in dictToInsert.keys():
             bpm = dictToInsert[key]['bpm']
