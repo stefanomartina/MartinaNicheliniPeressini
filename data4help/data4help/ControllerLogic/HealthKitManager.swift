@@ -43,6 +43,7 @@ class HealthKitManager {
             
             // Take whatever steps are necessary to update your app's data and UI
             // This may involve executing other queries
+            //HTTPManager.sendHeartData(data: HealthKitManager.getLastHeartBeat())
             print("Triggered by long running query")
             
             // If you have subscribed for background updates you must call the completion handler here.
@@ -54,7 +55,7 @@ class HealthKitManager {
     }
     
     
-    static func getLastHeartBeat () -> [HKQuantitySample] {
+    static func getLastHeartBeat (_ updateHandler: @escaping ([HKQuantitySample]) -> ()) {
         let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")
         
         let myStartDate : Date
@@ -68,26 +69,20 @@ class HealthKitManager {
         
         let sampleType = HKSampleType.quantityType(forIdentifier: HKQuantityTypeIdentifier.heartRate)
         
-        var semaphore = 0
-        
         var samples = [HKQuantitySample]()
         let descriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
         let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [descriptor]) {
             query, results, error in
             //Controlla se è stata data l'autorizzazione!!!
             samples = results as! [HKQuantitySample]
-            semaphore = 1
+            updateHandler(samples)
         }
         healthStore.execute(query)
-        while semaphore == 0 {
-            sleep(1)
-        }
         
         // If I0ve found some elements, I save the date of the last of them in order to have a reference of the timestamp of the last retrieved sample
         if samples.count != 0 {
             let lastTimestamp = samples[samples.count - 1].startDate
             UserDefaults.standard.set(lastTimestamp, forKey: "timestampOfLastDataRetrieved")
         }
-        return samples
     }
 }

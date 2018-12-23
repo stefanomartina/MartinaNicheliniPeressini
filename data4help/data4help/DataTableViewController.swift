@@ -22,26 +22,29 @@ class DataTableViewController: UITableViewController {
     }
     
     private func loadAndSendData(alsoFetch: Bool) {
-        let queryReturned: [HKQuantitySample] = HealthKitManager.getLastHeartBeat()
-        
-        var bpm, timestamp, bpm_str : String
-        
-        if queryReturned.count != 0 {
-            for hkqs in queryReturned {
-                bpm = "\(hkqs.quantity)"
-                bpm_str = String(bpm.split(separator: " ")[0])
-                timestamp = "   "+"\(hkqs.startDate)"
-                
-                let newData = HeartData(bpm: bpm_str, timestamp: timestamp)
-                data += [newData]
+        var queryReturned: [HKQuantitySample] = []
+        HealthKitManager.getLastHeartBeat(){gotData in
+            queryReturned = gotData
+            var bpm, timestamp, bpm_str : String
+            
+            if queryReturned.count != 0 {
+                for hkqs in queryReturned {
+                    bpm = "\(hkqs.quantity)"
+                    bpm_str = String(bpm.split(separator: " ")[0])
+                    timestamp = "   "+"\(hkqs.startDate)"
+                    
+                    let newData = HeartData(bpm: bpm_str, timestamp: timestamp)
+                    self.data += [newData]
+                }
+            }
+            HTTPManager.sendHeartData(data: queryReturned)
+            if alsoFetch {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                    self.fetchData()
+                })
             }
         }
-        HTTPManager.sendHeartData(data: queryReturned)
-        if alsoFetch {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                self.fetchData()
-            })
-        }
+
     }
     
    

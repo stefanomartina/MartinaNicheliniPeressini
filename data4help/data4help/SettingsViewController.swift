@@ -76,6 +76,11 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
         submitCustomThresholdButton.isEnabled = false;
     }
     
+    // For debug purpose
+    @IBAction func resetUserDefaults(_ sender: Any) {
+      UserDefaults.standard.set(nil, forKey: "timestampOfLastDataRetrieved")
+    }
+    
     func getThreshold() -> String{
         return Global.userDefaults.string(forKey: "threshold") ?? String(Global.DEFAULT_THRESHOLD)
     }
