@@ -49,20 +49,12 @@ def login():
 @auth.login_required
 def heart():
     try:
-        data = dict(request.get_json())
-
-        for key in data.keys():
-            bpm = data[key]['bpm']
-            bpm = int(bpm[:len(bpm) - 10])
-            timestamp = data[key]['timestamp']
-            timestamp = timestamp[:len(timestamp) - 6]
-            try:
-                db_handler.insert_heart_rate(auth.username(), bpm, timestamp)
-            except DuplicateException as e:
-                print(str(e))
-                return jsonify({'Response': '2', 'Reason': 'Insertion failed, duplicated tuple in HeartRate table'})
-
+        db_handler.insert_heart_rate(auth.username(), request.get_json())
         return jsonify({'Response': 0})
+
+    except DuplicateException as e:
+        print(str(e))
+        return jsonify({'Response': '2', 'Reason': 'Insertion failed, duplicated tuple in HeartRate table'})
 
     except Exception:
         return jsonify({'Response': 1, 'Reason': 'Error with heart rate data'})

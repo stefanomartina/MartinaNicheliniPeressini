@@ -88,7 +88,28 @@ class DBHandler:
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
 
-    def insert_heart_rate(self, username, bpm, timestamp):
+    def insert(self, username, dictToInsert):
+
+        query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
+
+        for key in dictToInsert.keys():
+            bpm = dictToInsert[key]['bpm']
+            bpm = int(bpm[:len(bpm) - 10])
+            timestamp = dictToInsert[key]['timestamp']
+            timestamp = timestamp[:len(timestamp) - 6]
+            values = (username, timestamp, bpm)
+            try:
+                self.dbMy.execute(query, values)
+            except mysql.connector.IntegrityError:
+                raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
+
+            except Exception as e:
+                print(str(e))
+        self.db.commit()
+
+
+
+    """def insert_heart_rate(self, username, bpm, timestamp):
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
         values = (username, timestamp, bpm)
 
@@ -100,7 +121,7 @@ class DBHandler:
             raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
 
         except Exception as e:
-            print(str(e))
+            print(str(e))"""
 
     def get_heart_rate_by_user(self, username):
         query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \

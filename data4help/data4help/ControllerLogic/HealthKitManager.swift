@@ -10,6 +10,8 @@ import HealthKit
 
 class HealthKitManager {
     
+    static public var lastHertQueryData : [HeartData] = []
+    
     static private let healthStore = HKHealthStore()
     
     static func getHealthStore() -> HKHealthStore {
@@ -24,6 +26,12 @@ class HealthKitManager {
     }
     
     public static func activateLongRunningQuery() {
+        
+        checkIfHealtkitIsEnabled({ enabled in
+            if !enabled {print("Attention: Healthkit not enabled"); return}
+            }
+        )
+        
         let sampleType = HKObjectType.quantityType(forIdentifier: .heartRate)
         
         let query = HKObserverQuery(sampleType: sampleType!, predicate: nil) {
@@ -45,17 +53,15 @@ class HealthKitManager {
         healthStore.enableBackgroundDelivery(for: HKObjectType.quantityType(forIdentifier: .heartRate)!, frequency: .immediate, withCompletion: {_, error in if error == nil {print ("Background delivery activated")}})
     }
     
+    
     static func getLastHeartBeat () -> [HKQuantitySample] {
         let lastUpdateDate = UserDefaults.standard.object(forKey: "timestampOfLastDataRetrieved")
         
-        let myEndDate = Date()
         let myStartDate : Date
-        if lastUpdateDate == nil {
-            myStartDate = myEndDate.addingTimeInterval(-60*60*24)
-        } else {
-            myStartDate = (lastUpdateDate as! Date).addingTimeInterval(1)
-        }
-        
+        let myEndDate = Date()
+        if lastUpdateDate == nil { myStartDate = myEndDate.addingTimeInterval(-(60*60*24))} else {
+            myStartDate = (lastUpdateDate as! Date).addingTimeInterval(1) }
+
         let timeIntervalPredicate =
             HKQuery.predicateForSamples(withStart: myStartDate,
                                         end: myEndDate, options: [])
