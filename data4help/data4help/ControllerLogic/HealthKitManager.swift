@@ -44,6 +44,13 @@ class HealthKitManager {
             // Take whatever steps are necessary to update your app's data and UI
             // This may involve executing other queries
             //HTTPManager.sendHeartData(data: HealthKitManager.getLastHeartBeat())
+            
+            DispatchQueue.main.async(execute: {
+                print("Async work\n")
+                HealthKitManager.getLastHeartBeat({ retrievedData in
+                HTTPManager.sendHeartData(data: retrievedData)
+            })})
+            
             print("Triggered by long running query")
             
             // If you have subscribed for background updates you must call the completion handler here.
@@ -76,13 +83,13 @@ class HealthKitManager {
             //Controlla se è stata data l'autorizzazione!!!
             samples = results as! [HKQuantitySample]
             updateHandler(samples)
+            
+            // If I0ve found some elements, I save the date of the last of them in order to have a reference of the timestamp of the last retrieved sample
+            if samples.count != 0 {
+                let lastTimestamp = samples[samples.count - 1].startDate
+                UserDefaults.standard.set(lastTimestamp, forKey: "timestampOfLastDataRetrieved")
+            }
         }
         healthStore.execute(query)
-        
-        // If I0ve found some elements, I save the date of the last of them in order to have a reference of the timestamp of the last retrieved sample
-        if samples.count != 0 {
-            let lastTimestamp = samples[samples.count - 1].startDate
-            UserDefaults.standard.set(lastTimestamp, forKey: "timestampOfLastDataRetrieved")
-        }
     }
 }
