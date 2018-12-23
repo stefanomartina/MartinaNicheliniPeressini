@@ -38,7 +38,7 @@ class DataTableViewController: UITableViewController {
         }
         HTTPManager.sendHeartData(data: queryReturned)
         if alsoFetch {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                 self.fetchData()
             })
         }
@@ -77,13 +77,6 @@ class DataTableViewController: UITableViewController {
         self.loadAndSendData(alsoFetch: true)
         
         tableView.refreshControl = refresher
-        //self.loadAndSendData(alsoFetch: false)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table view data source
