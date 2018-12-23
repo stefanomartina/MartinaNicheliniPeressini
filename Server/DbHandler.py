@@ -14,7 +14,7 @@ class DBHandler:
 
     def __init__(self):
         self.db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
-        self.dbMy = self.db.cursor()
+        self.dbMy = self.db.cursor(buffered=True)
 
     def auth(self, username, password):
         query = "SELECT password FROM User WHERE username = %s"
