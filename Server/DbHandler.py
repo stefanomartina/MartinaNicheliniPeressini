@@ -88,6 +88,9 @@ class DBHandler:
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
 
+    def insert_latitude_longitude(self, username, latitude, longitude):
+            return
+
     def insert_heart_rate(self, username, dictToInsert):
 
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"

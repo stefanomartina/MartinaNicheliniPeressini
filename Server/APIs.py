@@ -97,6 +97,7 @@ def user_register():
 def user_subscription():
     return db_handler.get_subscription_to_user(auth.username())
 
+
 @app.route('/api/users/subscription', methods=['PUT'])
 @auth.login_required
 def update_subscription_status():
@@ -111,6 +112,27 @@ def update_subscription_status():
 
     signal = db_handler.modify_subscription_status(username, third_party, new_status)
     return jsonify({"Signal": signal})
+
+
+@app.route('/api/users/location', methods=['POST'])
+@auth.login_required
+def user_location():
+    try:
+        data = request.get_json()
+        latitude = data["latitude"]
+        longitude = data["longitude"]
+        try:
+            db_handler.insert_latitude_longitude(auth.username(), latitude, longitude)
+
+        except Exception as e:
+            print(str(e))
+            return jsonify({'Response': '?'})
+
+        return jsonify({'Response': '?'})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': '?'})
 
 
 #######################################################################################################################

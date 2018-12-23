@@ -2,8 +2,6 @@ import Alamofire
 import SwiftyJSON
 import UIKit
 
-
-
 class RegistrationViewController: UIViewController,
             UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     

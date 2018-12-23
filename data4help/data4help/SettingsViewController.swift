@@ -8,15 +8,11 @@
 
 import UIKit
 import HealthKit
-import CoreLocation
 import Foundation
 
-class SettingsViewController: UIViewController, CLLocationManagerDelegate {
+class SettingsViewController: UIViewController {
     
-    var locationManager: CLLocationManager!
-
     @IBOutlet weak var healthToggleSwitch: UISwitch!
-    @IBOutlet weak var locationToggleSwitch: UISwitch!
     
     // HEALTH TOGGLE
     @IBAction func switchToggled(_ sender: Any) {
@@ -24,24 +20,6 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
             if senderSwitch.isOn {
                 let permissionsNedeed = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                     HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in if !success { print("errore") } }
-            }
-        }
-    }
-    
-    // LOCATION TOGGLE
-    @IBAction func locationToggle(_ sender: Any) {
-        if let senderSwitch = sender as? UISwitch {
-            if senderSwitch.isOn {
-                if CLLocationManager.locationServicesEnabled() {
-                    locationManager = CLLocationManager()
-                    locationManager.delegate = self
-                    locationManager.requestAlwaysAuthorization()
-                }
-                else {
-                    let alert = UIAlertController(title: "Attention!", message: "Location services not enabled", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                    self.present(alert, animated: true)
-                }
             }
         }
     }
@@ -109,12 +87,6 @@ class SettingsViewController: UIViewController, CLLocationManagerDelegate {
             self.healthToggleSwitch.setOn(response, animated: true)
             self.healthToggleSwitch.isEnabled = !response
             })
-        LocationManager.checkIfLocationIsEnabled({ response in
-            self.locationToggleSwitch.setOn(response, animated: true)
-            self.healthToggleSwitch.isEnabled = !response
-        })
-        
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

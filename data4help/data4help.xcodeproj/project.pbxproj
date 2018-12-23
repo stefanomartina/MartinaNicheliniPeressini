@@ -23,6 +23,7 @@
 		9BEB7455797B23AEF353B407 /* Pods_data4helpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */; };
 		C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */; };
 		C63D293D21C2682A00DB7FC3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D293C21C2682A00DB7FC3 /* UIExtensions.swift */; };
+		C63EED3121D00E6F0021DEFE /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EED3021D00E6F0021DEFE /* LocationViewController.swift */; };
 		C694BF7A21B48544006E6B4C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C694BF7921B48544006E6B4C /* DashboardViewController.swift */; };
 		C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA753921AEB9F300A6039E /* AppDelegate.swift */; };
 		C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */; };
@@ -31,7 +32,6 @@
 		C6CA754421AEB9F400A6039E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6CA754221AEB9F400A6039E /* LaunchScreen.storyboard */; };
 		C6CA754F21AEB9F400A6039E /* data4helpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA754E21AEB9F400A6039E /* data4helpTests.swift */; };
 		C6CA755A21AEB9F400A6039E /* data4helpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA755921AEB9F400A6039E /* data4helpUITests.swift */; };
-		C6DADFD521CBFCE400EC391D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DADFD421CBFCE400EC391D /* LocationManager.swift */; };
 		CA28BD34F9C24F7927C6B86D /* Pods_data4help.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D61006B196DE6D202BB09F3 /* Pods_data4help.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +75,7 @@
 		C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4helpTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C63D293C21C2682A00DB7FC3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
+		C63EED3021D00E6F0021DEFE /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		C694BF7921B48544006E6B4C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		C6CA753621AEB9F300A6039E /* data4help.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = data4help.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CA753921AEB9F300A6039E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		C6CA755521AEB9F400A6039E /* data4helpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = data4helpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CA755921AEB9F400A6039E /* data4helpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data4helpUITests.swift; sourceTree = "<group>"; };
 		C6CA755B21AEB9F400A6039E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C6DADFD421CBFCE400EC391D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C7C1EE462C0B1F0E912B4C2E /* Pods-data4helpUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpUITests/Pods-data4helpUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F85C1F256C947035B9DBFF08 /* Pods-data4help.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4help.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4help/Pods-data4help.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,7 +167,6 @@
 		C63D293E21C268A000DB7FC3 /* ControllerLogic */ = {
 			isa = PBXGroup;
 			children = (
-				C6DADFD421CBFCE400EC391D /* LocationManager.swift */,
 				26D2E35221BEB175009F68E7 /* Global.swift */,
 				26F53DAF21C10608001F419A /* HealthKitManager.swift */,
 				260307B421C157AE00EAC547 /* HTTPManager.swift */,
@@ -213,6 +212,7 @@
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
 				26FB31E421B5428F00C27A9B /* SettingsViewController.swift */,
 				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
+				C63EED3021D00E6F0021DEFE /* LocationViewController.swift */,
 				C694BF7921B48544006E6B4C /* DashboardViewController.swift */,
 				C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */,
 				C6CA754021AEB9F400A6039E /* Assets.xcassets */,
@@ -483,6 +483,7 @@
 				C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */,
 				C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */,
 				26D2E35321BEB175009F68E7 /* Global.swift in Sources */,
+				C63EED3121D00E6F0021DEFE /* LocationViewController.swift in Sources */,
 				C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */,
 				26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */,
 				26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */,
@@ -491,7 +492,6 @@
 				2677494421CEBBB40050DDDB /* DataTableViewController.swift in Sources */,
 				C694BF7A21B48544006E6B4C /* DashboardViewController.swift in Sources */,
 				26DBDB1621CB07E0002C0EF7 /* SubscriptionTableViewCell.swift in Sources */,
-				C6DADFD521CBFCE400EC391D /* LocationManager.swift in Sources */,
 				260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */,
 				2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */,
 				26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */,
