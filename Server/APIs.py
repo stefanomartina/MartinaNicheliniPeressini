@@ -119,20 +119,21 @@ def update_subscription_status():
 def user_location():
     try:
         data = request.get_json()
-        latitude = data["latitude"]
-        longitude = data["longitude"]
+        latitude = data['latitude']
+        longitude = data['longitude']
+        timestamp = data['timestamp']
         try:
-            db_handler.insert_latitude_longitude(auth.username(), latitude, longitude)
+            db_handler.insert_latitude_longitude(auth.username(), timestamp, latitude, longitude)
 
         except Exception as e:
             print(str(e))
-            return jsonify({'Response': '?'})
+            return jsonify({'Response': -1, 'Reason': str(e)})
 
-        return jsonify({'Response': '?'})
+        return jsonify({'Response': 1, 'Reason': 'Location data correctly inserted!'})
 
     except Exception as e:
         print(str(e))
-        return jsonify({'Response': '?'})
+        return jsonify({'Response': -2, 'Reason': str(e)})
 
 
 #######################################################################################################################

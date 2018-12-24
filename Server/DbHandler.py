@@ -88,11 +88,18 @@ class DBHandler:
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
 
-    def insert_latitude_longitude(self, username, latitude, longitude):
-            return
+    def insert_latitude_longitude(self, username, timestamp, latitude, longitude):
+        query = "INSERT INTO Location VALUES (%s, %s, %s, %s)"
+        values = (latitude, longitude, username, timestamp)
+
+        try:
+            self.dbMy.execute(query, values)
+            self.db.commit()
+
+        except Exception as e:
+            raise Exception(str(e))
 
     def insert_heart_rate(self, username, dictToInsert):
-
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
         pprint.pprint(dictToInsert)
 
