@@ -22,18 +22,11 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if CLLocationManager.locationServicesEnabled() {
-            switch CLLocationManager.authorizationStatus() {
-            case .notDetermined, .restricted, .denied:
-                let alert = UIAlertController(title: "Attention!", message: "Authorization required", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
-            case .authorizedAlways, .authorizedWhenInUse:
                 locationManager.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.requestAlwaysAuthorization()
                 locationManager.startUpdatingLocation()
                 locationManager.distanceFilter = 250
-            }
         }
         else {
             let alert = UIAlertController(title: "Attention!", message: "Location services not enabled", preferredStyle: .alert)
