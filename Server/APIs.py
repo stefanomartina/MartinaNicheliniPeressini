@@ -145,7 +145,7 @@ def user_location():
 
 @app.route('/api/users/location', methods=['GET'])
 @auth.login_required
-def get_user_location:
+def get_user_location():
     return db_handler.get_location_by_user(auth.username())
 
 
