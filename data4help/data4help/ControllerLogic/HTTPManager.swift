@@ -44,7 +44,7 @@ class HTTPManager {
     }
     
     static func updateLocationOnDB(parameters: [String : Any]) {
-        let LOCATION_POST_URL = Global.getUserURL() + Global.LOCATION_POST
+        let LOCATION_POST_URL = Global.getUserURL() + Global.LOCATION
         Alamofire.request(LOCATION_POST_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .responseJSON { response in
                 switch response.result {
@@ -67,7 +67,7 @@ class HTTPManager {
         }
     }
     
-    static func getDataFromDB(_ updateCallback: @escaping ([HeartData]) -> ()){
+    static func getHearthDataFromDB(_ updateCallback: @escaping ([HeartData]) -> ()){
         let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
         var retrievedData : [HeartData] = []
         Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
@@ -76,9 +76,9 @@ class HTTPManager {
                 case .success(let value):
                     let json = JSON(value)
                     for (_, value): (String, JSON) in json {
-                        let bpm = value["bpm"].stringValue
-                        let timestamp = "   "+value["timestamp"].stringValue
-                        let retrieved = HeartData(bpm: bpm, timestamp: timestamp)
+                        /*let bpm = value["bpm"].stringValue
+                        let timestamp = "   "+value["timestamp"].stringValue*/
+                        let retrieved = HeartData(data: value)
                         retrievedData += [retrieved]
                     }
                 case .failure(let error):
@@ -86,6 +86,30 @@ class HTTPManager {
                 }
                 updateCallback(retrievedData)
         }
+    }
+    
+    static func getLocationDataFromDb(_ updateCallback: @escaping ([LocationData]) -> ()) {
+        let URL_USER_REGISTER = Global.getUserURL() + Global.LOCATION
+        var retrievedData : [LocationData] = []
+        
+        Alamofire.request(URL_USER_REGISTER, method: .get, encoding: JSONEncoding.default)
+            .responseJSON{ response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    for (_, value): (String, JSON) in json {
+                        /*let timestamp = "   "+value["timestamp"].stringValue
+                        let latitude = value["latitude"].floatValue
+                        let longitude = value["longitude"].floatValue*/
+                        let retrieved = LocationData(data: value)
+                        retrievedData += [retrieved]
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+                updateCallback(retrievedData)
+        }
+        
     }
     
     static func getSubscribtion(_ updateCallback: @escaping ([subscribtionRequest]) -> ()){

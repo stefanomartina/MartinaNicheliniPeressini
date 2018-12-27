@@ -7,8 +7,43 @@
 //
 
 import Foundation
+import SwiftyJSON
+import HealthKit
 
-struct HeartData {
-    let bpm : String
-    let timestamp : String
+class Data {
+    var timestamp: String = ""
+    
+    init (data: Date){
+        self.timestamp = "   "+"\(data)"
+    }
+    
+    init (data: String){
+        self.timestamp = data
+    }
+}
+
+class HeartData : Data {
+    var bpm : String
+    
+    init(data: HKQuantitySample) {
+        let tmp = "\(data.quantity)"
+        self.bpm = String(tmp.split(separator: " ")[0])
+        super.init(data: data.startDate)
+    }
+    
+    init(data: JSON){
+        self.bpm = data["bpm"].stringValue
+        super.init(data: data["timestamp"].stringValue)
+    }
+}
+
+class LocationData : Data {
+    var latitude: Float = 0.0
+    var longitude: Float = 0.0
+    
+    init(data: JSON){
+        self.latitude = data["latitude"].floatValue
+        self.longitude = data["longitude"].floatValue
+        super.init(data: "   "+data["timestamp"].stringValue)
+    }
 }

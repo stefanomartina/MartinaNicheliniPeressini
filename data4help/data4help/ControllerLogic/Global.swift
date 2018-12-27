@@ -21,7 +21,7 @@ class Global {
     static public let HEART_ENDPOINT = "/data/heart"
     static public let HEART_ENDPOINT_GET = "/data/heart/get_data"
     static public let SUBSCRIPTION = "/subscription"
-    static public let LOCATION_POST = "/location"
+    static public let LOCATION = "/location"
     
     static public let DEFAULT_THRESHOLD = 60
     

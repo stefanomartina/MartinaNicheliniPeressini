@@ -11,41 +11,44 @@ import HealthKit
 
 class DataTableViewController: UITableViewController {
     
-    var data = [HeartData]()
+    var data = [Data]()
     
     ////////////////////////////////////////////////////
     private func fetchData(){
-        HTTPManager.getDataFromDB { retrievedData in
-            self.data = retrievedData
+        self.data = []
+        HTTPManager.getHearthDataFromDB { retrievedData in
+            self.data = self.data + retrievedData
+            self.tableView.reloadData()
+        }
+        
+        HTTPManager.getLocationDataFromDb{ retrievedData in
+            self.data = self.data + retrievedData
             self.tableView.reloadData()
         }
     }
     
+    /*
     private func loadAndSendData(alsoFetch: Bool) {
         var queryReturned: [HKQuantitySample] = []
-        HealthKitManager.getLastHeartBeat(){gotData in
+        HealthKitManager.getLastHeartBeat(){ gotData in
             queryReturned = gotData
-            var bpm, timestamp, bpm_str : String
-            
+
             if queryReturned.count != 0 {
                 for hkqs in queryReturned {
-                    bpm = "\(hkqs.quantity)"
-                    bpm_str = String(bpm.split(separator: " ")[0])
-                    timestamp = "   "+"\(hkqs.startDate)"
-                    
-                    let newData = HeartData(bpm: bpm_str, timestamp: timestamp)
+                    let newData = HeartData(data: hkqs)
                     self.data += [newData]
                 }
             }
+            
             HTTPManager.sendHeartData(data: queryReturned)
             if alsoFetch {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
                     self.fetchData()
                 })
             }
         }
 
-    }
+    }*/
     
    
     
@@ -60,8 +63,8 @@ class DataTableViewController: UITableViewController {
     
     @objc
     func updateData(){
-        //self.fetchData()
-        loadAndSendData(alsoFetch: true)
+        //loadAndSendData(alsoFetch: true)
+        self.fetchData()
         tableView.reloadData()
         refresher.endRefreshing()
         
@@ -77,7 +80,8 @@ class DataTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 50.0
-        self.loadAndSendData(alsoFetch: true)
+        self.fetchData()
+        self.tableView.reloadData()
         
         tableView.refreshControl = refresher
     }
@@ -95,15 +99,25 @@ class DataTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "DataTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? DataTableViewCell else {
-            fatalError("The dequeued cell is not an instance of DataTableViewCell")
-        }
+        let heartCellIdentifier = "DataTableViewCell"
+        let locationCellIdentifier = "LocationDataTableViewCell"
+        
         let selectedData = data[indexPath.row]
         
-        cell.bpmLabel.text = selectedData.bpm
-        cell.timestampLabel.text = selectedData.timestamp
-        return cell
-    }
+        if type(of: data[indexPath.row]) == HeartData.self {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: heartCellIdentifier, for: indexPath) as? DataTableViewCell else {fatalError("The dequeued cell is not an instance of DataTableViewCell")}
+            
+            cell.bpmLabel.text = (selectedData as! HeartData).bpm
+            cell.timestampLabel.text = (selectedData as! HeartData).timestamp
+            return cell
+        }
+        else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier, for: indexPath) as? LocationDataTableViewCell else { fatalError("The dequeued cell is not an instance of LocationDataTableViewCell")}
+            cell.timestampLabel.text = (selectedData as! LocationData).timestamp
+            cell.coordinatesLabel.text = "" + String((selectedData as! LocationData).latitude) + " H, " +
+                                                String((selectedData as! LocationData).longitude) + " W"
+            return cell
+        }
+    } // end methods
     
 }

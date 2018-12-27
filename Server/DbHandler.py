@@ -11,72 +11,67 @@ class DuplicateException(Exception):
         super().__init__(message)
 
 
+class ConnectionPool:
+
+    @staticmethod
+    def get_new_connection():
+        return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
+
+
 class DBHandler:
 
-    def __init__(self):
-        self._db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
-        # self._dbCursor = self.db.cursor(buffered=True)
+    @staticmethod
+    def __send(query, values):
+        db = ConnectionPool.get_new_connection()
+        db_cursor = db.cursor(buffered=True)
+        db_cursor.execute(query, values)
+        db.commit()
+        db_cursor.close()
+        db.close()
 
-    @property
-    def db(self):
-        if self._db.is_connected():
-            # print("Connection is open")
-            return self._db
+    @staticmethod
+    def __get(query, values=None, multiple_lines=False):
+        db = ConnectionPool.get_new_connection()
+        db_cursor = db.cursor(buffered=True)
+        db_cursor.execute(query, values)
+
+        if multiple_lines:
+            to_return = db_cursor.fetchall()
+            db_cursor.close()
+            db.close()
+            return to_return
         else:
-            print("Connection died")
-            self._db.close()
-            self._db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
-            return self._db
+            for x in db_cursor:
+                to_return = x[0]
+            db_cursor.close()
+            db.close()
+            return to_return
 
     def auth(self, username, password):
         query = "SELECT password FROM User WHERE username = %s"
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query, username)
+        query_returned = self.__get(query, (username))
 
-        if dbCursor[0] == password:
-            dbCursor.close()
+        if query_returned == password:
             return True
         else:
-            dbCursor.close()
             return False
 
     def get_user_password(self, username):
         query = "SELECT password FROM User WHERE username = '" + username + "'"
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-
-        for x in dbCursor:
-            if x[0] is not None:
-                dbCursor.close()
-                return x[0]
-            else:
-                dbCursor.close()
-                return None
+        return self.__get(query, None, multiple_lines=False)
 
     def get_tp_secret(self, username):
         query = "SELECT secret FROM ThirdParty WHERE username = '" + username + "'"
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-
-        for x in dbCursor:
-            if x[0] is not None:
-                dbCursor.close()
-                return x[0]
-            else:
-                dbCursor.close()
-                return None
+        return self.__get(query, None, multiple_lines=False)
 
     def get_subscription_to_user(self, username):
-        query = "SELECT Username_ThirdParty, status, description FROM subscription"\
+        query = "SELECT Username_ThirdParty, status, description FROM subscription" \
                 " WHERE Username_User = '" + username + "'"
 
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-        rows = dbCursor.fetchall()
-        dbCursor.close()
+        query_returned = self.__get(query, None, multiple_lines=True)
 
         objects_list = []
-        for row in rows:
+        for row in query_returned:
             d = collections.OrderedDict()
             d['Username_ThirdParty'] = row[0]
             d['status'] = row[1]
@@ -88,51 +83,40 @@ class DBHandler:
         query = "INSERT INTO User (username, password, firstName, lastName, birthday, FiscalCode," \
                 " birthPlace, gender) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         values = (username, password, first_name, last_name, birth_date, fiscal_code, birth_place, gender)
-        dbCursor = self.db.cursor(buffered=True)
         try:
-            dbCursor.execute(query, values)
-            self.db.commit()
+            self.__send(query, values)
 
         except mysql.connector.IntegrityError:
-            dbCursor.close()
             raise DuplicateException('Username is already taken!')
 
         except Exception as e:
-            dbCursor.close()
             raise Exception(str(e))
 
     def create_tp(self, username, secret):
         query = "INSERT INTO ThirdParty VALUES (%s, %s)"
         values = (username, secret)
-        dbCursor = self.db.cursor(buffered=True)
+
         try:
-            dbCursor.execute(query, values)
-            self.db.commit()
-            dbCursor.close()
+            self.__send(query, secret)
 
         except mysql.connector.errors.IntegrityError:
-            dbCursor.close()
             raise Exception("Error")
 
     def insert_latitude_longitude(self, username, timestamp, latitude, longitude):
         query = "INSERT INTO Location VALUES (%s, %s, %s, %s)"
         timestamp = timestamp[:len(timestamp) - 6]
         values = (latitude, longitude, username, timestamp)
-        dbCursor = self.db.cursor(buffered=True)
 
         try:
-            dbCursor.execute(query, values)
-            self.db.commit()
-            dbCursor.close()
-
+            self.__send(query,values)
         except Exception as e:
-            dbCursor.close()
             raise Exception(str(e))
 
     def insert_heart_rate(self, username, dictToInsert):
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
         pprint.pprint(dictToInsert)
-        dbCursor = self.db.cursor(buffered=True)
+        db = ConnectionPool.get_new_connection()
+        dbCursor = db.cursor(buffered=True)
 
         for key in dictToInsert.keys():
             bpm = dictToInsert[key]['bpm']
@@ -150,15 +134,12 @@ class DBHandler:
             except Exception as e:
                 dbCursor.close()
                 print(str(e))
-        self.db.commit()
+        db.commit()
 
     def get_heart_rate_by_user(self, username):
         query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \
                 " WHERE Username ='" + username + "' ORDER BY Timestamp DESC"
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-        rows = dbCursor.fetchall()
-        dbCursor.close()
+        rows = self.__get(query, None, multiple_lines=True)
 
         objects_list = []
         for row in rows:
@@ -173,16 +154,13 @@ class DBHandler:
         query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location" \
                 " WHERE Username ='" + username + "' ORDER BY Timestamp DESC"
 
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-        rows = dbCursor.fetchall()
-        dbCursor.close()
+        rows = self.__get(query, None, multiple_lines=True)
 
         objects_list = []
         for row in rows:
             d = collections.OrderedDict()
-            d['Latitude'] = row[0]
-            d['Longitude'] = row[1]
+            d['Latitude'] = str(row[0])
+            d['Longitude'] = str(row[1])
             d['timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
             objects_list.append(d)
 
@@ -190,32 +168,22 @@ class DBHandler:
 
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-        rows = dbCursor.fetchall()
-        dbCursor.close()
+        rows = self.__get(query, None, multiple_lines=True)
         return rows[0][0]
 
     def subscribe_tp_to_user(self, username, fc, description):
         query = "INSERT INTO subscription VALUES (%s, %s, %s, %s)"
         user_username = self.get_user_username_by_fc(fc)
         values = (user_username, username, description, 'pending')
-        dbCursor = self.db.cursor(buffered=True)
 
         try:
-            dbCursor.execute(query, values)
-            dbCursor.close()
-            self.db.commit()
+            self.__send(query, values)
 
         except Exception as e:
-            dbCursor.close()
             print(str(e))
 
     def modify_subscription_status(self, username, thirdparty, new_status):
         query = "UPDATE subscription SET status= '" + new_status +"' WHERE (`Username_User`= '"+ username+ "' and `Username_ThirdParty`= '"+ thirdparty+"');"
         print(query)
-        dbCursor = self.db.cursor(buffered=True)
-        dbCursor.execute(query)
-        dbCursor.close()
-        self.db.commit()
+        self.__send(query, None)
         return 0

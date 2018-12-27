@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260307B421C157AE00EAC547 /* HTTPManager.swift */; };
+		2619C50621D52D4600CAF892 /* LocationDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2619C50521D52D4600CAF892 /* LocationDataTableViewCell.swift */; };
+		2619C50A21D560B300CAF892 /* Location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2619C50921D560B300CAF892 /* Location.png */; };
+		2619C50C21D5623900CAF892 /* maps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2619C50B21D5623900CAF892 /* maps.jpg */; };
 		261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */; };
 		2632805921CFF6520038F5BF /* Hearth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2632805821CFF6520038F5BF /* Hearth.png */; };
 		2677494221CEB7FB0050DDDB /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */; };
@@ -55,6 +58,9 @@
 /* Begin PBXFileReference section */
 		038C19EF50F01CF5E3F84920 /* Pods-data4helpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		260307B421C157AE00EAC547 /* HTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPManager.swift; sourceTree = "<group>"; };
+		2619C50521D52D4600CAF892 /* LocationDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataTableViewCell.swift; sourceTree = "<group>"; };
+		2619C50921D560B300CAF892 /* Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location.png; sourceTree = "<group>"; };
+		2619C50B21D5623900CAF892 /* maps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maps.jpg; sourceTree = "<group>"; };
 		261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewController.swift; sourceTree = "<group>"; };
 		2632805821CFF6520038F5BF /* Hearth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hearth.png; sourceTree = "<group>"; };
 		2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
@@ -126,6 +132,8 @@
 		2677493C21CEB68C0050DDDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2619C50B21D5623900CAF892 /* maps.jpg */,
+				2619C50921D560B300CAF892 /* Location.png */,
 				2632805821CFF6520038F5BF /* Hearth.png */,
 			);
 			path = Resources;
@@ -205,6 +213,7 @@
 				C63D293E21C268A000DB7FC3 /* ControllerLogic */,
 				2677494321CEBBB40050DDDB /* DataTableViewController.swift */,
 				2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */,
+				2619C50521D52D4600CAF892 /* LocationDataTableViewCell.swift */,
 				261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */,
 				26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */,
 				26F53DAC21C10336001F419A /* data4help.entitlements */,
@@ -358,7 +367,9 @@
 			files = (
 				C6CA754421AEB9F400A6039E /* LaunchScreen.storyboard in Resources */,
 				2632805921CFF6520038F5BF /* Hearth.png in Resources */,
+				2619C50A21D560B300CAF892 /* Location.png in Resources */,
 				C6CA754121AEB9F400A6039E /* Assets.xcassets in Resources */,
+				2619C50C21D5623900CAF892 /* maps.jpg in Resources */,
 				C6CA753F21AEB9F300A6039E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +505,7 @@
 				26DBDB1621CB07E0002C0EF7 /* SubscriptionTableViewCell.swift in Sources */,
 				260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */,
 				2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */,
+				2619C50621D52D4600CAF892 /* LocationDataTableViewCell.swift in Sources */,
 				26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
