@@ -43,6 +43,30 @@ class HTTPManager {
             .authenticate(usingCredential: credential)
     }
     
+    static func updateLocationOnDB(parameters: [String : Any]) {
+        let LOCATION_POST_URL = Global.getUserURL() + Global.LOCATION_POST
+        Alamofire.request(LOCATION_POST_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .responseJSON { response in
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    let code = json["Response"]
+                    let reason = json["Reason"].stringValue
+                    if code == 1 {
+                        print(reason)
+                    }
+                    else if code == -1 {
+                        print(reason)
+                    }
+                    else {
+                        print(reason)
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+        }
+    }
+    
     static func getDataFromDB(_ updateCallback: @escaping ([HeartData]) -> ()){
         let URL_USER_REGISTER = Global.getUserURL() + Global.HEART_ENDPOINT_GET
         var retrievedData : [HeartData] = []

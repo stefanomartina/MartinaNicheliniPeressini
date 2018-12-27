@@ -15,7 +15,6 @@ import SwiftyJSON
 class LocationViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    let LOCATION_POST_URL = Global.getUserURL() + Global.LOCATION_POST
     
     @IBOutlet weak var map: MKMapView!
     
@@ -40,7 +39,7 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         let location = locations[0] //most recent position of the user
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
-        let timestamp = location.timestamp
+        let timestamp = "\(location.timestamp)"
         
         let span: MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
@@ -48,34 +47,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         map.setRegion(region, animated: true)
         self.map.showsUserLocation = true
         
-        /*
-        locationManager.stopUpdatingLocation()
-        locationManager.delegate = nil
-        updateLocationOnDB(parameters: ["latitude": latitude, "longitude": longitude, "timestamp": timestamp])
-        */ //NOT WORKING 
-    }
-    
-    func updateLocationOnDB(parameters: [String : Any]) {
-        Alamofire.request(LOCATION_POST_URL, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .responseJSON { response in
-                switch response.result {
-                case .success(let value):
-                    let json = JSON(value)
-                    let code = json["Response"]
-                    let reason = json["Reason"].stringValue
-                    if code == 1 {
-                        print(reason)
-                    }
-                    else if code == -1 {
-                        print(reason)
-                    }
-                    else {
-                        print(reason)
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-        }
-    }
-    
+        
+        DispatchQueue.main.async(execute: {
+            HTTPManager.updateLocationOnDB(parameters: ["latitude": latitude, "longitude": longitude, "timestamp": timestamp])
+        })
+    } //end method locationManager
 }

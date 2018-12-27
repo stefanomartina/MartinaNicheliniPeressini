@@ -341,11 +341,11 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="BHR-8Y-YjR">
-                                <rect key="frame" x="50" y="287" width="326" height="122.33333333333333"/>
+                                <rect key="frame" x="50" y="287" width="334" height="122.33333333333333"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="120" translatesAutoresizingMaskIntoConstraints="NO" id="h7N-Pw-HDw">
-                                        <rect key="frame" x="22" y="0.0" width="282" height="20.333333333333332"/>
+                                        <rect key="frame" x="26" y="0.0" width="282" height="20.333333333333332"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Custom Threshold" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9JC-pl-a8g">
                                                 <rect key="frame" x="0.0" y="0.0" width="141" height="20.333333333333332"/>
@@ -362,13 +362,13 @@
                                         </subviews>
                                     </stackView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iK4-oF-TUa">
-                                        <rect key="frame" x="-2" y="41.333333333333336" width="330" height="31.000000000000007"/>
+                                        <rect key="frame" x="-2" y="41.333333333333336" width="338" height="31.000000000000007"/>
                                         <connections>
                                             <action selector="sliderThresholdChanges:" destination="zDa-lH-Hyg" eventType="valueChanged" id="WWS-PR-ak1"/>
                                         </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRx-bJ-Szf">
-                                        <rect key="frame" x="138.66666666666666" y="92.333333333333329" width="49" height="30"/>
+                                        <rect key="frame" x="142.66666666666666" y="92.333333333333329" width="49" height="30"/>
                                         <state key="normal" title="Submit"/>
                                         <connections>
                                             <action selector="submitThresholdCHanges:" destination="zDa-lH-Hyg" eventType="touchUpInside" id="0p6-Mv-LRj"/>
@@ -541,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BYs-Ba-eUH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2523" y="130"/>
+            <point key="canvasLocation" x="2891" y="863"/>
         </scene>
         <!--Data Table View Controller-->
         <scene sceneID="pQR-2h-tvp">
@@ -631,18 +631,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMw-NS-Mtw">
-                                <rect key="frame" x="0.0" y="124" width="414" height="689"/>
-                                <connections>
-                                    <segue destination="Z3j-32-3u7" kind="embed" id="cZ4-08-cBi"/>
-                                </connections>
-                            </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Data" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1GV-2C-PKv">
                                 <rect key="frame" x="20" y="53" width="98" height="54"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
                                 <color key="textColor" red="0.2156862745" green="0.25098039220000001" blue="0.29411764709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMw-NS-Mtw">
+                                <rect key="frame" x="0.0" y="124" width="414" height="689"/>
+                                <connections>
+                                    <segue destination="Z3j-32-3u7" kind="embed" id="cZ4-08-cBi"/>
+                                </connections>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
