@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 from DbHandler import DuplicateException
-import secrets
+import secrets, pprint
 
 auth = HTTPBasicAuth()
 db_handler = DBHandler()
@@ -126,6 +126,7 @@ def update_subscription_status():
 def user_location():
     try:
         data = request.get_json()
+        pprint.pprint(data)
         latitude = data['latitude']
         longitude = data['longitude']
         timestamp = data['timestamp']

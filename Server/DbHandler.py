@@ -20,7 +20,7 @@ class DBHandler:
     @property
     def db(self):
         if self._db.is_connected():
-            print("Connection is open")
+            # print("Connection is open")
             return self._db
         else:
             print("Connection died")
