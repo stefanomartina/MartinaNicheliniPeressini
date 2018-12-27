@@ -143,6 +143,12 @@ def user_location():
         print(str(e))
         return jsonify({'Response': -2, 'Reason': str(e)})
 
+@app.route('/api/users/location', methods=['GET'])
+@auth.login_required
+def get_user_location:
+    return db_handler.get_location_by_user(auth.username())
+
+
 
 #######################################################################################################################
 # USER ENDPOINT OPERATIONS
