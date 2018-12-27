@@ -38,12 +38,12 @@ class HeartData : Data {
 }
 
 class LocationData : Data {
-    var latitude: Float = 0.0
-    var longitude: Float = 0.0
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
     
     init(data: JSON){
-        self.latitude = data["latitude"].floatValue
-        self.longitude = data["longitude"].floatValue
+        self.latitude = Double(data["Latitude"].stringValue)!
+        self.longitude = Double(data["Longitude"].stringValue)!
         super.init(data: "   "+data["timestamp"].stringValue)
     }
 }

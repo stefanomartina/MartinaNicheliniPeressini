@@ -11,6 +11,8 @@
 		2619C50621D52D4600CAF892 /* LocationDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2619C50521D52D4600CAF892 /* LocationDataTableViewCell.swift */; };
 		2619C50A21D560B300CAF892 /* Location.png in Resources */ = {isa = PBXBuildFile; fileRef = 2619C50921D560B300CAF892 /* Location.png */; };
 		2619C50C21D5623900CAF892 /* maps.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2619C50B21D5623900CAF892 /* maps.jpg */; };
+		2619C50E21D56B7600CAF892 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2619C50D21D56B7600CAF892 /* MapKit.framework */; };
+		2619C51021D56BCD00CAF892 /* LocationDataCellDetailsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2619C50F21D56BCD00CAF892 /* LocationDataCellDetailsMapViewController.swift */; };
 		261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */; };
 		2632805921CFF6520038F5BF /* Hearth.png in Resources */ = {isa = PBXBuildFile; fileRef = 2632805821CFF6520038F5BF /* Hearth.png */; };
 		2677494221CEB7FB0050DDDB /* DataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */; };
@@ -61,6 +63,8 @@
 		2619C50521D52D4600CAF892 /* LocationDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataTableViewCell.swift; sourceTree = "<group>"; };
 		2619C50921D560B300CAF892 /* Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location.png; sourceTree = "<group>"; };
 		2619C50B21D5623900CAF892 /* maps.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maps.jpg; sourceTree = "<group>"; };
+		2619C50D21D56B7600CAF892 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		2619C50F21D56BCD00CAF892 /* LocationDataCellDetailsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDataCellDetailsMapViewController.swift; sourceTree = "<group>"; };
 		261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewController.swift; sourceTree = "<group>"; };
 		2632805821CFF6520038F5BF /* Hearth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hearth.png; sourceTree = "<group>"; };
 		2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewCell.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA28BD34F9C24F7927C6B86D /* Pods_data4help.framework in Frameworks */,
+				2619C50E21D56B7600CAF892 /* MapKit.framework in Frameworks */,
 				26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +156,7 @@
 		85EDA6382A5A75C67CD33CDE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2619C50D21D56B7600CAF892 /* MapKit.framework */,
 				26F53DAD21C1033B001F419A /* HealthKit.framework */,
 				6D61006B196DE6D202BB09F3 /* Pods_data4help.framework */,
 				C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */,
@@ -214,6 +220,7 @@
 				2677494321CEBBB40050DDDB /* DataTableViewController.swift */,
 				2677494121CEB7FB0050DDDB /* DataTableViewCell.swift */,
 				2619C50521D52D4600CAF892 /* LocationDataTableViewCell.swift */,
+				2619C50F21D56BCD00CAF892 /* LocationDataCellDetailsMapViewController.swift */,
 				261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */,
 				26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */,
 				26F53DAC21C10336001F419A /* data4help.entitlements */,
@@ -326,6 +333,9 @@
 								enabled = 1;
 							};
 							com.apple.HealthKit = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
 								enabled = 1;
 							};
 						};
@@ -491,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				261D9A9421C70D6800B54A38 /* SubscriptionTableViewController.swift in Sources */,
+				2619C51021D56BCD00CAF892 /* LocationDataCellDetailsMapViewController.swift in Sources */,
 				C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */,
 				C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */,
 				26D2E35321BEB175009F68E7 /* Global.swift in Sources */,
