@@ -116,6 +116,7 @@ class DBHandler:
 
     def insert_latitude_longitude(self, username, timestamp, latitude, longitude):
         query = "INSERT INTO Location VALUES (%s, %s, %s, %s)"
+        timestamp = timestamp[:len(timestamp) - 6]
         values = (latitude, longitude, username, timestamp)
         dbCursor = self.db.cursor(buffered=True)
 
@@ -150,22 +151,6 @@ class DBHandler:
                 dbCursor.close()
                 print(str(e))
         self.db.commit()
-
-
-
-    """def insert_heart_rate(self, username, bpm, timestamp):
-        query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
-        values = (username, timestamp, bpm)
-
-        try:
-            self.dbMy.execute(query, values)
-            self.db.commit()
-
-        except mysql.connector.IntegrityError:
-            raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
-
-        except Exception as e:
-            print(str(e))"""
 
     def get_heart_rate_by_user(self, username):
         query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \
