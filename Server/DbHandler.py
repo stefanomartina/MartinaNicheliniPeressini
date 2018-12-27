@@ -169,6 +169,25 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
+    def get_location_by_user(self, username):
+        query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location" \
+                " WHERE Username ='" + username + "' ORDER BY Timestamp DESC"
+
+        dbCursor = self.db.cursor(buffered=True)
+        dbCursor.execute(query)
+        rows = dbCursor.fetchall()
+        dbCursor.close()
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['Latitude'] = row[0]
+            d['Longitude'] = row[1]
+            d['timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
         dbCursor = self.db.cursor(buffered=True)
