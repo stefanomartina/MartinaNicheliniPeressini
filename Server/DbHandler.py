@@ -136,7 +136,7 @@ class DBHandler:
 
     def get_heart_rate_by_user(self, username):
         query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \
-                " WHERE Username ='" + username + "' ORDER BY Timestamp ASC"
+                " WHERE Username ='" + username + "' ORDER BY Timestamp DESC"
 
         self.dbMy.execute(query)
         rows = self.dbMy.fetchall()
