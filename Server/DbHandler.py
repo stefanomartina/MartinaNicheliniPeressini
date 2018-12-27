@@ -22,7 +22,7 @@ class DBHandler:
         dbCursor = self.db.cursor(buffered=True)
         dbCursor.execute(query, username)
 
-        if self.dbCursor[0] == password:
+        if dbCursor[0] == password:
             dbCursor.close()
             return True
         else:
@@ -34,7 +34,7 @@ class DBHandler:
         dbCursor = self.db.cursor(buffered=True)
         dbCursor.execute(query)
 
-        for x in self.dbCursor:
+        for x in dbCursor:
             if x[0] is not None:
                 dbCursor.close()
                 return x[0]
@@ -47,7 +47,7 @@ class DBHandler:
         dbCursor = self.db.cursor(buffered=True)
         dbCursor.execute(query)
 
-        for x in self.dbCursor:
+        for x in dbCursor:
             if x[0] is not None:
                 dbCursor.close()
                 return x[0]
@@ -61,7 +61,7 @@ class DBHandler:
 
         dbCursor = self.db.cursor(buffered=True)
         dbCursor.execute(query)
-        rows = self.dbCursor.fetchall()
+        rows = dbCursor.fetchall()
         dbCursor.close()
 
         objects_list = []
@@ -161,7 +161,7 @@ class DBHandler:
                 " WHERE Username ='" + username + "' ORDER BY Timestamp DESC"
         dbCursor = self.db.cursor(buffered=True)
         dbCursor.execute(query)
-        rows = self.dbCursor.fetchall()
+        rows = dbCursor.fetchall()
         dbCursor.close()
 
         objects_list = []
@@ -177,7 +177,7 @@ class DBHandler:
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
         dbCursor = self.db.cursor(buffered=True)
         dbCursor.execute(query)
-        rows = self.dbCursor.fetchall()
+        rows = dbCursor.fetchall()
         dbCursor.close()
         return rows[0][0]
 
