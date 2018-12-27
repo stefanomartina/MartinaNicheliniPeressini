@@ -14,8 +14,18 @@ class DuplicateException(Exception):
 class DBHandler:
 
     def __init__(self):
-        self.db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
+        self._db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
         # self._dbCursor = self.db.cursor(buffered=True)
+
+    @property
+    def db(self):
+        if self._db.is_connected():
+            print("Connection is open")
+            return self._db
+        else:
+            print("Connection died")
+            self._db.cmd_reset_connection()
+            return self._db
 
     def auth(self, username, password):
         query = "SELECT password FROM User WHERE username = %s"
