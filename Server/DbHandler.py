@@ -24,7 +24,8 @@ class DBHandler:
             return self._db
         else:
             print("Connection died")
-            self._db.cmd_reset_connection()
+            self._db.close()
+            self._db = mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
             return self._db
 
     def auth(self, username, password):
