@@ -40,6 +40,7 @@ class LocationDataCellDetailsMapViewController: UIViewController {
         position.title = "Your past position"
         position.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         mapView.addAnnotation(position)
+        mapView.setCenter(position.coordinate, animated: true)
         mapView.reloadInputViews()
     }
 

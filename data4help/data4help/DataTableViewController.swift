@@ -131,6 +131,6 @@ class DataTableViewController: UITableViewController{
         let detailViewController = segue.destination as! LocationDataCellDetailsMapViewController
         // Pass on the data to the Detail ViewController by setting it's indexPathRow value
         detailViewController.latitude = (self.data[index!] as! LocationData).latitude
-       detailViewController.longitude = (self.data[index!] as! LocationData).longitude
+        detailViewController.longitude = (self.data[index!] as! LocationData).longitude
     }
 }
