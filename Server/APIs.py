@@ -10,15 +10,22 @@ db_handler = DBHandler()
 
 app = Flask(__name__)
 
+userLogged = dict()
+
 
 @auth.get_password
 def get_password(username):
-    retrieved = db_handler.get_user_password(str(username))
-    if retrieved is None:
-        return db_handler.get_tp_secret(str(username))
-    else:
+    retrieved = None
+    try:
+        retrieved = userLogged[username]
         return retrieved
-
+    except KeyError:
+        retrieved = db_handler.get_user_password(str(username))
+        if retrieved is None:
+            return db_handler.get_tp_secret(str(username))
+        else:
+            userLogged[username] = retrieved
+            return retrieved
 
 @auth.error_handler
 def unauthorized():
