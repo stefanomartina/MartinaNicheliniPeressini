@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 from DbHandler import DuplicateException
-import secrets, pprint
+import secrets, pprint, sys
 
 auth = HTTPBasicAuth()
 db_handler = DBHandler()
@@ -179,4 +179,9 @@ def subscribe():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    try:
+        app.run(host='0.0.0.0', debug=True)
+    except KeyboardInterrupt:
+        print("[*] Server shutted down")
+        db_handler.db.close()
+        sys.exit(0)
