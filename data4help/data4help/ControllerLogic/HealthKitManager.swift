@@ -7,6 +7,42 @@
 //
 import Foundation
 import HealthKit
+import UserNotifications
+
+class AutomatedSoS {
+    
+    private static func notificationAlert(badValue: HKQuantitySample){
+        print("SOS triggered")
+        
+        //define notification style
+        let content = UNMutableNotificationContent()
+        content.title = Messages.BPM_ALERT_TITLE
+        content.body = Messages.BPM_ALERT_BODY
+        content.sound = UNNotificationSound.default
+        
+        //schedule notification with a trigger of a time interval of 1 second
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        
+        let identifier = "SOSNotificationIdentifier"
+        
+        //make a request to the notification center
+        let request = UNNotificationRequest(identifier: identifier,
+                                            content: content, trigger: trigger)
+        center.add(request, withCompletionHandler: { (error) in
+            if let error = error {print(error)}})
+    } //end method notificationAlert
+    
+    public static func checkValues (values: [HKQuantitySample]){
+        let threshHold = UserDefaults.standard.integer(forKey: "threshold")
+        for value in values {
+            let tmp = "\(value.quantity)"
+            let count = Int(tmp.split(separator: " ")[0])
+            if count ?? 0 < threshHold {
+                self.notificationAlert(badValue: value)
+            }
+        }
+    } //end method checkValues
+} //end class automatedSOS
 
 class HealthKitManager {
     
@@ -48,7 +84,10 @@ class HealthKitManager {
             DispatchQueue.main.async(execute: {
                 print("Async work\n")
                 HealthKitManager.getLastHeartBeat({ retrievedData in
-                HTTPManager.sendHeartData(data: retrievedData)
+                    let check = UserDefaults.standard.bool(forKey: "automatedSOSToggle")
+                    if check {
+                        AutomatedSoS.checkValues(values: retrievedData)}
+                    HTTPManager.sendHeartData(data: retrievedData)
             })})
             
             print("Triggered by long running query")
@@ -84,7 +123,7 @@ class HealthKitManager {
             samples = results as! [HKQuantitySample]
             updateHandler(samples)
             
-            // If I0ve found some elements, I save the date of the last of them in order to have a reference of the timestamp of the last retrieved sample
+            // If I've found some elements, I save the date of the last of them in order to have a reference of the timestamp of the last retrieved sample
             if samples.count != 0 {
                 let lastTimestamp = samples[samples.count - 1].startDate
                 UserDefaults.standard.set(lastTimestamp, forKey: "timestampOfLastDataRetrieved")

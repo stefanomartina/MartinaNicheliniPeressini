@@ -11,14 +11,19 @@ import SwiftyJSON
 import HealthKit
 
 class Data {
-    var timestamp: String = ""
+    var timestamp : Date
+    var str_timestamp: String
     
     init (data: Date){
-        self.timestamp = "   "+"\(data)"
+        self.timestamp = data
+        self.str_timestamp = "   "+"\(data)"
     }
     
     init (data: String){
-        self.timestamp = data
+        self.str_timestamp = data
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        self.timestamp =  dateFormatterGet.date(from: data)!
     }
 }
 

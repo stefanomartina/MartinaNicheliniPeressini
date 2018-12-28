@@ -7,15 +7,39 @@
 //
 
 import UIKit
+import UserNotifications
 
+////////////////////////////////////////////// DECLARATION OF NOTIFCATION DELEGATE AND NOTIFICATION CENTER
+let notificationDelegate = NotificationCenter()
+let center = UNUserNotificationCenter.current()
+
+// all actions to be settuped app in the App delegates but activated only once user logged in 
+func loginServicesActivation() {
+    center.delegate = notificationDelegate
+    HealthKitManager.activateLongRunningQuery()
+}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        HealthKitManager.activateLongRunningQuery()
+        
+        Global.userDefaults.set(60, forKey: "threshold")  // debug purpose
+        
+        ////////////////////////////////////////////// NOTIFICATION PERMISSION
+        let options: UNAuthorizationOptions = [.alert, .sound];
+        //center.delegate = notificationDelegate  ----> better to assign it when user logs in. Implemented in loginServicesActivation functions
+        center.requestAuthorization(options: options) {
+            (granted, error) in
+            if !granted {
+                print("Something went wrong")
+            }
+        }
+        //////////////////////////////////////////////  HEALTHKIT LONG QUERY ACTIVATION
+        //HealthKitManager.activateLongRunningQuery() ----> better to assign it when user logs in. Implemented in loginServicesActivation functions
+        
         return true
     }
 

@@ -125,10 +125,11 @@ class HTTPManager {
                 case .success(let value):
                     let json = JSON(value)
                     for (_, value): (String, JSON) in json {
-                        let requester = value["Username_ThirdParty"].stringValue
+                        /*let requester = value["Username_ThirdParty"].stringValue
                         let description = value["description"].stringValue
                         let status = subscriptionStatus(rawValue: value["status"].stringValue )
-                        let request = subscribtionRequest(status: status ?? subscriptionStatus.UNDEFINED, requesterName: requester, description: description)
+                        let request = subscribtionRequest(status: status ?? subscriptionStatus.UNDEFINED, requesterName: requester, description: description)*/
+                        let request = subscribtionRequest(jsonInitializer: value)
                         dataToReturn = dataToReturn + [request]
                     }
                 case .failure(let error):

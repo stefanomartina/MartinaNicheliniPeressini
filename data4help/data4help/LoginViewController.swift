@@ -1,15 +1,6 @@
 import Alamofire
 import UIKit
 
-func resetDefaults() {
-    let defaults = UserDefaults.standard
-    let dictionary = defaults.dictionaryRepresentation()
-    dictionary.keys.forEach { key in
-        defaults.removeObject(forKey: key)
-    }
-}
-
-
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var username = ""
@@ -53,7 +44,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                     self.present(alert, animated: true)
                                 }
                             }
-                            else { self.performSegue(withIdentifier: "loginToDashboard", sender: nil) }
+                            else {
+                                self.performSegue(withIdentifier: "loginToDashboard", sender: nil)
+                                loginServicesActivation() // activate notification delegation of the notification center
+                            }
                         }
                     }
                 }
@@ -64,20 +58,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         self.performSegue(withIdentifier: "loginToRegistration", sender: nil)
     }
     
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()  //if desired
         self.loginButton(nil)
         return true
     }
     
+    ////////////////////////////////// Standard UIController methods override
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.passwordTextField.delegate = self //to bind return action on keyboard
-        self.hideKeyboardWhenTappedAround() //function to bind the tap out action to the keyboard dismiss action
-        //resetDefaults() //function do reset user default DEBUGGING PORPOUSE
-        Global.getUserURL() {
-            () in self.serverLabel.text = Global.getUserURL()
-        }
+        
+        //to bind return action on keyboard
+        self.passwordTextField.delegate = self
+        
+        //function to bind the tap out action to the keyboard dismiss action
+        self.hideKeyboardWhenTappedAround()
+        
+        //set apiEndpointLabel
+        Global.getUserURL() { () in self.serverLabel.text = Global.getUserURL()}
     }
     
 }

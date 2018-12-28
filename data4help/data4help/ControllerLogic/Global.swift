@@ -53,5 +53,7 @@ class Global {
 class Messages {
     static public let LOGIN_ERROR = "Login error: server didn't response"
     static public let NETWORK_ERROR = "Network error: server isn't responding"
+    static public let BPM_ALERT_TITLE = "AUTOMATED SOS - BPM threashold value violated"
+    static public let BPM_ALERT_BODY = "Something is probably wrong. Press \"I'm ok\" to block the call to SOS service"
 }
 
