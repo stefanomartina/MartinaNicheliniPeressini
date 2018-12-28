@@ -11,6 +11,18 @@ import UserNotifications
 
 class NotificationCenter : NSObject, UNUserNotificationCenterDelegate {
     
+    // function to register custom notification actions
+    static func defineCustomNotificationActions() {
+        let okAction = UNNotificationAction(identifier: Global.SOSOkActionID,
+                                                title: "I'm OK", options: [])
+        
+        let category = UNNotificationCategory(identifier: Global.SOSCategoryID,
+                                              actions: [okAction],
+                                              intentIdentifiers: [], options: [])
+        
+        center.setNotificationCategories([category])
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -18,20 +30,15 @@ class NotificationCenter : NSObject, UNUserNotificationCenterDelegate {
         completionHandler([.alert,.sound])
     }
     
+    
+    ///////////////////////////////////////// NOTIFICATION CENTER AS A DELEGATOR: define here notification action callback
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        
         // Determine the user action
         switch response.actionIdentifier {
-        case UNNotificationDismissActionIdentifier:
-            print("Dismiss Action")
-        case UNNotificationDefaultActionIdentifier:
-            print("Default")
-        case "Snooze":
-            print("Snooze")
-        case "Delete":
-            print("Delete")
+        case Global.SOSOkActionID:
+            print ("It'all ok")
         default:
             print("Unknown action")
         }

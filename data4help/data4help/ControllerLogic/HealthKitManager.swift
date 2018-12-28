@@ -19,6 +19,7 @@ class AutomatedSoS {
         content.title = Messages.BPM_ALERT_TITLE
         content.body = Messages.BPM_ALERT_BODY
         content.sound = UNNotificationSound.default
+        content.categoryIdentifier = Global.SOSCategoryID
         
         //schedule notification with a trigger of a time interval of 1 second
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)

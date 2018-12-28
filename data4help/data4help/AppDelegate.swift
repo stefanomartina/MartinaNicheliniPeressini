@@ -32,11 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let options: UNAuthorizationOptions = [.alert, .sound];
         //center.delegate = notificationDelegate  ----> better to assign it when user logs in. Implemented in loginServicesActivation functions
         center.requestAuthorization(options: options) {
-            (granted, error) in
-            if !granted {
-                print("Something went wrong")
-            }
-        }
+            (granted, error) in if !granted { print("Something went wrong") } }
+        NotificationCenter.defineCustomNotificationActions()
+        
         //////////////////////////////////////////////  HEALTHKIT LONG QUERY ACTIVATION
         //HealthKitManager.activateLongRunningQuery() ----> better to assign it when user logs in. Implemented in loginServicesActivation functions
         
