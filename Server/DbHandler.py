@@ -103,6 +103,7 @@ class DBHandler:
             raise Exception("Error")
 
     def insert_sos(self, username, timestamp, sos):
+        timestamp = timestamp[:len(timestamp) - 6]
         query = "UPDATE HeartRate SET SOS = '" + sos + "' " \
                 " WHERE (HeartRate.Username = '" + username + "' and HeartRate.Timestamp = '" + timestamp + "')"
 
