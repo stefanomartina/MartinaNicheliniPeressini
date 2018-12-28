@@ -146,7 +146,7 @@ def user_location():
 
 @app.route('/api/users/sos', methods=['POST'])
 @auth.login_required
-def user_location():
+def user_sos():
     try:
         data = request.get_json()
         timestamp = data['timestamp']
