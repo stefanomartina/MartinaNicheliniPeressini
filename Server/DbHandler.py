@@ -102,6 +102,16 @@ class DBHandler:
         except mysql.connector.errors.IntegrityError:
             raise Exception("Error")
 
+    def insert_sos(self, username, timestamp, sos):
+        query = "UPDATE HeartRate SET SOS = '" + sos + "' " \
+                " WHERE (HeartRate.Username = '" + username + "' and HeartRate.Timestamp = '" + timestamp + "')"
+
+        try:
+            self.__send(query)
+
+        except Exception as e:
+            raise Exception(str(e))
+
     def insert_latitude_longitude(self, username, timestamp, latitude, longitude):
         query = "INSERT INTO Location VALUES (%s, %s, %s, %s)"
         timestamp = timestamp[:len(timestamp) - 6]
