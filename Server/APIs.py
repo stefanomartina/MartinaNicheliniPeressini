@@ -185,7 +185,6 @@ def subscribe():
 
 
 @app.route('/api/thirdparties/get_tp', methods=['GET'])
-@auth.login_required
 def get_tp():
     return db_handler.get_tp()
 
