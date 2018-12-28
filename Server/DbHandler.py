@@ -182,21 +182,20 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
-    def get_location_by_fc(self, fc):
-        query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
-                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')"
-        rows = self.__get(query, None, multiple_lines=True)
-
-        objects_list = []
-        for row in rows:
-            d = collections.OrderedDict()
-            d['Latitude'] = str(row[0])
-            d['Longitude'] = str(row[1])
-            d['timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
-            objects_list.append(d)
-
-        return json.dumps(objects_list)
-
+##    def get_location_by_fc(self, fc):
+##        query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
+##                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')"
+##        rows = self.__get(query, None, multiple_lines=True)
+##
+##        objects_list = []
+##        for row in rows:
+##            d = collections.OrderedDict()
+##            d['Latitude'] = str(row[0])
+##            d['Longitude'] = str(row[1])
+##            d['timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
+##           objects_list.append(d)
+##
+##        return json.dumps(objects_list)
 
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"

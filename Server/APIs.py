@@ -189,21 +189,22 @@ def get_tp():
     return db_handler.get_tp()
 
 
-@app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
-def subscribe():
-    try:
-        data = request.get_json()
-        fc = data["fc"]
-        try:
-            return db_handler.get_location_by_fc(fc)
-
-        except Exception as e:
-            print(str(e))
-            return jsonify({'Response': -1, 'Reason': str(e)})
-
-    except Exception as e:
-        print(str(e))
-        return jsonify({'Response': -2, 'Reason': str(e)})
+##@app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
+##def subscribe():
+##    try:
+##        data = request.get_json()
+##        fc = data["fc"]
+##        try:
+##            return db_handler.get_location_by_fc(fc)
+##
+##        except Exception as e:
+##            print(str(e))
+##            return jsonify({'Response': -1, 'Reason': str(e)}
+##
+##
+##    except Exception as e:
+##        print(str(e))
+##        return jsonify({'Response': -2, 'Reason': str(e)})
 
 
 if __name__ == '__main__':
