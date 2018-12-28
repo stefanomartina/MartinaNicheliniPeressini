@@ -103,12 +103,11 @@ class DBHandler:
             raise Exception("Error")
 
     def insert_sos(self, username, timestamp, sos):
-        query = "UPDATE HeartRate SET SOS = %s " \
+        query = "UPDATE HeartRate SET SOS = '" + sos + "' " \
                 " WHERE (HeartRate.Username = '" + username + "' and HeartRate.Timestamp = '" + timestamp + "')"
-        value = sos
 
         try:
-            self.__send(query, value)
+            self.__send(query, None)
 
         except Exception as e:
             raise Exception(str(e))
