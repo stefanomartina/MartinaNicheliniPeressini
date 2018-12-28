@@ -168,6 +168,20 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
+    def get_tp(self):
+        query = "SELECT ThirdParty.Username, ThirdParty.secret FROM ThirdParty"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['Username'] = str(row[0])
+            d['secret'] = str(row[1])
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
         rows = self.__get(query, None, multiple_lines=True)

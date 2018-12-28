@@ -184,6 +184,12 @@ def subscribe():
         return jsonify({'Response': 1})
 
 
+@app.route('/api/thirdparties/get_tp', methods=['GET'])
+@auth.login_required
+def get_tp():
+    return db_handler.get_tp()
+
+
 if __name__ == '__main__':
     try:
         app.run(host='0.0.0.0', debug=True)
