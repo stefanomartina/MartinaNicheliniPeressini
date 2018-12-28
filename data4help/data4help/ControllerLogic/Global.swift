@@ -27,6 +27,8 @@ class Global {
     
     static public let userDefaults = UserDefaults.standard
     
+    static public let SOSOkActionID = "OK"
+    static public let SOSCategoryID = "SOSNotificationCategory"
     //This method handles the selection of the right URL.
     static public func getUserURL(_ completionHandler: (() -> Void)? = nil)  -> String {
         if USER_URL == "" {
