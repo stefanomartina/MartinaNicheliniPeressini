@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{nameref}
+\DeclareUnicodeCharacter{FB01}{fi}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{listings}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{alloy-style}
+
+\begin{document}
+
+\begin{figure}[t]
+\centering
+	\includegraphics[height=6.25cm,keepaspectratio]{Figures/logo}
+\end{figure}
+
+\title{TrackMe \\ Software Engineering 2 Project\\ \textit{RASD Document} }
+\author{Stefano Martina, Alessandro Nichelini, Francesco Peressini
+		\\ \\ A.Y. 2018/2019 \\ Version 1.0.0}
+		
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Introduction and scope}
+\subsection{Introduction}
+\subsection{scope}
+
+\section{Functionality implemented}
+
+\section{Adopted frameworks}
+\subsection{Adopted programming language}
+
+The project has been developed using two programming language. 
+
+\begin{itemize}
+	\item iOS application has been developed in the "new" programming language by Apple: Swift (target version: Swift 4.2).
+	\item  Backend software has been developed using Python (target version: Python 3.6)
+\end{itemize}
+
+The team has chosen Swift over Objective-C because of the effort Apple is putting in its development. Moreover Swift has been thought to work with iOS in a more specific way than Objective-C.\\
+Python has been chosen as the programming language for the backend because most of the team members has previous proficiency ih using it.
+\subsection{Middleware adopted}
+
+\subsubsection{Frameworks}
+For the backend: Flask framework has been adopted. Flask is a web development framework that let the building of easy and light web environments. It has been used to both build the API infrastructure and the third parties' web interface.
+
+\subsection{Libraries}
+For Apple Swift in iOS the following external libraries has been adopted:
+\begin{itemize}
+	\item Alamofire by Alamofire (\url{https://github.com/Alamofire/Alamofire}) to better handle web request client side.
+	\item SwiftyJSON by SwiftyJSON (\url{https://github.com/SwiftyJSON/SwiftyJSON}) to better handle JSON data in Swift.
+\end{itemize}
+
+For the backend, the following Python libraries has been adopted:
+\begin{itemize}
+	\item Flask: the main library of the previously described framework Flask.
+	\item Flask HTTP Auth: an extension of Flask framework to implemented basic HTTP auth directly in the same environments.
+	\item MySQLConnector: this library is necessary to handle communication with a SQL database.
+	\item The following standard libraries were also used:
+			\begin{itemize}
+				\item Python-Sys
+				\item Python-Secret
+				\item Python-PPrint
+				\item Python-Collections
+				\item Python-Json
+			\end{itemize}
+\end{itemize}
+
+
+
+\subsection{API used}
+The project has not used external API than the ones directly developed in-house.
+
+\section{Source code structure}
+
+\section{Testing}
+
+\section{Installation instructions}
+
+\subsection{iOS mobile app installation instructions}
+\subsection{Python backend installation instructions}
+Python backend code should run on each Python 3.x distribution. More in details the target version in which the whole project has been devolped is Python 3.6.\\
+Once installed Python, it's recommended to build a Python virtual environment to run the code (you can check the official Python documentation here: \url{https://packaging.python.org/guides/installing-using-pip-and-virtualenv/}). The following libraries have to be installed (Python-pip is the preferred method to install these packages):
+\begin{itemize}
+	\item Flask (target version: 1.0.2)
+	\item Flask-HTTPAuth (target version: 3.2.4)
+	\item mysql-connector (target version: 2.1.6)
+	\item mysql-connector-python-rf (target version: 2.2.2)
+\end{itemize}
+Once the virtual environment has been built and activated, and the repository has been closed, it's enough to call the python intrepeter from a console to run the backend server: the main file is: \textit{Api.py} located in \textit{Path/to/repository/Server/} 
+
+
+\end{document}
