@@ -47,10 +47,11 @@ class DBHandler:
 		except Exception as e:
 			raise Exception(str(e))
 
-	def login_third_party(self, email, password):
-		query = "SELECT * FROM ThirdParty WHERE username = '"+email+"'"
-		print(query)
-		try:
-			returned_result = self.__get(query, False)
 		except Exception as e:
 			raise Exception(str(e))
+
+	def get_third_party_password(self, username):
+		query = "SELECT password FROM ThirdParty WHERE Username = '" + username + "'"
+		a = self.__get(query, None, multiple_lines=False)
+		print(a)
+		return a
