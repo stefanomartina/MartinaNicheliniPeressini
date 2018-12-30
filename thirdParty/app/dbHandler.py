@@ -1,5 +1,5 @@
 import mysql.connector
-
+import secrets
 
 class ConnectionPool:
 
@@ -38,10 +38,19 @@ class DBHandler:
 			return to_return
 
 	def register_third_party(self, email, password, company_name):
-		query = "INSERT INTO ThirdParty (Username, Email, CompanyName) VALUES (%s, %s, %s)"
-		values = (email, password, company_name)
+		query = "INSERT INTO ThirdParty (Username, Password, CompanyName, secret) VALUES (%s, %s, %s, %s)"
+		secret = secrets.token_hex(32)
+		values = (email, password, company_name, secret)
 		try:
 			self.__send(query, values)
 
+		except Exception as e:
+			raise Exception(str(e))
+
+	def login_third_party(self, email, password):
+		query = "SELECT * FROM ThirdParty WHERE username = '"+email+"'"
+		print(query)
+		try:
+			returned_result = self.__get(query, False)
 		except Exception as e:
 			raise Exception(str(e))

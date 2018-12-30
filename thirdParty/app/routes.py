@@ -22,6 +22,7 @@ def index():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
+        db_handler.login_third_party(form.username.data, form.password.data)
         flash('Login requested for user {}, remember_me={}'.format(
             form.username.data, form.remember_me.data))
         return redirect(url_for('index'))
