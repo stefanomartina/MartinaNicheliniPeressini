@@ -1,7 +1,8 @@
 #!/usr/bin/python
 import mysql.connector
-from mysql.connector import errorcode
-import collections, json, pprint
+import collections
+import json
+import pprint
 
 
 class DuplicateException(Exception):
@@ -12,14 +13,12 @@ class DuplicateException(Exception):
 
 
 class ConnectionPool:
-
     @staticmethod
     def get_new_connection():
         return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
 
 
 class DBHandler:
-
     @staticmethod
     def __send(query, values):
         db = ConnectionPool.get_new_connection()
@@ -193,20 +192,45 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
-##    def get_location_by_fc(self, fc):
-##        query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
-##                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')"
-##        rows = self.__get(query, None, multiple_lines=True)
-##
-##        objects_list = []
-##        for row in rows:
-##            d = collections.OrderedDict()
-##            d['Latitude'] = str(row[0])
-##            d['Longitude'] = str(row[1])
-##            d['timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
-##           objects_list.append(d)
-##
-##        return json.dumps(objects_list)
+    def get_location_by_fc(self, fc):
+        query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
+                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
+                "ORDER BY Location.timestamp DESC LIMIT 10"
+
+        # ORDER BY --> FROM THE MOST RECENT TO THE LEAST RECENT
+        # LIMIT X --> LIMIT THE NUMBER OF TUPLES AT X
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['Latitude'] = str(row[0])
+            d['Longitude'] = str(row[1])
+            d['timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def get_heart_rate_by_fc(self, fc):
+        query = "SELECT HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
+                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
+                "ORDER BY HeartRate.timestamp DESC LIMIT 10"
+
+        # ORDER BY --> FROM THE MOST RECENT TO THE LEAST RECENT
+        # LIMIT X --> LIMIT THE NUMBER OF TUPLES AT X
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['BPM'] = str(row[0])
+            d['SOS'] = str(row[1])
+            d['Timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
 
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
