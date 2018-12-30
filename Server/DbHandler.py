@@ -46,9 +46,12 @@ class DBHandler:
             db.close()
             return to_return
 
+    ####################################################################################################################
+    # USERS QUERIES
+
     def auth(self, username, password):
         query = "SELECT password FROM User WHERE username = %s"
-        query_returned = self.__get(query, (username))
+        query_returned = self.__get(query, username)
 
         if query_returned == password:
             return True
@@ -57,10 +60,6 @@ class DBHandler:
 
     def get_user_password(self, username):
         query = "SELECT password FROM User WHERE username = '" + username + "'"
-        return self.__get(query, None, multiple_lines=False)
-
-    def get_tp_secret(self, username):
-        query = "SELECT secret FROM ThirdParty WHERE username = '" + username + "'"
         return self.__get(query, None, multiple_lines=False)
 
     def get_subscription_to_user(self, username):
@@ -91,16 +90,6 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
-    def create_tp(self, username, secret):
-        query = "INSERT INTO ThirdParty VALUES (%s, %s)"
-        values = (username, secret)
-
-        try:
-            self.__send(query, secret)
-
-        except mysql.connector.errors.IntegrityError:
-            raise Exception("Error")
-
     def insert_sos(self, username, timestamp, sos):
         timestamp = timestamp[:len(timestamp) - 6]
         query = "UPDATE HeartRate SET SOS = '" + sos + "' " \
@@ -122,16 +111,16 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
-    def insert_heart_rate(self, username, dictToInsert):
+    def insert_heart_rate(self, username, dict_to_insert):
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
-        pprint.pprint(dictToInsert)
+        pprint.pprint(dict_to_insert)
         db = ConnectionPool.get_new_connection()
         dbCursor = db.cursor(buffered=True)
 
-        for key in dictToInsert.keys():
-            bpm = dictToInsert[key]['bpm']
+        for key in dict_to_insert.keys():
+            bpm = dict_to_insert[key]['bpm']
             bpm = int(bpm[:len(bpm) - 10])
-            timestamp = dictToInsert[key]['timestamp']
+            timestamp = dict_to_insert[key]['timestamp']
             timestamp = timestamp[:len(timestamp) - 6]
             values = (username, timestamp, bpm)
             try:
@@ -178,6 +167,27 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
+    ####################################################################################################################
+    # THIRD-PARTIES QUERIES
+
+    def create_tp(self, username, secret):
+        query = "INSERT INTO ThirdParty VALUES (%s, %s)"
+        values = (username, secret)
+
+        try:
+            self.__send(query, secret)
+
+        except mysql.connector.IntegrityError:
+            raise DuplicateException('Username is already taken!')
+
+        except Exception as e:
+            raise Exception(str(e))
+
+    def get_tp_secret(self, username):
+        query = "SELECT secret FROM ThirdParty WHERE username = '" + username + "'"
+        return self.__get(query, None, multiple_lines=False)
+
+    # SIMPLY GET THE LIST OF THIRD-PARTIES IN THE DATABASE
     def get_tp(self):
         query = "SELECT ThirdParty.Username, ThirdParty.secret FROM ThirdParty"
 
@@ -215,7 +225,7 @@ class DBHandler:
     def get_heart_rate_by_fc(self, fc):
         query = "SELECT HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
                 "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
-                "ORDER BY HeartRate.timestamp DESC LIMIT 10"
+                "ORDER BY HeartRate.Timestamp DESC LIMIT 10"
 
         # ORDER BY --> FROM THE MOST RECENT TO THE LEAST RECENT
         # LIMIT X --> LIMIT THE NUMBER OF TUPLES AT X
@@ -248,8 +258,8 @@ class DBHandler:
         except Exception as e:
             print(str(e))
 
-    def modify_subscription_status(self, username, thirdparty, new_status):
-        query = "UPDATE subscription SET status= '" + new_status +"' WHERE (`Username_User`= '"+ username+ "' and `Username_ThirdParty`= '"+ thirdparty+"');"
-        print(query)
+    def modify_subscription_status(self, username, third_party, new_status):
+        query = "UPDATE subscription SET status= '" + new_status + "'" \
+                " WHERE (`Username_User`= '" + username + "' and `Username_ThirdParty`= '" + third_party + "');"
         self.__send(query, None)
         return 0
