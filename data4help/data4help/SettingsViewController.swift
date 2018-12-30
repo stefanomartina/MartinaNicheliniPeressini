@@ -30,13 +30,36 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var automatedSOSToggle: UISwitch!
     
     @IBAction func automatedSOSSwitch(_ sender: Any) {
-        if( automatedSOSToggle.isOn ){
-            Global.userDefaults.set(true, forKey: "automatedSOSToggle")
-        }else{
-            Global.userDefaults.set(false, forKey: "automatedSOSToggle")
-        }
+        if( automatedSOSToggle.isOn ){ Global.userDefaults.set(true, forKey: "automatedSOSToggle") }
+        else { Global.userDefaults.set(false, forKey: "automatedSOSToggle") }
         
     }
+    
+    
+    // For debug purpose
+    @IBAction func resetUserDefaults(_ sender: Any) {
+      UserDefaults.standard.set(nil, forKey: "timestampOfLastDataRetrieved")
+    }
+    
+    func getThreshold() -> String{
+        return Global.userDefaults.string(forKey: "threshold") ?? String(Global.DEFAULT_THRESHOLD)
+    }
+    
+    ////////////////////////////////////// SLIDER SETUP and ASSOCIATED FUNCTIONS
+    func setSlider(){
+        submitCustomThresholdButton.isEnabled = false
+        sliderThreshold.minimumValue = 20
+        sliderThreshold.maximumValue = 100
+        sliderThreshold.isContinuous = true
+        sliderThreshold.setValue(Float(getThreshold())!, animated: true)
+    }
+    
+    @IBAction func submitThresholdCHanges(_ sender: Any) {
+        let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
+        Global.userDefaults.set(tok, forKey: "threshold")
+        submitCustomThresholdButton.isEnabled = false;
+    }
+    
     @IBAction func sliderThresholdChanges(_ sender: Any) {
         let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
         labelThreshold.text = "\(tok)"
@@ -48,35 +71,16 @@ class SettingsViewController: UIViewController {
         }
     }
     
-    @IBAction func submitThresholdCHanges(_ sender: Any) {
-        let tok = String("\(sliderThreshold.value)").components(separatedBy: ".")[0]
-        Global.userDefaults.set(tok, forKey: "threshold")
-        submitCustomThresholdButton.isEnabled = false;
-    }
-    
-    // For debug purpose
-    @IBAction func resetUserDefaults(_ sender: Any) {
-      UserDefaults.standard.set(nil, forKey: "timestampOfLastDataRetrieved")
-    }
-    
-    func getThreshold() -> String{
-        return Global.userDefaults.string(forKey: "threshold") ?? String(Global.DEFAULT_THRESHOLD)
-    }
-    
-    func setSlider(){
-        submitCustomThresholdButton.isEnabled = false
-        sliderThreshold.minimumValue = 20
-        sliderThreshold.maximumValue = 100
-        sliderThreshold.isContinuous = true
-        sliderThreshold.setValue(Float(getThreshold())!, animated: true)
-    }
-    
+    ////////////////////////////////////// AUTOMATED SOS TOGGLE STATUS RETRIEVAL
     func setAutomatedSOSSwitch(){
         let status = Global.userDefaults.bool(forKey: "automatedSOSToggle")
         print(status)
         healthToggleSwitch.setOn(status, animated: true)
     }
     
+    
+    
+    ////////////////////////////////////// UIController standards methods
     override func viewDidLoad() {
         super.viewDidLoad()
         labelThreshold.text = getThreshold()

@@ -9,6 +9,7 @@
 import UIKit
 import HealthKit
 
+
 class DataTableViewController: UITableViewController{
     
     var data = [Data]()
@@ -18,40 +19,16 @@ class DataTableViewController: UITableViewController{
         self.data = []
         HTTPManager.getHearthDataFromDB { retrievedData in
             self.data = self.data + retrievedData
-            self.tableView.reloadData()
-        }
-        
-        HTTPManager.getLocationDataFromDb{ retrievedData in
-            self.data = self.data + retrievedData
-            self.tableView.reloadData()
+            HTTPManager.getLocationDataFromDb{ retrievedData in
+                self.data = self.data + retrievedData
+                self.data = self.data.sorted(by: {
+                    $0.timestamp.compare($1.timestamp) == .orderedDescending
+                })
+                self.tableView.reloadData()
+            }
         }
     }
-    
-    /*
-    private func loadAndSendData(alsoFetch: Bool) {
-        var queryReturned: [HKQuantitySample] = []
-        HealthKitManager.getLastHeartBeat(){ gotData in
-            queryReturned = gotData
 
-            if queryReturned.count != 0 {
-                for hkqs in queryReturned {
-                    let newData = HeartData(data: hkqs)
-                    self.data += [newData]
-                }
-            }
-            
-            HTTPManager.sendHeartData(data: queryReturned)
-            if alsoFetch {
-                DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {
-                    self.fetchData()
-                })
-            }
-        }
-
-    }*/
-    
-   
-    
     //////////////////////////////////////////////////// REFRESHER
     
     lazy var refresher: UIRefreshControl =  {
@@ -108,12 +85,12 @@ class DataTableViewController: UITableViewController{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: heartCellIdentifier, for: indexPath) as? DataTableViewCell else {fatalError("The dequeued cell is not an instance of DataTableViewCell")}
             
             cell.bpmLabel.text = (selectedData as! HeartData).bpm
-            cell.timestampLabel.text = (selectedData as! HeartData).timestamp
+            cell.timestampLabel.text = (selectedData as! HeartData).str_timestamp
             return cell
         }
         else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: locationCellIdentifier, for: indexPath) as? LocationDataTableViewCell else { fatalError("The dequeued cell is not an instance of LocationDataTableViewCell")}
-            cell.timestampLabel.text = (selectedData as! LocationData).timestamp
+            cell.timestampLabel.text = (selectedData as! LocationData).str_timestamp
             cell.coordinatesLabel.text = "" + String((selectedData as! LocationData).latitude) + " H, " +
                                                 String((selectedData as! LocationData).longitude) + " W"
             return cell

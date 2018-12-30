@@ -17,6 +17,8 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var map: MKMapView!
+    @IBOutlet weak var latitudeValueLabel: UILabel!
+    @IBOutlet weak var longitudeValueLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +42,9 @@ class LocationViewController: UIViewController, CLLocationManagerDelegate {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         let timestamp = "\(location.timestamp)"
+        
+        latitudeValueLabel.text = String(latitude)
+        longitudeValueLabel.text = String(longitude)
         
         let span: MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)

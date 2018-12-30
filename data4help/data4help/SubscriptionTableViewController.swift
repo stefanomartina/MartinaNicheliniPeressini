@@ -34,16 +34,6 @@ class SubscriptionTableViewController: UITableViewController {
         self.present(alert, animated: true)
     }
     
-    private func completion(_ newStatus: subscriptionStatus, _ indexPath: IndexPath){
-        HTTPManager.modifySubscriptionStatus(newStatus: newStatus,
-                                             thirdPartyID: self.subscriptions[indexPath.row].requesterName
-            , {
-                response in
-                if response {self.updateAll(indexPath)}
-                else {self.generateNetworkError()}
-        })
-    }
-    
     //////////////////////////////////////////////////// REFRESHER
     
     lazy var refresher: UIRefreshControl =  {
@@ -108,13 +98,29 @@ class SubscriptionTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]?
     {
-        let acceptAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Accept", handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in
-            self.completion(subscriptionStatus.approved, indexPath)})
+        let acceptAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Accept", handler: { (action:UITableViewRowAction, indexPath: IndexPath) -> Void in self.subscriptions[indexPath.row].approve(successHandler: {self.updateAll(indexPath)}, errorHandler: {self.generateNetworkError()})})
         acceptAction.backgroundColor = .green
         
-        let denyAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Deny" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in self.completion(subscriptionStatus.rejected, indexPath)})
-
+        let denyAction = UITableViewRowAction(style: UITableViewRowAction.Style.default, title: "Deny" , handler: { (action:UITableViewRowAction, indexPath:IndexPath) -> Void in self.subscriptions[indexPath.row].deny(successHandler: {self.updateAll(indexPath)}, errorHandler: {self.generateNetworkError()})})
+        denyAction.backgroundColor = .red
+        
         return [acceptAction,denyAction]
     }
     
+    ////////////////////////////////////////////////////
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the index path from the cell that was tapped
+        let indexPath = tableView.indexPathForSelectedRow
+        // Get the Row of the Index Path and set as index
+        let index = indexPath?.row
+        // Get in touch with the DetailViewController
+        let detailViewController = segue.destination as! SubscriptionsTableViewCellDetailsController
+        // Pass on the data to the Detail ViewController by setting it's indexPathRow value
+        
+        detailViewController.requesterValue = self.subscriptions[index!].requesterName
+        detailViewController.statusValue = self.subscriptions[index!].status.rawValue
+        detailViewController.descriptionValue = self.subscriptions[index!].description
+    }
 }

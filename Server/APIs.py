@@ -3,7 +3,9 @@ from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 from DbHandler import DuplicateException
-import secrets, pprint, sys
+import secrets
+import pprint
+import sys
 
 auth = HTTPBasicAuth()
 db_handler = DBHandler()
@@ -15,7 +17,6 @@ userLogged = dict()
 
 @auth.get_password
 def get_password(username):
-    retrieved = None
     try:
         retrieved = userLogged[username]
         return retrieved
@@ -26,6 +27,7 @@ def get_password(username):
         else:
             userLogged[username] = retrieved
             return retrieved
+
 
 @auth.error_handler
 def unauthorized():
@@ -115,7 +117,7 @@ def update_subscription_status():
         new_status = data['new_status']
 
     except TypeError:
-        return jsonify({"Signal" : 1, "Response": "Request was not JSON Encoded"})
+        return jsonify({"Signal": 1, "Response": "Request was not JSON Encoded"})
 
     signal = db_handler.modify_subscription_status(username, third_party, new_status)
     return jsonify({"Signal": signal})
@@ -143,11 +145,32 @@ def user_location():
         print(str(e))
         return jsonify({'Response': -2, 'Reason': str(e)})
 
+
+@app.route('/api/users/sos', methods=['POST'])
+@auth.login_required
+def user_sos():
+    try:
+        data = request.get_json()
+        timestamp = data['timestamp']
+        sos = data['SOS']
+        try:
+            db_handler.insert_sos(auth.username(), timestamp, sos)
+
+        except Exception as e:
+            print(str(e))
+            return jsonify({'Response': -1, 'Reason': str(e)})
+
+        return jsonify({'Response': 1, 'Reason': 'SOS correctly inserted in database'})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -2, 'Reason': str(e)})
+
+
 @app.route('/api/users/location', methods=['GET'])
 @auth.login_required
 def get_user_location():
     return db_handler.get_location_by_user(auth.username())
-
 
 
 #######################################################################################################################
@@ -171,17 +194,44 @@ def tp_register():
 def subscribe():
     try:
         data = request.get_json()
-        FC = data['FC']
+        fc = data['FC']
         try:
             description = data['description']
         except:
             description = None
 
-        db_handler.subscribe_tp_to_user(auth.username(), FC, description )
+        db_handler.subscribe_tp_to_user(auth.username(), fc, description )
         return jsonify({'Response': 0})
 
     except Exception:
         return jsonify({'Response': 1})
+
+
+@app.route('/api/thirdparties/get_tp', methods=['GET'])
+def get_tp():
+    return db_handler.get_tp()
+
+
+@app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
+def get_location_by_fc():
+    fc = request.args.get('fiscalCode')
+    try:
+        return db_handler.get_location_by_fc(fc)
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -1, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/get_heart_rate_by_fc', methods=['GET'])
+def get_heart_rate_by_fc():
+    fc = request.args.get('fiscalCode')
+    try:
+        return db_handler.get_heart_rate_by_fc(fc)
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -1, 'Reason': str(e)})
 
 
 if __name__ == '__main__':

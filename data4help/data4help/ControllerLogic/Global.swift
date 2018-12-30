@@ -27,6 +27,8 @@ class Global {
     
     static public let userDefaults = UserDefaults.standard
     
+    static public let SOSOkActionID = "OK"
+    static public let SOSCategoryID = "SOSNotificationCategory"
     //This method handles the selection of the right URL.
     static public func getUserURL(_ completionHandler: (() -> Void)? = nil)  -> String {
         if USER_URL == "" {
@@ -53,5 +55,7 @@ class Global {
 class Messages {
     static public let LOGIN_ERROR = "Login error: server didn't response"
     static public let NETWORK_ERROR = "Network error: server isn't responding"
+    static public let BPM_ALERT_TITLE = "AUTOMATED SOS - BPM threashold value violated"
+    static public let BPM_ALERT_BODY = "Something is probably wrong. Press \"I'm ok\" to block the call to SOS service"
 }
 
