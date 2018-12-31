@@ -26,7 +26,7 @@
 	\includegraphics[height=6.25cm,keepaspectratio]{Figures/logo}
 \end{figure}
 
-\title{TrackMe \\ Software Engineering 2 Project\\ \textit{RASD Document} }
+\title{TrackMe \\ Software Engineering 2 Project\\ \textit{ITD Document} }
 \author{Stefano Martina, Alessandro Nichelini, Francesco Peressini
 		\\ \\ A.Y. 2018/2019 \\ Version 1.0.0}
 		
@@ -41,8 +41,16 @@
 \subsection{scope}
 
 \section{Functionality implemented}
+The team has developed and implemented the main functionalities of the core Data4help module and Automated SOS.
+In details the developed framework has fulfilled the following requirements described in RASD Document:
+\begin{itemize}
+	\item R1, bla bla bla 
+\end{itemize}
+
+We excluded requests of anonymous data because of the lack of adequate data set to test this feature.
 
 \section{Adopted frameworks}
+For the backend: Flask framework has been adopted. Flask is a web development framework that let the building of easy and light web environments. It has been used to both build the API infrastructure and the third parties' web interface.
 \subsection{Adopted programming language}
 
 The project has been developed using two programming language. 
@@ -54,10 +62,9 @@ The project has been developed using two programming language.
 
 The team has chosen Swift over Objective-C because of the effort Apple is putting in its development. Moreover Swift has been thought to work with iOS in a more specific way than Objective-C.\\
 Python has been chosen as the programming language for the backend because most of the team members has previous proficiency ih using it.
-\subsection{Middleware adopted}
 
-\subsubsection{Frameworks}
-For the backend: Flask framework has been adopted. Flask is a web development framework that let the building of easy and light web environments. It has been used to both build the API infrastructure and the third parties' web interface.
+\subsection{Middleware adopted}
+Since the communication stack is based on a HTTP REST API system, the project doesn't use any further middleware technology.
 
 \subsection{Libraries}
 For Apple Swift in iOS the following external libraries has been adopted:
@@ -93,8 +100,12 @@ The project has not used external API than the ones directly developed in-house.
 \section{Installation instructions}
 
 \subsection{iOS mobile app installation instructions}
+Since an Apple Developer Program affiliated account is needed to distribute an iOS application: in order to run and test our application you need to clone our repository and manually compile and run the entire XCode project. A device running Mac OS 10.14 ore later and XCode 9 or later is required. \\
+	The application can run on a simulator or on a real iOS device running iOS 11 or later (target Apple device: iPhone 5 or later).	\\\\
+	Application won't work without a running backend instance, however we are going to keep alive an instance of it at \url{http://data4help.cloud:5000}.
+	If you like to run your own backend instance during testing to support app activities you will be able to test them using XCode embedded simulator: as matter of fact the application tries to connect to localhost in first instance.
 \subsection{Python backend installation instructions}
-Python backend code should run on each Python 3.x distribution. More in details the target version in which the whole project has been devolped is Python 3.6.\\
+Python backend code should run on each Python 3.x distribution. More in details the target version in which the whole project has been developed is Python 3.6.\\
 Once installed Python, it's recommended to build a Python virtual environment to run the code (you can check the official Python documentation here: \url{https://packaging.python.org/guides/installing-using-pip-and-virtualenv/}). The following libraries have to be installed (Python-pip is the preferred method to install these packages):
 \begin{itemize}
 	\item Flask (target version: 1.0.2)
@@ -102,7 +113,7 @@ Once installed Python, it's recommended to build a Python virtual environment to
 	\item mysql-connector (target version: 2.1.6)
 	\item mysql-connector-python-rf (target version: 2.2.2)
 \end{itemize}
-Once the virtual environment has been built and activated, and the repository has been closed, it's enough to call the python intrepeter from a console to run the backend server: the main file is: \textit{Api.py} located in \textit{Path/to/repository/Server/} 
+Once the virtual environment has been built and activated, and the repository has been closed, it's enough to call the python interpret from a console to run the backend server: the main file is: \textit{Api.py} located in \textit{Path/to/repository/Server/} 
 
 
 \end{document}
