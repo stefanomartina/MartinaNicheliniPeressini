@@ -1,3 +1,4 @@
+Server/*.pem
 .aux
 .log
 .gz
