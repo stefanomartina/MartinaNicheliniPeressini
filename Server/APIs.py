@@ -14,6 +14,9 @@ app = Flask(__name__)
 
 userLogged = dict()
 
+cert = '/etc/letsencrypt/live/data4help.cloud/fullchain.pem'
+key = '/etc/letsencrypt/live/data4help.cloud/privkey.pem'
+
 
 @auth.get_password
 def get_password(username):
@@ -236,7 +239,13 @@ def get_heart_rate_by_fc():
 
 if __name__ == '__main__':
     try:
-        app.run(host='0.0.0.0', debug=True)
+        
+        try:
+            context = (cert, key)
+            app.run(host='0.0.0.0', port=5000, ssl_context=context, threaded=True, debug=True)
+        except:
+            app.run(host='0.0.0.0', threaded=True, debug=True)
+
     except KeyboardInterrupt:
         print("[*] Server shutted down")
         db_handler.db.close()
