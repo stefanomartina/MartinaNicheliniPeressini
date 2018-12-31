@@ -19,7 +19,7 @@ class Global {
     static public let LOGIN_METHOD = "/login"
     static public let REGISTER_METHOD = "/register"
     static public let HEART_ENDPOINT = "/data/heart"
-    static public let HEART_ENDPOINT_GET = "/data/heart/get_data"
+    static public let HEART_ENDPOINT_GET = Global.HEART_ENDPOINT
     static public let SUBSCRIPTION = "/subscription"
     static public let LOCATION = "/location"
     

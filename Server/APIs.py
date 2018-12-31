@@ -69,7 +69,7 @@ def heart():
         return jsonify({'Response': 1, 'Reason': 'Error with heart rate data'})
 
 
-@app.route('/api/users/data/heart/get_data', methods=['GET'])
+@app.route('/api/users/data/heart', methods=['GET'])
 @auth.login_required
 def get_heart_rate_by_user():
     return db_handler.get_heart_rate_by_user(auth.username())

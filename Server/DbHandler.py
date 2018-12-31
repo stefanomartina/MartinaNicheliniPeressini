@@ -19,6 +19,10 @@ class ConnectionPool:
 
 
 class DBHandler:
+
+    """
+    To be called each time another method needs to write data on database
+    """
     @staticmethod
     def __send(query, values):
         db = ConnectionPool.get_new_connection()
@@ -28,6 +32,9 @@ class DBHandler:
         db_cursor.close()
         db.close()
 
+    """
+    To be called each time another method needs to read data from database
+    """
     @staticmethod
     def __get(query, values=None, multiple_lines=False):
         db = ConnectionPool.get_new_connection()
@@ -111,8 +118,8 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
-    def insert_heart_rate(self, username, dict_to_insert):
-        query = "INSERT INTO HeartRate VALUES (%s, %s, %s)"
+    def insert_heart_rate(self, username, dict_to_insert, SOS=False):
+        query = "INSERT INTO HeartRate VALUES (%s, %s, %s, %s)"
         pprint.pprint(dict_to_insert)
         db = ConnectionPool.get_new_connection()
         dbCursor = db.cursor(buffered=True)
@@ -122,16 +129,17 @@ class DBHandler:
             bpm = int(bpm[:len(bpm) - 10])
             timestamp = dict_to_insert[key]['timestamp']
             timestamp = timestamp[:len(timestamp) - 6]
-            values = (username, timestamp, bpm)
+            try:
+                SOS = dict_to_insert[key]['SOS']
+            except KeyError:
+                continue
+            values = (username, timestamp, bpm, SOS)
             try:
                 dbCursor.execute(query, values)
-                #dbCursor.close()
             except mysql.connector.IntegrityError:
-                #dbCursor.close()
                 raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
 
             except Exception as e:
-                #dbCursor.close()
                 print(str(e))
         db.commit()
         dbCursor.close()
