@@ -52,6 +52,4 @@ class DBHandler:
 
 	def get_third_party_password(self, username):
 		query = "SELECT password FROM ThirdParty WHERE Username = '" + username + "'"
-		a = self.__get(query, None, multiple_lines=False)
-		print(a)
-		return a
+		return self.__get(query, None, multiple_lines=False)

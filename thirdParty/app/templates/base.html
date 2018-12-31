@@ -12,6 +12,8 @@
             <a href="{{ url_for('index') }}">Home</a>
             <a href="{{ url_for('login') }}">Login</a>
             <a href="{{ url_for('registration') }}">Signup</a>
+            <a href="{{ url_for('private_page') }}">Private Page</a>
+            <a href="{{ url_for('log_out') }}">Log Out</a>
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
