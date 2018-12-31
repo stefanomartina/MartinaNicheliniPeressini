@@ -132,7 +132,7 @@ class DBHandler:
             try:
                 SOS = dict_to_insert[key]['SOS']
             except KeyError:
-                continue
+                pass
             values = (username, timestamp, bpm, SOS)
             try:
                 dbCursor.execute(query, values)
