@@ -5,6 +5,15 @@ import json
 import pprint
 import secrets
 
+parameters = {
+    'host': '35.198.157.139',
+    'user': 'root',
+    'password': 'trackme',
+    'database': 'data4help',
+    'ssl_ca': '/root/MartinaNicheliniPeressini/Server/server-ca.pem',
+    'ssl_cert': '/root/MartinaNicheliniPeressini/Server/client-cert.pem',
+    'ssl_key': '/root/MartinaNicheliniPeressini/Server/client-key.pem'
+}
 
 class DuplicateException(Exception):
     def __init__(self, message):
@@ -16,8 +25,12 @@ class DuplicateException(Exception):
 class ConnectionPool:
     @staticmethod
     def get_new_connection():
-        return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
-
+        # return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
+        try:
+            return mysql.connector.connect(**parameters)
+        except:
+            print('[*] WARNING: Unsecure connection')
+            return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
 
 class DBHandler:
 
