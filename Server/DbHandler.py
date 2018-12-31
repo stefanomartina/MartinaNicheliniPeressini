@@ -192,11 +192,14 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
+    # GET THIRD-PARTY'S SECRET BY ITS USERNAME
     def get_tp_secret(self, username):
-        query = "SELECT secret FROM ThirdParty WHERE username = '" + username + "'"
-        return self.__get(query, None, multiple_lines=False)
+        query = "SELECT ThirdParty.secret FROM ThirdParty WHERE ThirdParty.username = '" + username + "'"
 
-    # SIMPLY GET THE LIST OF THIRD-PARTIES IN THE DATABASE
+        rows = self.__get(query, None, multiple_lines=True)
+        return rows[0][0]
+
+    # GET THE LIST OF THIRD-PARTIES IN THE DATABASE
     def get_tp(self):
         query = "SELECT ThirdParty.Username, ThirdParty.secret FROM ThirdParty"
 
@@ -211,9 +214,17 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
+    # CHECK IF A THIRD-PARTY IS PRESENT OR NOT IN THE DB
+    def check_tp(self, username, secret):
+        query = "SELECT COUNT(*) FROM ThirdParty " \
+                "WHERE ThirdParty.Username = '" + username + "' AND ThirdParty.secret = '" + secret + "'"
+
+        rows = self.__get(query, None, multiple_lines=True)
+        return rows[0][0]
+
     def get_location_by_fc(self, fc):
         query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
-                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
+                "WHERE Username IN (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
                 "ORDER BY Location.timestamp DESC LIMIT 10"
 
         # ORDER BY --> FROM THE MOST RECENT TO THE LEAST RECENT
@@ -233,7 +244,7 @@ class DBHandler:
 
     def get_heart_rate_by_fc(self, fc):
         query = "SELECT HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
-                "WHERE Username = (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
+                "WHERE Username IN (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
                 "ORDER BY HeartRate.Timestamp DESC LIMIT 10"
 
         # ORDER BY --> FROM THE MOST RECENT TO THE LEAST RECENT

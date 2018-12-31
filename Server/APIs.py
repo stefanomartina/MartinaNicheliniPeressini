@@ -198,16 +198,19 @@ def subscribe():
     try:
         data = request.get_json()
         fc = data['FC']
+        description = data['description']
+
         try:
-            description = data['description']
-        except:
-            description = None
+            db_handler.subscribe_tp_to_user(auth.username(), fc, description)
+        except Exception as e:
+            print(str(e))
+            return jsonify({'Response': -1, 'Reason': str(e)})
 
-        db_handler.subscribe_tp_to_user(auth.username(), fc, description )
-        return jsonify({'Response': 0})
+        return jsonify({'Response': 1, 'Reason': 'Subscription completed'})
 
-    except Exception:
-        return jsonify({'Response': 1})
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -2, 'Reason': str(e)})
 
 
 @app.route('/api/thirdparties/get_tp', methods=['GET'])
@@ -215,26 +218,76 @@ def get_tp():
     return db_handler.get_tp()
 
 
-@app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
-def get_location_by_fc():
-    fc = request.args.get('fiscalCode')
+@app.route('/api/thirdparties/get_tp_secret', methods=['GET'])
+def get_tp_secret():
+    username = request.args.get('username')
     try:
-        return db_handler.get_location_by_fc(fc)
+        result = db_handler.get_tp_secret(username)
+        return jsonify({'Response': 1, 'Reason': result})
 
     except Exception as e:
         print(str(e))
         return jsonify({'Response': -1, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
+def get_location_by_fc():
+    fc = request.args.get('fiscalCode')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_tp(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                return db_handler.get_location_by_fc(fc)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
 
 
 @app.route('/api/thirdparties/get_heart_rate_by_fc', methods=['GET'])
 def get_heart_rate_by_fc():
     fc = request.args.get('fiscalCode')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
     try:
-        return db_handler.get_heart_rate_by_fc(fc)
+        result = db_handler.check_tp(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                return db_handler.get_heart_rate_by_fc(fc)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
 
     except Exception as e:
         print(str(e))
-        return jsonify({'Response': -1, 'Reason': str(e)})
+        return jsonify({'Response': -3, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/check_tp', methods=['GET'])
+def check_tp():
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_tp(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            return jsonify({'Response': 1, 'Reason': 'Third-party is present in the database!'})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -2, 'Reason': str(e)})
 
 
 if __name__ == '__main__':
@@ -243,7 +296,7 @@ if __name__ == '__main__':
             # try to run the WebAPP with SSL certificate active
             context = (cert, key)
             app.run(host='0.0.0.0', port=5000, ssl_context=context, threaded=True, debug=True)
-        except :
+        except:
             # old mode without SSL certificate for debugging in localhost
             app.run(host='0.0.0.0', threaded=True, debug=True)
 
