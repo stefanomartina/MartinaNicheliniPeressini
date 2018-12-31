@@ -146,7 +146,7 @@ class DBHandler:
         db.close()
 
     def get_heart_rate_by_user(self, username):
-        query = "SELECT HeartRate.Timestamp, BPM FROM HeartRate" \
+        query = "SELECT HeartRate.Timestamp, BPM, SOS FROM HeartRate" \
                 " WHERE Username ='" + username + "' ORDER BY Timestamp DESC"
         rows = self.__get(query, None, multiple_lines=True)
 
@@ -155,6 +155,7 @@ class DBHandler:
             d = collections.OrderedDict()
             d['timestamp'] = row[0].strftime('%Y-%m-%d %H:%M:%S')
             d['bpm'] = row[1]
+            d['SOS'] = row[2]
             objects_list.append(d)
 
         return json.dumps(objects_list)
