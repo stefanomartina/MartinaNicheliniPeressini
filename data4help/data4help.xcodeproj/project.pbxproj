@@ -239,15 +239,15 @@
 				26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */,
 				2633BAB821D65B6B00056A9C /* SubscriptionsTableViewCellDetailsController.swift */,
 				26F53DAC21C10336001F419A /* data4help.entitlements */,
-				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
 				C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */,
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
 				26FB31E421B5428F00C27A9B /* SettingsViewController.swift */,
-				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
 				C63EED3021D00E6F0021DEFE /* LocationViewController.swift */,
 				C694BF7921B48544006E6B4C /* DashboardViewController.swift */,
-				C6CA754021AEB9F400A6039E /* Assets.xcassets */,
+				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
 				C6CA754221AEB9F400A6039E /* LaunchScreen.storyboard */,
+				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
+				C6CA754021AEB9F400A6039E /* Assets.xcassets */,
 				C6CA754521AEB9F400A6039E /* Info.plist */,
 			);
 			path = data4help;
