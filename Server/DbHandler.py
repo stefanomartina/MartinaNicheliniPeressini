@@ -3,6 +3,7 @@ import mysql.connector
 import collections
 import json
 import pprint
+import secrets
 
 
 class DuplicateException(Exception):
@@ -181,7 +182,6 @@ class DBHandler:
 
     def create_tp(self, username, secret):
         query = "INSERT INTO ThirdParty VALUES (%s, %s)"
-        values = (username, secret)
 
         try:
             self.__send(query, secret)
@@ -272,3 +272,23 @@ class DBHandler:
                 " WHERE (`Username_User`= '" + username + "' and `Username_ThirdParty`= '" + third_party + "');"
         self.__send(query, None)
         return 0
+
+    ####################################################################################################################
+    # WEBApp queries
+
+    def register_third_party(self, email, password, company_name):
+        query = "INSERT INTO ThirdParty (Username, Password, CompanyName, secret) VALUES (%s, %s, %s, %s)"
+        secret = secrets.token_hex(32)
+        values = (email, password, company_name, secret)
+        try:
+            self.__send(query, values)
+
+        except Exception as e:
+            raise Exception(str(e))
+
+        except Exception as e:
+            raise Exception(str(e))
+
+    def get_third_party_password(self, username):
+        query = "SELECT password FROM ThirdParty WHERE Username = '" + username + "'"
+        return self.__get(query, None, multiple_lines=False)

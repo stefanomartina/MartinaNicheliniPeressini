@@ -8,10 +8,8 @@ Server/*.idea
 Server/main.py
 Server/__pycache__/*
 
-thirdParty/venv
-thirdParty/*.idea
-thirdParty/main.py
-thirdParty/__pycache__/*
+.idea/*
+
 DD/*.pdf
  
 data4help/data4help.xcodeproj/project.pbxproj
