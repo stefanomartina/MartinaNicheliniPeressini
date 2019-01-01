@@ -52,6 +52,7 @@ def set_cookies(user, psw):
     print("cookie settato")
     return res
 
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -101,7 +102,7 @@ if __name__ == '__main__':
     try:
         try:
             # try to run the WebAPP with SSL certificate active
-            #context = (cert, key)
+            # context = (cert, key)
             app.run(host='0.0.0.0', port=443, ssl_context=context, threaded=True, debug=True)
         except :
             # old mode without SSL certificate for debugging in localhost
