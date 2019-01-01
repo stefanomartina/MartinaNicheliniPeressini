@@ -15,6 +15,7 @@ parameters = {
     'ssl_key': '/root/MartinaNicheliniPeressini/Server/client-key.pem'
 }
 
+
 class DuplicateException(Exception):
     def __init__(self, message):
 
@@ -29,8 +30,9 @@ class ConnectionPool:
         try:
             return mysql.connector.connect(**parameters)
         except:
-            print('[*] WARNING: Unsecure connection')
+            print('[*] WARNING: Un-secure connection')
             return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
+
 
 class DBHandler:
 
@@ -68,7 +70,7 @@ class DBHandler:
             return to_return
 
     ####################################################################################################################
-    # USERS QUERIES
+    # User queries
 
     def auth(self, username, password):
         query = "SELECT password FROM User WHERE username = %s"
@@ -191,29 +193,35 @@ class DBHandler:
         return json.dumps(objects_list)
 
     ####################################################################################################################
-    # THIRD-PARTIES QUERIES
+    # WebApp queries
 
-    def create_tp(self, username, secret):
-        query = "INSERT INTO ThirdParty VALUES (%s, %s)"
-
+    # REGISTER A NEW THIRD-PARTY IN THE DATABASE
+    def register_third_party(self, email, password, company_name):
+        query = "INSERT INTO ThirdParty (Username, Password, CompanyName, secret) VALUES (%s, %s, %s, %s)"
+        secret = secrets.token_hex(32)
+        values = (email, password, company_name, secret)
         try:
-            self.__send(query, secret)
-
-        except mysql.connector.IntegrityError:
-            raise DuplicateException('Username is already taken!')
+            self.__send(query, values)
 
         except Exception as e:
             raise Exception(str(e))
 
+    # GET THIRD-PARTY'S PASSWORD BY ITS USERNAME
+    def get_third_party_password(self, username):
+        query = "SELECT password FROM ThirdParty WHERE Username = '" + username + "'"
+
+        rows = self.__get(query, None, multiple_lines=True)
+        return rows[0][0]
+
     # GET THIRD-PARTY'S SECRET BY ITS USERNAME
-    def get_tp_secret(self, username):
+    def get_third_party_secret(self, username):
         query = "SELECT ThirdParty.secret FROM ThirdParty WHERE ThirdParty.username = '" + username + "'"
 
         rows = self.__get(query, None, multiple_lines=True)
         return rows[0][0]
 
     # GET THE LIST OF THIRD-PARTIES IN THE DATABASE
-    def get_tp(self):
+    def get_third_party(self):
         query = "SELECT ThirdParty.Username, ThirdParty.secret FROM ThirdParty"
 
         rows = self.__get(query, None, multiple_lines=True)
@@ -228,13 +236,14 @@ class DBHandler:
         return json.dumps(objects_list)
 
     # CHECK IF A THIRD-PARTY IS PRESENT OR NOT IN THE DB
-    def check_tp(self, username, secret):
+    def check_third_party(self, username, secret):
         query = "SELECT COUNT(*) FROM ThirdParty " \
                 "WHERE ThirdParty.Username = '" + username + "' AND ThirdParty.secret = '" + secret + "'"
 
         rows = self.__get(query, None, multiple_lines=True)
         return rows[0][0]
 
+    # GET LOCATION DATA BY THE FISCAL CODE OF THE USER
     def get_location_by_fc(self, fc):
         query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
                 "WHERE Username IN (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
@@ -255,6 +264,7 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
+    # GET HEART RATE DATA BY THE FISCAL CODE OF THE USER
     def get_heart_rate_by_fc(self, fc):
         query = "SELECT HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
                 "WHERE Username IN (SELECT username FROM User WHERE FiscalCode = '" + fc + "')" \
@@ -297,22 +307,3 @@ class DBHandler:
         self.__send(query, None)
         return 0
 
-    ####################################################################################################################
-    # WEBApp queries
-
-    def register_third_party(self, email, password, company_name):
-        query = "INSERT INTO ThirdParty (Username, Password, CompanyName, secret) VALUES (%s, %s, %s, %s)"
-        secret = secrets.token_hex(32)
-        values = (email, password, company_name, secret)
-        try:
-            self.__send(query, values)
-
-        except Exception as e:
-            raise Exception(str(e))
-
-        except Exception as e:
-            raise Exception(str(e))
-
-    def get_third_party_password(self, username):
-        query = "SELECT password FROM ThirdParty WHERE Username = '" + username + "'"
-        return self.__get(query, None, multiple_lines=False)
