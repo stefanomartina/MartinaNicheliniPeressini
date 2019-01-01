@@ -46,7 +46,7 @@ def auth_user(cookie):
 
 def set_cookies(user, psw):
     user_logged = {'username' : user}
-    res = make_response(render_template('private.html', title='OKKKKKK', user=user_logged))
+    res = make_response(render_template('private.html', title='OKKKKKK', user=user_logged, secret='1234'))
     res.set_cookie('email', user)
     res.set_cookie('password', psw)
     print("cookie settato")
@@ -83,7 +83,7 @@ def registration():
 def private_page():
     if auth_user(request.cookies):
         user_logged = {'username' : request.cookies.get('email')}
-        return render_template('private.html', title='OKKKKKK', user=user_logged)
+        return render_template('private.html', title='OKKKKKK', user=user_logged, secret='1234')
     else:
         form = LoginForm()
         return render_template('login.html', title='Sign In', form=form)
@@ -95,6 +95,10 @@ def log_out():
     res.set_cookie('email', '', expires=0)
     res.set_cookie('password', '', expires=0)
     return res
+
+def getSecret(){
+
+}
 
 
 if __name__ == '__main__':
