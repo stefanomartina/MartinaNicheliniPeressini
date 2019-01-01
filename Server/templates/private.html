@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ user.username }}!</h1>
-    <p>Your secret is: {{ secret }}</p>
+    <div class="container">
+    <div class="col-md-1"></div>
+
+    <div class="col-md-12">
+        <h1>Hi, {{ user.username }}!</h1>
+        <h5>Your secret is: <b>{{ secret }}</b></h5>
+    </div>
+
+    <div class="col-md-1"></div>
+    </div>
 {% endblock %}
