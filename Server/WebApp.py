@@ -46,7 +46,7 @@ def auth_user(cookie):
 
 def set_cookies(user, psw):
     user_logged = {'username' : user}
-    res = make_response(render_template('private.html', title='OKKKKKK', user=user_logged, secret=getSecret(user)))
+    res = make_response(render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret(user)))
     res.set_cookie('email', user)
     res.set_cookie('password', psw)
     print("cookie settato")
@@ -83,8 +83,8 @@ def registration():
 @app.route('/private_page',  methods=['GET', 'POST'])
 def private_page():
     if auth_user(request.cookies):
-        user_logged = {'username' : request.cookies.get('email')}
-        return render_template('private.html', title='OKKKKKK', user=user_logged, secret=getSecret())
+        user_logged = {'username': request.cookies.get('email')}
+        return render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret())
     else:
         form = LoginForm()
         return redirect(url_for('login'))
@@ -97,8 +97,9 @@ def log_out():
     res.set_cookie('password', '', expires=0)
     return res
 
-def getSecret(user=''):
-    if(user!=''):
+
+def get_secret(user=''):
+    if user != '':
         return db_handler.get_third_party_secret(user)
     return db_handler.get_third_party_secret(request.cookies.get('email'))
 

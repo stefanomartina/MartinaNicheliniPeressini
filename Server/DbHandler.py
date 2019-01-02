@@ -220,6 +220,18 @@ class DBHandler:
         rows = self.__get(query, None, multiple_lines=True)
         return rows[0][0]
 
+    # RENEW THIRD-PARTY'S SECRET BY ITS USERNAME
+    def renew_third_party_secret(self, username):
+        new_secret = secrets.token_hex(32)
+        query = "UPDATE ThirdParty SET ThirdParty.secret = '" + new_secret + "' " \
+                " WHERE ThirdParty.Username = '" + username + "'"
+
+        try:
+            self.__send(query, None)
+
+        except Exception as e:
+            raise Exception(str(e))
+
     # GET THE LIST OF THIRD-PARTIES IN THE DATABASE
     def get_third_party(self):
         query = "SELECT ThirdParty.Username, ThirdParty.secret FROM ThirdParty"

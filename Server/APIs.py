@@ -216,6 +216,29 @@ def get_third_party_secret():
         return jsonify({'Response': -1, 'Reason': str(e)})
 
 
+@app.route('/api/thirdparties/renew_third_party_secret', methods=['GET'])
+def renew_third_party_secret():
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                db_handler.renew_third_party_secret(username)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+
+            return jsonify({'Response': 1, 'Reason': 'Secret correctly updated'})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
+
+
 @app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
 def get_location_by_fc():
     fc = request.args.get('fiscalCode')
