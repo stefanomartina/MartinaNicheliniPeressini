@@ -7,6 +7,11 @@
     <div class="col-md-12">
         <h1>Hi, {{ user.username }}!</h1>
         <h5>Your secret is: <b>{{ secret }}</b></h5>
+        <form action="/api/thirdparties/renew_third_party_secret" method="get">
+            <input style="display: none" type="text" name="username" value="{{ user.username }}">
+            <input style="display: none" type="text" name="secret" value="{{ secret }}">
+            <button>Renew secret</button>
+        </form>
     </div>
 
     <div class="col-md-1"></div>

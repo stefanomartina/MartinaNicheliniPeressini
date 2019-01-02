@@ -1,5 +1,6 @@
 #!flask/bin/python
-from flask import render_template, flash, request, redirect, make_response
+from flask import render_template, flash, request, redirect, make_response, jsonify
+
 from flask import Flask, url_for
 from DbHandler import DBHandler
 
@@ -96,6 +97,30 @@ def log_out():
     res.set_cookie('email', '', expires=0)
     res.set_cookie('password', '', expires=0)
     return res
+
+
+@app.route('/api/thirdparties/renew_third_party_secret', methods=['GET'])
+def renew_third_party_secret():
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                db_handler.renew_third_party_secret(username)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+            user_logged = {'username': username}
+
+            return render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret())
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
 
 
 def get_secret(user=''):
