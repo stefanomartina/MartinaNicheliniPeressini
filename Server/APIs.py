@@ -250,15 +250,24 @@ def get_location_by_fc():
             return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
         else:
             try:
-                return db_handler.get_location_by_fc(fc)
+                result = db_handler.check_third_party_subscription(username, fc)
+                if result == 'rejected':
+                    return jsonify({'Response': -2, 'Reason': 'Third-party is NOT subscribed to the user'})
+                else:
+                    try:
+                        return db_handler.get_location_by_fc(fc)
+
+                    except Exception as e:
+                        print(str(e))
+                        return jsonify({'Response': -3, 'Reason': str(e)})
 
             except Exception as e:
                 print(str(e))
-                return jsonify({'Response': -2, 'Reason': str(e)})
+                return jsonify({'Response': -4, 'Reason': str(e)})
 
     except Exception as e:
         print(str(e))
-        return jsonify({'Response': -3, 'Reason': str(e)})
+        return jsonify({'Response': -5, 'Reason': str(e)})
 
 
 @app.route('/api/thirdparties/get_heart_rate_by_fc', methods=['GET'])
@@ -272,15 +281,24 @@ def get_heart_rate_by_fc():
             return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
         else:
             try:
-                return db_handler.get_heart_rate_by_fc(fc)
+                result = db_handler.check_third_party_subscription(username, fc)
+                if result == 'rejected':
+                    return jsonify({'Response': -2, 'Reason': 'Third-party is NOT subscribed to the user'})
+                else:
+                    try:
+                        return db_handler.get_heart_rate_by_fc(fc)
+
+                    except Exception as e:
+                        print(str(e))
+                        return jsonify({'Response': -3, 'Reason': str(e)})
 
             except Exception as e:
                 print(str(e))
-                return jsonify({'Response': -2, 'Reason': str(e)})
+                return jsonify({'Response': -4, 'Reason': str(e)})
 
     except Exception as e:
         print(str(e))
-        return jsonify({'Response': -3, 'Reason': str(e)})
+        return jsonify({'Response': -5, 'Reason': str(e)})
 
 
 @app.route('/api/thirdparties/check_third_party', methods=['GET'])
@@ -293,6 +311,22 @@ def check_third_party():
             return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
         else:
             return jsonify({'Response': 1, 'Reason': 'Third-party is present in the database!'})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -2, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/check_third_party_subscription', methods=['GET'])
+def check_third_party_subscription():
+    user_fc = request.args.get('userFC')
+    tp_username = request.args.get('tpUsername')
+    try:
+        result = db_handler.check_third_party_subscription(tp_username, user_fc)
+        if result == 'rejected':
+            return jsonify({'Response': -1, 'Reason': 'Third-party is NOT subscribed to the user'})
+        else:
+            return jsonify({'Response': 1, 'Reason': 'Third-party is subscribed to the user!'})
 
     except Exception as e:
         print(str(e))

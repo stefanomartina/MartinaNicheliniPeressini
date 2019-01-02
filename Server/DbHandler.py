@@ -255,6 +255,15 @@ class DBHandler:
         rows = self.__get(query, None, multiple_lines=True)
         return rows[0][0]
 
+    # CHECK THIRD-PARTY SUBSCRIPTION
+    def check_third_party_subscription(self, tp_username, user_fc):
+        query = "SELECT subscription.status FROM subscription " \
+                "WHERE subscription.Username_User IN (SELECT username FROM User WHERE FiscalCode = '" + user_fc + "')" \
+                "AND subscription.Username_ThirdParty = '" + tp_username + "'"
+
+        rows = self.__get(query, None, multiple_lines=True)
+        return rows[0][0]
+
     # GET LOCATION DATA BY THE FISCAL CODE OF THE USER
     def get_location_by_fc(self, fc):
         query = "SELECT Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
