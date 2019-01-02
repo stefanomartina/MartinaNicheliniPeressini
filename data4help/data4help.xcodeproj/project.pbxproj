@@ -28,12 +28,12 @@
 		26DBDB1621CB07E0002C0EF7 /* SubscriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */; };
 		26F53DAE21C1033B001F419A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F53DAD21C1033B001F419A /* HealthKit.framework */; };
 		26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26F53DAF21C10608001F419A /* HealthKitManager.swift */; };
-		26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FB31E421B5428F00C27A9B /* SettingsViewController.swift */; };
 		9052693162330982326FC0F4 /* Pods_data4helpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A205C923CD6738190F331C /* Pods_data4helpTests.framework */; };
 		9BEB7455797B23AEF353B407 /* Pods_data4helpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */; };
 		C6316FCE21B018AA00B75AF5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */; };
 		C63D293D21C2682A00DB7FC3 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63D293C21C2682A00DB7FC3 /* UIExtensions.swift */; };
 		C63EED3121D00E6F0021DEFE /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EED3021D00E6F0021DEFE /* LocationViewController.swift */; };
+		C68B328F21DBCA3D00CE98D3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68B328E21DBCA3D00CE98D3 /* SettingsTableViewController.swift */; };
 		C694BF7A21B48544006E6B4C /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C694BF7921B48544006E6B4C /* DashboardViewController.swift */; };
 		C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA753921AEB9F300A6039E /* AppDelegate.swift */; };
 		C6CA753C21AEB9F300A6039E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */; };
@@ -86,7 +86,6 @@
 		26F53DAC21C10336001F419A /* data4help.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = data4help.entitlements; sourceTree = "<group>"; };
 		26F53DAD21C1033B001F419A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		26F53DAF21C10608001F419A /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
-		26FB31E421B5428F00C27A9B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3031E70294C65900F2A89C4E /* Pods_data4helpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4helpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D61006B196DE6D202BB09F3 /* Pods_data4help.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_data4help.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A4CA89F4BAC2BDC69F1381 /* Pods-data4helpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-data4helpTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-data4helpTests/Pods-data4helpTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C63D293C21C2682A00DB7FC3 /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		C63EED3021D00E6F0021DEFE /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		C68B328E21DBCA3D00CE98D3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		C694BF7921B48544006E6B4C /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		C6CA753621AEB9F300A6039E /* data4help.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = data4help.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6CA753921AEB9F300A6039E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -241,9 +241,9 @@
 				26F53DAC21C10336001F419A /* data4help.entitlements */,
 				C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */,
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
-				26FB31E421B5428F00C27A9B /* SettingsViewController.swift */,
 				C63EED3021D00E6F0021DEFE /* LocationViewController.swift */,
 				C694BF7921B48544006E6B4C /* DashboardViewController.swift */,
+				C68B328E21DBCA3D00CE98D3 /* SettingsTableViewController.swift */,
 				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
 				C6CA754221AEB9F400A6039E /* LaunchScreen.storyboard */,
 				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
@@ -527,7 +527,6 @@
 				C6CA753A21AEB9F300A6039E /* AppDelegate.swift in Sources */,
 				268D662421D66C25004289F6 /* NotificationCenter.swift in Sources */,
 				26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */,
-				26FB31E521B5428F00C27A9B /* SettingsViewController.swift in Sources */,
 				2677494221CEB7FB0050DDDB /* DataTableViewCell.swift in Sources */,
 				C63D293D21C2682A00DB7FC3 /* UIExtensions.swift in Sources */,
 				2677494421CEBBB40050DDDB /* DataTableViewController.swift in Sources */,
@@ -538,6 +537,7 @@
 				2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */,
 				2619C50621D52D4600CAF892 /* LocationDataTableViewCell.swift in Sources */,
 				26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */,
+				C68B328F21DBCA3D00CE98D3 /* SettingsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
