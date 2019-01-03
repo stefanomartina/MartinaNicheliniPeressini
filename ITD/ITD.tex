@@ -6,6 +6,7 @@
 \usepackage{graphicx}
 \usepackage{rotating}
 \usepackage{listings}
+\usepackage{titlesec}
 
 \usepackage{hyperref}
 \hypersetup{
@@ -15,6 +16,13 @@
     linkcolor=black,
     urlcolor=black
 }
+
+\setcounter{secnumdepth}{4}
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
 \usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
 \usepackage{alloy-style}
@@ -44,10 +52,18 @@
 The team has developed and implemented the main functionalities of the core Data4help module and Automated SOS.
 In details the developed framework has fulfilled the following requirements described in RASD Document:
 \begin{itemize}
-	\item R1, bla bla bla 
+	\item (R1) Users can create an account with credentials.
+	\item (R3) Users can log manually or automatically their data.
+	\item (R4) Users have to be able to accept/deny access to single data access request.
+	\item (R5) Users have to be able to see current data policies and to change them.
+	\item (R6) The machine has to be able to read health and position data.
+	\item (R7) The machine has to be able to recognise below threshold parameters.
+	\item (R8) The machine has to be able to communicate with third parties.
+	\item (R10) The machine has to be able to store users’ data.
 \end{itemize}
 
-We excluded requests of anonymous data because of the lack of adequate data set to test this feature.
+We excluded requests of anonymous data because of the lack of an adequate data set to test this feature (Requirement number 9).
+We've also decided not to implemented functionality regarding requirement number 2 "\textit{Credentials can be retrievable also if forgotten/lost}" to avoid to build an entire email infrastructure.
 
 \section{Adopted frameworks}
 For the backend: Flask framework has been adopted. Flask is a web development framework that let the building of easy and light web environments. It has been used to both build the API infrastructure and the third parties' web interface.
@@ -94,6 +110,31 @@ For the backend, the following Python libraries has been adopted:
 The project has not used external API than the ones directly developed in-house.
 
 \section{Source code structure}
+\subsection{Python Backend}
+\subsubsection{File and class index}
+Python backend is composed by three file:
+\begin{itemize}
+	\item \textit{API.py}.
+	\item \textit{DbHandler.py}
+	\item \textit{WebApp.py}
+\end{itemize}
+
+\subsubsection{API.py}
+\paragraph{Main description}
+ It handles the web-server useful to build and maintain the API endpoints that serve both Data4help app and third parties. It has to be directly executed. It basically define all the URL endpoint and the action associated with enabled HTTP actions.\\
+ Decorator "\textit{@auth.login required}" states that each following method is called if and only if the incoming HTTP connection has been authenticated. Authentication method follows rules of Flash-HTTPBasicAuthLibrary as described here: \url{https://flask-basicauth.readthedocs.io/en/latest/}.
+ \paragraph{Component mapping}
+ 
+ \subsubsection{DbHandler.py}
+ \paragraph{Main description}
+ It handles all the necessary operations to connect and submit query to the data layer. The class \textit{ConnectionPool} has been assigned with the task to generate a new connection to the server each time a method need it. \textit{DbHandler} class is composed of two static and most important private method: \textit{send(query,values)} and \textit{get(query, values, multiple lines)}. This two methods are made in order to fulfil connection requirements of the other methods and to hide connections and cursor handling to them.
+ \paragraph{Component  mapping}
+ \subsubsection{WebApp.py}
+ \paragraph{Main description}
+ It handles the web-server useful to build the web app that serves third parties for registration purpose. The structure is very similar to the one of \textit{API.py} since they are both based on rules of Flask framework.
+ \paragraph{}
+ 
+\subsection{iOS frontend}
 
 \section{Testing}
 
