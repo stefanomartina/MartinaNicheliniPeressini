@@ -32,10 +32,15 @@ class ConnectionPool:
             return mysql.connector.connect(**parameters)
         except:
             print('[*] WARNING: Un-secure connection')
-            return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
+            return mysql.connector.connect(host=parameters.get('host'), database=parameters.get('database'), user=parameters.get('user'), passwd=parameters.get('password'))
 
 
 class DBHandler:
+    def __init__(self, host = None, password = None):
+        if(host):
+            parameters['host'] = host
+            parameters['password'] = password
+
 
     """
     To be called each time another method needs to write data on database
@@ -401,3 +406,6 @@ class DBHandler:
         self.__send(query, None)
         return 0
 
+    def dropContent(self):
+        query_drop_content_user = "DELETE FROM User"
+        self.__send(query_drop_content_user, None)
