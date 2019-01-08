@@ -42,7 +42,6 @@ class SettingsTableViewController: UITableViewController {
     ////////////////////////////////////// AUTOMATED SOS TOGGLE STATUS RETRIEVAL
     func setAutomatedSOSSwitch(){
         let status = Global.userDefaults.bool(forKey: "automatedSOSToggle")
-        print(status)
         healthToggle.setOn(status, animated: true)
     }
     
@@ -59,6 +58,12 @@ class SettingsTableViewController: UITableViewController {
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setSlider()
+    }
+    
     ////////////////////////////////////// SLIDER SETUP and ASSOCIATED FUNCTIONS
     func setSlider(){
         submitThreshold.isEnabled = false
@@ -69,9 +74,14 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func getThreshold() -> String{
-        return Global.userDefaults.string(forKey: "threshold") ?? String(Global.DEFAULT_THRESHOLD)
+        if let tok = Global.userDefaults.string(forKey: "threshold") {
+            print(tok)
+            return tok
+        } else {
+            print(String(Global.DEFAULT_THRESHOLD))
+            return String(Global.DEFAULT_THRESHOLD)
+        }
     }
-    
     @IBAction func thresholdSliderChanges(_ sender: Any) {
         let tok = String("\(thresholdSlider.value)").components(separatedBy: ".")[0]
         thresholdLabel.text = "\(tok)"
