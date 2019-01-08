@@ -4,6 +4,7 @@ import collections
 import json
 import pprint
 import secrets
+import hashlib
 
 parameters = {
     'host': '35.198.157.139',
@@ -31,10 +32,15 @@ class ConnectionPool:
             return mysql.connector.connect(**parameters)
         except:
             print('[*] WARNING: Un-secure connection')
-            return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
+            return mysql.connector.connect(host=parameters.get('host'), database=parameters.get('database'), user=parameters.get('user'), passwd=parameters.get('password'))
 
 
 class DBHandler:
+    def __init__(self, host = None, password = None):
+        if(host):
+            parameters['host'] = host
+            parameters['password'] = password
+
 
     """
     To be called each time another method needs to write data on database
@@ -306,6 +312,78 @@ class DBHandler:
 
         return json.dumps(objects_list)
 
+    def groups_heart_rate_by_birth_place(self, birth_place):
+        query = "SELECT HeartRate.Username, HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
+                "WHERE Username IN (SELECT username FROM User WHERE birthPlace = '" + birth_place + "')" \
+                "ORDER BY HeartRate.Username, HeartRate.Timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['BPM'] = str(row[1])
+            d['SOS'] = str(row[2])
+            d['Timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_heart_rate_by_year_of_birth(self, year_of_birth):
+        query = "SELECT HeartRate.Username, HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
+                "WHERE Username IN (SELECT username FROM User WHERE YEAR(birthday) = '" + year_of_birth + "')" \
+                "ORDER BY HeartRate.Username, HeartRate.Timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['BPM'] = str(row[1])
+            d['SOS'] = str(row[2])
+            d['Timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_location_by_birth_place(self, birth_place):
+        query = "SELECT Location.Username, Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
+                "WHERE Username IN (SELECT username FROM User WHERE birthPlace = '" + birth_place + "')" \
+                "ORDER BY Location.Username, Location.timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['Latitude'] = str(row[1])
+            d['Longitude'] = str(row[2])
+            d['timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_location_by_year_of_birth(self, year_of_birth):
+        query = "SELECT Location.Username, Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
+                "WHERE Username IN (SELECT username FROM User WHERE YEAR(birthday) = '" + year_of_birth + "')" \
+                "ORDER BY Location.Username, Location.timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['Latitude'] = str(row[1])
+            d['Longitude'] = str(row[2])
+            d['timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
     def get_user_username_by_fc(self, fc):
         query = "SELECT username FROM User WHERE FiscalCode ='" + fc + "'"
         rows = self.__get(query, None, multiple_lines=True)
@@ -328,3 +406,6 @@ class DBHandler:
         self.__send(query, None)
         return 0
 
+    def dropContent(self):
+        query_drop_content_user = "DELETE FROM User"
+        self.__send(query_drop_content_user, None)
