@@ -31,13 +31,50 @@
              <tr>
                 <th>Endpoint</th>
                 <th>Method</th>
+                <th>Port</th>
                 <th>Individual/Group</th>
                 <th>Response Type</th>
             </tr>
             <tr>
                 <td><h4>/api/thirdparties/get_location_by_fc?fiscalCode=<span class="mysecret">USER_FC</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4></td>
                 <td>GET</td>
+                <th>5000</th>
                 <td>Individual</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/get_heart_rate_by_fc?fiscalCode=<span class="mysecret">USER_FC</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Individual</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/heart_rate_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/location_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/heart_rate_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/location_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
                 <td>JSON</td>
             </tr>
         </table>
@@ -54,10 +91,6 @@
                     <!--<img src="../images/json_ex_2.png">-->
                 </div>
             </div>
-        <h4>/api/thirdparties/groups/heart_rate_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
-        <h4>/api/thirdparties/groups/location_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
-        <h4>/api/thirdparties/groups/heart_rate_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
-        <h4>/api/thirdparties/groups/location_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
         </div>
         <div class="col-md-1"></div>
 
