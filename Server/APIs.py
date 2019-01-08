@@ -199,6 +199,94 @@ def subscribe():
         return jsonify({'Response': -2, 'Reason': str(e)})
 
 
+@app.route('/api/thirdparties/groups/heart_rate_by_birth_place', methods=['GET'])
+def groups_heart_rate_by_birth_place():
+    birth_place = request.args.get('birthPlace')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                return db_handler.groups_heart_rate_by_birth_place(birth_place)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/groups/heart_rate_by_year_of_birth', methods=['GET'])
+def groups_heart_rate_by_year_of_birth():
+    year = request.args.get('year')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                return db_handler.groups_heart_rate_by_year_of_birth(year)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/groups/location_by_birth_place', methods=['GET'])
+def groups_location_by_birth_place():
+    birth_place = request.args.get('birthPlace')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                return db_handler.groups_location_by_birth_place(birth_place)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
+
+
+@app.route('/api/thirdparties/groups/location_by_year_of_birth', methods=['GET'])
+def groups_location_by_year_of_birth():
+    year = request.args.get('year')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
+    try:
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                return db_handler.groups_location_by_year_of_birth(year)
+
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
+
+    except Exception as e:
+        print(str(e))
+        return jsonify({'Response': -3, 'Reason': str(e)})
+
+
 @app.route('/api/thirdparties/get_third_party', methods=['GET'])
 def get_third_party():
     return db_handler.get_third_party()
