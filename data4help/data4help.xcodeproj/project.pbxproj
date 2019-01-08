@@ -23,6 +23,9 @@
 		2677494421CEBBB40050DDDB /* DataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494321CEBBB40050DDDB /* DataTableViewController.swift */; };
 		2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2677494521CEBC3C0050DDDB /* HeartData.swift */; };
 		268D662421D66C25004289F6 /* NotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268D662321D66C25004289F6 /* NotificationCenter.swift */; };
+		2696EDB521E4B2B100279107 /* Heart_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 2696EDB421E4B2B100279107 /* Heart_big.png */; };
+		2696EDB721E4B52100279107 /* SOSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696EDB621E4B52100279107 /* SOSViewController.swift */; };
+		2696EDB921E4C94700279107 /* signal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2696EDB821E4C94700279107 /* signal.jpg */; };
 		26D2E35321BEB175009F68E7 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26D2E35221BEB175009F68E7 /* Global.swift */; };
 		26DBDB1221CABC3B002C0EF7 /* SubscribtionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */; };
 		26DBDB1621CB07E0002C0EF7 /* SubscriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */; };
@@ -80,6 +83,9 @@
 		2677494321CEBBB40050DDDB /* DataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTableViewController.swift; sourceTree = "<group>"; };
 		2677494521CEBC3C0050DDDB /* HeartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartData.swift; sourceTree = "<group>"; };
 		268D662321D66C25004289F6 /* NotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenter.swift; sourceTree = "<group>"; };
+		2696EDB421E4B2B100279107 /* Heart_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Heart_big.png; sourceTree = "<group>"; };
+		2696EDB621E4B52100279107 /* SOSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSViewController.swift; sourceTree = "<group>"; };
+		2696EDB821E4C94700279107 /* signal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = signal.jpg; sourceTree = "<group>"; };
 		26D2E35221BEB175009F68E7 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		26DBDB1121CABC3B002C0EF7 /* SubscribtionRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribtionRequest.swift; sourceTree = "<group>"; };
 		26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 		2677493C21CEB68C0050DDDB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2696EDB821E4C94700279107 /* signal.jpg */,
+				2696EDB421E4B2B100279107 /* Heart_big.png */,
 				2633BABE21D663B200056A9C /* smallerContract.png */,
 				2633BABC21D6635800056A9C /* smallerLocation.png */,
 				2633BABA21D662F400056A9C /* smallerHearth.png */,
@@ -238,15 +246,16 @@
 				261D9A9321C70D6800B54A38 /* SubscriptionTableViewController.swift */,
 				26DBDB1521CB07E0002C0EF7 /* SubscriptionTableViewCell.swift */,
 				2633BAB821D65B6B00056A9C /* SubscriptionsTableViewCellDetailsController.swift */,
-				26F53DAC21C10336001F419A /* data4help.entitlements */,
 				C6316FCD21B018AA00B75AF5 /* LoginViewController.swift */,
 				C6CA753B21AEB9F300A6039E /* RegistrationViewController.swift */,
 				C63EED3021D00E6F0021DEFE /* LocationViewController.swift */,
 				C694BF7921B48544006E6B4C /* DashboardViewController.swift */,
 				C68B328E21DBCA3D00CE98D3 /* SettingsTableViewController.swift */,
+				2696EDB621E4B52100279107 /* SOSViewController.swift */,
 				C6CA753D21AEB9F300A6039E /* Main.storyboard */,
 				C6CA754221AEB9F400A6039E /* LaunchScreen.storyboard */,
 				C6CA753921AEB9F300A6039E /* AppDelegate.swift */,
+				26F53DAC21C10336001F419A /* data4help.entitlements */,
 				C6CA754021AEB9F400A6039E /* Assets.xcassets */,
 				C6CA754521AEB9F400A6039E /* Info.plist */,
 			);
@@ -391,6 +400,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6CA754421AEB9F400A6039E /* LaunchScreen.storyboard in Resources */,
+				2696EDB921E4C94700279107 /* signal.jpg in Resources */,
+				2696EDB521E4B2B100279107 /* Heart_big.png in Resources */,
 				2632805921CFF6520038F5BF /* Hearth.png in Resources */,
 				2619C50A21D560B300CAF892 /* Location.png in Resources */,
 				C6CA754121AEB9F400A6039E /* Assets.xcassets in Resources */,
@@ -536,6 +547,7 @@
 				260307B521C157AE00EAC547 /* HTTPManager.swift in Sources */,
 				2677494621CEBC3C0050DDDB /* HeartData.swift in Sources */,
 				2619C50621D52D4600CAF892 /* LocationDataTableViewCell.swift in Sources */,
+				2696EDB721E4B52100279107 /* SOSViewController.swift in Sources */,
 				26F53DB021C10608001F419A /* HealthKitManager.swift in Sources */,
 				C68B328F21DBCA3D00CE98D3 /* SettingsTableViewController.swift in Sources */,
 			);
