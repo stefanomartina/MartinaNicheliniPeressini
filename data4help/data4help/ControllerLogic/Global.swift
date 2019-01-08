@@ -57,5 +57,6 @@ class Messages {
     static public let NETWORK_ERROR = "Network error: server isn't responding"
     static public let BPM_ALERT_TITLE = "AUTOMATED SOS - BPM threashold value violated"
     static public let BPM_ALERT_BODY = "Something is probably wrong. Press \"I'm ok\" to block the call to SOS service"
+    static public let FIRST_AIDS_CALLED = "First aid services have been called. Your position has been sent"
 }
 
