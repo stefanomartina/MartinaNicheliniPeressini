@@ -12,6 +12,7 @@ import UserNotifications
 ////////////////////////////////////////////// DECLARATION OF NOTIFCATION DELEGATE AND NOTIFICATION CENTER
 let notificationDelegate = NotificationCenter()
 let center = UNUserNotificationCenter.current()
+var sosTimer : Timer!
 
 // all actions to be settuped app in the App delegates but activated only once user logged in 
 func loginServicesActivation() {
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        Global.userDefaults.set(60, forKey: "threshold")  // debug purpose
+        //Global.userDefaults.set(60, forKey: "threshold")  // debug purpose
         
         ////////////////////////////////////////////// NOTIFICATION PERMISSION
         let options: UNAuthorizationOptions = [.alert, .sound];

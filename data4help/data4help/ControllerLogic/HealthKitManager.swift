@@ -8,13 +8,24 @@
 import Foundation
 import HealthKit
 import UserNotifications
+import UIKit
 
-class AutomatedSoS {
+
+class AutomatedSoS: NSObject {
+    
+    private static func timerDone(){
+        print("timer done action triggered")
+        DispatchQueue.main.async {
+            let mainController = UIApplication.shared.keyWindow?.rootViewController?.presentedViewController
+            let vc = mainController?.storyboard?.instantiateViewController(withIdentifier: "sos") as! SOSViewController
+            mainController!.present(vc, animated: true, completion: nil)
+            }
+        //}
+    } //end method timerDone
     
     private static func notificationAlert(badValue: HKQuantitySample){
-        print("SOS triggered")
+        print("SOS handler triggered")
         
-        //define notification style
         let content = UNMutableNotificationContent()
         content.title = Messages.BPM_ALERT_TITLE
         content.body = Messages.BPM_ALERT_BODY
@@ -23,7 +34,6 @@ class AutomatedSoS {
         
         //schedule notification with a trigger of a time interval of 1 second
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        
         let identifier = "SOSNotificationIdentifier"
         
         //make a request to the notification center
@@ -31,6 +41,8 @@ class AutomatedSoS {
                                             content: content, trigger: trigger)
         center.add(request, withCompletionHandler: { (error) in
             if let error = error {print(error)}})
+        timerDone()
+        
     } //end method notificationAlert
     
     public static func checkValues (values: [HKQuantitySample]){

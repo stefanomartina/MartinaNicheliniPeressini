@@ -4,6 +4,7 @@ import collections
 import json
 import pprint
 import secrets
+import hashlib
 
 parameters = {
     'host': '35.198.157.139',
@@ -307,6 +308,78 @@ class DBHandler:
             d['BPM'] = str(row[0])
             d['SOS'] = str(row[1])
             d['Timestamp'] = row[2].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_heart_rate_by_birth_place(self, birth_place):
+        query = "SELECT HeartRate.Username, HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
+                "WHERE Username IN (SELECT username FROM User WHERE birthPlace = '" + birth_place + "')" \
+                "ORDER BY HeartRate.Username, HeartRate.Timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['BPM'] = str(row[1])
+            d['SOS'] = str(row[2])
+            d['Timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_heart_rate_by_year_of_birth(self, year_of_birth):
+        query = "SELECT HeartRate.Username, HeartRate.BPM, HeartRate.SOS, HeartRate.Timestamp FROM HeartRate " \
+                "WHERE Username IN (SELECT username FROM User WHERE YEAR(birthday) = '" + year_of_birth + "')" \
+                "ORDER BY HeartRate.Username, HeartRate.Timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['BPM'] = str(row[1])
+            d['SOS'] = str(row[2])
+            d['Timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_location_by_birth_place(self, birth_place):
+        query = "SELECT Location.Username, Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
+                "WHERE Username IN (SELECT username FROM User WHERE birthPlace = '" + birth_place + "')" \
+                "ORDER BY Location.Username, Location.timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['Latitude'] = str(row[1])
+            d['Longitude'] = str(row[2])
+            d['timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
+            objects_list.append(d)
+
+        return json.dumps(objects_list)
+
+    def groups_location_by_year_of_birth(self, year_of_birth):
+        query = "SELECT Location.Username, Location.Latitude, Location.Longitude, Location.timestamp FROM Location " \
+                "WHERE Username IN (SELECT username FROM User WHERE YEAR(birthday) = '" + year_of_birth + "')" \
+                "ORDER BY Location.Username, Location.timestamp"
+
+        rows = self.__get(query, None, multiple_lines=True)
+
+        objects_list = []
+        for row in rows:
+            d = collections.OrderedDict()
+            d['UserID'] = int(hashlib.sha1((str(row[0])).encode('utf-8')).hexdigest(), 16) % (10 ** 8)
+            d['Latitude'] = str(row[1])
+            d['Longitude'] = str(row[2])
+            d['timestamp'] = row[3].strftime('%Y-%m-%d %H:%M:%S')
             objects_list.append(d)
 
         return json.dumps(objects_list)

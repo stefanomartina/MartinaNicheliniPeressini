@@ -19,24 +19,65 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-13">
-        The main scope of the Data4Help project is to provide a platform where the user can consult his/her health and location data and share these data with third-parties so that the latter can increase their business value.
-            The application also offers two additional services: AutomatedSOS, a constant vital parameters monitoring service, thought for elderly people, to detect anoma- lies and, in case of emergency, call an ambulance directly
-            to the location of the costumer, and Track4Run, a service mainly thought for runners to create and join running events and live tracking on a map participants of the runs. Both AutomatedSOS and Track4Run exploit the
-            features offered by Data4Help.
+            The main scope of the Data4Help project is to provide a platform where the user can consult his/her health and
+            location data and share these data with third-parties so that the latter can increase their business value.
+            The application also offers two additional services: AutomatedSOS, a constant vital parameters monitoring
+            service, thought for elderly people, to detect anomalies and, in case of emergency, call an ambulance
+            directly to the location of the costumer, and Track4Run, a service mainly thought for runners to create and
+            join running events and live tracking on a map participants of the runs.
+            Both AutomatedSOS and Track4Run exploit the features offered by Data4Help.
 
-        <h4>/api/thirdparties/get_location_by_fc?SECRET=<span class="mysecret"> YOU_SECRET_HERE</span></h4>
-            <div class="row">
-                <div class="col-md-12">
-                    <!--<img src="../images/json_ex_1.png">-->
-                </div>
-            </div>
-        <h4>/api/thirdparties/get_heart_rate_by_fc?SECRET=<span class="mysecret"> YOU_SECRET_HERE</span></h4>
-            <div class="row">
-                <div class="col-md-12">
-                    <!--<img src="../images/json_ex_2.png">-->
-
-                </div>
-            </div>
+         <table style="width:100%">
+             <tr>
+                <th>Endpoint</th>
+                <th>Method</th>
+                <th>Port</th>
+                <th>Individual/Group</th>
+                <th>Response Type</th>
+            </tr>
+            <tr>
+                <td><h4>/api/thirdparties/get_location_by_fc?fiscalCode=<span class="mysecret">USER_FC</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4></td>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Individual</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/get_heart_rate_by_fc?fiscalCode=<span class="mysecret">USER_FC</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Individual</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/heart_rate_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/location_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/heart_rate_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+            <tr>
+                <h4>/api/thirdparties/groups/location_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4>
+                <td>GET</td>
+                <th>5000</th>
+                <td>Group</td>
+                <td>JSON</td>
+            </tr>
+        </table>
         </div>
         <div class="col-md-1"></div>
 
