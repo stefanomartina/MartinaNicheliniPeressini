@@ -27,7 +27,7 @@
 
 \title{TrackMe \\ Software Engineering 2 Project\\ \textit{RASD Document} }
 \author{Stefano Martina, Alessandro Nichelini, Francesco Peressini
-		\\ \\ A.Y. 2018/2019 \\ Version 1.0.0}
+		\\ \\ A.Y. 2018/2019 \\ Version 1.0.1}
 		
 \maketitle
 \newpage
@@ -85,8 +85,7 @@ information about their activities and health status through Data4Help
 application. \newline
 Data4Help is also thought for third-parties: acquiring data and 
 extrapolate information from that is fundamental in today's world so 
-TrackMe thought about a web interface where organisations can select 
-and retrive data choosing between single users or groups of 
+TrackMe thought about a web service where organisations can retrive data choosing between single users or groups of 
 individuals, also signing a subscription plan. \newline
 Builded on top of Data4Help, AutomatedSOS provides support to elderly 
 people in case of emergency (when vital parameters are detected 
@@ -98,7 +97,7 @@ live-tracking participants during the events.
 \begin{itemize}
 	\item \textit{General user’s health condition}: the machine doesn’t know the information about possible user’s disease
 	\item \textit{First aid services status}: the machine doesn’t know the actual first aid services status
-	\item \textit{Overall third parties knowledge status}: the machine doesn’t know which informations third parties already have about users
+	\item \textit{Overall third-parties knowledge status}: the machine doesn’t know which informations third-parties already have about users
 \end{itemize}
 
 \subsubsection{Machine Phenomena}
@@ -130,11 +129,11 @@ live-tracking participants during the events.
     		\item Allow users to en-roll to events.
     		\item Allow spectators to follow participants’ live position during events.
   		\end{enumerate}
-\item Allow third parties to access data:
+\item Allow third-parties to access data:
 		\begin{enumerate}[label={[G\arabic{enumi}.\arabic*]}]
-    		\item Allow third parties to require access to specific user data.
-    		\item Allow third parties to retrieve anonymised aggregated data.
-    		\item Allow third parties to subscribe to data feed 
+    		\item Allow third-parties to require access to specific user data.
+    		\item Allow third-parties to retrieve anonymised aggregated data.
+    		\item Allow third-parties to subscribe to data feed 
   		\end{enumerate}
 
 \end{enumerate}
@@ -145,7 +144,7 @@ live-tracking participants during the events.
 \subsubsection{Definitions}
 \begin{itemize}
 	\item \textbf{Event:} an event organised by a user
-	\item \textbf{Notification:} a warning that advise the user of a request by third parties
+	\item \textbf{Notification:} a warning that advise the user of a request by third-parties
 	\item \textbf{Third-parties:} external organisations
 	\end{itemize}
 
@@ -164,7 +163,8 @@ live-tracking participants during the events.
 
 \subsection{Revision history}
 \begin{itemize}
-	\item 1.0.0 Initial version (11/11/2018)
+	\item 1.0.0 - Initial version (11/11/2018)
+	\item 1.0.1 - Added specification on how to communicate with wearable devices (08/01/2019)
 \end{itemize}
 \subsection{Document Structure}
 This document essentially follows the structure defined by IEEE for RASD document (\textit{ISO/IEC/IEEE 29148 dated Dec 2011}).
@@ -178,7 +178,7 @@ The product perspective of TrackMe is now explained using the UML paradigms.
 The main classes of the UML are:
 \begin{itemize}
 	\item \textbf{User} contains all the information about a user like username, password, fiscalCode, hometown, elderly, runners.
-	\item \textbf{ThirdParties} contains all the information about the registered organisation.
+	\item \textbf{Third-Parties} contains all the information about the registered organisation.
 	\item \textbf{Data} is an abstract class that has two concrete classes: 
 		\textbf{Health data} and	 \textbf{Location data}
 	\item \textbf{Running Event} 
@@ -262,7 +262,7 @@ implement application's functions.
     	\item Users have to be able to see current data policies and to change them.
     	\item The machine has to be able to read health and position data.
 		\item The machine has to be able to recognise below threshold parameters.
-		\item The machine has to be able to communicate with third parties.
+		\item The machine has to be able to communicate with third-parties.
 		\item The machine has to be able to recognise data fragmentation level.
 		\item The machine has to be able to store users’ data. 
 \end{enumerate}
@@ -373,7 +373,8 @@ implement application's functions.
 		\item \textbf{Data4Help} \newline 
 		User's health data can be inserted in Data4Help section of the
 		application manually or automatically synchronised with data
-		acquired by individual's wearable device. \newline
+		acquired by individual's wearable devices. \newline
+		In order to be cross-platform, the application is going to communicate with wearables through the Health Manager component of the operative systemss. \newline
 		Third-parties can access to the different data through a 
 		web-based interface in which, in case the organisation is 
 		interested in the information of some specific individual, 
@@ -412,68 +413,68 @@ world domain assumption(s) that have to be made in order to reach it.
 
 \begin{itemize}	
 
-	\item [G1] Users can be recognised by their credentials.
+	\item {[G1]} Users can be recognised by their credentials.
 	\begin{itemize}
-		\item [R1] Users can create an account with credentials.
-		\item [R2] Credentials can be retrievable also if 
+		\item {[R1]} Users can create an account with credentials.
+		\item {[R2]} Credentials can be retrievable also if 
 		forgotten/lost.
 	\end{itemize} 
 
-	\item [G2] Allow users to keep track of their health data.	
+	\item {[G2]} Allow users to keep track of their health data.	
 	\begin{itemize}
-		\item [R3] Users can log manually or automatically their data.
-		\item [R6] The machine has to be able to read health and 
+		\item {[R3]} Users can log manually or automatically their data.
+		\item {[R6]} The machine has to be able to read health and 
 		position data.
 	\end{itemize}
 	
-	\item [G3] Allow users to have access to an overview of their 
+	\item {[G3]} Allow users to have access to an overview of their 
 	data, including health parameters and performed activities.
 	\begin{itemize}
-		\item [R10] The machine has to be able to store users’ data.
+		\item {[R10]} The machine has to be able to store users’ data.
 	\end{itemize}
 	
-	\item [G4] Allow users to manage their data access policy.
+	\item {[G4]} Allow users to manage their data access policy.
 	\begin{itemize}
-		\item [R4] Users have to be able to accept/deny access to 
+		\item {[R4]} Users have to be able to accept/deny access to 
 		single data access request.
-		\item [R5] Users have to be able to see current data policies
+		\item {[R5]} Users have to be able to see current data policies
 		and to change them.
 	\end{itemize}
 	
-	\item [G5] Allow users to monitor their performances during 
+	\item {[G5]} Allow users to monitor their performances during 
 	workouts.	
 	\begin{itemize}
-		\item [D4] External services are reliable (map services).
-		\item [D5] Users can be localised trough GPS.
+		\item {[D4]} External services are reliable (map services).
+		\item {[D5]} Users can be localised trough GPS.
 	\end{itemize}	
 	
-	\item [G6] Each time vital signs go below a threshold value, first 
+	\item {[G6]} Each time vital signs go below a threshold value, first 
 	aid services have to be notified.
 	\begin{itemize}
-		\item [R6] The machine has to be able to read health and 
+		\item {[R6]} The machine has to be able to read health and 
 		position data. 
-		\item [R7] The machine has to be able to recognise below 
+		\item {[R7]} The machine has to be able to recognise below 
 		threshold parameters.
-		\item [D1] Data manually inserted by users are to be considered truthful.
-		\item [D3] First aid services are ready to handle emergency
+		\item {[D1]} Data manually inserted by users are to be considered truthful.
+		\item {[D3]} First aid services are ready to handle emergency
 		notiﬁcations.
-		\item [D7]Users are not affected with diseases that can 
+		\item {[D7]} Users are not affected with diseases that can 
 		influence heartbeat ratio.
 	\end{itemize}
 		
-	\item [G7] Allow users to organise running events.
+	\item {[G7]} Allow users to organise running events.
 	\begin{itemize}
-		\item [D3] Running paths proposed by users are well formed 
+		\item {[D3]} Running paths proposed by users are well formed 
 		(e.g: legit by law). 
 	\end{itemize}
 	
-	\item [G8] Allow third parties to access data.
+	\item {[G8]} Allow third-parties to access data.
 	\begin{itemize}
-		\item [R8] The machine has to be able to communicate with 
-		third parties. 
-		\item [R9] The machine has to be able to recognise data 
+		\item {[R8]} The machine has to be able to communicate with 
+		third-parties. 
+		\item {[R9]} The machine has to be able to recognise data 
 		fragmentation level.
-		\item [R10] The machine has to be able to store users’ data.
+		\item {[R10]} The machine has to be able to store users’ data.
 	\end{itemize}
 	
 \end{itemize}
@@ -789,7 +790,7 @@ Exceptions       & \begin{tabular}[c]{@{}l@{}}1. Network error during the enrolm
 In this section we give a description of the system trough and Alloy model.
 The following relations are described:
 \begin{itemize}
-	\item Data access request system is described. Third parties can access users' data
+	\item Data access request system is described. Third-parties can access users' data
 		if a previous request has been made and approved.
 	\item SOS events are raised in case of low vital parameters.
 	\item Users can join to running events.
