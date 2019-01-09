@@ -46,7 +46,7 @@ def auth_user(cookie):
 
 
 def set_cookies(user, psw):
-    user_logged = {'username' : user}
+    user_logged = {'username': user}
     res = make_response(render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret(user)))
     res.set_cookie('email', user)
     res.set_cookie('password', psw)

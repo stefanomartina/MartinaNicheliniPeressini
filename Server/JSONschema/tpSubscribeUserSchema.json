@@ -1,9 +1,0 @@
-
-{
-	"type" : "object",
-	"properties" : {
-		"FC" : {"type": "string"},
-        "description" : {"type" :  "string"}
-	},
-	"required": ["firstname"]
-}

@@ -409,3 +409,7 @@ class DBHandler:
     def dropContent(self):
         query_drop_content_user = "DELETE FROM User"
         self.__send(query_drop_content_user, None)
+
+        query_drop_content_user = "DELETE FROM Location"
+        self.__send(query_drop_content_user, None)
+
