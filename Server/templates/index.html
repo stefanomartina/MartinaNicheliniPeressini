@@ -1,86 +1,92 @@
 {% extends "base.html" %}
 
 {% block content %}
+
     <style>
-    .mysecret{
+    .my_secret{
         border: 2px dashed red;
     }
     </style>
-    <div class="container">
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-10">
-            <h1>Welcome in Data4Help!</h1>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
 
+    <div class="jumbotron text-center">
 
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-13">
-            The main scope of the Data4Help project is to provide a platform where the user can consult his/her health and
-            location data and share these data with third-parties so that the latter can increase their business value.
-            The application also offers two additional services: AutomatedSOS, a constant vital parameters monitoring
-            service, thought for elderly people, to detect anomalies and, in case of emergency, call an ambulance
-            directly to the location of the costumer, and Track4Run, a service mainly thought for runners to create and
-            join running events and live tracking on a map participants of the runs.
-            Both AutomatedSOS and Track4Run exploit the features offered by Data4Help.
+        <h1>Welcome To Data4Help</h1>
+        <p class="lead">
+            Data4Help is a software-based service allowing third parties to monitor the location and health status of individuals. <br />
+            Here you can find the endpoints to communicate with for acquiring the information of your interest.
+        </p>
 
-         <table style="width:100%">
-             <tr>
-                <th>Endpoint</th>
-                <th>Method</th>
-                <th>Port</th>
-                <th>Individual/Group</th>
-                <th>Response Type</th>
-             </tr>
-             <tr>
-                <td><h4>/api/thirdparties/get_location_by_fc?fiscalCode=<span class="mysecret">USER_FC</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4></td>
-                <td>GET</td>
-                <td>5000</td>
-                <td>Individual</td>
-                <td>JSON</td>
-             </tr>
-             <tr>
-                <td><h4>/api/thirdparties/get_heart_rate_by_fc?fiscalCode=<span class="mysecret">USER_FC</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4><td>
-                <td>GET</td>
-                <td>5000</td>
-                <td>Individual</td>
-                <td>JSON</td>
-             </tr>
-             <tr>
-                <td><h4>/api/thirdparties/groups/heart_rate_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4><td>
-                <td>GET</td>
-                <td>5000</td>
-                <td>Group</td>
-                <td>JSON</td>
-             </tr>
-             <tr>
-                <td><h4>/api/thirdparties/groups/location_by_birth_place?birthPlace=<span class="mysecret">USER_BIRTH_PLACE</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4><td>
-                <td>GET</td>
-                <td>5000</td>
-                <td>Group</td>
-                <td>JSON</td>
-             </tr>
-             <tr>
-                <td><h4>/api/thirdparties/groups/heart_rate_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4><td>
-                <td>GET</td>
-                <td>5000</td>
-                <td>Group</td>
-                <td>JSON</td>
-             </tr>
-             <tr>
-                <td><h4>/api/thirdparties/groups/location_by_year_of_birth?year=<span class="mysecret">USER_YEAR_OF_BIRTH</span>&username=<span class="mysecret">YOUR_USERNAME</span>&secret=<span class="mysecret">YOUR_SECRET</span></h4><td>
-                <td>GET</td>
-                <td>5000</td>
-                <td>Group</td>
-                <td>JSON</td>
-             </tr>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Endpoint</th>
+              <th scope="col">Method</th>
+              <th scope="col">Port</th>
+              <th scope="col">Individual/Group</th>
+              <th scope="col">Response</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>/api/thirdparties/subscribe?fiscalCode=<span class="my_secret">USER_FC</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>-----------</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>/api/thirdparties/get_location_by_fc?fiscalCode=<span class="my_secret">USER_FC</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>Individual</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>/api/thirdparties/get_heart_rate_by_fc?fiscalCode=<span class="my_secret">USER_FC</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>Individual</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>/api/thirdparties/groups/heart_rate_by_birth_place?birthPlace=<span class="my_secret">USER_BIRTH_PLACE</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>Group</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>/api/thirdparties/groups/location_by_birth_place?birthPlace=<span class="my_secret">USER_BIRTH_PLACE</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>Group</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>/api/thirdparties/groups/heart_rate_by_year_of_birth?year=<span class="my_secret">USER_YEAR_OF_BIRTH</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>Group</td>
+              <td>JSON</td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>/api/thirdparties/groups/location_by_year_of_birth?year=<span class="my_secret">USER_YEAR_OF_BIRTH</span>&username=<span class="my_secret">YOUR_USERNAME</span>&secret=<span class="my_secret">YOUR_SECRET</span></td>
+              <td>GET</td>
+              <td>5000</td>
+              <td>Group</td>
+              <td>JSON</td>
+            </tr>
+          </tbody>
         </table>
-        </div>
-        <div class="col-md-1"></div>
 
     </div>
-    </div>
+
 {% endblock %}
