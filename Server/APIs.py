@@ -178,25 +178,28 @@ def user_sos():
 #######################################################################################################################
 # THIRD-PARTY ENDPOINT OPERATIONS
 
-@app.route('/api/thirdparties/subscribe', methods=['POST'])
-@auth.login_required
+@app.route('/api/thirdparties/subscribe', methods=['GET'])
 def subscribe():
+    fc = request.args.get('fiscalCode')
+    username = request.args.get('username')
+    secret = request.args.get('secret')
     try:
-        data = request.get_json()
-        fc = data['FC']
-        description = data['description']
+        result = db_handler.check_third_party(username, secret)
+        if result == 0:
+            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
+        else:
+            try:
+                db_handler.subscribe_tp_to_user(username, fc)
 
-        try:
-            db_handler.subscribe_tp_to_user(auth.username(), fc, description)
-        except Exception as e:
-            print(str(e))
-            return jsonify({'Response': -1, 'Reason': str(e)})
+            except Exception as e:
+                print(str(e))
+                return jsonify({'Response': -2, 'Reason': str(e)})
 
-        return jsonify({'Response': 1, 'Reason': 'Subscription completed'})
+            return jsonify({'Response': 1, 'Reason': 'Subscription completed'})
 
     except Exception as e:
         print(str(e))
-        return jsonify({'Response': -2, 'Reason': str(e)})
+        return jsonify({'Response': -3, 'Reason': str(e)})
 
 
 @app.route('/api/thirdparties/groups/heart_rate_by_birth_place', methods=['GET'])

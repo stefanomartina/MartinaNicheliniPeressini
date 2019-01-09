@@ -389,10 +389,10 @@ class DBHandler:
         rows = self.__get(query, None, multiple_lines=True)
         return rows[0][0]
 
-    def subscribe_tp_to_user(self, username, fc, description):
-        query = "INSERT INTO subscription VALUES (%s, %s, %s, %s)"
+    def subscribe_tp_to_user(self, username, fc):
+        query = "INSERT INTO subscription VALUES (%s, %s, %s)"
         user_username = self.get_user_username_by_fc(fc)
-        values = (user_username, username, description, 'pending')
+        values = (user_username, username, 'pending')
 
         try:
             self.__send(query, values)
