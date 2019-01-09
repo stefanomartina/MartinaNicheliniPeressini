@@ -92,7 +92,7 @@ class DBHandler:
         return self.__get(query, None, multiple_lines=False)
 
     def get_subscription_to_user(self, username):
-        query = "SELECT Username_ThirdParty, status, description FROM subscription" \
+        query = "SELECT Username_ThirdParty, status FROM subscription" \
                 " WHERE Username_User = '" + username + "'"
 
         query_returned = self.__get(query, None, multiple_lines=True)
@@ -102,7 +102,6 @@ class DBHandler:
             d = collections.OrderedDict()
             d['Username_ThirdParty'] = row[0]
             d['status'] = row[1]
-            d['description'] = row[2]
             objects_list.append(d)
         return json.dumps(objects_list)
 

@@ -319,7 +319,7 @@ def get_location_by_fc():
         else:
             try:
                 result = db_handler.check_third_party_subscription(username, fc)
-                if result == 'rejected':
+                if result == 'rejected' or result == 'pending':
                     return jsonify({'Response': -2, 'Reason': 'Third-party is NOT subscribed to the user'})
                 else:
                     try:
@@ -350,7 +350,7 @@ def get_heart_rate_by_fc():
         else:
             try:
                 result = db_handler.check_third_party_subscription(username, fc)
-                if result == 'rejected':
+                if result == 'rejected' or result == 'pending':
                     return jsonify({'Response': -2, 'Reason': 'Third-party is NOT subscribed to the user'})
                 else:
                     try:
@@ -391,7 +391,7 @@ def check_third_party_subscription():
     tp_username = request.args.get('tpUsername')
     try:
         result = db_handler.check_third_party_subscription(tp_username, user_fc)
-        if result == 'rejected':
+        if result == 'rejected' or result == 'pending':
             return jsonify({'Response': -1, 'Reason': 'Third-party is NOT subscribed to the user'})
         else:
             return jsonify({'Response': 1, 'Reason': 'Third-party is subscribed to the user!'})
