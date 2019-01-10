@@ -3,7 +3,7 @@
 \section{Architectural design}
 \subsection{Overview: High-level}
 
-The system is going to be implemented with a three tier architecture. \newline Tier are briefly described by the following schemas.
+The system is going to be implemented with a three tier architecture. \newline Tiers are briefly described by the following schemas.
 
 \begin{figure}[h!]
 	\centering
@@ -11,12 +11,12 @@ The system is going to be implemented with a three tier architecture. \newline T
 	\caption{High level view of the system's architecture}
 \end{figure}
 
-The decision behind this kind of architecture has been taken in order to build the system in the most modular possibile way. Here are described layers organisation:
+The decision behind this kind of architecture has been taken in order to build the system in the most modular possibile way. Here is described the organisation of the layers: 
 
 \begin{itemize}
 	\item \textit{Presentation layer}:\begin{itemize}
 			\item {Individuals}: an iOS application which contains a view of the entire system;
-			\item {Third-parties}: a web interface where  manage authorisation to communicate with the system.
+			\item {Third-parties}: a web interface to access to own private profile and find the endpoints to communicate with for acquiring the information of interest.
 			\end{itemize}
 	\item \textit{Logic layer}: logic layer will implement all the logic of the entire system and will handle communications between clients' app and the data layer.
 	\item \textit{Data layer}: data layer will be implemented in third-party's cloud system and will keep persistent users' data.
@@ -49,7 +49,7 @@ HealthSharing manager is composed of three main submodules: \begin{itemize}
 	\item Data Elaboration Module.
 \end{itemize}
 
-The \textit{Access Policy Manager Module} works as a manager of all the policies associated with data sharing. It provides the list of active sharing to users and it let them manage active policies such as accepting new sharing request or change/delete active policies. Moreover, this component is also used by third-parties that have to be able to subscribe to users data.\\
+The \textit{Access Policy Manager Module} works as a manager of all the policies associated with data sharing. It provides the list of active sharing to users and it let them manage active policies such as accepting new sharing request or change/delete active policies.\\
 The \textit{Data Manager Module} has to handle all the operations of retrieving/storing data between users' app and databases. It also has to guarantee data consistency in the whole system.
 	\\
 The \textit{Data Elaboration Module} has to handle the operations devoted to  data anonymisation and manage the requests of aggregated data from third-parties.
@@ -131,7 +131,7 @@ The Deployment diagram emphasises the nodes on which the platform runs;\\
 \textbf{InHouse} box represents the components developed inside the company while 
 the components in the \textbf{External} box are on-demand softwares.\\
 \begin{itemize}
-\item	\textbf{Smartphone}: the application deployed on the iOS smartphone used by the user. Users are able to retrieve data from the application server and also from the external API directly (e.g. maps by Google);
+\item	\textbf{Smartphone}: the application deployed on the iOS smartphone used by individuals. Users are able to retrieve data from the application server and also from external APIs directly;
 \item \textbf{Web Browser API Interface}: a web page for third-parties registration. It provides a secret to do a request to the API Server;
 \item \textbf{Application Server}: the  main logic core of the application. It’s the only access point to the DB but it also communicates with the external server API;
 \item  \textbf{External Services}: both the external services are represented as  blackboxes because we don't know how they are implemented.
