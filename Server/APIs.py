@@ -7,7 +7,7 @@ import pprint
 import sys
 
 auth = HTTPBasicAuth()
-db_handler = DBHandler()
+db_handler = DBHandler("127.0.0.1", "password") ##DEBUG MODE NO DEBUG --> db_handler = DBHandler()
 
 app = Flask(__name__)
 
