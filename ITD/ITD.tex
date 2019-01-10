@@ -77,7 +77,7 @@ The project has been developed using two programming language.
 \end{itemize}
 
 The team has chosen Swift over Objective-C because of the effort Apple is putting in its development. Moreover Swift has been thought to work with iOS in a more specific way than Objective-C.\\
-Python has been chosen as the programming language for the backend because most of the team members has previous proficiency ih using it.
+Python has been chosen as the programming language for the backend because most of the team members has previous proficiency in using it.
 
 \subsection{Middleware adopted}
 Since the communication stack is based on a HTTP REST API system, the project doesn't use any further middleware technology.
@@ -91,8 +91,8 @@ For Apple Swift in iOS the following external libraries has been adopted:
 
 For the backend, the following Python libraries has been adopted:
 \begin{itemize}
-	\item Flask: the main library of the previously described framework Flask.
-	\item Flask HTTP Auth: an extension of Flask framework to implemented basic HTTP auth directly in the same environments.
+	\item Flask: the main library of the previously described framework Flask. See: \url{http://flask.pocoo.org}
+	\item Flask HTTP Auth: an extension of Flask framework to implemented basic HTTP auth directly in the same environments. See: \url{https://flask-httpauth.readthedocs.io/en/latest/}.
 	\item MySQLConnector: this library is necessary to handle communication with a SQL database.
 	\item The following standard libraries were also used:
 			\begin{itemize}
@@ -120,21 +120,73 @@ Python backend is composed by three file:
 \end{itemize}
 
 \subsubsection{API.py}
-\paragraph{Main description}
  It handles the web-server useful to build and maintain the API endpoints that serve both Data4help app and third parties. It has to be directly executed. It basically define all the URL endpoint and the action associated with enabled HTTP actions.\\
  Decorator "\textit{@auth.login required}" states that each following method is called if and only if the incoming HTTP connection has been authenticated. Authentication method follows rules of Flash-HTTPBasicAuthLibrary as described here: \url{https://flask-basicauth.readthedocs.io/en/latest/}.
- \paragraph{Component mapping}
+
  
  \subsubsection{DbHandler.py}
- \paragraph{Main description}
  It handles all the necessary operations to connect and submit query to the data layer. The class \textit{ConnectionPool} has been assigned with the task to generate a new connection to the server each time a method need it. \textit{DbHandler} class is composed of two static and most important private method: \textit{send(query,values)} and \textit{get(query, values, multiple lines)}. This two methods are made in order to fulfil connection requirements of the other methods and to hide connections and cursor handling to them.
- \paragraph{Component  mapping}
  \subsubsection{WebApp.py}
- \paragraph{Main description}
  It handles the web-server useful to build the web app that serves third parties for registration purpose. The structure is very similar to the one of \textit{API.py} since they are both based on rules of Flask framework.
- \paragraph{}
  
 \subsection{iOS frontend}
+iOS app code is meanly composed by UIView and UIViewController. Here follows the description of the ControllerLogic classes that mainly handle communications with iOS native frameworks.
+
+\subsubsection{Global.swift}
+This class contains a class with the same name that declares all global parameters needed by the application.
+
+\subsubsection{HTTPManager.swift}
+This file contains a class with the same name that handles all communications trough the network.
+
+\subsubsection{HealthKitManager.swift}
+This file contains two classes, \textit{AutomatedSoS} that handles heartbeats monitoring in order to implement Automated SOS functionalities, and \textit{HealthkitManager} that handles all the setup operations needed to let the app communicates with Apple HealthKit framework.
+
+\subsubsection{NotificationCenter.swift}
+NotificationCenter contains a class with the same name which handles all the setup operations needed to trigger and dispatch local notification for the iOS application.
+
+
+\subsection{Component mapping}
+All components names refer to the ones associated with the components presented and described in DD document.
+
+\subsubsection{DatabaseLink Manager}
+Database link manager is basically mapped on code of file \textit{DbHandler.py}.
+\subsubsection{HealthSharing Manager}
+\paragraph{Access Policy Manager Module}
+Access Policy Manager Module is composed by the following set of methods implemented in \textit{API.py}:
+\begin{itemize}
+	\item \textit{\textbf{user\textunderscore subscription()}}: that handles responses to HTTP GET request for subscriptions.
+	\item \textit{\textbf{update\textunderscore subscription\textunderscore status()}}: that handles responses to HTTP PUT request for updating subscriptions status.
+	\item \textit{\textbf{subscribe()}}: that handles subscriptions operations for third parties.
+\end{itemize}
+
+\paragraph{Data Manager Module}
+Data Manager Module is composed by the following set of methods implemented in \textit{API.py}
+\begin{itemize}
+	\item \textit{\textbf{heart()}}: that handles heart data storing operations.
+	\item \textit{\textbf{get\textunderscore heart\textunderscore rate\textunderscore by\textunderscore user()}}: that handles heart data retrieval operations.
+	\item \textit{\textbf{user\textunderscore location()}}: that handles location data storing operations.
+	\item \textit{\textbf{get\textunderscore user\textunderscore location()}}: that handles location data retrieval operations.
+\end{itemize}
+
+\paragraph{Data elaboration module}
+As described in section 2 of this document we only implemented aggregated data requests. The whole component can be mapped in the following set of methods of \textit{API.py} which functionalities are self-explained.:
+\begin{itemize}
+	\item \textit{\textbf{groups\textunderscore heart\textunderscore rate\textunderscore by\textunderscore birth\textunderscore place()}}.
+	\item \textit{\textbf{groups\textunderscore heart\textunderscore rate\textunderscore by\textunderscore year\textunderscore of\textunderscore birth()}}.
+	\item \textit{\textbf{groups\textunderscore location\textunderscore by\textunderscore birth\textunderscore place()}}.
+	\item \textit{\textbf{groups\textunderscore location\textunderscore by\textunderscore year\textunderscore of\textunderscore birth()}}.
+\end{itemize}  
+
+\subsubsection{SOS Manager}
+SOS manager has been implemented client-side in class \textbf{\textit{AutomatedSoS}} of file \textit{HealthKitManager.swift}
+
+\subsubsection{Access Manager}
+\paragraph{Login Module}
+Login Module is composed by the following set of methods implemented in \textit{API.py}
+\begin{itemize}
+	\item \textit{\textbf{login()}}: that handles login operation for users.
+	\item \textit{\textbf{user\textunderscore register()}}: that handles registration process for users.
+\end{itemize}
 
 \section{Testing}
 
