@@ -244,21 +244,6 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
-    # GET THE LIST OF THIRD-PARTIES IN THE DATABASE
-    def get_third_party(self):
-        query = "SELECT ThirdParty.Username, ThirdParty.secret FROM ThirdParty"
-
-        rows = self.__get(query, None, multiple_lines=True)
-
-        objects_list = []
-        for row in rows:
-            d = collections.OrderedDict()
-            d['Username'] = str(row[0])
-            d['secret'] = str(row[1])
-            objects_list.append(d)
-
-        return json.dumps(objects_list)
-
     # CHECK IF A THIRD-PARTY IS PRESENT OR NOT IN THE DB
     def check_third_party(self, username, secret):
         query = "SELECT COUNT(*) FROM ThirdParty " \

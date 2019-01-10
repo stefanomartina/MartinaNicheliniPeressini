@@ -85,7 +85,7 @@ def registration():
 def private_page():
     if auth_user(request.cookies):
         user_logged = {'username': request.cookies.get('email')}
-        return render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret())
+        return render_template('private.html', title='Private Page', user=user_logged, secret=get_secret())
     else:
         form = LoginForm()
         return redirect(url_for('login'))
@@ -116,7 +116,7 @@ def renew_third_party_secret():
                 return jsonify({'Response': -2, 'Reason': str(e)})
             user_logged = {'username': username}
 
-            return render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret())
+            return render_template('private.html', title='Private Page', user=user_logged, secret=get_secret())
 
     except Exception as e:
         print(str(e))
