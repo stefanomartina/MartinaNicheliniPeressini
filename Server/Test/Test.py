@@ -2,7 +2,10 @@ import unittest
 import mysql.connector
 from DbHandler import DBHandler
 import requests
+import ast
 import json
+import datetime
+import time;
 from requests.auth import HTTPBasicAuth
 
 
@@ -29,38 +32,58 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(str(r.status_code), "200")
         self.dbHandler.dropContent()
 
+
     def test_registration_ENDP(self):
         #NOT WORKING string indices must be integers response
-         data = {}
-         data['firstname'] = 'first_name'
-         data['gender'] = 'M'
-         data['fiscalcode'] = 'AAAAAAAAA'
-         data['password'] = 'password'
-         data['lastname'] = 'last_name'
-         data['birthday'] = '2019-01-08'
-         data['birthplace'] = 'Milano'
-
-
-         json_data = json.dumps(data)
-
-         r = requests.post("http://localhost:5000/api/users/register", json = json_data)
+         data = {
+             "firstname" : "first_name",
+             "lastname": "lastname",
+             "username": "username",
+             "password": "password",
+             "gender" : "M",
+             "fiscalcode": "AAAAAAAA",
+             "birthdate" : "2019-01-08",
+             "birthplace" : "Milano"
+         }
+         r = requests.post("http://localhost:5000/api/users/register", json = data)
          print(r)
 
          print(r.json())
 
          self.dbHandler.dropContent()
 
+
     def test_location_ENDP(self):
         self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M','2012-12-12', 'Milano')
-        self.dbHandler.get_user_password('username')
-        r = requests.post("http://localhost:5000/api/users/login", auth=HTTPBasicAuth('username', 'password'))
 
         data = {}
-        data['latitude'] = '1212'
-        data['longitude'] = '1212'
-        data['timestamp'] = '1212'
-        json_data = json.dumps(data)
+        data['latitude'] = '122'
+        data['longitude'] = '122'
+        data['timestamp'] = '2018-12-31 12:00:00'
 
-        r = requests.post("http://localhost:5000/api/users/register", json=json_data)
-        self.assertEqual(str(r.status_code), "200")
+        r_insertion = requests.post("http://localhost:5000/api/users/location", json=data, auth= HTTPBasicAuth('username', 'password'))
+        self.assertEqual(str(r_insertion.status_code), "200")
+
+        r_read = requests.get("http://localhost:5000/api/users/location", auth= HTTPBasicAuth('username', 'password'))
         self.dbHandler.dropContent()
+
+        self.assertEqual(r_read.json()[0]["Latitude"], "122.000000")
+        self.assertEqual(r_read.json()[0]["Longitude"], "122.000000")
+        self.assertEqual(r_read.json()[0]["timestamp"], "2018-12-31 12:00:00")
+
+
+    def test_heartrate_END(self):
+        self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M','2012-12-12', 'Milano')
+        data = {}
+        data['bpm'] = '70'
+        data['timestamp'] = '2019-12-31 12:00:00'
+
+        r_insertion = requests.post("http://localhost:5000/api/users/data/heart", json=data, auth= HTTPBasicAuth('username', 'password'))
+        self.assertEqual(str(r_insertion.status_code), "200")
+        print( r_insertion.json())
+        r_read = requests.get("http://localhost:5000/api/users/data/heart", auth= HTTPBasicAuth('username', 'password'))
+        self.dbHandler.dropContent()
+        print("-----")
+        print(r_read.json())
+
+
