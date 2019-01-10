@@ -74,16 +74,16 @@ class TestLogin(unittest.TestCase):
 
     def test_heartrate_END(self):
         self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M','2012-12-12', 'Milano')
-        data = {}
-        data['bpm'] = '70'
-        data['timestamp'] = '2019-12-31 12:00:00'
+        data = {'data0': {'timestamp': '2019-01-10 21:07:00 +0000', 'bpm': '90 count/min'}}
 
         r_insertion = requests.post("http://localhost:5000/api/users/data/heart", json=data, auth= HTTPBasicAuth('username', 'password'))
         self.assertEqual(str(r_insertion.status_code), "200")
-        print( r_insertion.json())
+
         r_read = requests.get("http://localhost:5000/api/users/data/heart", auth= HTTPBasicAuth('username', 'password'))
         self.dbHandler.dropContent()
         print("-----")
-        print(r_read.json())
+        self.assertEqual("2019-01-10 21:07:00", r_read.json()[0]["timestamp"])
+        self.assertEqual(90, r_read.json()[0]["bpm"])
 
 
+    #/api/thirdparties/check_third_party_subscription
