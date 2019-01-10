@@ -6,14 +6,21 @@ import pprint
 import secrets
 import hashlib
 
+# parameters = {
+#     'host': '35.198.157.139',
+#     'user': 'root',
+#     'password': 'trackme',
+#     'database': 'data4help',
+#     'ssl_ca': '/root/MartinaNicheliniPeressini/Server/server-ca.pem',
+#     'ssl_cert': '/root/MartinaNicheliniPeressini/Server/client-cert.pem',
+#     'ssl_key': '/root/MartinaNicheliniPeressini/Server/client-key.pem'
+# }
+
 parameters = {
     'host': '35.198.157.139',
     'user': 'root',
     'password': 'trackme',
-    'database': 'data4help',
-    'ssl_ca': '/root/MartinaNicheliniPeressini/Server/server-ca.pem',
-    'ssl_cert': '/root/MartinaNicheliniPeressini/Server/client-cert.pem',
-    'ssl_key': '/root/MartinaNicheliniPeressini/Server/client-key.pem'
+    'database': 'data4help'
 }
 
 
@@ -406,9 +413,12 @@ class DBHandler:
         return 0
 
     def dropContent(self):
+        query_drop_content_user = "DELETE FROM Location"
+        self.__send(query_drop_content_user, None)
+
         query_drop_content_user = "DELETE FROM User"
         self.__send(query_drop_content_user, None)
 
-        query_drop_content_user = "DELETE FROM Location"
+        query_drop_content_user = "DELETE FROM HeartRate"
         self.__send(query_drop_content_user, None)
 
