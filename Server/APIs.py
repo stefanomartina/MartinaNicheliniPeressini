@@ -7,7 +7,8 @@ import pprint
 import sys
 
 auth = HTTPBasicAuth()
-db_handler = DBHandler("127.0.0.1", "password") ##DEBUG MODE NO DEBUG --> db_handler = DBHandler()
+#db_handler = DBHandler("127.0.0.1", "password") ##DEBUG MODE NO DEBUG -->
+db_handler = DBHandler()
 
 app = Flask(__name__)
 
@@ -60,6 +61,7 @@ def login():
 @auth.login_required
 def heart():
     try:
+        print(request.get_json())
         db_handler.insert_heart_rate(auth.username(), request.get_json())
         return jsonify({'Response': 0})
 
@@ -290,23 +292,6 @@ def groups_location_by_year_of_birth():
         return jsonify({'Response': -3, 'Reason': str(e)})
 
 
-@app.route('/api/thirdparties/get_third_party', methods=['GET'])
-def get_third_party():
-    return db_handler.get_third_party()
-
-
-@app.route('/api/thirdparties/get_third_party_secret', methods=['GET'])
-def get_third_party_secret():
-    username = request.args.get('username')
-    try:
-        result = db_handler.get_third_party_secret(username)
-        return jsonify({'Response': 1, 'Reason': result})
-
-    except Exception as e:
-        print(str(e))
-        return jsonify({'Response': -1, 'Reason': str(e)})
-
-
 @app.route('/api/thirdparties/get_location_by_fc', methods=['GET'])
 def get_location_by_fc():
     fc = request.args.get('fiscalCode')
@@ -367,38 +352,6 @@ def get_heart_rate_by_fc():
     except Exception as e:
         print(str(e))
         return jsonify({'Response': -5, 'Reason': str(e)})
-
-
-@app.route('/api/thirdparties/check_third_party', methods=['GET'])
-def check_third_party():
-    username = request.args.get('username')
-    secret = request.args.get('secret')
-    try:
-        result = db_handler.check_third_party(username, secret)
-        if result == 0:
-            return jsonify({'Response': -1, 'Reason': 'Third-party not found'})
-        else:
-            return jsonify({'Response': 1, 'Reason': 'Third-party is present in the database!'})
-
-    except Exception as e:
-        print(str(e))
-        return jsonify({'Response': -2, 'Reason': str(e)})
-
-
-@app.route('/api/thirdparties/check_third_party_subscription', methods=['GET'])
-def check_third_party_subscription():
-    user_fc = request.args.get('userFC')
-    tp_username = request.args.get('tpUsername')
-    try:
-        result = db_handler.check_third_party_subscription(tp_username, user_fc)
-        if result == 'rejected' or result == 'pending':
-            return jsonify({'Response': -1, 'Reason': 'Third-party is NOT subscribed to the user'})
-        else:
-            return jsonify({'Response': 1, 'Reason': 'Third-party is subscribed to the user!'})
-
-    except Exception as e:
-        print(str(e))
-        return jsonify({'Response': -2, 'Reason': str(e)})
 
 
 if __name__ == '__main__':
