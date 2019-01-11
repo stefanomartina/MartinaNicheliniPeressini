@@ -397,13 +397,24 @@ class DBHandler:
         self.__send(query, None)
         return 0
 
-    def dropContent(self):
-        query_drop_content_user = "DELETE FROM Location"
-        self.__send(query_drop_content_user, None)
+    def drop_content(self):
+        query_drop_content_heart_rate = "DELETE FROM HeartRate"
+        self.__send(query_drop_content_heart_rate, None)
+
+        query_drop_content_location = "DELETE FROM Location"
+        self.__send(query_drop_content_location, None)
+
+        query_drop_content_subscription = "DELETE FROM subscription"
+        self.__send(query_drop_content_subscription, None)
 
         query_drop_content_user = "DELETE FROM User"
         self.__send(query_drop_content_user, None)
 
-        query_drop_content_user = "DELETE FROM HeartRate"
-        self.__send(query_drop_content_user, None)
+        query_drop_content_third_party = "DELETE FROM ThirdParty"
+        self.__send(query_drop_content_third_party, None)
+
+
+
+
+
 
