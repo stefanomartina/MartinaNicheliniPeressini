@@ -59,7 +59,7 @@ def login():
 @auth.login_required
 def heart():
     try:
-        print(request.get_json())
+        #print(request.get_json())
         db_handler.insert_heart_rate(auth.username(), request.get_json())
         return jsonify({'Response': 0})
 

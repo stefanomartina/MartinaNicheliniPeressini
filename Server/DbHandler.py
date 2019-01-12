@@ -156,8 +156,8 @@ class DBHandler:
             except mysql.connector.IntegrityError:
                 raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
 
-            except Exception as e:
-                print(str(e))
+            #except Exception as e:
+            #    print(str(e))
         db.commit()
         dbCursor.close()
         db.close()
