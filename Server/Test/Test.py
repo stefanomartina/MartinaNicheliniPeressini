@@ -97,7 +97,7 @@ class TestLogin(unittest.TestCase):
 
         self.dbHandler.drop_content()
 
-    def test_check_third_party_subscription(self):
+    def test_third_parties_check_third_party_subscription(self):
         self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M',
                                    '2012-12-12', 'Milano')
 
@@ -175,5 +175,121 @@ class TestLogin(unittest.TestCase):
         self.assertEqual("2019-01-10 21:07:00", r_read[0]['Timestamp'])
         self.assertEqual("90", r_read[0]['BPM'])
         self.assertEqual("0", r_read[0]['SOS'])
+
+        self.dbHandler.drop_content()
+
+    def test_third_parties_heart_rate_by_birth_place(self):
+        self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M',
+                                   '2012-12-12', 'Milano')
+
+        data = {'data0': {'timestamp': '2019-01-10 21:07:00 +0000', 'bpm': '90 count/min'}}
+
+        r_insertion = requests.post("http://localhost:5000/api/users/data/heart", json=data,
+                                    auth=HTTPBasicAuth('username', 'password'))
+        self.assertEqual(str(r_insertion.status_code), "200")
+
+        self.dbHandler.register_third_party('tp_test', 'password', 'tp_test')
+        secret = self.dbHandler.get_third_party_secret('tp_test')
+        r_read = requests.get("http://localhost:5000/api/thirdparties/subscribe?"
+                              "fiscalCode=ABCABC12B11F111E&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        self.dbHandler.modify_subscription_status('username', 'tp_test', 'approved')
+
+        r_read = requests.get("http://localhost:5000/api/thirdparties/groups/heart_rate_by_birth_place?"
+                              "birthPlace=Milano&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        r_read = r_read.json()
+        self.assertEqual("2019-01-10 21:07:00", r_read[0]['Timestamp'])
+        self.assertEqual("90", r_read[0]['BPM'])
+        self.assertEqual("0", r_read[0]['SOS'])
+
+        self.dbHandler.drop_content()
+
+    def test_third_party_location_by_birth_place(self):
+        self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M',
+                                   '2012-12-12', 'Milano')
+
+        data = {'latitude': '122', 'longitude': '122', 'timestamp': '2018-12-31 12:00:00'}
+
+        r_insertion = requests.post("http://localhost:5000/api/users/location", json=data,
+                                    auth=HTTPBasicAuth('username', 'password'))
+        self.assertEqual(str(r_insertion.status_code), "200")
+
+        self.dbHandler.register_third_party('tp_test', 'password', 'tp_test')
+        secret = self.dbHandler.get_third_party_secret('tp_test')
+        r_read = requests.get("http://localhost:5000/api/thirdparties/subscribe?"
+                              "fiscalCode=ABCABC12B11F111E&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        self.dbHandler.modify_subscription_status('username', 'tp_test', 'approved')
+
+        r_read = requests.get("http://localhost:5000/api/thirdparties/groups/location_by_birth_place?"
+                              "birthPlace=Milano&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        r_read = r_read.json()
+        self.assertEqual("122.000000", r_read[0]['Latitude'])
+        self.assertEqual("122.000000", r_read[0]['Longitude'])
+        self.assertEqual("2018-12-31 12:00:00", r_read[0]['timestamp'])
+
+        self.dbHandler.drop_content()
+
+    def test_third_party_heart_rate_by_year_of_birth(self):
+        self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M',
+                                   '2012-12-12', 'Milano')
+
+        data = {'data0': {'timestamp': '2019-01-10 21:07:00 +0000', 'bpm': '90 count/min'}}
+
+        r_insertion = requests.post("http://localhost:5000/api/users/data/heart", json=data,
+                                    auth=HTTPBasicAuth('username', 'password'))
+        self.assertEqual(str(r_insertion.status_code), "200")
+
+        self.dbHandler.register_third_party('tp_test', 'password', 'tp_test')
+        secret = self.dbHandler.get_third_party_secret('tp_test')
+        r_read = requests.get("http://localhost:5000/api/thirdparties/subscribe?"
+                              "fiscalCode=ABCABC12B11F111E&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        self.dbHandler.modify_subscription_status('username', 'tp_test', 'approved')
+
+        r_read = requests.get("http://localhost:5000/api/thirdparties/groups/heart_rate_by_year_of_birth?"
+                              "year=2012&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        r_read = r_read.json()
+        self.assertEqual("2019-01-10 21:07:00", r_read[0]['Timestamp'])
+        self.assertEqual("90", r_read[0]['BPM'])
+        self.assertEqual("0", r_read[0]['SOS'])
+
+        self.dbHandler.drop_content()
+
+    def test_third_party_location_by_year_of_birth(self):
+        self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M',
+                                   '2012-12-12', 'Milano')
+
+        data = {'latitude': '122', 'longitude': '122', 'timestamp': '2018-12-31 12:00:00'}
+
+        r_insertion = requests.post("http://localhost:5000/api/users/location", json=data,
+                                    auth=HTTPBasicAuth('username', 'password'))
+        self.assertEqual(str(r_insertion.status_code), "200")
+
+        self.dbHandler.register_third_party('tp_test', 'password', 'tp_test')
+        secret = self.dbHandler.get_third_party_secret('tp_test')
+        r_read = requests.get("http://localhost:5000/api/thirdparties/subscribe?"
+                              "fiscalCode=ABCABC12B11F111E&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        self.dbHandler.modify_subscription_status('username', 'tp_test', 'approved')
+
+        r_read = requests.get("http://localhost:5000/api/thirdparties/groups/location_by_year_of_birth?"
+                              "year=2012&username=tp_test&secret=" + secret + "")
+        self.assertEqual(str(r_read.status_code), "200")
+
+        r_read = r_read.json()
+        self.assertEqual("122.000000", r_read[0]['Latitude'])
+        self.assertEqual("122.000000", r_read[0]['Longitude'])
+        self.assertEqual("2018-12-31 12:00:00", r_read[0]['timestamp'])
 
         self.dbHandler.drop_content()
