@@ -23,10 +23,15 @@ class SettingsTableViewController: UITableViewController {
         if let senderSwitch = sender as? UISwitch {
             if senderSwitch.isOn {
                 let permissionsNedeed = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
-                HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) { (success, error) in if !success { print("errore") } }
-            }
+                HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) {
+                    (success, error) in
+                    if !success { print("errore") } else {
+                        HealthKitManager.getLastHeartBeat({retrievedData in HTTPManager.sendHeartData(data: retrievedData)})
+                        HealthKitManager.activateLongRunningQuery()
+                    } }
+            }//end closure
         }
-    }
+    }//end button method
     
     @IBAction func emergencyService(_ sender: Any) {
         if(emergencyToggle.isOn ){ Global.userDefaults.set(true, forKey: "automatedSOSToggle") }
