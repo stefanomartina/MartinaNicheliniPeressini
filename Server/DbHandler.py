@@ -43,7 +43,7 @@ class ConnectionPool:
 
 
 class DBHandler:
-    def __init__(self, host = None, password = None):
+    def __init__(self, host=None, password=None):
         if(host):
             parameters['host'] = host
             parameters['password'] = password

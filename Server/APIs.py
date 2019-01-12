@@ -3,13 +3,11 @@ from flask import Flask, request, jsonify
 from flask_httpauth import HTTPBasicAuth
 from DbHandler import DBHandler
 from DbHandler import DuplicateException
+from enum import Enum
 import pprint
 import sys
 
 auth = HTTPBasicAuth()
-db_handler = DBHandler("127.0.0.1", "password") ##DEBUG MODE NO DEBUG -->
-# db_handler = DBHandler()
-
 app = Flask(__name__)
 
 userLogged = dict()
@@ -334,14 +332,19 @@ def get_heart_rate_by_fc():
 
 if __name__ == '__main__':
     try:
-        try:
-            # try to run the WebAPP with SSL certificate active
-            context = (cert, key)
-            app.run(host='0.0.0.0', port=5000, ssl_context=context, threaded=True, debug=True)
-        except:
-            # old mode without SSL certificate for debugging in localhost
+        if len(sys.argv) == 1:
+            try:
+                db_handler = DBHandler()
+                context = (cert, key)
+                app.run(host='0.0.0.0', port=5000, ssl_context=context, threaded=True, debug=True)
+            except:
+                print('[*] ERROR in loading configuration. Try running the file with flag --test to activate test mode')
+        elif len(sys.argv) == 2 and sys.argv[1] == '--testing':
+            db_handler = DBHandler("127.0.0.1", "password")
             app.run(host='0.0.0.0', threaded=True, debug=True)
-
+        else:
+            print('[*]Too many arguments')
+            sys.exit(1)
     except KeyboardInterrupt:
         print("[*] Server shutted down")
         db_handler.db.close()
