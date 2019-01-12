@@ -44,109 +44,145 @@
 \tableofcontents
 \newpage
 
-\section{Introduction and scope}
-\subsection{Introduction}
-\subsection{scope}
+\section{Introduction}
+\subsection{Scope of the document}
+The Implementation and Test Document (ITD) for Data4Help describes the features and characteristics of the developed application, the adopted frameworks and testing technique, the structure of the source code and the installation instructions for the final release. 
 
-\section{Functionality implemented}
-The team has developed and implemented the main functionalities of the core Data4help module and Automated SOS.
-In details the developed framework has fulfilled the following requirements described in RASD Document:
+\subsection{Definitions, Acronyms, Abbreviations}
+
+\subsubsection{Definitions}
 \begin{itemize}
-	\item (R1) Users can create an account with credentials.
-	\item (R3) Users can log manually or automatically their data.
-	\item (R4) Users have to be able to accept/deny access to single data access request.
-	\item (R5) Users have to be able to see current data policies and to change them.
-	\item (R6) The machine has to be able to read health and position data.
-	\item (R7) The machine has to be able to recognise below threshold parameters.
-	\item (R8) The machine has to be able to communicate with third parties.
-	\item (R10) The machine has to be able to store users’ data.
+	\item RESTful API: API that follow the REST paradigm;
+	\item Third-parties: external organisations.
 \end{itemize}
 
-We excluded requests of anonymous data because of the lack of an adequate data set to test this feature (Requirement number 9).
-We've also decided not to implemented functionality regarding requirement number 2 "\textit{Credentials can be retrievable also if forgotten/lost}" to avoid to build an entire email infrastructure.
+\subsubsection{Acronyms}
+\begin{itemize}
+	\item API: Application Programming Interface;
+	\item DB: Database;
+	\item DD: Design Document;
+	\item CRUD: Create, Read, Update, Delete;
+	\item RASD: Requirement Analysis Specification Document;
+	\item JSON: JavaScript Object Notation.
+\end{itemize}
 
+\subsubsection{Abbreviations}
+\begin{itemize}
+	\item \begin{math}[Gn]\end{math}: n-th goal
+	\item \begin{math}[Rn]\end{math}: n-th functional requirement
+\end{itemize}
+
+\subsection{Revision history}
+\begin{itemize}
+	\item 1.0.0 - Initial Versione (13/01/2019)
+\end{itemize}
+
+\subsection{Reference documents}
+\begin{itemize}
+	\item RASD document previously delivered
+	\item DD document previously delivered
+\end{itemize}
+
+\newpage
+\section{Functionality implemented}
+The team has developed and implemented the main functionalities of the core module Data4Help and Automated SOS.
+In details, the developed framework has fulfilled the following requirements described in the RASD Document previously delivered:
+\begin{itemize}
+	\item {[R1]} Users can create an account with credentials;
+	\item {[R3]} Users can log manually or automatically their data;
+	\item {[R4]} Users have to be able to accept/deny access to single data access request;
+	\item {[R5]} Users have to be able to see current data policies and change them;
+	\item {[R6]} The machine has to be able to read health and position data;
+	\item {[R7]} The machine has to be able to recognise below threshold parameters;
+	\item {[R8]} The machine has to be able to communicate with third parties;
+	\item {[R9]}* The machine has to be able to recognise data fragmentation level;
+	\item {[R10]} The machine has to be able to store users’ data.
+\end{itemize}
+
+* Requirement number 9 is only partially satisfied in this first release of the project: third-parties are able the make group-requests and retrive data correctly but there's no kind of control on the provided data (group data are supplied divided by individuals that are identified by a unique code from which it is impossible to trace back to the real user); this is because of the lack of an adequate data-set to test this feature. \newline
+We've also decided not to implement the functionality regarding requirement number 2 "\textit{Credentials can be retrievable also if forgotten/lost}" to avoid to build an entire email infrastructure.
+
+\newpage
 \section{Adopted frameworks}
-For the backend: Flask framework has been adopted. Flask is a web development framework that let the building of easy and light web environments. It has been used to both build the API infrastructure and the third parties' web interface.
+For the backend: Flask framework has been adopted. Flask is a web development framework that let building easy and light web environments. It has been used to both build the API infrastructure and the third-parties' web interface.
 \subsection{Adopted programming language}
 
-The project has been developed using two programming language. 
+The project has been developed using two programming languages:
 
 \begin{itemize}
-	\item iOS application has been developed in the "new" programming language by Apple: Swift (target version: Swift 4.2).
-	\item  Backend software has been developed using Python (target version: Python 3.6)
+	\item iOS application has been developed in the "new" programming language provided by Apple: Swift (target version: 4.2).
+	\item  Backend software has been developed using Python (target version: 3.6)
 \end{itemize}
 
 The team has chosen Swift over Objective-C because of the effort Apple is putting in its development. Moreover Swift has been thought to work with iOS in a more specific way than Objective-C.\\
 Python has been chosen as the programming language for the backend because most of the team members has previous proficiency in using it.
 
 \subsection{Middleware adopted}
-Since the communication stack is based on a HTTP REST API system, the project doesn't use any further middleware technology.
+Since the communication stack is based on a RESTful API system, the project doesn't use any further middleware technology.
 
 \subsection{Libraries}
 For Apple Swift in iOS the following external libraries has been adopted:
 \begin{itemize}
-	\item Alamofire by Alamofire (\url{https://github.com/Alamofire/Alamofire}) to better handle web request client side.
+	\item Alamofire by Alamofire (\url{https://github.com/Alamofire/Alamofire}) to better handle web request client side;
 	\item SwiftyJSON by SwiftyJSON (\url{https://github.com/SwiftyJSON/SwiftyJSON}) to better handle JSON data in Swift.
 \end{itemize}
 
 For the backend, the following Python libraries has been adopted:
 \begin{itemize}
-	\item Flask: the main library of the previously described framework Flask. See: \url{http://flask.pocoo.org}
-	\item Flask HTTP Auth: an extension of Flask framework to implemented basic HTTP auth directly in the same environments. See: \url{https://flask-httpauth.readthedocs.io/en/latest/}.
-	\item MySQLConnector: this library is necessary to handle communication with a SQL database.
+	\item Flask: the main library of the previously described framework (see: \url{http://flask.pocoo.org});
+	\item Flask HTTP Auth: an extension of Flask framework to implement basic HTTP auth directly in the same environments (see: \url{https://flask-httpauth.readthedocs.io/en/latest/});
+	\item MySQLConnector: this library is necessary to handle communication with a SQL database;
 	\item The following standard libraries were also used:
 			\begin{itemize}
-				\item Python-Sys
-				\item Python-Secret
-				\item Python-PPrint
-				\item Python-Collections
-				\item Python-Json
+				\item Python-Sys;
+				\item Python-Secret;
+				\item Python-PPrint;
+				\item Python-Collections;
+				\item Python-Json.
 			\end{itemize}
 \end{itemize}
 
-
-
 \subsection{API used}
-The project has not used external API than the ones directly developed in-house.
+The system only uses the in-house built APIs.
 
+\newpage
 \section{Source code structure}
 \subsection{Python Backend}
 \subsubsection{File and class index}
-Python backend is composed by three file:
+Python backend is composed by three files:
 \begin{itemize}
-	\item \textit{API.py}.
-	\item \textit{DbHandler.py}
-	\item \textit{WebApp.py}
+	\item \textit{API.py};
+	\item \textit{DbHandler.py};
+	\item \textit{WebApp.py}.
 \end{itemize}
 
 \subsubsection{API.py}
- It handles the web-server useful to build and maintain the API endpoints that serve both Data4help app and third parties. It has to be directly executed. It basically define all the URL endpoint and the action associated with enabled HTTP actions.\\
- Decorator "\textit{@auth.login required}" states that each following method is called if and only if the incoming HTTP connection has been authenticated. Authentication method follows rules of Flash-HTTPBasicAuthLibrary as described here: \url{https://flask-basicauth.readthedocs.io/en/latest/}.
+ This file handles the web-server, useful to build and maintain the API endpoints that serve both Data4Help app and third-parties. It has to be directly executed. It basically defines all the URL endpoints and each associated action\\
+ Decorator "\textit{@auth.login required}" states that each marked method is called if and only if the incoming HTTP connection has been authenticated. Authentication method follows rules of Flash-HTTPBasicAuthLibrary as described here: \url{https://flask-basicauth.readthedocs.io/en/latest/}.
 
- 
  \subsubsection{DbHandler.py}
- It handles all the necessary operations to connect and submit query to the data layer. The class \textit{ConnectionPool} has been assigned with the task to generate a new connection to the server each time a method need it. \textit{DbHandler} class is composed of two static and most important private method: \textit{send(query,values)} and \textit{get(query, values, multiple lines)}. This two methods are made in order to fulfil connection requirements of the other methods and to hide connections and cursor handling to them.
+ This file handles all the necessary operations to connect and submit queries to the data layer. The class \textit{ConnectionPool} has been assigned with the task to generate a new connection to the server each time a method needs it.\\ \textit{DbHandler} class is composed of two static and, most important, private methods: \textit{send(query, values)} and \textit{get(query, values, multiple lines)}. This two methods are made in order to fulfil connection requirements of the other methods and to hide connection and cursor handling to them.
+ 
  \subsubsection{WebApp.py}
- It handles the web-server useful to build the web app that serves third parties for registration purpose. The structure is very similar to the one of \textit{API.py} since they are both based on rules of Flask framework.
+ This file handles the web-server, useful to build the web app that serves third-parties for, in example, registration purpose. The structure is very similar to the one of \textit{API.py} since they are both based on Flask framework's rules.
  
 \subsection{iOS frontend}
-iOS app code is meanly composed by UIView and UIViewController. Here follows the description of the ControllerLogic classes that mainly handle communications with iOS native frameworks.
+iOS app's code is meanly composed by UIView and UIViewController. Here follows the description of the ControllerLogic classes that mainly handle communications with iOS native frameworks.
 
 \subsubsection{Global.swift}
-This class contains a class with the same name that declares all global parameters needed by the application.
+This file contains a class with the same name that declares all global parameters needed by the application.
 
 \subsubsection{HTTPManager.swift}
-This file contains a class with the same name that handles all communications trough the network.
+This file contains a class with the same name that handles all communications through the network.
 
 \subsubsection{HealthKitManager.swift}
-This file contains two classes, \textit{AutomatedSoS} that handles heartbeats monitoring in order to implement Automated SOS functionalities, and \textit{HealthkitManager} that handles all the setup operations needed to let the app communicates with Apple HealthKit framework.
+This file contains two classes, \textit{AutomatedSOS} that handles heartbeats monitoring in order to implement Automated SOS functionalities, and \textit{HealthkitManager} that handles all the setup operations needed to let the app communicates with Apple HealthKit framework.
 
 \subsubsection{NotificationCenter.swift}
-NotificationCenter contains a class with the same name which handles all the setup operations needed to trigger and dispatch local notification for the iOS application.
-
+NotificationCenter contains a class with the same name which handles all the setup operations needed to trigger and dispatch local notifications for the iOS application.
 
 \subsection{Component mapping}
-All components names refer to the ones associated with the components presented and described in DD document.
+All the names of the components refer to the ones associated with the components presented and described in DD document.
 
 \subsubsection{DatabaseLink Manager}
 Database link manager is basically mapped on code of file \textit{DbHandler.py}.
@@ -154,59 +190,91 @@ Database link manager is basically mapped on code of file \textit{DbHandler.py}.
 \paragraph{Access Policy Manager Module}
 Access Policy Manager Module is composed by the following set of methods implemented in \textit{API.py}:
 \begin{itemize}
-	\item \textit{\textbf{user\textunderscore subscription()}}: that handles responses to HTTP GET request for subscriptions.
-	\item \textit{\textbf{update\textunderscore subscription\textunderscore status()}}: that handles responses to HTTP PUT request for updating subscriptions status.
-	\item \textit{\textbf{subscribe()}}: that handles subscriptions operations for third parties.
+	\item \textit{\textbf{user\textunderscore subscription()}}: that handles responses to HTTP GET requests for subscriptions;
+	\item \textit{\textbf{update\textunderscore subscription\textunderscore status()}}: that handles responses to HTTP PUT requests for updating subscriptions status;
+	\item \textit{\textbf{subscribe()}}: that handles subscription operations for third parties.
 \end{itemize}
 
 \paragraph{Data Manager Module}
 Data Manager Module is composed by the following set of methods implemented in \textit{API.py}
 \begin{itemize}
-	\item \textit{\textbf{heart()}}: that handles heart data storing operations.
-	\item \textit{\textbf{get\textunderscore heart\textunderscore rate\textunderscore by\textunderscore user()}}: that handles heart data retrieval operations.
-	\item \textit{\textbf{user\textunderscore location()}}: that handles location data storing operations.
-	\item \textit{\textbf{get\textunderscore user\textunderscore location()}}: that handles location data retrieval operations.
+	\item \textit{\textbf{heart()}}: that handles heart data storing operations;
+	\item \textit{\textbf{get\textunderscore heart\textunderscore rate\textunderscore by\textunderscore user()}}: that handles heart data retrieval operations;
+	\item \textit{\textbf{user\textunderscore location()}}: that handles location data storing operations;
+	\item \textit{\textbf{get\textunderscore user\textunderscore location()}}: that handles location data retrieval operations;
 \end{itemize}
 
 \paragraph{Data elaboration module}
-As described in section 2 of this document we only implemented aggregated data requests. The whole component can be mapped in the following set of methods of \textit{API.py} which functionalities are self-explained.:
+Data elaboration module can be mapped in the following set of methods of \textit{API.py}, which functionalities are self-explained:
 \begin{itemize}
-	\item \textit{\textbf{groups\textunderscore heart\textunderscore rate\textunderscore by\textunderscore birth\textunderscore place()}}.
-	\item \textit{\textbf{groups\textunderscore heart\textunderscore rate\textunderscore by\textunderscore year\textunderscore of\textunderscore birth()}}.
-	\item \textit{\textbf{groups\textunderscore location\textunderscore by\textunderscore birth\textunderscore place()}}.
+	\item \textit{\textbf{groups\textunderscore heart\textunderscore rate\textunderscore by\textunderscore birth\textunderscore place()}};
+	\item \textit{\textbf{groups\textunderscore heart\textunderscore rate\textunderscore by\textunderscore year\textunderscore of\textunderscore birth()}};
+	\item \textit{\textbf{groups\textunderscore location\textunderscore by\textunderscore birth\textunderscore place()}};
 	\item \textit{\textbf{groups\textunderscore location\textunderscore by\textunderscore year\textunderscore of\textunderscore birth()}}.
 \end{itemize}  
 
 \subsubsection{SOS Manager}
-SOS manager has been implemented client-side in class \textbf{\textit{AutomatedSoS}} of file \textit{HealthKitManager.swift}
+SOS manager has been implemented client-side in class \textbf{\textit{AutomatedSOS}} of file \textit{HealthKitManager.swift}
 
 \subsubsection{Access Manager}
 \paragraph{Login Module}
-Login Module is composed by the following set of methods implemented in \textit{API.py}
+Login Module is composed by the following set of methods implemented in \textit{API.py}:
 \begin{itemize}
-	\item \textit{\textbf{login()}}: that handles login operation for users.
+	\item \textit{\textbf{login()}}: that handles login operations for users;
 	\item \textit{\textbf{user\textunderscore register()}}: that handles registration process for users.
 \end{itemize}
 
+\newpage
 \section{Testing}
+Information about testing procedures are contained in section 6.3 of the Design Document previously delivered. \newline
+Instead, in this paragraph we describe the main test cases that we have considered and their outcome.
 
+\subsection{Test concerning single users}
+Of particular importance are the tests made on the location insertion and retrieval and heart rate insertion and retrieval.
+For testing these two features of Data4Help application we simulate the registration of a new user in the database; after checking the HTTP POST request has been made correctly, we proceed to insert some location/heart rate information for the user just registered in the system. Lastly, with an HTTP GET request we retrive the data just inserted in the database and confront them with the information initially inserted.
+
+\subsection{Test concerning third-parties}
+Concerning the testing cases regarding third-parties, of particular interest are the tests made on location and heart rate retrieval based on parameters provided to the endpoint.
+For testing these features, in the first instance we simulate the registration of a new third party and of a new user in the database; after this operation, we insert some location/heart rate information for the user previously created and than we simulate the permission of subscription request made by the third party and direct to the user. \\
+After the user acceptance, the third-party make an HTTP GET request to the specified endpoint providing its username, its secret and the parameters of interest.
+The test phase is performed by confronting the information retrieved by the database and the information initially inserted.  
+
+
+\newpage
 \section{Installation instructions}
 
 \subsection{iOS mobile app installation instructions}
-Since an Apple Developer Program affiliated account is needed to distribute an iOS application: in order to run and test our application you need to clone our repository and manually compile and run the entire XCode project. A device running Mac OS 10.14 ore later and XCode 9 or later is required. \\
-	The application can run on a simulator or on a real iOS device running iOS 11 or later (target Apple device: iPhone 5 or later).	\\\\
+Since an Apple Developer Program affiliated account is needed to distribute an iOS application, in order to run and test our application you need to clone our repository and manually compile and run the entire XCode project. A device running Mac OS 10.14 or later and XCode 9 or later is required. \\
+	The application can run on a simulator or on a real iOS device running at least iOS 11 (target Apple device: iPhone 5 or later).	\\\\
 	Application won't work without a running backend instance, however we are going to keep alive an instance of it at \url{http://data4help.cloud:5000}.
 	If you like to run your own backend instance during testing to support app activities you will be able to test them using XCode embedded simulator: as matter of fact the application tries to connect to localhost in first instance.
+	
 \subsection{Python backend installation instructions}
-Python backend code should run on each Python 3.x distribution. More in details the target version in which the whole project has been developed is Python 3.6.\\
+Python backend code should run on each Python 3.x distribution. More in details, the target version in which the whole project has been developed is Python 3.6.\\
 Once installed Python, it's recommended to build a Python virtual environment to run the code (you can check the official Python documentation here: \url{https://packaging.python.org/guides/installing-using-pip-and-virtualenv/}). The following libraries have to be installed (Python-pip is the preferred method to install these packages):
 \begin{itemize}
-	\item Flask (target version: 1.0.2)
-	\item Flask-HTTPAuth (target version: 3.2.4)
-	\item mysql-connector (target version: 2.1.6)
-	\item mysql-connector-python-rf (target version: 2.2.2)
+	\item Flask (target version: 1.0.2);
+	\item Flask-HTTPAuth (target version: 3.2.4);
+	\item mysql-connector (target version: 2.1.6);
+	\item mysql-connector-python-rf (target version: 2.2.2).
 \end{itemize}
-Once the virtual environment has been built and activated, and the repository has been closed, it's enough to call the python interpret from a console to run the backend server: the main file is: \textit{Api.py} located in \textit{Path/to/repository/Server/} 
+Once the virtual environment has been built and activated, and the repository has been closed, it's enough to call the python interpret from a console to run the backend server: the main file is \textit{Api.py} located in \textit{Path/to/repository/Server/} 
 
+\newpage
+\section{Effort spent}
+
+Time spent on ITD document: 12.00h
+\begin{itemize}
+	\item Stefano Martina: 4.00h	
+	\item Alessandro Nichelini: 4.00h
+	\item Francesco Peressini: 4.00h
+\end{itemize}
+
+Time spent on Data4Help code: 150.00h
+\begin{itemize}
+	\item Stefano Martina: 50.00h
+	\item Alessandro Nichelini: 50.00h
+	\item Francesco Peressini: 50.00h
+\end{itemize}
 
 \end{document}
