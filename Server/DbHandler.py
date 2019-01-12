@@ -44,10 +44,9 @@ class ConnectionPool:
 
 class DBHandler:
     def __init__(self, host=None, password=None):
-        if(host):
+        if host:
             parameters['host'] = host
             parameters['password'] = password
-
 
     """
     To be called each time another method needs to write data on database
@@ -135,7 +134,7 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
-    def insert_heart_rate(self, username, dict_to_insert, SOS=False):
+    def insert_heart_rate(self, username, dict_to_insert, sos=False):
         query = "INSERT INTO HeartRate VALUES (%s, %s, %s, %s)"
         pprint.pprint(dict_to_insert)
         db = ConnectionPool.get_new_connection()
@@ -147,10 +146,10 @@ class DBHandler:
             timestamp = dict_to_insert[key]['timestamp']
             timestamp = timestamp[:len(timestamp) - 6]
             try:
-                SOS = dict_to_insert[key]['sos']
+                sos = dict_to_insert[key]['sos']
             except KeyError:
                 pass
-            values = (username, timestamp, bpm, SOS)
+            values = (username, timestamp, bpm, sos)
             try:
                 dbCursor.execute(query, values)
                 db.commit()
@@ -402,9 +401,3 @@ class DBHandler:
 
         query_drop_content_third_party = "DELETE FROM ThirdParty"
         self.__send(query_drop_content_third_party, None)
-
-
-
-
-
-
