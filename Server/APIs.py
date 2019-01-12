@@ -155,28 +155,6 @@ def user_location():
 def get_user_location():
     return db_handler.get_location_by_user(auth.username())
 
-
-@app.route('/api/users/sos', methods=['POST'])
-@auth.login_required
-def user_sos():
-    try:
-        data = request.get_json()
-        timestamp = data['timestamp']
-        sos = data['SOS']
-        try:
-            db_handler.insert_sos(auth.username(), timestamp, sos)
-
-        except Exception as e:
-            print(str(e))
-            return jsonify({'Response': -1, 'Reason': str(e)})
-
-        return jsonify({'Response': 1, 'Reason': 'SOS correctly inserted in database'})
-
-    except Exception as e:
-        print(str(e))
-        return jsonify({'Response': -2, 'Reason': str(e)})
-
-
 #######################################################################################################################
 # THIRD-PARTY ENDPOINT OPERATIONS
 
