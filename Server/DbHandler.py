@@ -153,12 +153,13 @@ class DBHandler:
             values = (username, timestamp, bpm, SOS)
             try:
                 dbCursor.execute(query, values)
+                db.commit()
             except mysql.connector.IntegrityError:
                 raise DuplicateException('Insertion failed, duplicated tuple in HeartRate table')
 
             #except Exception as e:
             #    print(str(e))
-        db.commit()
+
         dbCursor.close()
         db.close()
 
