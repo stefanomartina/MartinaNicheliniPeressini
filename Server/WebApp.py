@@ -47,7 +47,8 @@ def auth_user(cookie):
 
 def set_cookies(user, psw):
     user_logged = {'username': user}
-    res = make_response(render_template('private.html', title='OKKKKKK', user=user_logged, secret=get_secret(user)))
+    res = make_response(render_template('private.html', title='Private page', user=user_logged,
+                                        secret=get_secret(user)))
     res.set_cookie('email', user)
     res.set_cookie('password', psw)
     print("cookie settato")
@@ -135,9 +136,9 @@ if __name__ == '__main__':
             # try to run the WebAPP with SSL certificate active
             # context = (cert, key)
             app.run(host='0.0.0.0', port=443, ssl_context=context, threaded=True, debug=True)
-        except :
+        except:
             # old mode without SSL certificate for debugging in localhost
-            app.run(host='0.0.0.0', port=80,threaded=True, debug=True)
+            app.run(host='0.0.0.0', port=80, threaded=True, debug=True)
 
     except KeyboardInterrupt:
         print("[*] Server shutted down")

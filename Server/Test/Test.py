@@ -6,22 +6,23 @@ from DbHandler import DBHandler
 
 
 def delete_db():
-    mydb = mysql.connector.connect(host="127.0.0.1", user="root", passwd="password")
-    mycursor = mydb.cursor(buffered=True)
+    my_db = mysql.connector.connect(host="127.0.0.1", user="root", passwd="password")
+    my_cursor = my_db.cursor(buffered=True)
     sql_query = "DROP DATABASE `data4help`;"
-    mycursor.execute(sql_query)
-    mydb.commit()
-    mycursor.close()
-    mydb.close()
+    my_cursor.execute(sql_query)
+    my_db.commit()
+    my_cursor.close()
+    my_db.close()
 
 
 def create_db():
-    mydb = mysql.connector.connect(host="127.0.0.1", user="root", passwd="password")
-    mycursor = mydb.cursor(buffered=True)
+    my_db = mysql.connector.connect(host="127.0.0.1", user="root", passwd="password")
+    my_cursor = my_db.cursor(buffered=True)
 
     query1 = "SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;"
     query2 = "SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;"
-    query3 = "SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';"
+    query3 = "SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_" \
+             "DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';"
     query4 = "CREATE SCHEMA IF NOT EXISTS `data4help` DEFAULT CHARACTER SET utf8 ;"
     query5 = "USE `data4help` ;"
     query6 = """CREATE TABLE IF NOT EXISTS `data4help`.`Event` (
@@ -101,7 +102,6 @@ def create_db():
     query11 = """CREATE TABLE IF NOT EXISTS `data4help`.`subscription` (
               `Username_User` VARCHAR(50) NOT NULL,
               `Username_ThirdParty` VARCHAR(50) NOT NULL,
-              `description` VARCHAR(200) NULL DEFAULT 'No description given',
               `status` ENUM('approved', 'rejected', 'pending') NULL DEFAULT NULL,
               PRIMARY KEY (`Username_User`, `Username_ThirdParty`),
               INDEX `subscription_Third_idx` (`Username_ThirdParty` ASC) ,
@@ -121,35 +121,32 @@ def create_db():
     query13 = "SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;"
     query14 = "SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;"
 
-    queries = [query1, query2, query3, query4, query5, query6, query7, query8, query9, query10, query11, query12, query13, query14]
+    queries = [query1, query2, query3, query4, query5, query6, query7, query8, query9, query10, query11, query12,
+               query13, query14]
 
     for query in queries:
-        mycursor.execute(query)
+        my_cursor.execute(query)
 
-    mydb.commit()
-    mycursor.close()
-    mydb.close()
+    my_db.commit()
+    my_cursor.close()
+    my_db.close()
 
 
-class TestLogin(unittest.TestCase):
+class Test(unittest.TestCase):
     dbHandler = DBHandler('127.0.0.1', 'password')
 
     @classmethod
     def setUpClass(cls):
         create_db()
 
-
     @classmethod
     def tearDownClass(cls):
-        print("ciao")
         delete_db()
 
     def setUp(self):
         self.dbHandler.drop_content()
-        
 
     def test_registration_DB(self):
-        dbHandler = DBHandler('127.0.0.1', 'password')
         self.dbHandler.create_user('firstname', 'lastname', 'username', 'password', 'ABCABC12B11F111E', 'M',
                                    '2012-12-12', 'Milano')
         query_returned_check = self.dbHandler.get_user_password('username')
@@ -168,7 +165,6 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(str(r.status_code), "200")
 
     def test_registration_ENDP(self):
-        # NOT WORKING string indices must be integers response
         data = {
             "firstname": "first_name",
             "lastname": "lastname",
@@ -192,7 +188,6 @@ class TestLogin(unittest.TestCase):
         self.assertEqual(str(r_insertion.status_code), "200")
 
         r_read = requests.get("http://localhost:5000/api/users/location", auth=HTTPBasicAuth('username', 'password'))
-        
 
         self.assertEqual(r_read.json()[0]["Latitude"], "122.000000")
         self.assertEqual(r_read.json()[0]["Longitude"], "122.000000")
