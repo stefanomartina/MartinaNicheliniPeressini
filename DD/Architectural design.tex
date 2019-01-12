@@ -154,50 +154,48 @@ the components in the \textbf{External} box are on-demand softwares.\\
 
 \subsubsection{API structure}
 The whole Data4Help infrastructure will be connected through a RESTful API system. JSON files will be used as serialisation data format.\\
-All the API system will be implemented referring to a single endpoint (www.data4help.cloud) that TrackMe organisation will buy for the implementation of this project.
+All the API system will be implemented referring to a single endpoint (\url{data4help.cloud}) that TrackMe organisation will buy for the implementation of this project.
 \\Users' applications and third-parties will refer to different subdomain:
 
 \begin{itemize}
-	\item \textit{\textbf{www.data4help.cloud/api/users}}: it will be the specific endpoint for the application that serves users;
-	\item \textit{\textbf{www.data4help.cloud/api/thirdparties}}: it will be the specific endpoint for third-parties.
+	\item \textit{\textbf{data4help.cloud:5000/api/users}}: it will be the specific endpoint for the application that serves users;
+	\item \textit{\textbf{data4help.cloud:5000/api/thirdparties}}: it will be the specific endpoint for third-parties.
 \end{itemize}
 
-Secure access will be provided by HTTPS Basic Access Authentication: each request between client and server will be authenticated with user/third-party credential.
+Note that the port is \textit{\textbf{5000}}.\\
+Secure access will be provided by HTTPS Basic Access Authentication: each request between clients' applications and server will be authenticated with user credentials.
+\\Authentication for third parties will be granted with a system based on 32bit random generated secret.
 
-Here a complete description of each supported methods:
+Here a complete description of each supported methods for users' side:
 
 \begin{itemize}
-
-	\item \textit{\textbf{/api/user/registration}}
+	
+	\item \textit{\textbf{/api/users/login}}:
+		\begin{itemize}
+			\item POST: auuthenticate a login instance;
+		\end{itemize}
+	\item \textit{\textbf{/api/user/register}}:
 		\begin{itemize}
 			\item POST: register a new user with credentials specified in HTTP fields;
-		\end{itemize}
-	\item \textit{\textbf{/api/user/data}}
+		\end{itemize}	
+	\item \textit{\textbf{/api/users/data/heart}}:	
 		\begin{itemize}
-			\item GET: get last fixed number user's data;
-			\item POST: upload new user's data;
-		\end{itemize}
-	\item \textit{\textbf{/api/user/request}}
+			\item GET: get heart data
+			\item POST: post heart data
+		\end{itemize}	
+	\item \textit{\textbf{/api/users/subscription}}:
 		\begin{itemize}
-			\item GET: get all access requests that have the user as target;
+			\item GET: get subscriptions to the requester user
+			\item PUT: change subscription status
 		\end{itemize}
-	\item \textit{\textbf{/api/user/request/\{request\_id\}}}
+	\item \textit{\textbf{/api/users/location}}:
 		\begin{itemize}
-			\item PUT: accept or deny the request with the given ID;
-		\end{itemize}
-	\item \textit{\textbf{/api/thirdparties/registration}}
-		\begin{itemize}
-			\item POST: register a new third-party with credentials specified in HTTP fields;
-		\end{itemize}
-	\item \textit{\textbf{/api/thirdparties/request}}
-		\begin{itemize}
-			\item POST: generate a new access request for a user's data;
-		\end{itemize}
-	\item \textit{\textbf{/api/thirdparties/data}}
-		\begin{itemize}
-			\item GET: update all data coming from subscribed user.
+			\item POST: post location data of the requester user
+			\item GET: get location data of the requester user
 		\end{itemize}
 \end{itemize}
+
+A complete description of the method for third parties is available at: \url{data4help.cloud}
 
 
 \newpage
