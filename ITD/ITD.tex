@@ -25,8 +25,6 @@
 
 \usepackage[dvipsnames]{xcolor}
 \usepackage{listings}
-\usepackage{alloy-style}
-
 \begin{document}
 
 \begin{figure}[t]
@@ -238,6 +236,16 @@ Concerning the testing cases regarding third-parties, of particular interest are
 For testing these features, in the first instance we simulate the registration of a new third party and of a new user in the database; after this operation, we insert some location/heart rate information for the user previously created and than we simulate the permission of subscription request made by the third party and direct to the user. \\
 After the user acceptance, the third-party make an HTTP GET request to the specified endpoint providing its username, its secret and the parameters of interest.
 The test phase is performed by confronting the information retrieved by the database and the information initially inserted.  
+\newpage
+\subsection{How to test the code}
+To test the code we have been added a parameter that can be passed to the python compiler to launch it in "TEST MODE".
+The option to launch the server in test mode is "--testing". Doing this a local instance of the Database is created at the beginning of the tests and it's destroyed at the end of the tests.
+
+\begin{figure}[h!]
+\centering
+	\includegraphics[height=4.7cm,keepaspectratio]{Figures/tests}
+\end{figure}
+
 
 
 \newpage
