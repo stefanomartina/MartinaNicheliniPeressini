@@ -125,17 +125,6 @@ class DBHandler:
         except Exception as e:
             raise Exception(str(e))
 
-    def insert_sos(self, username, timestamp, sos):
-        timestamp = timestamp[:len(timestamp) - 6]
-        query = "UPDATE HeartRate SET SOS = '" + sos + "' " \
-                " WHERE (HeartRate.Username = '" + username + "' and HeartRate.Timestamp = '" + timestamp + "')"
-
-        try:
-            self.__send(query, None)
-
-        except Exception as e:
-            raise Exception(str(e))
-
     def insert_latitude_longitude(self, username, timestamp, latitude, longitude):
         query = "INSERT INTO Location VALUES (%s, %s, %s, %s)"
         timestamp = timestamp[:len(timestamp) - 6]
@@ -158,7 +147,7 @@ class DBHandler:
             timestamp = dict_to_insert[key]['timestamp']
             timestamp = timestamp[:len(timestamp) - 6]
             try:
-                SOS = dict_to_insert[key]['SOS']
+                SOS = dict_to_insert[key]['sos']
             except KeyError:
                 pass
             values = (username, timestamp, bpm, SOS)
