@@ -19,7 +19,7 @@ class HTTPManager {
                              persistence: .forSession)
     }
     
-    static func sendHeartData(data: [HKQuantitySample])  {
+    static func sendHeartData(data: [HKQuantitySample], _ sos : Bool = false)  {
         let credential = self.getCredential()
         var toSend : JSON = [:]
         var heartJson : JSON
@@ -30,7 +30,7 @@ class HTTPManager {
         for hkqs in data {
             bpm = "\(hkqs.quantity)"
             timestamp = "\(hkqs.startDate)"
-            heartJson =  ["bpm": bpm, "timestamp": timestamp]
+            heartJson =  ["bpm": bpm, "timestamp": timestamp, "sos": sos]
             
             roundKey = "data" + String(i)
             do { try toSend.merge(with: [roundKey : heartJson]) }

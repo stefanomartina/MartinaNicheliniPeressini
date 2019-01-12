@@ -386,12 +386,12 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="81Q-gN-zFB" firstAttribute="leading" secondItem="uy8-K9-gRr" secondAttribute="leadingMargin" id="3JX-fw-5xc"/>
-                                        <constraint firstItem="aLQ-gu-u9a" firstAttribute="baseline" secondItem="wLQ-li-Qbk" secondAttribute="baseline" id="EGt-Pv-AAP"/>
-                                        <constraint firstItem="81Q-gN-zFB" firstAttribute="leading" secondItem="aLQ-gu-u9a" secondAttribute="leading" id="SV7-na-O3F"/>
-                                        <constraint firstItem="aLQ-gu-u9a" firstAttribute="top" secondItem="81Q-gN-zFB" secondAttribute="bottom" constant="16" id="eVc-IR-7bF"/>
-                                        <constraint firstItem="81Q-gN-zFB" firstAttribute="top" secondItem="uy8-K9-gRr" secondAttribute="topMargin" id="rQW-zl-Dfq"/>
-                                        <constraint firstItem="81Q-gN-zFB" firstAttribute="trailing" secondItem="wLQ-li-Qbk" secondAttribute="trailing" id="yZb-Qp-LgH"/>
+                                        <constraint firstItem="wLQ-li-Qbk" firstAttribute="top" secondItem="KW8-cd-sls" secondAttribute="bottom" constant="16.000000000000007" id="O4z-Oa-2iG"/>
+                                        <constraint firstItem="81Q-gN-zFB" firstAttribute="top" secondItem="uy8-K9-gRr" secondAttribute="top" constant="11" id="Oek-gs-SVu"/>
+                                        <constraint firstItem="aLQ-gu-u9a" firstAttribute="leading" secondItem="uy8-K9-gRr" secondAttribute="leading" constant="20.000000000000004" id="SCM-gL-uQB"/>
+                                        <constraint firstAttribute="trailing" secondItem="wLQ-li-Qbk" secondAttribute="trailing" constant="20" id="htC-ip-Yl7"/>
+                                        <constraint firstItem="Eyu-ft-Ocy" firstAttribute="leading" secondItem="uy8-K9-gRr" secondAttribute="leading" constant="20" id="nhQ-qc-awW"/>
+                                        <constraint firstItem="aLQ-gu-u9a" firstAttribute="top" secondItem="Eyu-ft-Ocy" secondAttribute="bottom" constant="16.000000000000007" id="tDe-pk-mDO"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

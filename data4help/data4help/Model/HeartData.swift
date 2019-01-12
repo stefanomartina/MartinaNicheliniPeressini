@@ -23,21 +23,24 @@ class Data {
         self.str_timestamp = data
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        self.timestamp =  dateFormatterGet.date(from: data)!
+        self.timestamp =  dateFormatterGet.date(from: data) ?? dateFormatterGet.date(from: "1900-01-01 00:00:01")!
     }
 }
 
 class HeartData : Data {
     var bpm : String
+    var sos : Bool
     
     init(data: HKQuantitySample) {
         let tmp = "\(data.quantity)"
         self.bpm = String(tmp.split(separator: " ")[0])
+        self.sos = false
         super.init(data: data.startDate)
     }
     
     init(data: JSON){
         self.bpm = data["bpm"].stringValue
+        self.sos = data["SOS"].boolValue
         super.init(data: data["timestamp"].stringValue)
     }
 }

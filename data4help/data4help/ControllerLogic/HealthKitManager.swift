@@ -45,15 +45,23 @@ class AutomatedSoS: NSObject {
         
     } //end method notificationAlert
     
-    public static func checkValues (values: [HKQuantitySample]){
+    public static func checkValues (values: [HKQuantitySample]) -> [Int]{
+        var notToSend : [Int] = []
+        var toSendWithSOSFlag : [HKQuantitySample] = []
         let threshHold = UserDefaults.standard.integer(forKey: "threshold")
+        var index = 0;
         for value in values {
             let tmp = "\(value.quantity)"
             let count = Int(tmp.split(separator: " ")[0])
             if count ?? 0 < threshHold {
                 self.notificationAlert(badValue: value)
-            }
-        }
+                notToSend.append(index)
+                toSendWithSOSFlag.append(value)
+            } //end if check threshHold
+            index = index + 1
+        }//end for
+        HTTPManager.sendHeartData(data: toSendWithSOSFlag, true)
+        return notToSend
     } //end method checkValues
 } //end class automatedSOS
 
@@ -97,10 +105,15 @@ class HealthKitManager {
             DispatchQueue.main.async(execute: {
                 print("Async work\n")
                 HealthKitManager.getLastHeartBeat({ retrievedData in
+                    var toSend = retrievedData
                     let check = UserDefaults.standard.bool(forKey: "automatedSOSToggle")
                     if check {
-                        AutomatedSoS.checkValues(values: retrievedData)}
-                    HTTPManager.sendHeartData(data: retrievedData)
+                        var notToSend : [Int] = AutomatedSoS.checkValues(values: retrievedData)
+                        for value in notToSend {
+                            toSend.remove(at: value)
+                        } //end for
+                    } //end check for automatedSOS status
+                    HTTPManager.sendHeartData(data: toSend)
             })})
             
             print("Triggered by long running query")
