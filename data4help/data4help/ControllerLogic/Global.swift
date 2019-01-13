@@ -14,7 +14,7 @@ import Alamofire
 class Global {
     static private var USER_URL = ""
     static private let URL_USER_LOCAL = "http://localhost:5000/api/users"
-    static private let URL_USER_REMOTE = "https://data4help.cloud:5000/api/users"
+    static private let URL_USER_REMOTE = "https://data4help.cloud:443/api/users"
     
     static public let LOGIN_METHOD = "/login"
     static public let REGISTER_METHOD = "/register"

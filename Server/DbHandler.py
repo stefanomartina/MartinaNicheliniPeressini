@@ -6,21 +6,14 @@ import pprint
 import secrets
 import hashlib
 
-# parameters = {
-#     'host': '35.198.157.139',
-#     'user': 'root',
-#     'password': 'trackme',
-#     'database': 'data4help',
-#     'ssl_ca': '/root/MartinaNicheliniPeressini/Server/server-ca.pem',
-#     'ssl_cert': '/root/MartinaNicheliniPeressini/Server/client-cert.pem',
-#     'ssl_key': '/root/MartinaNicheliniPeressini/Server/client-key.pem'
-# }
-
 parameters = {
-    'host': '35.198.157.139',
-    'user': 'root',
-    'password': 'trackme',
-    'database': 'data4help'
+     'host': '35.198.157.139',
+     'user': 'root',
+     'password': 'trackme',
+     'database': 'data4help',
+     'ssl_ca': '/root/MartinaNicheliniPeressini/Server/server-ca.pem',
+     'ssl_cert': '/root/MartinaNicheliniPeressini/Server/client-cert.pem',
+     'ssl_key': '/root/MartinaNicheliniPeressini/Server/client-key.pem'
 }
 
 
@@ -34,19 +27,20 @@ class DuplicateException(Exception):
 class ConnectionPool:
     @staticmethod
     def get_new_connection():
-        # return mysql.connector.connect(host='35.198.157.139', database='data4help', user='root', passwd='trackme')
-        try:
-            return mysql.connector.connect(**parameters)
-        except:
-            print('[*] WARNING: Un-secure connection')
-            return mysql.connector.connect(host=parameters.get('host'), database=parameters.get('database'), user=parameters.get('user'), passwd=parameters.get('password'))
-
+        return mysql.connector.connect(**parameters)
 
 class DBHandler:
+
     def __init__(self, host=None, password=None):
         if host:
+            print('[*] WARNING: Un-secure connection')
             parameters['host'] = host
             parameters['password'] = password
+            del parameters['ssl_ca']
+            del parameters['ssl_cert']
+            del parameters['ssl_key']
+        else:
+            print('[*] NOTIFICATION: Secure connection')
 
     """
     To be called each time another method needs to write data on database
