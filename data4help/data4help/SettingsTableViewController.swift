@@ -21,6 +21,7 @@ class SettingsTableViewController: UITableViewController {
     
     @IBAction func healthAccess(_ sender: Any) {
         if let senderSwitch = sender as? UISwitch {
+            
             if senderSwitch.isOn {
                 let permissionsNedeed = Set([HKObjectType.quantityType(forIdentifier: .heartRate)!])
                 HealthKitManager.getHealthStore().requestAuthorization(toShare: permissionsNedeed, read: permissionsNedeed) {
@@ -29,6 +30,9 @@ class SettingsTableViewController: UITableViewController {
                         HealthKitManager.getLastHeartBeat({retrievedData in HTTPManager.sendHeartData(data: retrievedData)})
                         HealthKitManager.activateLongRunningQuery()
                     } }
+                healthToggle.isEnabled = false
+                emergencyToggle.isOn = true
+                Global.userDefaults.set(true, forKey: "automatedSOSToggle")
             }//end closure
         }
     }//end button method
@@ -78,15 +82,6 @@ class SettingsTableViewController: UITableViewController {
         thresholdSlider.setValue(Float(getThreshold())!, animated: true)
     }
     
-    func getThreshold() -> String{
-        if let tok = Global.userDefaults.string(forKey: "threshold") {
-            print(tok)
-            return tok
-        } else {
-            print(String(Global.DEFAULT_THRESHOLD))
-            return String(Global.DEFAULT_THRESHOLD)
-        }
-    }
     @IBAction func thresholdSliderChanges(_ sender: Any) {
         let tok = String("\(thresholdSlider.value)").components(separatedBy: ".")[0]
         thresholdLabel.text = "\(tok)"

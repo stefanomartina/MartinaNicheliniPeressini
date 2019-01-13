@@ -18,8 +18,6 @@ var sosTimer : Timer!
 func loginServicesActivation() {
     center.delegate = notificationDelegate
     HealthKitManager.activateLongRunningQuery()
-    if (Global.userDefaults.string(forKey: "threshold") != nil){}
-    else {Global.userDefaults.set(Global.DEFAULT_THRESHOLD, forKey: "threshold")}
 }
 
 @UIApplicationMain

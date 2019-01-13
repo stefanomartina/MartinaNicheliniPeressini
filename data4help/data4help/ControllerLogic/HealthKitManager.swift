@@ -10,6 +10,15 @@ import HealthKit
 import UserNotifications
 import UIKit
 
+func getThreshold() -> String {
+    if let tok = Global.userDefaults.string(forKey: "threshold") {
+        print(tok)
+        return tok
+    } else {
+        print(String(Global.DEFAULT_THRESHOLD))
+        return String(Global.DEFAULT_THRESHOLD)
+    }
+}
 
 class AutomatedSoS: NSObject {
     
@@ -48,12 +57,12 @@ class AutomatedSoS: NSObject {
     public static func checkValues (values: [HKQuantitySample]) -> [Int]{
         var notToSend : [Int] = []
         var toSendWithSOSFlag : [HKQuantitySample] = []
-        let threshHold = UserDefaults.standard.integer(forKey: "threshold")
+        let threshHold = Int(getThreshold())
         var index = 0;
         for value in values {
             let tmp = "\(value.quantity)"
             let count = Int(tmp.split(separator: " ")[0])
-            if count ?? 0 < threshHold {
+            if count ?? 0 < threshHold! {
                 self.notificationAlert(badValue: value)
                 notToSend.append(index)
                 toSendWithSOSFlag.append(value)
