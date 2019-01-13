@@ -238,8 +238,11 @@ After the user acceptance, the third-party make an HTTP GET request to the speci
 The test phase is performed by confronting the information retrieved by the database and the information initially inserted.  
 \newpage
 \subsection{How to test the code}
-To test the code we have been added a parameter that can be passed to the python compiler to launch it in "TEST MODE".
-The option to launch the server in test mode is "--testing". Doing this a local instance of the Database is created at the beginning of the tests and it's destroyed at the end of the tests.
+
+In order to test the code, MySQL server has to be installed on your testing machine and there has to be a running instance of it.
+First run API.py with "--testing" option, then execute the unit tests contained in Test.py.\\
+You can download MySQL server from here: \url{https://dev.mysql.com/downloads/mysql/}.
+
 
 \begin{figure}[h!]
 \centering

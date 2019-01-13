@@ -87,6 +87,7 @@ class DataTableViewController: UITableViewController{
             cell.bpmLabel.text = (selectedData as! HeartData).bpm
             cell.timestampLabel.text = (selectedData as! HeartData).str_timestamp
             if (selectedData as! HeartData).sos {cell.backgroundColor = .yellow}
+            else {cell.backgroundColor = .white}
             return cell
         }
         else {
