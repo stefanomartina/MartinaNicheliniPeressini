@@ -54,7 +54,7 @@ class AutomatedSoS: NSObject {
         
     } //end method notificationAlert
     
-    public static func checkValues (values: [HKQuantitySample]) -> [Int]{
+    public static func checkValues (values: [HKQuantitySample]) -> [Int] {
         var notToSend : [Int] = []
         var toSendWithSOSFlag : [HKQuantitySample] = []
         let threshHold = Int(getThreshold())
@@ -152,7 +152,7 @@ class HealthKitManager {
         
         var samples = [HKQuantitySample]()
         let descriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)
-        let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: Int(HKObjectQueryNoLimit), sortDescriptors: [descriptor]) {
+        let query = HKSampleQuery(sampleType: sampleType!, predicate: timeIntervalPredicate, limit: Int(Global.QUERY_LIMIT), sortDescriptors: [descriptor]) {
             query, results, error in
             //Controlla se è stata data l'autorizzazione!!!
             samples = results as! [HKQuantitySample]

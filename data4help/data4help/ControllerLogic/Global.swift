@@ -15,16 +15,14 @@ class Global {
     static private var USER_URL = ""
     static private let URL_USER_LOCAL = "http://localhost:5000/api/users"
     static private let URL_USER_REMOTE = "https://data4help.cloud:443/api/users"
-    
+    static public var QUERY_LIMIT = 20
     static public let LOGIN_METHOD = "/login"
     static public let REGISTER_METHOD = "/register"
     static public let HEART_ENDPOINT = "/data/heart"
     static public let HEART_ENDPOINT_GET = Global.HEART_ENDPOINT
     static public let SUBSCRIPTION = "/subscription"
     static public let LOCATION = "/location"
-    
-    static public let DEFAULT_THRESHOLD = 60
-    
+    static public let DEFAULT_THRESHOLD = 0
     static public let userDefaults = UserDefaults.standard
     
     static public let SOSOkActionID = "OK"
