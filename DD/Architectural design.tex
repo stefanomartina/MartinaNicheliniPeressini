@@ -132,7 +132,7 @@ The Deployment diagram emphasises the nodes on which the platform runs;\\
 the components in the \textbf{External} box are on-demand softwares.\\
 \begin{itemize}
 \item	\textbf{Smartphone}: the application deployed on the iOS smartphone used by individuals. Users are able to retrieve data from the application server and also from external APIs directly;
-\item \textbf{Web Browser API Interface}: a web page for third-parties registration. It provides a secret to do a request to the API Server;
+\item \textbf{Web Browser Interface}: a web page for third-parties registration. It provides a secret to do a request to the API Server;
 \item \textbf{Application Server}: the  main logic core of the application. It’s the only access point to the DB but it also communicates with the external server API;
 \item  \textbf{External Services}: both the external services are represented as  blackboxes because we don't know how they are implemented.
 \end{itemize}
@@ -155,24 +155,22 @@ the components in the \textbf{External} box are on-demand softwares.\\
 \subsubsection{API structure}
 The whole Data4Help infrastructure will be connected through a RESTful API system. JSON files will be used as serialisation data format.\\
 All the API system will be implemented referring to a single endpoint (\url{data4help.cloud}) that TrackMe organisation will buy for the implementation of this project.
-\\Users' applications and third-parties will refer to different subdomain:
+\\Users' applications and third-parties will refer to different subdomains:
 
 \begin{itemize}
-	\item \textit{\textbf{data4help.cloud:5000/api/users}}: it will be the specific endpoint for the application that serves users;
-	\item \textit{\textbf{data4help.cloud:5000/api/thirdparties}}: it will be the specific endpoint for third-parties.
+	\item \textit{\textbf{https://data4help.cloud/api/users}}: it will be the specific endpoint for the application that serves users;
+	\item \textit{\textbf{https://data4help.cloud/api/thirdparties}}: it will be the specific endpoint for third-parties.
 \end{itemize}
 
-Note that the port is \textit{\textbf{5000}}.\\
-Secure access will be provided by HTTPS Basic Access Authentication: each request between clients' applications and server will be authenticated with user credentials.
-\\Authentication for third parties will be granted with a system based on 32bit random generated secret.
-
+The two subdomains are thought differently: the first one servers application and is secured by HTTPS Basic Access Authentication; the second one is built to provide a B2B interface to third-parties and it is secured with a secret authentication system.
+\\\\
 Here a complete description of each supported methods for users' side:
 
 \begin{itemize}
 	
 	\item \textit{\textbf{/api/users/login}}:
 		\begin{itemize}
-			\item POST: auuthenticate a login instance;
+			\item POST: authenticate a login instance;
 		\end{itemize}
 	\item \textit{\textbf{/api/user/register}}:
 		\begin{itemize}
