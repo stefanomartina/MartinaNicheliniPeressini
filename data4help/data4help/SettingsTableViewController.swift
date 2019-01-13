@@ -55,7 +55,6 @@ class SettingsTableViewController: UITableViewController {
         tableView.allowsSelection = false;
         setAutomatedSOSSwitch()
         thresholdLabel.text = getThreshold()
-        Global.userDefaults.set(getThreshold(), forKey: "threshold")
         setSlider()
         
         HealthKitManager.checkIfHealtkitIsEnabled({ response in
