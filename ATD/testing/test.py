@@ -8,9 +8,9 @@ class Test(unittest.TestCase):
 
     def __post__(self, specific_url_endpoint, parameters):
         URL = self.URL_BASE_ENDPOINT + specific_url_endpoint
-        parameters = json.load(parameters)
+        #parameters = json.load(parameters)
         post_request = requests.post(URL, json=parameters)
-        return post_request.status_code
+        return post_request
 
     def __get__(self, specific_url_endpoint, parameters):
         URL = self.URL_BASE_ENDPOINT + specific_url_endpoint
@@ -18,7 +18,7 @@ class Test(unittest.TestCase):
         get_request = requests.get(URL, json=parameters)
         return get_request.status_code
 
-    def registration_test(self):
+    def test_registration_user(self):
         URL = "/v1/auth/register_user"
         parameters = {
             "mail": "test@test.mail",
@@ -30,8 +30,15 @@ class Test(unittest.TestCase):
             "smartwatch": "AppleWatch"
         }
 
-        status_code = self.__post__(parameters, URL)
-        self.assertEqual(status_code, '200')
+        response = self.__post__(URL, parameters)
+        status_code = response.status_code
+
+        self.assertEqual(str(status_code), '200')
+        print(response.content)
+
+    def test_registration_company(self):
+        URL = "/v1/auth/register_company"
+
 
 if __name__ == '__main__':
     unittest.main()
