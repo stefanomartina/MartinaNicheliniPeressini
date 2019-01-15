@@ -3,6 +3,7 @@ import unittest, requests, json
 
 class Test(unittest.TestCase):
 
+    #URL_BASE_ENDPOINT = "https://data4halp.herokuapp.com"
     URL_BASE_ENDPOINT = "https://data4halp.herokuapp.com"
 
     def __post__(self, specific_url_endpoint, parameters):
@@ -31,3 +32,6 @@ class Test(unittest.TestCase):
 
         status_code = self.__post__(parameters, URL)
         self.assertEqual(status_code, '200')
+
+if __name__ == '__main__':
+    unittest.main()
