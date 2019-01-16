@@ -83,9 +83,40 @@ Following the instruction on the ITD Document, on a smartphone, everything works
 Doing the same steps on a simulator the application crashes, probably due to some incompatibilities with the running version on the simulator.	\newline
 The web-app launch works correctly.
 \newpage
+
+
+
 \section{Acceptance Test}
 \subsection{Tests}
-\subsubsection{Registration}
+We are going to test the implementation of each requirements that has been implemented according to ITD document provided.
+
+\subsubsection{Actor registration}
+\begin{itemize}
+	\item RMM: OK. Users actually can register providing information required, but registration process succeed also without an associated smartwatch.
+	\item R2M: OK. Implementation works: registration process is successfull if and only there is not another user with the same email/fiscal code. However error handling is not able to distinguish between a duplicate email or fiscal code.
+	\item R11W: OK. Organizers can successfully resister.
+	\item R1W: OK. Companies can successfully register.
+	\item R14C: OK. Information such as birthday and fiscal code are validated trough UI form.
+\end{itemize}
+
+\subsection{Actor Authentication}
+\begin{itemize}
+	\item R1M: OK. Users can successfully log in in the application.
+	\item R12M: OK. Organisers can successfully log in in the application.
+	\item R2W OK. Companies  can successfully log in in the application.
+\end{itemize}
+
+\subsection{Individuals Management}
+\begin{itemize}
+	\item R6M: KO. WAITING FOR THEM.
+	\item R2C: OK. Users received notification about new request at the email address used during registration.
+\end{itemize}
+
+\subsection{Data management}
+\begin{itemize}
+	\item R4C: we can't directly test this feature, but it seems that all data loaded to the application is available after a logout, then it has been probably implemented right.
+\end{itemize}
+
 \subsection{Issue}
 \subsubsection{Issue1}
 \subsubsection{Issue2}
