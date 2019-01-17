@@ -92,43 +92,43 @@ We are going to test the implementation of each requirements that has been imple
 
 \subsubsection{Actor registration}
 \begin{itemize}
-	\item RMM: OK. Users actually can register providing information required, but registration process succeed also without an associated smartwatch.
-	\item R2M: OK. Implementation works: registration process is successfull if and only there is not another user with the same email/fiscal code. However error handling is not able to distinguish between a duplicate email or fiscal code.
-	\item R11W: OK. Organizers can successfully resister.
-	\item R1W: OK. Companies can successfully register.
-	\item R14C: OK. Information such as birthday and fiscal code are validated trough UI form.
+	\item [RM$_M$]: \textit{OK.} Users actually can register providing information required, but registration process succeed also without an associated smartwatch.
+	\item [R2$_M$]: \textit{OK.} Implementation works: registration process is successfull if and only there is not another user with the same email/fiscal code. However error handling is not able to distinguish between a duplicate email or fiscal code.
+	\item [R11$_M$]: \textit{OK.} Organizers can successfully resister.
+	\item [R1$_W$]: \textit{OK.} Companies can successfully register.
+	\item [R14$_C$]: \textit{OK.} Information such as birthday and fiscal code are validated trough UI form.
 \end{itemize}
 
 \subsection{Actor Authentication}
 \begin{itemize}
-	\item R1M: OK. Users can successfully log in in the application.
-	\item R12M: OK. Organisers can successfully log in in the application.
-	\item R2W OK. Companies  can successfully log in in the application.
+	\item [R1$_M$]: \textit{OK.} Users can successfully log in in the application.
+	\item [R12$_M$]: \textit{OK.} Organisers can successfully log in in the application.
+	\item [R2$_W$]: \textit{OK.} Companies  can successfully log in in the application.
 \end{itemize}
 
 \subsection{Individuals Management}
 \begin{itemize}
-	\item R6M: OK. Requests appear in the right section of the mobile app. Users can effectively accept or decline them.
-	\item R2C: OK. Users received notification about new request at the email address used during 
+	\item [R6$_M$]: \textit{OK.} Requests appear in the right section of the mobile app. Users can effectively accept or decline them.
+	\item [R2$_C$]: \textit{OK.} Users received notification about new request at the email address used during 
 	\item registration.
 \end{itemize}
 
 \subsection{Data management}
 \begin{itemize}
-	\item R4C: OK. We can't directly test this feature, but it seems that all data loaded to the application are available after a logout, then it has been probably implemented right.
-	\item R5C: OK. Same of the previously one.
-	\item R2S: ??????.
+	\item [R4$_C$]: \textit{OK.} We can't directly test this feature, but it seems that all data loaded to the application are available after a logout, then it has been probably implemented right.
+	\item [R5$_C$]: \textit{OK.} Same of the previously one.
+	\item [R2$_S$]: ??????.
 \end{itemize}
 
 \subsection{Query management}
 \begin{itemize}
-	\item R6W: UNKNOWN. See section issues.
-	\item R7W: OK. Companies can actually request data of individuals. 
-	\item R8W: OK. Companies can access to individuals data trough the web site.
-	\item R9W: OK. The website actually provides data download capabilities.
-	\item R6C: OK.
-	\item R6bisW: OK. The website gives capability of subscribe trough a slider. The company actually receives a notification when a new data is available.
-	\item R7C: KO. Check in issues section
+	\item [R6$_W$]: \textit{UNKNOWN.} See section issues.
+	\item [R7$_W$]: \textit{OK.} Companies can actually request data of individuals. 
+	\item [R8$_W$]: \textit{OK.} Companies can access to individuals data trough the web site.
+	\item [R9$_W$]: \textit{OK.} The website actually provides data download capabilities.
+	\item [R6$_C$]: \textit{OK.}
+	\item R6bisW: \textit{OK.} The website gives capability of subscribe trough a slider. The company actually receives a notification when a new data is available.
+	\item R7C: \textit{KO.} Check in issues section
 
 \subsubsection{Issues}
 
@@ -141,10 +141,10 @@ During the testing of requirements R7W, R8W, we have found the following issue:
 
 \subsection{Race management}
 \begin{itemize}
-	\item R8M: OK. Registration is possibile trough the track4run tab at anytime.
-	\item R9M: KO. Check in issues section.
-	\item R13M: OK. Organisers actually have all the needed to create a path.
-	\item R14M: OK. Organisers actually have all the needed to define run informations and path.
+	\item [R8$_M$]: \textit{OK.} Registration is possibile trough the track4run tab at anytime.
+	\item [R9$_M$]: \textit{KO.} Check in issues section.
+	\item [R13$_M$]: \textit{OK.} Organisers actually have all the needed to create a path.
+	\item [R14$_M$]: \textit{OK.} Organisers actually have all the needed to define run informations and path.
 \end{itemize}
 
 \subsubsection{issues}
@@ -152,8 +152,8 @@ For what concerning requirements R9M: application only displays the name of the 
 
 \subsection{Users Spectating Race}
 \begin{itemize}
-	\item R10M: OK. Participants position are correctly displayed.
-	\item R13C: ????????
+	\item [R10$_M$]: \textit{OK.} Participants position are correctly displayed.
+	\item [R13$_C$]: ????????
 \end{itemize}
 
 
