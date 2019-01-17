@@ -108,14 +108,54 @@ We are going to test the implementation of each requirements that has been imple
 
 \subsection{Individuals Management}
 \begin{itemize}
-	\item R6M: KO. WAITING FOR THEM.
-	\item R2C: OK. Users received notification about new request at the email address used during registration.
+	\item R6M: OK. Requests appear in the right section of the mobile app. Users can effectively accept or decline them.
+	\item R2C: OK. Users received notification about new request at the email address used during 
+	\item registration.
 \end{itemize}
 
 \subsection{Data management}
 \begin{itemize}
-	\item R4C: we can't directly test this feature, but it seems that all data loaded to the application is available after a logout, then it has been probably implemented right.
+	\item R4C: OK. We can't directly test this feature, but it seems that all data loaded to the application are available after a logout, then it has been probably implemented right.
+	\item R5C: OK. Same of the previously one.
+	\item R2S: ??????.
 \end{itemize}
+
+\subsection{Query management}
+\begin{itemize}
+	\item R6W: UNKNOWN. See section issues.
+	\item R7W: OK. Companies can actually request data of individuals. 
+	\item R8W: OK. Companies can access to individuals data trough the web site.
+	\item R9W: OK. The website actually provides data download capabilities.
+	\item R6C: OK.
+	\item R6bisW: OK. The website gives capability of subscribe trough a slider. The company actually receives a notification when a new data is available.
+	\item R7C: KO. Check in issues section
+
+\subsubsection{Issues}
+
+For what regards the implementation of requirements R6W, we were not able to check if the queries work because the system kept telling us that the parameters inserted were too restrictive.\\
+
+During the testing of requirements R7W, R8W, we have found the following issue:
+\begin{itemize}
+	\item the process fails if requests are made by a company that has the same email address of a user. The error message is the following: \textit{"Error: Unauthorized. Retry"} and it appears on the website as an alert. However, since it's unlikely that a company uses the same address of a users, we still marked the requirements as "OK".
+\end{itemize}
+
+\subsection{Race management}
+\begin{itemize}
+	\item R8M: OK. Registration is possibile trough the track4run tab at anytime.
+	\item R9M: KO. Check in issues section.
+	\item R13M: OK. Organisers actually have all the needed to create a path.
+	\item R14M: OK. Organisers actually have all the needed to define run informations and path.
+\end{itemize}
+
+\subsubsection{issues}
+For what concerning requirements R9M: application only displays the name of the run, its status and the position of participants. Information about the starting point, the ending point, the precise path, the run length are not available.
+
+\subsection{Users Spectating Race}
+\begin{itemize}
+	\item R10M: OK. Participants position are correctly displayed.
+	\item R13C: ????????
+\end{itemize}
+
 
 \subsection{Issue}
 \subsubsection{Issue1}
