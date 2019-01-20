@@ -1,5 +1,5 @@
-## TrackMe
-Software Engineering 2 Project Repository
+# Data4Help #
+Data4Help is a software-based service allowing third parties to monitor the location and health status of individuals
 
 ## Submission Details ##
 
